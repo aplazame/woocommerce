@@ -1,0 +1,40 @@
+image: bradrydzewski/php:5.5
+
+branches:
+  - master
+  - release
+
+script:
+  - chmod +x ./.drone/*.sh
+  - ./.drone/build.sh
+
+deploy:
+  bash:
+    script:
+      - ./.drone/deploy.sh
+
+publish:
+  s3:
+    acl: public-read
+    region: 'eu-central-1'
+    bucket: 'aplazame'
+    access_key: $$S3_ACCESS_KEY
+    secret_key: $$S3_SECRET_KEY
+    source: latest.zip
+    target: /modules/woocommerce/aplazame.latest.zip
+    recursive: false
+    when:
+      branch: release
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK_URL
+    username: 'woo'
+    on_success: change
+    on_failure: true
+
+  email:
+    recipients:
+      - dev@aplazame.com
+    on_success: change
+    on_failure: true

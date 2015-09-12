@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Aplazame v0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-12 01:59+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Aplazame <dev@aplazame.com>\n"
+"Language-Team: Aplazame <dev@aplazame.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: aplazame.php:76
+#, php-format
+msgid "Order #%s has been %s by %s with status %s."
+msgstr ""
+
+#: aplazame.php:144
+#, php-format
+msgid "Confirmed by %s."
+msgstr ""
+
+#: classes/lib/Helpers.php:29
+msgid "Aplazame Redirect"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:68 classes/wc-aplazame-gateway.php:111
+msgid "Enable/Disable"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:69
+msgid "Enable Aplazame module"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:75
+msgid "Determines if the module is on Sandbox mode"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:76
+msgid "Turn on Sandbox"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:82
+msgid "Aplazame Host"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:87
+msgid "API Version"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:88
+msgid "Aplazame API Version"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:93
+msgid "Button"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:94
+msgid "Aplazame Button CSS Selector"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:99
+msgid "Public API Key"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:100
+msgid "Aplazame Public Key"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:105
+msgid "Private API Key"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:106
+msgid "Aplazame Private Key"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:112
+msgid "Enable Aplazame analytics"
+msgstr ""
+
+#: templates/gateway/payment-fields.php:16
+#, php-format
+msgid "It is necessary to enable JavaScript, %s does not work without JS."
+msgstr ""
