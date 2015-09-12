@@ -33,7 +33,7 @@ class Aplazame_Client
 
     public function request($method, $path, $data=null)
     {
-        $args = array(      
+        $args = array(
             'headers' => $this->headers(),
             'method' => $method,
             'body' => $data
