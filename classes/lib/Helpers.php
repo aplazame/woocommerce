@@ -10,13 +10,6 @@ class Aplazame_Helpers
         return wc_get_template($template_name, $args, $template_path, $default_path);
     }
 
-    public static function payload()
-    {
-        if (Aplazame_Redirect::is_redirect()) {
-            static::render_to_template('gateway/redirect.php');
-        }
-    }
-
     public static function get_payment_method($order_id)
     {
         return get_post_meta($order_id, '_payment_method', true);
