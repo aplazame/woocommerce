@@ -31,10 +31,10 @@ notify:
     webhook_url: $$SLACK_WEBHOOK_URL
     username: 'woo'
     on_success: change
-    on_failure: false
+    on_failure: true
 
   email:
     recipients:
       - dev@aplazame.com
     on_success: change
-    on_failure: false
+    on_failure: true

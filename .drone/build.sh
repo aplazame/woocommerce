@@ -2,8 +2,7 @@
 
 set -e
 
-# Tests and syntax checker
-# make test
+# Tests and check syntax (make test)
 make syntax.checker
 
 
