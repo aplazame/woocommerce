@@ -24,6 +24,7 @@ class WC_Aplazame
         # Dependencies
         include_once('classes/lib/Filters.php');
         include_once('classes/lib/Helpers.php');
+        include_once('classes/lib/Redirect.php');
 
         # Sdk
         include_once('classes/sdk/Client.php');
@@ -46,8 +47,8 @@ class WC_Aplazame
         $this->private_api_key = $this->settings['private_api_key'];
 
         # Redirect
-        register_activation_hook(__FILE__, 'Aplazame_Helpers::redirect_ID');
-        add_action('wp_footer', 'Aplazame_Helpers::payload');
+        register_activation_hook(__FILE__, 'Aplazame_Redirect::redirect_ID');
+        add_action('wp_footer', 'Aplazame_Redirect::payload');
 
         # TODO: Redirect nav
         #add_filter('wp_nav_menu_objects', '?');
@@ -121,7 +122,7 @@ class WC_Aplazame
     # Controllers
     public function router($template)
     {
-        if (Aplazame_Helpers::is_redirect()) {
+        if (Aplazame_Redirect::is_redirect()) {
             switch ($_GET['action']) {
                 case 'confirm':
                     return $this->confirm();
