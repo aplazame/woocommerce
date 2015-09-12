@@ -43,13 +43,14 @@ class WC_Aplazame
         $this->settings = get_option('woocommerce_aplazame_settings', array());
         $this->sandbox = $this->settings['sandbox'] === 'yes';
         $this->host = $this->settings['host'];
+        $this->private_api_key = $this->settings['private_api_key'];
 
         # Redirect
         register_activation_hook(__FILE__, 'Aplazame_Helpers::redirect_ID');
         add_action('wp_footer', 'Aplazame_Helpers::payload');
 
         # TODO: Redirect nav
-        #add_filter('wp_nav_menu_objects', '?';
+        #add_filter('wp_nav_menu_objects', '?');
 
         # Router to action
         add_filter('template_include', array($this, 'router'));
@@ -89,7 +90,7 @@ class WC_Aplazame
             $this->host,
             $this->settings['api_version'],
             $this->sandbox,
-            $this->settings['private_api_key']);
+            $this->private_api_key);
     }
 
     # Settings
@@ -145,6 +146,7 @@ class WC_Aplazame
 
         if (($status_code === 200) &&
                 ($body->amount === Aplazame_Filters::decimals($cart->total))) {
+
             $order->update_status('processing', sprintf(
                 __('Confirmed by %s.', 'aplazame'), $this->host));
 
@@ -159,8 +161,9 @@ class WC_Aplazame
     {
         $order = new WC_Order($_GET['order_id']);
 
-        # Todo: Check private key
-        if (static::is_aplazame_order($order->id)) {
+        if (static::is_aplazame_order($order->id) &&
+                $this->is_private_key_verified()) {
+
             $serializers = new Aplazame_Serializers();
 
             $qs = get_posts(array(
@@ -218,6 +221,11 @@ class WC_Aplazame
     public static function is_aplazame_order($order_id)
     {
         return Aplazame_Helpers::get_payment_method($order_id) === 'aplazame';
+    }
+
+    public function is_private_key_verified()
+    {
+        return substr($_SERVER['HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
     }
 }
 
