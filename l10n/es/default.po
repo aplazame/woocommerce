@@ -1,12 +1,12 @@
-#: aplazame.php:76
+#: aplazame.php:81
 #, php-format
 msgid "Order #%s has been %s by %s with status %s."
 msgstr "Pedido #%s se ha actualizado (%s) por %s con estado %s"
 
-#: aplazame.php:144
+#: aplazame.php:151
 #, php-format
 msgid "Confirmed by %s."
-msgstr ""
+msgstr "Confirmado por %s."
 
 #: classes/lib/Helpers.php:29
 msgid "Aplazame Redirect"
@@ -65,13 +65,13 @@ msgid "Aplazame Private Key"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:112
-msgid "Enable Aplazame analytics"
+msgid "Enable Aplazame Analytics"
 msgstr ""
 
-#: templates/gateway/payment-fields.php:16
+#: templates/gateway/payment-fields.php:19
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
-msgstr ""
+msgstr "Es necesatio habilitar JavaScript para que %s funcione."
 
 #~ msgid "Confirmed by Aplazame."
 #~ msgstr "Confirmado port Aplazame"

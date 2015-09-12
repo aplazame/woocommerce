@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Aplazame v0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-12 01:59+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-09-13 00:00+0200\n"
 "Last-Translator: Aplazame <dev@aplazame.com>\n"
 "Language-Team: Aplazame <dev@aplazame.com>\n"
 "Language: es_ES\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:76
+#: aplazame.php:81
 #, php-format
 msgid "Order #%s has been %s by %s with status %s."
 msgstr ""
 
-#: aplazame.php:144
+#: aplazame.php:151
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
@@ -84,10 +84,10 @@ msgid "Aplazame Private Key"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:112
-msgid "Enable Aplazame analytics"
+msgid "Enable Aplazame Analytics"
 msgstr ""
 
-#: templates/gateway/payment-fields.php:16
+#: templates/gateway/payment-fields.php:19
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
 msgstr ""
