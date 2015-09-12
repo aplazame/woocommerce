@@ -145,7 +145,6 @@ class WC_Aplazame
 
         if (($status_code === 200) &&
                 ($body->amount === Aplazame_Filters::decimals($cart->total))) {
-
             $order->update_status('processing', sprintf(
                 __('Confirmed by %s.', 'aplazame'), $this->host));
 
@@ -153,7 +152,7 @@ class WC_Aplazame
         } else {
             status_header(403);
         }
-        return NULL;
+        return null;
     }
 
     public function history()
@@ -175,7 +174,7 @@ class WC_Aplazame
         }
 
         status_header(403);
-        return NULL;
+        return null;
     }
 
     # Widgets

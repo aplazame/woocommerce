@@ -16,7 +16,6 @@ class Aplazame_Filters
 
         if (($parts === false) || (empty($parts)) ||
                 (strcmp($parts[0], 0) === 0 && strcmp($parts[1], '00') === 0)) {
-
             return 0;
         }
 

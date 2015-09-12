@@ -1,12 +1,14 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 global $aplazame;
 global $woocommerce;
 ?>
 
-<!-- TODO: aplazame-js feature require --> 
+<!-- TODO: aplazame-js feature require -->
 <style type="text/css">
 #payment ul li.payment_method_aplazame {
   /*display: none;*/

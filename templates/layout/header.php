@@ -1,11 +1,13 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 global $aplazame;
 ?>
 
-<!-- TODO: nav hook and exclude redirect page --> 
+<!-- TODO: nav hook and exclude redirect page -->
 <style type="text/css">
   li.page-item-<?php echo Aplazame_Helpers::redirect_ID() ?> {
     display: none;

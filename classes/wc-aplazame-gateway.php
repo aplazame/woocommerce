@@ -39,14 +39,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                 (get_woocommerce_currency() !== 'EUR') ||
                 (!$this->settings['public_api_key']) ||
                 (!$this->settings['private_api_key'])) {
-
             return false;
         }
 
         return true;
     }
 
-    public function payment_fields() {
+    public function payment_fields()
+    {
         Aplazame_Helpers::render_to_template('gateway/payment-fields.php');
     }
 

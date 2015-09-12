@@ -1,6 +1,8 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 global $woocommerce;
 
@@ -12,5 +14,5 @@ $serializer = new Aplazame_Serializers();
 
 <script type="text/javascript">
   aplazame.checkout(<?php echo json_encode($serializer->get_checkout(
-  	$order, $cart->get_checkout_url(), $customer), 128) ?>);
+    $order, $cart->get_checkout_url(), $customer), 128) ?>);
 </script>
