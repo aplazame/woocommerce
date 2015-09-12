@@ -21,7 +21,7 @@ class Aplazame_Client
         return trim(str_replace('://', '://api.', $this->host), '/') . $path;
     }
 
-    public function headers()
+    protected function headers()
     {
         return array(
             'Accept' => 'application/vnd.aplazame.' .
