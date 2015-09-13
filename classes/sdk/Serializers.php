@@ -28,7 +28,7 @@ class Aplazame_Serializers
     {
         $articles = array();
 
-        foreach($items as $item => $values) { 
+        foreach($items as $item => $values) {
             $product = new WC_Product($values['product_id']);
 
             $tax_rate = 100 * ($product->get_price_including_tax() /

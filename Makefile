@@ -1,6 +1,8 @@
-errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
-l10n_path ?= l10n/es/default
 files = $(shell find . -name "*.php")
+errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
+
+l10n_path ?= l10n/es/default
+branch ?= dev
 
 test:
 	@php ./test/Aplazame.php

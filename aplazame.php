@@ -74,6 +74,23 @@ class WC_Aplazame
         # add_action('woocommerce_api_delete_order_refund', '?', 10, 3);
     }
 
+    protected function get_client()
+    {
+        return new Aplazame_Client(
+            $this->host,
+            $this->settings['api_version'],
+            $this->sandbox,
+            $this->private_api_key);
+    }
+
+    public function log($msg)
+    {
+        if ($this->sandbox) {
+            $log = new WC_Logger();
+            $log->add('aplazame', $msg);
+        }
+    }
+
     protected function add_order_note($order_id, $signal, $response)
     {
         $order = new WC_Order($order_id);
@@ -85,13 +102,10 @@ class WC_Aplazame
         $order->add_order_note($msg);
     }
 
-    protected function get_client()
+
+    protected function is_private_key_verified()
     {
-        return new Aplazame_Client(
-            $this->host,
-            $this->settings['api_version'],
-            $this->sandbox,
-            $this->private_api_key);
+        return substr($_SERVER['HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
     }
 
     # Settings
@@ -147,7 +161,6 @@ class WC_Aplazame
 
         if (($status_code === 200) &&
                 ($body->amount === Aplazame_Filters::decimals($cart->total))) {
-
             $order->update_status('processing', sprintf(
                 __('Confirmed by %s.', 'aplazame'), $this->host));
 
@@ -164,7 +177,6 @@ class WC_Aplazame
 
         if (static::is_aplazame_order($order->id) &&
                 $this->is_private_key_verified()) {
-
             $serializers = new Aplazame_Serializers();
 
             $qs = get_posts(array(
@@ -211,22 +223,10 @@ class WC_Aplazame
         }
     }
 
-    public function log($msg)
-    {
-        if ($this->sandbox) {
-            $log = new WC_Logger();
-            $log->add('aplazame', $msg);
-        }
-    }
-
-    public static function is_aplazame_order($order_id)
+    # Static
+    protected static function is_aplazame_order($order_id)
     {
         return Aplazame_Helpers::get_payment_method($order_id) === 'aplazame';
-    }
-
-    public function is_private_key_verified()
-    {
-        return substr($_SERVER['HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
     }
 }
 
