@@ -147,7 +147,7 @@ class WC_Aplazame
             $body = $this->get_client()->authorize($order->id);
 
         } catch (Aplazame_Exception $e) {
-            $this->add_order_note($order->id, sprintf(
+            $order->update_status('failed', sprintf(
                 __('%s ERROR:  Order #%s cannot be confirmed.', 'aplazame'),
                 self::METHOD_TITLE, $order->id));
 
