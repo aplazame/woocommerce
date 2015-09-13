@@ -105,8 +105,8 @@ class WC_Aplazame
 
     protected function is_private_key_verified()
     {
-        return substr($_SERVER[
-            'HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
+        return ($this->private_api_key !== '') && (substr($_SERVER[
+            'HTTP_AUTHORIZATION'], 7) === $this->private_api_key);
     }
 
     # Settings
