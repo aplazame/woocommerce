@@ -15,10 +15,10 @@ syntax.checker:
 	@if [ "$(errors)" ];then exit 2;fi
 
 style:
-	@.wpcs/vendor/bin/phpcbf --standard=WordPress *
+	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
 
 zip:
-	@zip -r latest.zip .
+	@zip -r latest.zip *
 
 pot:
 	@xgettext --from-code=utf-8 -k_e -k_x -k__ -o $(l10n_path).pot $(files)
