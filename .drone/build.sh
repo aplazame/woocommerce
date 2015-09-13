@@ -8,6 +8,9 @@ make syntax.checker
 
 case $DRONE_BRANCH in
     release)
+        # Coding Standards dependencies
+        composer create-project wp-coding-standards/wpcs:dev-master --no-dev .wpcs
+
         # Install zip package
         sudo apt-get install zip
 
