@@ -119,6 +119,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.0.1 =
+= v0.0.2 =
 
 The latest release has passed all quality checks.
