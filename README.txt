@@ -21,7 +21,6 @@ The module allows the customer to defer the payment of his online purchases in e
 
 Ease of implementation is the main objective we had in mind when developing Aplazame.
 
-
 = l10n =
 
 Development according to standards for i18n and l10n.
@@ -102,10 +101,11 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
-= [v0.0.2] (2015-?-?) =
+= [v0.0.2] (2015-09-14) =
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.2)
 
+* l10n fix and review
 * API exception handler
 * process_refund on gateway class
 * Full Readme.txt
