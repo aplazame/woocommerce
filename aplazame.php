@@ -105,7 +105,8 @@ class WC_Aplazame
 
     protected function is_private_key_verified()
     {
-        return substr($_SERVER['HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
+        return substr($_SERVER[
+            'HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
     }
 
     # Settings
@@ -150,17 +151,14 @@ class WC_Aplazame
 
     public function confirm()
     {
-        global $woocommerce;
-
-        $cart = $woocommerce->cart;
         $order = new WC_Order($_GET['order_id']);
         $response = $this->get_client()->authorize($order->id);
 
         $status_code = wp_remote_retrieve_response_code($response);
         $body = json_decode(wp_remote_retrieve_body($response));
+        $total = Aplazame_Filters::decimals($order->get_total());
 
-        if (($status_code === 200) &&
-                ($body->amount === Aplazame_Filters::decimals($cart->total))) {
+        if (($status_code === 200) && ($body->amount === $total)) {
             $order->update_status('processing', sprintf(
                 __('Confirmed by %s.', 'aplazame'), $this->host));
 
