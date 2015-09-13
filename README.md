@@ -10,7 +10,7 @@
 3. **Add new plugin** and select the `aplazame.latest.zip` file from your computer.
 
 
-### Configure
+### Usage
 
 ![config](docs/config.png)
 
