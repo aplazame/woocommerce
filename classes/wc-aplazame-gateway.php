@@ -7,21 +7,24 @@ if (!defined('ABSPATH')) {
 
 class WC_Aplazame_Gateway extends WC_Payment_Gateway
 {
-    protected $order = null;
-
     public function __construct()
     {
-        $this->id = 'aplazame';
+        $this->id = WC_Aplazame::METHOD_ID;
+        $this->method_title = WC_Aplazame::METHOD_TITLE;
         $this->has_fields = true;
-        $this->method_title = 'Aplazame';
 
         # Settings
         $this->init_form_fields();
         $this->init_settings();
 
-        $this->title = 'Aplazame';
+        $this->title = $this->method_title;
         $this->enabled = $this->settings['enabled'];
         $this->icon = plugins_url('assets/img/icon.png', dirname(__FILE__));
+
+        $this->supports = array(
+            'products',
+            'refunds'
+        );
 
         add_action('woocommerce_update_options_payment_gateways', array(
             $this, 'process_admin_options'));
@@ -58,6 +61,32 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
             'result' => 'success',
             'redirect' => add_query_arg(array('order_id' => $order_id), $url)
         );
+    }
+
+    public function process_refund($order_id, $amount=null, $reason='') {
+
+        if ($amount) {
+
+            global $aplazame;
+
+            try {
+                $aplazame->get_client()->refund(
+                    $order_id, Aplazame_Filters::decimals($amount), $reason);
+
+                $aplazame->add_order_note($order_id, sprintf(
+                    __('%s has successfully returned %d %s of the order #%s.'),
+                    $this->method_title, $amount, get_woocommerce_currency(), $order_id));
+
+                return true;
+
+            } catch (Aplazame_Exception $e) {
+                return new WP_Error('aplazame_refund_error', sprintf(
+                    __('%s Error: "%s"', 'aplazame'),
+                    $this->method_title, $e->get_field_error('amount')));
+            }
+        }
+
+        return false;
     }
 
     public function init_form_fields()

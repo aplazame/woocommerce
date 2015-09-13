@@ -18,6 +18,8 @@ if (!defined('ABSPATH')) {
 class WC_Aplazame
 {
     const VERSION = '0.0.1';
+    const METHOD_ID = 'aplazame';
+    const METHOD_TITLE = 'Aplazame';
 
     public function __construct()
     {
@@ -66,15 +68,17 @@ class WC_Aplazame
 
         add_action('woocommerce_order_status_refunded', array(
             $this, 'order_cancelled'));
-
-        add_action('woocommerce_order_refunded', array(
-            $this, 'order_refunded'), 100, 2);
-
-        # Forbidden handlers, raise WC_API_Exception
-        # add_action('woocommerce_api_delete_order_refund', '?', 10, 3);
     }
 
-    protected function get_client()
+    public function log($msg)
+    {
+        if ($this->sandbox) {
+            $log = new WC_Logger();
+            $log->add(self::METHOD_ID, $msg);
+        }
+    }
+
+    public function get_client()
     {
         return new Aplazame_Client(
             $this->host,
@@ -83,30 +87,16 @@ class WC_Aplazame
             $this->private_api_key);
     }
 
-    public function log($msg)
-    {
-        if ($this->sandbox) {
-            $log = new WC_Logger();
-            $log->add('aplazame', $msg);
-        }
-    }
-
-    protected function add_order_note($order_id, $signal, $response)
+    public function add_order_note($order_id, $msg)
     {
         $order = new WC_Order($order_id);
-        $status_code = wp_remote_retrieve_response_code($response);
-        $msg = sprintf(
-            __('Order #%s has been %s by %s with status %s.', 'aplazame'),
-            $order->id, $signal, $this->host, $status_code);
-
         $order->add_order_note($msg);
     }
 
-
     protected function is_private_key_verified()
     {
-        return substr($_SERVER[
-            'HTTP_AUTHORIZATION'], 7) === $this->private_api_key;
+        return ($this->private_api_key !== '') && (substr($_SERVER[
+            'HTTP_AUTHORIZATION'], 7) === $this->private_api_key);
     }
 
     # Settings
@@ -152,13 +142,20 @@ class WC_Aplazame
     public function confirm()
     {
         $order = new WC_Order($_GET['order_id']);
-        $response = $this->get_client()->authorize($order->id);
 
-        $status_code = wp_remote_retrieve_response_code($response);
-        $body = json_decode(wp_remote_retrieve_body($response));
-        $total = Aplazame_Filters::decimals($order->get_total());
+        try {
+            $body = $this->get_client()->authorize($order->id);
 
-        if (($status_code === 200) && ($body->amount === $total)) {
+        } catch (Aplazame_Exception $e) {
+            $order->update_status('failed', sprintf(
+                __('%s ERROR: Order #%s cannot be confirmed.', 'aplazame'),
+                self::METHOD_TITLE, $order->id));
+
+            status_header($e->get_status_code());
+            return null;
+        }
+
+        if ($body->amount === Aplazame_Filters::decimals($order->get_total())) {
             $order->update_status('processing', sprintf(
                 __('Confirmed by %s.', 'aplazame'), $this->host));
 
@@ -166,6 +163,7 @@ class WC_Aplazame
         } else {
             status_header(403);
         }
+
         return null;
     }
 
@@ -182,7 +180,7 @@ class WC_Aplazame
                 'meta_value' => $order->billing_email,
                 'post_type' => 'shop_order',
                 'numberposts'=> -1
-           ));
+            ));
 
             return wp_send_json($serializers->get_history($qs));
         }
@@ -197,26 +195,21 @@ class WC_Aplazame
         Aplazame_Helpers::render_to_template('widgets/simulator.php');
     }
 
-    # Handlers
+    # Handlers (no return)
     public function order_cancelled($order_id)
     {
         if (static::is_aplazame_order($order_id)) {
-            $response = $this->get_client()->cancel($order_id);
-            $this->add_order_note($order_id, 'cancelled', $response);
-        }
-    }
+            try {
+                $this->get_client()->cancel($order_id);
 
-    public function order_refunded($order_id, $refund_id)
-    {
-        if (static::is_aplazame_order($order_id)) {
-            $refund = new WC_Order_Refund($refund_id);
-            $total_refunded = $refund->get_refund_amount();
+                $this->add_order_note($order_id, sprintf(
+                    __('Order #%s has been successful cancelled by %s.', 'aplazame'),
+                    $order_id, self::METHOD_TITLE));
 
-            if ($total_refunded) {
-                $response = $this->get_client()->refund(
-                    $order_id, Aplazame_Filters::decimals($total_refunded));
-
-                $this->add_order_note($order_id, 'refunded', $response);
+            } catch (Aplazame_Exception $e) {
+                $this->add_order_note($order_id, sprintf(
+                    __('%s ERROR: Order #%s cannot be cancelled.', 'aplazame'),
+                    self::METHOD_TITLE, $order_id));
             }
         }
     }
@@ -224,7 +217,7 @@ class WC_Aplazame
     # Static
     protected static function is_aplazame_order($order_id)
     {
-        return Aplazame_Helpers::get_payment_method($order_id) === 'aplazame';
+        return Aplazame_Helpers::get_payment_method($order_id) === self::METHOD_ID;
     }
 }
 
