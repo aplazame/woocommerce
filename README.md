@@ -35,7 +35,7 @@ This is the online demo for uses to test Aplazame and its features.
 
 It is easy to deploy WooCommerce with [Ansible](http://www.ansible.com/home)!
 
-[https://github.com/aplazame/ansible-woocommerce](https://github.com/aplazame/ansible-woocommerce)
+[https://github.com/aplazame/ansible-wordpress](https://github.com/aplazame/ansible-wordpress)
 
 
 #### Release history
