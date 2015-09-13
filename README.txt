@@ -1,5 +1,6 @@
 === Aplazame ===
 Contributors: calvin
+Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
 Tested up to: 4.3
@@ -10,13 +11,16 @@ WC requires at least: 2.2
 WC tested up to: 2.3
 
 
-== Introduction ==
+== Description ==
 
-Aplazame is a consumer credit company, offers a payment system that can be used by online buyers to receive funding for their purchases.
+= Introduction =
+
+[Aplazame](https://aplazame.com) is a consumer credit company, offers a payment system that can be used by online buyers to receive funding for their purchases.
 
 The module allows the customer to defer the payment of his online purchases in ecommerces offering Aplazame as a payment method. Aplazame's mission is to increase sales of any online store eliminating any friction in the process.
 
 Ease of implementation is the main objective we had in mind when developing Aplazame.
+
 
 = l10n =
 
@@ -28,7 +32,7 @@ Automated syntax review and deployment using continuous integration tools like [
 
 = Support =
 
-For any support request please drop us an email at [soporte.woocommerce@aplazame.com](mailto:soporte.woocommerce@aplazame.com?subject=Help me). Our support team is available 24/7.
+For any support request please drop us an email at [soporte.woocommerce@aplazame.com](mailto:soporte.woocommerce@aplazame.com?subject=Help-me). Our support team is available 24/7.
 
 = Feedback =
 
@@ -36,11 +40,11 @@ We are open to changes in the API documentation and our services. For any sugges
 
 *We hope you'll enjoy using Aplázame's WooCommerce plugin!*
 
-== Install ==
+== Installation ==
 
 = Requirements =
 
-* WooCommerce 2.1 or higher
+*WooCommerce 2.1 or higher*
 
 = Quick install =
 
@@ -50,9 +54,9 @@ In the search field type Aplazame for WooCommerce and click Search Plugins. Once
 
 = Latest version =
 
-1. *Download* the latest plugin from [here](https://s3.eu-central-1.amazonaws.com/aplazame/modules/woocommerce/aplazame.latest.zip) to local directory as `aplazame.latest.zip`.
-2. Go to the Wordpress administration page, and then go to *Plugins* > *Add New*.
-3. *Add new plugin* and select the `aplazame.latest.zip` file from your computer.
+1. **Download** the latest plugin from [here](https://s3.eu-central-1.amazonaws.com/aplazame/modules/woocommerce/aplazame.latest.zip) to local directory as `aplazame.latest.zip`.
+2. Go to the Wordpress administration page, and then go to **Plugins** > **Add New**.
+3. **Add new plugin** and select the `aplazame.latest.zip` file from your computer.
 
 = Updating =
 
@@ -60,15 +64,27 @@ Automatic updates should work great for you.
 
 = Usage =
 
-* *Sandbox*: Determines if the module is on Sandbox mode.
-* *Host*: Aplazame host `https://aplazame.com`
-* *API Version*: The latest version is `v1.2`
-* *Button*: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
-* *Secret API Key*: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
-* *Public API Key*: The Public Key provided by Aplazame.
-* *Enable Analytics**: If you want to enable customer tracking for better interests.
+* **Sandbox**: Determines if the module is on Sandbox mode.
+* **Host**: Aplazame host `https://aplazame.com`
+* **API Version**: The latest version is `v1.2`
+* **Button**: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
+* **Secret API Key**: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
+* **Public API Key**: The Public Key provided by Aplazame.
+* **Enable Analytics**: If you want to enable customer tracking for better interests.
 
 > Be sure that on all fields you don't keep any whitespace. Otherwise the module can generate unexpected results.
+
+
+== Frequently Asked Questions ==
+
+= How Can I Get an API Keys? =
+We will have a signup page soon, for now you can [contact us](mailto:soporte.woocommerce@aplazame.com?subject=i-need-a-token) for the API Keys.
+
+= Can I cancel an order with Aplazame? =
+Yes, simply replace the status to *"cancelled"* or *"refunded"*.
+
+= Can I refund an order with Aplazame? =
+Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Screenshots ==
@@ -78,7 +94,7 @@ Automatic updates should work great for you.
 3. Pin Code
 4. Summary
 5. Discounts
-6. oh, that's not mine!
+6. Connect
 7. Select payment method
 8. Add payment method
 9. Success
@@ -86,13 +102,22 @@ Automatic updates should work great for you.
 
 == Changelog ==
 
-= [v0.0.2](https://github.com/aplazame/woocommerce/tree/v0.0.2) (2015-?-?) =
+= [v0.0.2] (2015-?-?) =
 
-[Full Changelog v0.0.2-dev](https://github.com/aplazame/woocommerce/compare/v0.0.1...v0.0.2)
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.2)
 
 * Fix ?
 * Full Readme.txt
 
-= [v0.0.1](https://github.com/aplazame/woocommerce/tree/v0.0.1) (2015-09-12) =
+= [v0.0.1] (2015-09-12) =
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.1)
 
 * birth
+
+
+== Upgrade Notice ==
+
+= v0.0.1 =
+
+The latest release has passed all quality checks.
