@@ -6,9 +6,9 @@ class Aplazame_Exception extends Exception
     private $body;
     private $status_code;
 
-    public function __construct($message, $status_code, $body)
+    public function __construct($status_code, $body)
     {
-        parent::__construct($message);
+        parent::__construct('aplazame_api_error');
 
         $this->status_code = $status_code;
         $this->body = $body;
@@ -89,7 +89,7 @@ class Aplazame_Client
         $body = json_decode(wp_remote_retrieve_body($response));
 
         if (($status_code  < 200) || ($status_code  >= 300)) {
-            throw new Aplazame_Exception('aplazame_api_error', $status_code, $body);
+            throw new Aplazame_Exception($status_code, $body);
         }
 
         return $body;
@@ -97,7 +97,7 @@ class Aplazame_Client
 
     protected function order_request($order_id, $method, $path, $data=null)
     {
-        return $this->request('POST', '/orders/' . $order_id . $path, $data);
+        return $this->request($method, '/orders/' . $order_id . $path, $data);
     }
 
     public function authorize($order_id)
