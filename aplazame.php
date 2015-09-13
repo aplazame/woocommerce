@@ -175,7 +175,6 @@ class WC_Aplazame
 
         if (static::is_aplazame_order($order->id) &&
                 $this->is_private_key_verified()) {
-
             $serializers = new Aplazame_Serializers();
 
             $qs = get_posts(array(
