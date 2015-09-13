@@ -106,7 +106,8 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.2)
 
-* Fix ?
+* API exception handler
+* process_refund on gateway class
 * Full Readme.txt
 
 = [v0.0.1] (2015-09-12) =
