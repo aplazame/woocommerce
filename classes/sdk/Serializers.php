@@ -40,9 +40,11 @@ class Aplazame_Serializers
                 'name' => $product->get_title(),
                 'description' => $product->get_post_data()->post_content,
                 'url' => $product->get_permalink(),
-                'image_url' => wp_get_attachment_url(get_post_thumbnail_id($product->id)),
+                'image_url' => wp_get_attachment_url(
+                    get_post_thumbnail_id($product->id)),
                 'quantity' => (int) $values['qty'],
-                'price' => Aplazame_Filters::decimals($product->get_price_excluding_tax()),
+                'price' => Aplazame_Filters::decimals(
+                    $product->get_price_excluding_tax()),
                 'tax_rate' => Aplazame_Filters::decimals($tax_rate)
             );
         }
@@ -90,10 +92,12 @@ class Aplazame_Serializers
         $tax_rate = 100 * $order->order_shipping_tax /
             $order->get_total_shipping();
 
-        $serializer = array_merge($this->get_address($order, 'shipping'), array(
-            'price' => Aplazame_Filters::decimals($order->get_total_shipping()),
-            'tax_rate' => Aplazame_Filters::decimals($tax_rate),
-            'name' => $order->get_shipping_method()
+        $serializer = array_merge(
+            $this->get_address($order, 'shipping'), array(
+                'price' => Aplazame_Filters::decimals(
+                    $order->get_total_shipping()),
+                'tax_rate' => Aplazame_Filters::decimals($tax_rate),
+                'name' => $order->get_shipping_method()
         ));
 
         return $serializer;
@@ -106,7 +110,8 @@ class Aplazame_Serializers
             'articles' => $this->get_articles($order->get_items()),
             'currency' => get_woocommerce_currency(),
             'total_amount' => Aplazame_Filters::decimals($order->get_total()),
-            'discount' => Aplazame_Filters::decimals($order->get_total_discount()));
+            'discount' => Aplazame_Filters::decimals(
+                $order->get_total_discount()));
 
         return $serializer;
     }
@@ -116,10 +121,14 @@ class Aplazame_Serializers
         return array(
             'toc' => true,
             'merchant' => array(
-                'confirmation_url' => home_url(add_query_arg('action', 'confirm')),
-                'cancel_url' => html_entity_decode($order->get_cancel_order_url()),
-                'checkout_url' => html_entity_decode($order->get_cancel_order_url($checkout_url)),
-                'success_url' => html_entity_decode($order->get_checkout_order_received_url())
+                'confirmation_url' => home_url(
+                    add_query_arg('action', 'confirm')),
+                'cancel_url' => html_entity_decode(
+                    $order->get_cancel_order_url()),
+                'checkout_url' => html_entity_decode(
+                    $order->get_cancel_order_url($checkout_url)),
+                'success_url' => html_entity_decode(
+                    $order->get_checkout_order_received_url())
             ),
             'customer' => $this->get_customer($customer),
             'order' => $this->get_order($order),
