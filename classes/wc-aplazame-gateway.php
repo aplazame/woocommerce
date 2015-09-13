@@ -74,8 +74,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                     $order_id, Aplazame_Filters::decimals($amount), $reason);
 
                 $aplazame->add_order_note($order_id, sprintf(
-                    __('Order #%s has been successful refunded by %s.', 'aplazame'),
-                    $order_id, $this->method_title));
+                    __('%s has successfully returned %d %s of the order #%s.'),
+                    $this->method_title, $amount, get_woocommerce_currency(), $order_id));
 
                 return true;
 

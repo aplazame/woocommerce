@@ -148,7 +148,7 @@ class WC_Aplazame
 
         } catch (Aplazame_Exception $e) {
             $order->update_status('failed', sprintf(
-                __('%s ERROR:  Order #%s cannot be confirmed.', 'aplazame'),
+                __('%s ERROR: Order #%s cannot be confirmed.', 'aplazame'),
                 self::METHOD_TITLE, $order->id));
 
             status_header($e->get_status_code());
@@ -208,7 +208,7 @@ class WC_Aplazame
 
             } catch (Aplazame_Exception $e) {
                 $this->add_order_note($order_id, sprintf(
-                    __('%s ERROR:  Order #%s cannot be cancelled.', 'aplazame'),
+                    __('%s ERROR: Order #%s cannot be cancelled.', 'aplazame'),
                     self::METHOD_TITLE, $order_id));
             }
         }

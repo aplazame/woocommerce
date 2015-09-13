@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Aplazame v0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-12 01:59+0200\n"
-"PO-Revision-Date: 2015-09-13 00:00+0200\n"
+"PO-Revision-Date: 2015-09-13 20:00+0200\n"
 "Last-Translator: Aplazame <dev@aplazame.com>\n"
 "Language-Team: Aplazame <dev@aplazame.com>\n"
 "Language: es_ES\n"
@@ -17,73 +17,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:81
+#: aplazame.php:151
 #, php-format
-msgid "Order #%s has been %s by %s with status %s."
+msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr ""
 
-#: aplazame.php:151
+#: aplazame.php:160
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
 
-#: classes/lib/Helpers.php:29
+#: aplazame.php:206
+#, php-format
+msgid "Order #%s has been successful cancelled by %s."
+msgstr ""
+
+#: aplazame.php:211
+#, php-format
+msgid "%s ERROR: Order #%s cannot be cancelled."
+msgstr ""
+
+#: classes/lib/Redirect.php:21
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:68 classes/wc-aplazame-gateway.php:111
+#: classes/wc-aplazame-gateway.php:77
+#, php-format
+msgid "%s has successfully returned %d %s of the order #%s."
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:84
+#, php-format
+msgid "%s Error: \"%s\""
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:97 classes/wc-aplazame-gateway.php:141
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:69
+#: classes/wc-aplazame-gateway.php:98
 msgid "Enable Aplazame module"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:75
+#: classes/wc-aplazame-gateway.php:105
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:76
+#: classes/wc-aplazame-gateway.php:106
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:82
+#: classes/wc-aplazame-gateway.php:112
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:87
+#: classes/wc-aplazame-gateway.php:117
 msgid "API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:88
+#: classes/wc-aplazame-gateway.php:118
 msgid "Aplazame API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:93
+#: classes/wc-aplazame-gateway.php:123
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:94
+#: classes/wc-aplazame-gateway.php:124
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:99
+#: classes/wc-aplazame-gateway.php:129
 msgid "Public API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:100
+#: classes/wc-aplazame-gateway.php:130
 msgid "Aplazame Public Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:105
+#: classes/wc-aplazame-gateway.php:135
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:106
+#: classes/wc-aplazame-gateway.php:136
 msgid "Aplazame Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:112
+#: classes/wc-aplazame-gateway.php:142
 msgid "Enable Aplazame Analytics"
 msgstr ""
 
