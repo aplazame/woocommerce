@@ -1,38 +1,42 @@
 <?php
 
 
-class Aplazame_Exception extends Exception {
+class Aplazame_Exception extends Exception
+{
+    private $body;
+    private $status_code;
 
-        private $body;
-        private $status_code;
+    public function __construct($message, $status_code, $body)
+    {
+        parent::__construct($message);
 
-        public function __construct($message, $status_code, $body) {
-            parent::__construct($message);
+        $this->status_code = $status_code;
+        $this->body = $body;
+        $this->error = $body->error;
+    }
 
-            $this->status_code = $status_code;
-            $this->body = $body;
-            $this->error = $body->error;
+    public function get_status_code()
+    {
+        return $this->status_code;
+    }
+
+    public function get_body()
+    {
+        return $this->body;
+    }
+
+    public function get_field_error($field)
+    {
+        $error_list = $this->error->fields->$field;
+
+        if (empty($error_list)) {
+            $error = $this->error->message;
+        } else {
+            $error = $error_list[0];
         }
 
-        public function get_status_code() {
-            return $this->status_code;
-        }
-
-        public function get_body() {
-            return $this->body;
-        }
-
-        public function get_field_error($field) {
-            $error_list = $this->error->fields->$field;
-
-            if (empty($error_list)) {
-                $error = $this->error->message;
-            } else {
-                $error = $error_list[0];
-            }
-
-            return $error;
-        }
+        return $error;
+    }
 }
 
 

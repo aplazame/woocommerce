@@ -63,10 +63,9 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
         );
     }
 
-    public function process_refund($order_id, $amount=null, $reason='') {
-
+    public function process_refund($order_id, $amount=null, $reason='')
+    {
         if ($amount) {
-
             global $aplazame;
 
             try {
@@ -78,7 +77,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                     $this->method_title, $amount, get_woocommerce_currency(), $order_id));
 
                 return true;
-
             } catch (Aplazame_Exception $e) {
                 return new WP_Error('aplazame_refund_error', sprintf(
                     __('%s Error: "%s"', 'aplazame'),

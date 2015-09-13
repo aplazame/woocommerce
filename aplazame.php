@@ -145,7 +145,6 @@ class WC_Aplazame
 
         try {
             $body = $this->get_client()->authorize($order->id);
-
         } catch (Aplazame_Exception $e) {
             $order->update_status('failed', sprintf(
                 __('%s ERROR: Order #%s cannot be confirmed.', 'aplazame'),
@@ -205,7 +204,6 @@ class WC_Aplazame
                 $this->add_order_note($order_id, sprintf(
                     __('Order #%s has been successful cancelled by %s.', 'aplazame'),
                     $order_id, self::METHOD_TITLE));
-
             } catch (Aplazame_Exception $e) {
                 $this->add_order_note($order_id, sprintf(
                     __('%s ERROR: Order #%s cannot be cancelled.', 'aplazame'),
