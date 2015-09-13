@@ -7,8 +7,6 @@ if (!defined('ABSPATH')) {
 
 class WC_Aplazame_Gateway extends WC_Payment_Gateway
 {
-    protected $order = null;
-
     public function __construct()
     {
         $this->id = WC_Aplazame::METHOD_ID;
