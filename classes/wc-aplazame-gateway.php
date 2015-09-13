@@ -72,7 +72,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
             'sandbox' => array(
                 'type' => 'checkbox',
                 'title' => 'Sandbox',
-                'description' => __('Determines if the module is on Sandbox mode', 'aplazame'),
+                'description' => __(
+                    'Determines if the module is on Sandbox mode', 'aplazame'),
                 'label' => __('Turn on Sandbox', 'aplazame'),
                 'default' => 'yes'
             ),
