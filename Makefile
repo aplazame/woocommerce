@@ -15,7 +15,7 @@ syntax.checker:
 	@if [ "$(errors)" ];then exit 2;fi
 
 style:
-	@.wpcs/vendor/bin/phpcbf --standard=WordPress *
+	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
 
 zip:
 	@zip -r latest.zip .
