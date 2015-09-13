@@ -33,7 +33,8 @@ release: init.master
 	@git checkout release
 	@git merge master
 	@git push origin release
-	@git checkout -b $(branch)
+	@git checkout $(branch)
 
-branch: init.master
-	@git checkout -b $(branch)
+$(branch): init.master
+	@git checkout $(branch)
+	@git push origin $(branch)
