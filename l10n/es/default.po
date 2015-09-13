@@ -25,7 +25,7 @@ msgstr ""
 #: classes/wc-aplazame-gateway.php:77
 #, php-format
 msgid "%s has successfully returned %d %s of the order #%s."
-msgstr "$a ha devuelto correctamente la cantidad de %d %s en el pedido #%s."
+msgstr "%s ha devuelto correctamente la cantidad de %d %s en el pedido #%s."
 
 #: classes/wc-aplazame-gateway.php:84
 #, php-format
@@ -34,19 +34,19 @@ msgstr "Error en %s: \"%s\""
 
 #: classes/wc-aplazame-gateway.php:97 classes/wc-aplazame-gateway.php:141
 msgid "Enable/Disable"
-msgstr "Habilitar/Deshabilitar"
+msgstr "Activar/Desactivar"
 
 #: classes/wc-aplazame-gateway.php:98
 msgid "Enable Aplazame module"
-msgstr "Habilitar módulo de APlazame"
+msgstr "Activar módulo de Aplazame"
 
 #: classes/wc-aplazame-gateway.php:105
 msgid "Determines if the module is on Sandbox mode"
-msgstr ""
+msgstr "Determina si el módulo se encuentra en modo Sandbox"
 
 #: classes/wc-aplazame-gateway.php:106
 msgid "Turn on Sandbox"
-msgstr "Poner en modo sandbox"
+msgstr "Activar modo Sandbox"
 
 #: classes/wc-aplazame-gateway.php:112
 msgid "Aplazame Host"
@@ -86,7 +86,7 @@ msgstr "Clave privada de Aplazame"
 
 #: classes/wc-aplazame-gateway.php:142
 msgid "Enable Aplazame Analytics"
-msgstr "Habilitar analíticas de Aplazame"
+msgstr "Activar Aplazame Analytics"
 
 #: templates/gateway/payment-fields.php:19
 #, php-format
