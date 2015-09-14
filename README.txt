@@ -108,7 +108,9 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
-#### v0.0.3-dev (2015-??-??)
+#### v0.0.3 (2015-09-15)
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.3)
 
 * Admin notices checks
 * l10n review
@@ -133,6 +135,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.0.2 =
+= v0.0.3 =
 
 The latest release has passed all quality checks.

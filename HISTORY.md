@@ -1,7 +1,15 @@
 ## Change Log
 
+#### [v0.0.4-dev](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-??-??)
 
-#### [v0.0.3-dev](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-??-??)
+[Full Changelog v0.0.4](https://github.com/aplazame/woocommerce/compare/v0.0.3...v0.0.4)
+
+* ?
+
+
+#### [v0.0.3](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-09-15)
+
+[Full Changelog v0.0.3](https://github.com/aplazame/woocommerce/compare/v0.0.2...v0.0.3)
 
 * Admin notices checks
 * l10n review
