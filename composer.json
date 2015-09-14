@@ -33,6 +33,5 @@
         "simpletest/simpletest": "1.1.*",
         "fabpot/php-cs-fixer": "^1.10",
         "smarty-gettext/smarty-gettext": "1.2.0"
-    },
-    "minimum-stability": "stable"
+    }
 }
