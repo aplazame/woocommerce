@@ -32,8 +32,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
         add_action('woocommerce_update_options_payment_gateways_' .
             $this->id, array($this, 'process_admin_options'));
 
-        # todo or Not todo
-        # add_action('admin_notices', array($this, '?'));
+        add_action('admin_notices', array($this, 'checks'));
     }
 
     public function is_available()
@@ -73,7 +72,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                     $order_id, Aplazame_Filters::decimals($amount), $reason);
 
                 $aplazame->add_order_note($order_id, sprintf(
-                    __('%s has successfully returned %d %s of the order #%s.'),
+                    __('%s has successfully returned %d %s of the order #%s.', 'aplazame'),
                     $this->method_title, $amount, get_woocommerce_currency(), $order_id));
 
                 return true;
@@ -85,6 +84,24 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
         }
 
         return false;
+    }
+
+    public function checks()
+    {
+        if (!$this->enabled) {
+            return;
+        }
+
+        $_render_to_notice = function($msg) {
+            echo '<div class="error"><p>' . $msg . '</p></div>';
+        };
+
+        if ($this->settings['public_api_key'] || !$this->settings['private_api_key']) {
+            $_render_to_notice(sprintf(__(
+                'Aplazame gateway requires the API keys, please ' .
+                '<a href="%s">contact us</a> and take your keys.', 'aplazame'),
+                'mailto:soporte.woocommerce@aplazame.com?subject=i-need-a-token'));
+        }
     }
 
     public function init_form_fields()
