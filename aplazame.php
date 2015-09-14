@@ -32,10 +32,8 @@ class WC_Aplazame
         include_once('classes/sdk/Client.php');
         include_once('classes/sdk/Serializers.php');
 
-        # Hooks: Gateway
+        # Hooks: Gateway / Analytics
         add_filter('woocommerce_payment_gateways', array($this, 'add_gateway'));
-
-        # Hooks: Analytics
         add_filter('woocommerce_integrations', array($this, 'add_analytics'));
 
         # l10n
@@ -49,7 +47,7 @@ class WC_Aplazame
         $this->private_api_key = $this->settings['private_api_key'];
 
         # Redirect
-        register_activation_hook(__FILE__, 'Aplazame_Redirect::redirect_ID');
+        register_activation_hook(__FILE__, 'Aplazame_Redirect::get_the_ID');
         add_action('wp_footer', 'Aplazame_Redirect::payload');
 
         # TODO: Redirect nav
@@ -99,7 +97,7 @@ class WC_Aplazame
             'HTTP_AUTHORIZATION'], 7) === $this->private_api_key);
     }
 
-    # Settings
+    # Hooks
     public function add_gateway($methods)
     {
         if (!class_exists('WC_Payment_Gateway')) {
