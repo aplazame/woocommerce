@@ -15,8 +15,8 @@ syntax.checker:
 	@if [ "$(errors)" ];then exit 2;fi
 
 style.req:
-	# Coding Standards dependencies
-    @composer create-project wp-coding-standards/wpcs:dev-master .wpcs --no-dev --no-interaction
+	@composer create-project wp-coding-standards/wpcs:dev-master\
+        .wpcs --no-dev --no-interaction --quiet
 
 style:
 	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :

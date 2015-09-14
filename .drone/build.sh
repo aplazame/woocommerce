@@ -16,8 +16,7 @@ case $DRONE_BRANCH in
         make zip s3.path=wild-style/
 
         # psr-2 to wordpress style guide
-        make style.req
-        make style
+        make style.req style
 
         # create dirty package
         make zip
