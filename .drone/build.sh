@@ -8,6 +8,9 @@ make syntax.checker
 
 case $DRONE_BRANCH in
     release)
+        # Install zip package
+        sudo apt-get install zip
+
         # s3 package folder
         mkdir -p .s3/wild-style
 
@@ -19,9 +22,6 @@ case $DRONE_BRANCH in
 
         # psr-2 to wordpress style guide
         make style
-
-        # Install zip package
-        sudo apt-get install zip
 
         # Create dirty package
         make zip
