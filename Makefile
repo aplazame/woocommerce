@@ -18,6 +18,7 @@ style:
 	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
 
 zip:
+	@mkdir -p .s3/$(s3.path)
 	@zip -r .s3/$(s3.path)aplazame.latest.zip *
 
 pot:
