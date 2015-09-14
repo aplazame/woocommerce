@@ -18,9 +18,11 @@
     "método de pago"
   ],
   "homepage": "https://aplazame.com/",
+  "license": "GPL-3.0+",
   "authors": [
     {
-      "name": "Aplazame Developers",
+      "name": "calvin",
+      "email": "dani@aplazame.com",
       "homepage": "https://aplazame.com/"
     }
   ],
@@ -28,7 +30,6 @@
     "php": ">=5.2"
   },
   "require-dev": {
-    "zendframework/zendframework1": "1.12.15",
     "simpletest/simpletest": "1.1.*",
     "fabpot/php-cs-fixer": "^1.10",
     "smarty-gettext/smarty-gettext": "1.2.0"
