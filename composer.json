@@ -1,37 +1,38 @@
-{
-  "name": "aplazame/woocommerce",
-  "description": "Aplazame Woocommerce module",
-  "keywords": [
-    "aplazame",
-    "api",
-    "rest",
-    "woocommerce",
-    "ecommerce",
-    "payment",
-    "checkout",
-    "credit",
-    "aplazar",
-    "financiar",
-    "financiera",
-    "financiación",
-    "pago aplazado",
-    "método de pago"
-  ],
-  "homepage": "https://aplazame.com/",
-  "license": "GPL-3.0+",
-  "authors": [
-    {
-      "name": "calvin",
-      "email": "dani@aplazame.com",
-      "homepage": "https://aplazame.com/"
-    }
-  ],
-  "require": {
-    "php": ">=5.2"
-  },
-  "require-dev": {
-    "simpletest/simpletest": "1.1.*",
-    "fabpot/php-cs-fixer": "^1.10",
-    "smarty-gettext/smarty-gettext": "1.2.0"
-  }
+{  
+    "name":"aplazame/woocommerce",
+    "description":"Aplazame Woocommerce module",
+    "keywords":[  
+        "aplazame",
+        "api",
+        "rest",
+        "woocommerce",
+        "ecommerce",
+        "payment",
+        "checkout",
+        "credit",
+        "aplazar",
+        "financiar",
+        "financiera",
+        "financiación",
+        "pago aplazado",
+        "método de pago"
+    ],
+    "homepage":"https://aplazame.com/",
+    "license":"GPL-3.0+",
+    "authors":[  
+        {  
+            "name":"calvin",
+            "email":"dani@aplazame.com",
+            "homepage":"https://aplazame.com"
+        }
+    ],
+    "require":{  
+        "php":">=5.2"
+    },
+    "require-dev":{  
+        "simpletest/simpletest":"1.1.*",
+        "fabpot/php-cs-fixer":"^1.10",
+        "smarty-gettext/smarty-gettext":"1.2.0"
+    },
+    "minimum-stability":"stable"
 }
