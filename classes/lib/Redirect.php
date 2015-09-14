@@ -4,10 +4,10 @@ class Aplazame_Redirect
 {
     public static function is_redirect()
     {
-        return get_the_ID() === static::redirect_ID();
+        return get_the_ID() === static::get_the_ID();
     }
 
-    public static function redirect_ID()
+    public static function get_the_ID()
     {
         $posts = get_posts(array(
             'post_type' => 'page',

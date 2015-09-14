@@ -1,19 +1,19 @@
-#: aplazame.php:151
+#: aplazame.php:148
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr "ERROR en %s: El pedido #%s no se ha podido confirmar."
 
-#: aplazame.php:160
+#: aplazame.php:157
 #, php-format
 msgid "Confirmed by %s."
 msgstr "Confirmado por %s."
 
-#: aplazame.php:206
+#: aplazame.php:203
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr "El pedido #%s ha sido cancelado correctamente por %s."
 
-#: aplazame.php:211
+#: aplazame.php:207
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr "ERROR en %s: El pedido #%s no se ha podido cancelar."
@@ -22,69 +22,77 @@ msgstr "ERROR en %s: El pedido #%s no se ha podido cancelar."
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:77
+#: classes/wc-aplazame-gateway.php:75
 #, php-format
 msgid "%s has successfully returned %d %s of the order #%s."
 msgstr "%s ha devuelto correctamente la cantidad de %d %s en el pedido #%s."
 
-#: classes/wc-aplazame-gateway.php:84
+#: classes/wc-aplazame-gateway.php:81
 #, php-format
 msgid "%s Error: \"%s\""
 msgstr "Error en %s: \"%s\""
 
-#: classes/wc-aplazame-gateway.php:97 classes/wc-aplazame-gateway.php:141
+#: classes/wc-aplazame-gateway.php:101
+#, php-format
+msgid ""
+"Aplazame gateway requires the API keys, please <a href=\"%s\">contact us</a> "
+"and take your keys."
+msgstr "Se necesitan las clasves de API para la pasarela de pago de Aplazame, "
+"por favor, <a href=\"%s\">contactanos</a> y obtén tus claves."
+
+#: classes/wc-aplazame-gateway.php:112 classes/wc-aplazame-gateway.php:156
 msgid "Enable/Disable"
 msgstr "Activar/Desactivar"
 
-#: classes/wc-aplazame-gateway.php:98
+#: classes/wc-aplazame-gateway.php:113
 msgid "Enable Aplazame module"
 msgstr "Activar módulo de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:105
+#: classes/wc-aplazame-gateway.php:120
 msgid "Determines if the module is on Sandbox mode"
 msgstr "Determina si el módulo se encuentra en modo Sandbox"
 
-#: classes/wc-aplazame-gateway.php:106
+#: classes/wc-aplazame-gateway.php:121
 msgid "Turn on Sandbox"
 msgstr "Activar modo Sandbox"
 
-#: classes/wc-aplazame-gateway.php:112
+#: classes/wc-aplazame-gateway.php:127
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:117
+#: classes/wc-aplazame-gateway.php:132
 msgid "API Version"
 msgstr "Versión de la API"
 
-#: classes/wc-aplazame-gateway.php:118
+#: classes/wc-aplazame-gateway.php:133
 msgid "Aplazame API Version"
 msgstr "Versión de API de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:123
+#: classes/wc-aplazame-gateway.php:138
 msgid "Button"
 msgstr "Botón"
 
-#: classes/wc-aplazame-gateway.php:124
+#: classes/wc-aplazame-gateway.php:139
 msgid "Aplazame Button CSS Selector"
 msgstr "Selector CSS del botón de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:129
+#: classes/wc-aplazame-gateway.php:144
 msgid "Public API Key"
 msgstr "Clave pública"
 
-#: classes/wc-aplazame-gateway.php:130
+#: classes/wc-aplazame-gateway.php:145
 msgid "Aplazame Public Key"
 msgstr "Clave pública de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:135
+#: classes/wc-aplazame-gateway.php:150
 msgid "Private API Key"
 msgstr "Clave privada"
 
-#: classes/wc-aplazame-gateway.php:136
+#: classes/wc-aplazame-gateway.php:151
 msgid "Aplazame Private Key"
 msgstr "Clave privada de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:142
+#: classes/wc-aplazame-gateway.php:157
 msgid "Enable Aplazame Analytics"
 msgstr "Activar Aplazame Analytics"
 
@@ -92,9 +100,3 @@ msgstr "Activar Aplazame Analytics"
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
 msgstr "Es necesatio habilitar JavaScript para que %s funcione."
-
-#~ msgid "Order #%s has been %s by %s with status %s."
-#~ msgstr "Pedido #%s se ha actualizado (%s) por %s con estado %s"
-
-#~ msgid "Confirmed by Aplazame."
-#~ msgstr "Confirmado por Aplazame"

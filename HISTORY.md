@@ -1,11 +1,12 @@
 ## Change Log
 
 
-#### [v0.0.3](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-??-??)
+#### [v0.0.3-dev](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-??-??)
 
-[Full Changelog v0.0.3](https://github.com/aplazame/woocommerce/compare/v0.0.1...v0.0.3)
-
-* fix ?
+* Admin notices checks
+* l10n review
+* update composer.json
+* make options
 
 
 #### [v0.0.2](https://github.com/aplazame/woocommerce/tree/v0.0.2) (2015-09-14)

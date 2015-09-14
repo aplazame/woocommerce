@@ -21,23 +21,30 @@ The module allows the customer to defer the payment of his online purchases in e
 
 Ease of implementation is the main objective we had in mind when developing Aplazame.
 
-= l10n =
-
-Development according to standards for i18n and l10n.
-
 = Continuous Integration =
 
 Automated syntax review and deployment using continuous integration tools like [drone.io](http://drone.aplazame.com/github.com/aplazame/woocommerce).
 
+= Coding Standards =
+Aplazame maintain a consistent style so the code can become clean and easy to read at a glance.
+
+In continuous integration processes we deploy a release using the Wordpress package [WordPress-Coding-Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) to validate code developed for WordPress.
+
+= l10n =
+
+Development according to standards for i18n and l10n.
+All of our Spanish translators are professionally qualified, native speakers.
+
 = Support =
 
-For any support request please drop us an email at [soporte.woocommerce@aplazame.com](mailto:soporte.woocommerce@aplazame.com?subject=Help-me). Our support team is available 24/7.
+For any support request please drop us an email at [soporte.woo@aplazame.com](mailto:soporte.woo@aplazame.com?subject=Help-me). Our support team is available 24/7.
 
 = Feedback =
 
 We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [dev@aplazame.com](mailto:dev@aplazame.com?subject=Hello).
 
 *We hope you'll enjoy using Aplázame's WooCommerce plugin!*
+
 
 == Installation ==
 
@@ -77,7 +84,7 @@ Automatic updates should work great for you.
 == Frequently Asked Questions ==
 
 = How Can I Get an API Keys? =
-We will have a signup page soon, for now you can [contact us](mailto:soporte.woocommerce@aplazame.com?subject=i-need-a-token) for the API Keys.
+We will have a signup page soon, for now you can [contact us](mailto:soporte.woo@aplazame.com?subject=i-need-a-token) for the API Keys.
 
 = Can I cancel an order with Aplazame? =
 Yes, simply replace the status to *"cancelled"* or *"refunded"*.
@@ -101,6 +108,12 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### v0.0.3-dev (2015-??-??)
+
+* Admin notices checks
+* l10n review
+* update composer.json
+
 = [v0.0.2] (2015-09-14) =
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.2)
@@ -109,6 +122,7 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 * API exception handler
 * process_refund on gateway class
 * Full Readme.txt
+* make options
 
 = [v0.0.1] (2015-09-12) =
 

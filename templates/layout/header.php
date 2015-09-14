@@ -9,7 +9,7 @@ global $aplazame;
 
 <!-- TODO: nav hook and exclude redirect page -->
 <style type="text/css">
-  li.page-item-<?php echo Aplazame_Redirect::redirect_ID() ?> {
+  li.page-item-<?php echo Aplazame_Redirect::get_the_ID() ?> {
     display: none;
   }
 </style>
