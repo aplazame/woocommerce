@@ -16,8 +16,7 @@ syntax.checker:
 
 style.req:
 	# Coding Standards dependencies
-    @composer create-project wp-coding-standards/wpcs:dev-master\
-        .wpcs --no-dev --no-interaction
+    @composer create-project wp-coding-standards/wpcs:dev-master .wpcs --no-dev --no-interaction
 
 style:
 	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
