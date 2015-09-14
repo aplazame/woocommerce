@@ -108,6 +108,12 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### v0.0.3-dev (2015-??-??)
+
+* Admin notices checks
+* l10n review
+* update composer.json
+
 = [v0.0.2] (2015-09-14) =
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.2)
@@ -116,6 +122,7 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 * API exception handler
 * process_refund on gateway class
 * Full Readme.txt
+* make options
 
 = [v0.0.1] (2015-09-12) =
 
