@@ -26,8 +26,8 @@ zip:
 	@zip -r .s3/$(s3.path)aplazame.latest.zip *
 
 pot:
-	@xgettext -o $(l10n_path).pot $(files)\
-		--join-existing --from-code=utf-8 -k_e -k_x -k__ 
+	@xgettext -o $(l10n_path)/default.pot $(files)\
+		-n --from-code=utf-8 -k_e -k_x -k__ 
 
 po:
 	@msgmerge $(l10n_path)/default.po $(l10n_path)/default.pot\
