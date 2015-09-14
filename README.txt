@@ -37,7 +37,7 @@ All of our Spanish translators are professionally qualified, native speakers.
 
 = Support =
 
-For any support request please drop us an email at [soporte.woocommerce@aplazame.com](mailto:soporte.woocommerce@aplazame.com?subject=Help-me). Our support team is available 24/7.
+For any support request please drop us an email at [soporte.woo@aplazame.com](mailto:soporte.woo@aplazame.com?subject=Help-me). Our support team is available 24/7.
 
 = Feedback =
 
@@ -84,7 +84,7 @@ Automatic updates should work great for you.
 == Frequently Asked Questions ==
 
 = How Can I Get an API Keys? =
-We will have a signup page soon, for now you can [contact us](mailto:soporte.woocommerce@aplazame.com?subject=i-need-a-token) for the API Keys.
+We will have a signup page soon, for now you can [contact us](mailto:soporte.woo@aplazame.com?subject=i-need-a-token) for the API Keys.
 
 = Can I cancel an order with Aplazame? =
 Yes, simply replace the status to *"cancelled"* or *"refunded"*.

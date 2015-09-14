@@ -100,7 +100,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
             $_render_to_notice(sprintf(__(
                 'Aplazame gateway requires the API keys, please ' .
                 '<a href="%s">contact us</a> and take your keys.', 'aplazame'),
-                'mailto:soporte.woocommerce@aplazame.com?subject=i-need-a-token'));
+                'mailto:soporte.woo@aplazame.com?subject=i-need-a-token'));
         }
     }
 
