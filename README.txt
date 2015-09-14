@@ -21,13 +21,19 @@ The module allows the customer to defer the payment of his online purchases in e
 
 Ease of implementation is the main objective we had in mind when developing Aplazame.
 
-= l10n =
-
-Development according to standards for i18n and l10n.
-
 = Continuous Integration =
 
 Automated syntax review and deployment using continuous integration tools like [drone.io](http://drone.aplazame.com/github.com/aplazame/woocommerce).
+
+= Coding Standards =
+Aplazame maintain a consistent style so the code can become clean and easy to read at a glance.
+
+In continuous integration processes we deploy a release using the Wordpress package [WordPress-Coding-Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) to validate code developed for WordPress.
+
+= l10n =
+
+Development according to standards for i18n and l10n.
+All of our Spanish translators are professionally qualified, native speakers.
 
 = Support =
 
@@ -38,6 +44,7 @@ For any support request please drop us an email at [soporte.woocommerce@aplazame
 We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [dev@aplazame.com](mailto:dev@aplazame.com?subject=Hello).
 
 *We hope you'll enjoy using Aplázame's WooCommerce plugin!*
+
 
 == Installation ==
 
