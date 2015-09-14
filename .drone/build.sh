@@ -8,6 +8,12 @@ make syntax.checker
 
 case $DRONE_BRANCH in
     release)
+        # s3 package folder
+        mkdir -p .s3/wild-style
+
+        # Create wild-style package
+        make zip s3.path=wild-style/
+
         # Coding Standards dependencies
         composer create-project wp-coding-standards/wpcs:dev-master --no-dev .wpcs --no-interaction
 
@@ -17,7 +23,7 @@ case $DRONE_BRANCH in
         # Install zip package
         sudo apt-get install zip
 
-        # Create zip package
+        # Create dirty package
         make zip
         ;;
 

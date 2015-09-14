@@ -18,7 +18,7 @@ style:
 	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
 
 zip:
-	@zip -r latest.zip *
+	@zip -r .s3/$(s3.path)aplazame.latest.zip *
 
 pot:
 	@xgettext --from-code=utf-8 -k_e -k_x -k__ -o $(l10n_path).pot $(files)

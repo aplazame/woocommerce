@@ -20,9 +20,9 @@ publish:
     bucket: 'aplazame'
     access_key: $$S3_ACCESS_KEY
     secret_key: $$S3_SECRET_KEY
-    source: latest.zip
-    target: /modules/woocommerce/aplazame.latest.zip
-    recursive: false
+    source: .s3
+    target: /modules/woocommerce
+    recursive: true
     when:
       branch: release
 

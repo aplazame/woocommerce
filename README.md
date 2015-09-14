@@ -5,7 +5,7 @@
 
 ### Install
 
-1. **Download** the latest plugin from [here](https://s3.eu-central-1.amazonaws.com/aplazame/modules/woocommerce/aplazame.latest.zip) to local directory as `aplazame.latest.zip`.
+1. **Download** the latest plugin from [here](https://s3.eu-central-1.amazonaws.com/aplazame/modules/woocommerce/wild-style/aplazame.latest.zip) to local directory as `aplazame.latest.zip`.
 2. Go to the Wordpress administration page, and then go to **Plugins** > **Add New**.
 3. **Add new plugin** and select the `aplazame.latest.zip` file from your computer.
 
