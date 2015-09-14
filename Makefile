@@ -16,7 +16,7 @@ syntax.checker:
 
 style.req:
 	@composer create-project wp-coding-standards/wpcs:dev-master\
-        .wpcs --no-dev --no-interaction --quiet
+		.wpcs --no-dev --no-interaction --quiet
 
 style:
 	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
@@ -26,10 +26,12 @@ zip:
 	@zip -r .s3/$(s3.path)aplazame.latest.zip *
 
 pot:
-	@xgettext --from-code=utf-8 -k_e -k_x -k__ -o $(l10n_path).pot $(files)
+	@xgettext -o $(l10n_path).pot $(files)\
+		--join-existing --from-code=utf-8 -k_e -k_x -k__ 
 
 po:
-	@msgmerge --update --no-fuzzy-matching --backup=off $(l10n_path)/default.po $(l10n_path)/default.pot
+	@msgmerge $(l10n_path)/default.po $(l10n_path)/default.pot\
+		--update --no-fuzzy-matching --backup=off 
 
 mo:
 	@msgfmt $(l10n_path)/default.po -o $(l10n_path)/$(l10n_name).mo
