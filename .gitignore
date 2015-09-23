@@ -9,7 +9,8 @@
 *.p12
 *.cer
 *.pem
-sftp-config.json
+*-config.json
 
 .build
 .wpcs
+.svn*
