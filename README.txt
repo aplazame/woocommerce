@@ -6,9 +6,9 @@ Requires at least: 4.0.1
 Tested up to: 4.3
 Stable tag: 4.3
 License: GPLv3 or later License
-URI: http://www.gnu.org/licenses/gpl-3.0.html
-WC requires at least: 2.2
-WC tested up to: 2.3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+Aplazame para WooCommerce, compra ahora y paga después
 
 
 == Description ==
@@ -96,9 +96,9 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 == Screenshots ==
 
 1. Configure
-2. Signin
-3. Pin Code
-4. Summary
+2. Cart
+3. Signin
+4. Pin Code
 5. Discounts
 6. Connect
 7. Select payment method

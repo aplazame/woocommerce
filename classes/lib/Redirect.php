@@ -23,7 +23,8 @@ class Aplazame_Redirect
                 'post_status' => 'publish'
             );
 
-            $post_id = array(wp_insert_post($defaults))[0];
+            $post_id = array(wp_insert_post($defaults));
+            $post_id = $post_id[0];
             add_post_meta($post_id, 'aplazame-redirect', 'true');
         } else {
             $post_id = $posts[0]->ID;
