@@ -96,7 +96,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
             echo '<div class="error"><p>' . $msg . '</p></div>';
         };
 
-        if ($this->settings['public_api_key'] || !$this->settings['private_api_key']) {
+        if (!$this->settings['public_api_key'] || !$this->settings['private_api_key']) {
             $_render_to_notice(sprintf(__(
                 'Aplazame gateway requires the API keys, please ' .
                 '<a href="%s">contact us</a> and take your keys.', 'aplazame'),
