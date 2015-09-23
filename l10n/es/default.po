@@ -37,8 +37,8 @@ msgstr "Error en %s: \"%s\""
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">contact us</a> "
 "and take your keys."
-msgstr "Se necesitan las clasves de API para la pasarela de pago de Aplazame, "
-"por favor, <a href=\"%s\">contactanos</a> y obtén tus claves."
+msgstr "Se necesitan las claves de API para la pasarela de pago de Aplazame, "
+"por favor, <a href=\"%s\">contáctanos</a> y obtén tus claves."
 
 #: classes/wc-aplazame-gateway.php:112 classes/wc-aplazame-gateway.php:156
 msgid "Enable/Disable"
