@@ -124,7 +124,7 @@ class Aplazame_Serializers
 
     public function get_checkout($order, $checkout_url, $user)
     {
-        return array(
+        $serializer = array(
             'toc' => true,
             'merchant' => array(
                 'confirmation_url' => home_url(
@@ -142,8 +142,8 @@ class Aplazame_Serializers
             'billing' => $this->get_address($order, 'billing'),
             'meta' => static::get_meta());
 
-        if (empty($order->get_shipping_method())) {
-            $order['shipping'] = $this->get_shipping_info($order);
+        if (!empty($order->get_shipping_method())) {
+            $serializer['shipping'] = $this->get_shipping_info($order);
         }
 
         return $serializer;
