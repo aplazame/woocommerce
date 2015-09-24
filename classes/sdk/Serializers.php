@@ -140,8 +140,13 @@ class Aplazame_Serializers
                 $user):$this->get_customer($order->billing_email),
             'order' => $this->get_order($order),
             'billing' => $this->get_address($order, 'billing'),
-            'shipping' => $this->get_shipping_info($order),
             'meta' => static::get_meta());
+
+        if (empty($order->get_shipping_method())) {
+            $order['shipping'] = $this->get_shipping_info($order);
+        }
+
+        return $serializer;
     }
 
     public function get_history($qs)
