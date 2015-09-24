@@ -10,6 +10,7 @@
 
 [Full Changelog v0.0.4](https://github.com/aplazame/woocommerce/compare/v0.0.3...v0.0.4)
 
+* Allow empty shipping
 * Fix security, order session key
 * Fix customer serializer
 

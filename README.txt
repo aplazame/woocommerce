@@ -112,6 +112,7 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.4)
 
+* Allow empty shipping
 * Fix security, order session key
 * Fix customer serializer
 
