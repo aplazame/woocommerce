@@ -124,7 +124,7 @@ class WC_Aplazame
 
     # Controllers
     public function router($template)
-    {        
+    {
         if (Aplazame_Redirect::is_redirect()) {
             switch ($_GET['action']) {
                 case 'confirm':
