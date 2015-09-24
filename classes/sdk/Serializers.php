@@ -52,18 +52,24 @@ class Aplazame_Serializers
         return $articles;
     }
 
-    public function get_customer($customer)
+    public function get_user($user)
     {
-        $serializer = array(
-            'id' => (string) $customer->id,
+        return array(
+            'id' => (string) $user->id,
+            'type' => 'e',
+            'gender' => 0,
+            'email' => $user->user_email,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'date_joined' => date(DATE_ISO8601, $user->user_registered));
+    }
+
+    public function get_customer($billing_email)
+    {
+        return array(
             'type' => 'n',
             'gender' => 0,
-            'email' => $customer->user_email,
-            'first_name' => $customer->first_name,
-            'last_name' => $customer->last_name,
-            'date_joined' => date(DATE_ISO8601, $customer->user_registered));
-
-        return $serializer;
+            'email' => $billing_email);
     }
 
     public function get_address($order, $type)
@@ -116,7 +122,7 @@ class Aplazame_Serializers
         return $serializer;
     }
 
-    public function get_checkout($order, $checkout_url, $customer)
+    public function get_checkout($order, $checkout_url, $user)
     {
         return array(
             'toc' => true,
@@ -130,7 +136,8 @@ class Aplazame_Serializers
                 'success_url' => html_entity_decode(
                     $order->get_checkout_order_received_url())
             ),
-            'customer' => $this->get_customer($customer),
+            'customer' => $user->id?$this->get_user(
+                $user):$this->get_customer($order->billing_email),
             'order' => $this->get_order($order),
             'billing' => $this->get_address($order, 'billing'),
             'shipping' => $this->get_shipping_info($order),
