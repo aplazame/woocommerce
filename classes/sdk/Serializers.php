@@ -142,7 +142,9 @@ class Aplazame_Serializers
             'billing' => $this->get_address($order, 'billing'),
             'meta' => static::get_meta());
 
-        if (!empty($order->get_shipping_method())) {
+        $shipping_method = $order->get_shipping_method();
+
+        if (!empty($shipping_method)) {
             $serializer['shipping'] = $this->get_shipping_info($order);
         }
 
