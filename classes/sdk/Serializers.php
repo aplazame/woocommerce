@@ -113,7 +113,7 @@ class Aplazame_Serializers
     public function get_order($order)
     {
         $serializer = array(
-            'id' => $order->id,
+            'id' => (string) $order->id,
             'articles' => $this->get_articles($order->get_items()),
             'currency' => get_woocommerce_currency(),
             'total_amount' => Aplazame_Filters::decimals($order->get_total()),
