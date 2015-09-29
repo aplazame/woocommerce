@@ -4,6 +4,8 @@
 
 [Full Changelog v0.0.5](https://github.com/aplazame/woocommerce/compare/v0.0.4...v0.0.5)
 
+* Fix PHP 5.3 compatibility
+* Minor improvements
 * ?
 
 #### [v0.0.4](https://github.com/aplazame/woocommerce/tree/v0.0.4) (2015-09-25)
