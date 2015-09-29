@@ -10,7 +10,8 @@ class Aplazame_Serializers
             require_once(ABSPATH . 'wp-admin/includes/plugin.php');
         }
 
-        return get_plugins('/woocommerce')['woocommerce.php']['Version'];
+        $woo = get_plugins('/woocommerce');
+        return $woo['woocommerce.php']['Version'];
     }
 
     public static function get_meta()
