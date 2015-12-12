@@ -35,7 +35,8 @@ class Aplazame_Redirect
 
     public static function payload()
     {
-        if (static::is_redirect()) {
+        if (static::is_redirect() &&
+                ((string) WC()->session->redirect_order_id === $_GET['order_id'])) {
             Aplazame_Helpers::render_to_template('gateway/redirect.php');
         }
     }

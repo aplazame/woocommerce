@@ -1,11 +1,20 @@
 ## Change Log
 
-#### [v0.0.4-dev](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-??-??)
+#### [v0.0.5-dev](https://github.com/aplazame/woocommerce/tree/v0.0.5) (2015-??-??)
+
+[Full Changelog v0.0.5](https://github.com/aplazame/woocommerce/compare/v0.0.4...v0.0.5)
+
+* Fix PHP 5.3 compatibility
+* Minor improvements
+* ?
+
+#### [v0.0.4](https://github.com/aplazame/woocommerce/tree/v0.0.4) (2015-09-25)
 
 [Full Changelog v0.0.4](https://github.com/aplazame/woocommerce/compare/v0.0.3...v0.0.4)
 
-* ?
-
+* Allow empty shipping
+* Fix security, order session key
+* Fix customer serializer
 
 #### [v0.0.3](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-09-15)
 

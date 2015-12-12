@@ -55,6 +55,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
     public function process_payment($order_id)
     {
         $url = get_permalink(Aplazame_Redirect::get_the_ID());
+        WC()->session->redirect_order_id = $order_id;
 
         return array(
             'result' => 'success',
@@ -96,7 +97,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
             echo '<div class="error"><p>' . $msg . '</p></div>';
         };
 
-        if ($this->settings['public_api_key'] || !$this->settings['private_api_key']) {
+        if (!$this->settings['public_api_key'] || !$this->settings['private_api_key']) {
             $_render_to_notice(sprintf(__(
                 'Aplazame gateway requires the API keys, please ' .
                 '<a href="%s">contact us</a> and take your keys.', 'aplazame'),
