@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aplazame v0.0.4\n"
+"Project-Id-Version: Aplazame v0.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-12 01:59+0200\n"
 "PO-Revision-Date: 2015-09-25 00:00+0200\n"

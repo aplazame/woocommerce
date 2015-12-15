@@ -1,12 +1,18 @@
 ## Change Log
 
-#### [v0.0.5-dev](https://github.com/aplazame/woocommerce/tree/v0.0.5) (2015-??-??)
+#### [v0.0.6](https://github.com/aplazame/woocommerce/tree/v0.0.6) (2015-??-??)
+
+[Full Changelog v0.0.6](https://github.com/aplazame/woocommerce/compare/v0.0.5...v0.0.6)
+
+* ?
+
+#### [v0.0.5](https://github.com/aplazame/woocommerce/tree/v0.0.5) (2015-12-15)
 
 [Full Changelog v0.0.5](https://github.com/aplazame/woocommerce/compare/v0.0.4...v0.0.5)
 
 * Fix PHP 5.3 compatibility
+* Fix shipping division by zero
 * Minor improvements
-* ?
 
 #### [v0.0.4](https://github.com/aplazame/woocommerce/tree/v0.0.4) (2015-09-25)
 

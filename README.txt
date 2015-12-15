@@ -108,6 +108,14 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### [v0.0.5] (2015-12-15)
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.5)
+
+* Fix PHP 5.3 compatibility
+* Fix shipping division by zero
+* Minor improvements
+
 #### [v0.0.4] (2015-09-25)
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.4)
@@ -143,6 +151,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.0.4 =
+= v0.0.5 =
 
 The latest release has passed all quality checks.
