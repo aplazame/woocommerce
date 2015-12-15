@@ -96,7 +96,7 @@ class Aplazame_Serializers
 
     public function get_shipping_info($order)
     {
-        $total = get_total_shipping();
+        $total = $order->get_total_shipping();
 
         if ($total) {
             $tax_rate = 100 * $order->order_shipping_tax / $total;

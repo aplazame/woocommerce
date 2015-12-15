@@ -1,10 +1,10 @@
 ## Change Log
 
-#### [v0.0.6](https://github.com/aplazame/woocommerce/tree/v0.0.6) (2015-??-??)
+#### [v0.0.6](https://github.com/aplazame/woocommerce/tree/v0.0.6) (2015-12-15)
 
 [Full Changelog v0.0.6](https://github.com/aplazame/woocommerce/compare/v0.0.5...v0.0.6)
 
-* ?
+* Fix order get_total_shipping method
 
 #### [v0.0.5](https://github.com/aplazame/woocommerce/tree/v0.0.5) (2015-12-15)
 

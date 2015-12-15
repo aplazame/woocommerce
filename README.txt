@@ -108,6 +108,12 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### [v0.0.6] (2015-12-15)
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.6)
+
+* Fix order get_total_shipping method
+
 #### [v0.0.5] (2015-12-15)
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.5)
