@@ -9,6 +9,7 @@
 2. Go to the Wordpress administration page, and then go to **Plugins** > **Add New**.
 3. **Add new plugin** and select the `aplazame.latest.zip` file from your computer.
 
+> Be sure that shipping info is enable, **Settings** > **Shipping** > **Shipping Options** and mark *enable shipping* by clicking on the checkbox.
 
 ### Usage
 
