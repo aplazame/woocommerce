@@ -96,13 +96,17 @@ class Aplazame_Serializers
 
     public function get_shipping_info($order)
     {
-        $tax_rate = 100 * $order->order_shipping_tax /
-            $order->get_total_shipping();
+        $total = get_total_shipping();
+
+        if ($total) {
+            $tax_rate = 100 * $order->order_shipping_tax / $total;
+        } else {
+            $tax_rate = 0;
+        }
 
         $serializer = array_merge(
             $this->get_address($order, 'shipping'), array(
-                'price' => Aplazame_Filters::decimals(
-                    $order->get_total_shipping()),
+                'price' => Aplazame_Filters::decimals($total),
                 'tax_rate' => Aplazame_Filters::decimals($tax_rate),
                 'name' => $order->get_shipping_method()
         ));
