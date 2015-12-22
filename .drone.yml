@@ -8,7 +8,7 @@ build:
     - 'make syntax.checker'
     # Build release
     - 'apt-get update'
-    - 'sudo apt-get install zip'
+    - 'apt-get install zip'
     - 'make zip s3.path=wild-style/'
     - 'make style.req style'
     - 'make zip'
