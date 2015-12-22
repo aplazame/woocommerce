@@ -1,23 +1,30 @@
-image: bradrydzewski/php:5.5
-
 branches:
   - master
   - release
 
-script:
-  - chmod +x ./.drone/*.sh
-  - ./.drone/build.sh
+build:
+  image: php
+  commands:
+    - 'make syntax.checker'
+    # Build release
+    - 'apt-get update'
+    - 'sudo apt-get install zip'
+    - 'make zip s3.path=wild-style/'
+    - 'make style.req style'
+    - 'make zip'
 
 deploy:
-  bash:
-    script:
-      - ./.drone/deploy.sh
+  rsync:
+    user: $$DEPLOY_USER
+    host: woo.aplazame.com
+    target: $$RELEASE_PATH
+    delete: true
+    recursive: true
 
-publish:
   s3:
     acl: public-read
-    region: 'eu-central-1'
-    bucket: 'aplazame'
+    region: $$S3_REGION
+    bucket: $$S3_BUCKET
     access_key: $$S3_ACCESS_KEY
     secret_key: $$S3_SECRET_KEY
     source: .s3
@@ -29,12 +36,21 @@ publish:
 notify:
   slack:
     webhook_url: $$SLACK_WEBHOOK_URL
-    username: 'woo'
-    on_success: change
-    on_failure: true
+    username: 'drone'
+    channel: 'developers'
+    when:
+      success: false
+      failure: true
+      change: true
 
   email:
+    from: $$EMAIL_FROM
+    host: $$EMAIL_HOST
+    username: $$EMAIL_USERNAME
+    password: $$EMAIL_PASS
     recipients:
       - dev@aplazame.com
-    on_success: change
-    on_failure: true
+    when:
+      success: false
+      failure: true
+      change: true

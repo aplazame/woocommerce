@@ -1,6 +1,6 @@
 [ ![Image](https://aplazame.com/static/img/banners/banner-728-white-woo.png "Aplazame") ](https://aplazame.com "Aplazame")
 
-[![Package version](https://img.shields.io/packagist/v/aplazame/woocommerce.svg)](https://packagist.org/packages/aplazame/woocommerce) [![Plugin version](https://img.shields.io/wordpress/plugin/v/aplazame.svg)](https://wordpress.org/plugins/aplazame/) [![Build Status](http://drone.aplazame.com/api/badge/github.com/aplazame/woocommerce/status.svg?branch=master)](http://drone.aplazame.com/github.com/aplazame/woocommerce) [![Dependencies](https://www.versioneye.com/php/aplazame:woocommerce/badge.svg)](https://www.versioneye.com/php/aplazame:woocommerce)
+[![Package version](https://img.shields.io/packagist/v/aplazame/woocommerce.svg)](https://packagist.org/packages/aplazame/woocommerce) [![Plugin version](https://img.shields.io/wordpress/plugin/v/aplazame.svg)](https://wordpress.org/plugins/aplazame/) [![Build Status](http://drone.aplazame.com/api/badges/aplazame/woocommerce/status.svg)](http://drone.aplazame.com/aplazame/woocommerce) [![Dependencies](https://www.versioneye.com/php/aplazame:woocommerce/badge.svg)](https://www.versioneye.com/php/aplazame:woocommerce)
 
 
 ### Install
