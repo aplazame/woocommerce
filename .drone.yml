@@ -3,7 +3,7 @@ branches:
   - release
 
 build:
-  image: php
+  image: composer/composer
   commands:
     - 'make syntax.checker'
     # Build release
