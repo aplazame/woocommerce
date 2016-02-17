@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 0.0.6
+ * Version: 0.0.7
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: calvin
  *
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class WC_Aplazame
 {
-    const VERSION = '0.0.6';
+    const VERSION = '0.0.7';
     const METHOD_ID = 'aplazame';
     const METHOD_TITLE = 'Aplazame';
 
@@ -58,7 +58,10 @@ class WC_Aplazame
 
         # Widgets
         add_action('woocommerce_single_product_summary', array(
-            $this, 'simulator'), 100);
+            $this, 'product_widget'), 100);
+
+        add_action('woocommerce_after_cart_totals', array(
+            $this, 'cart_widget'), 100);
 
         # Handlers
         add_action('woocommerce_order_status_cancelled', array(
@@ -187,9 +190,14 @@ class WC_Aplazame
     }
 
     # Widgets
-    public function simulator()
+    public function product_widget()
     {
-        Aplazame_Helpers::render_to_template('widgets/simulator.php');
+        Aplazame_Helpers::render_to_template('widgets/product.php');
+    }
+
+    public function cart_widget()
+    {
+        Aplazame_Helpers::render_to_template('widgets/cart.php');
     }
 
     # Handlers (no return)
