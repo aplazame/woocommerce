@@ -108,6 +108,13 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### [v0.0.8] (2016-03-16)
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.8)
+
+* Widget data view
+
+
 #### [v0.0.7] (2016-02-17)
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.0.7)
@@ -163,6 +170,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.0.6 =
+= v0.0.8 =
 
 The latest release has passed all quality checks.
