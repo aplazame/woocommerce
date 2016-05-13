@@ -74,6 +74,8 @@ class Aplazame_Serializers
 	 */
     public function get_user($user)
     {
+	    $dateJoined = new DateTime($user->user_registered);
+
         return array(
             'id' => (string) $user->ID,
             'type' => 'e',
@@ -81,7 +83,7 @@ class Aplazame_Serializers
             'email' => $user->user_email,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
-            'date_joined' => date(DATE_ISO8601, $user->user_registered));
+            'date_joined' => $dateJoined->format( DATE_ISO8601 ));
     }
 
 	/**
@@ -214,6 +216,7 @@ class Aplazame_Serializers
 
         foreach($qs as $item => $values) {
             $order = new WC_Order($qs[$item]->ID);
+	        $orderDate = new DateTime($order->order_date);
 
             $orders[] = array(
                 'id' => (string) $order->id,
@@ -221,7 +224,7 @@ class Aplazame_Serializers
                 'due' => '',
                 'status' => $order->get_status(),
                 'type' => Aplazame_Helpers::get_payment_method($order->id),
-                'order_date' => date(DATE_ISO8601, $order->order_date),
+                'order_date' => $orderDate->format( DATE_ISO8601 ),
                 'currency' => $order->get_order_currency(),
                 'billing' => $this->get_address($order, 'billing'),
                 'shipping' => $this->get_shipping_info($order)
