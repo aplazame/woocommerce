@@ -179,7 +179,7 @@ class WC_Aplazame
      */
     public function router($template)
     {
-        if (Aplazame_Redirect::is_redirect()) {
+        if (Aplazame_Redirect::is_redirect() && isset($_GET['action'])) {
             switch ($_GET['action']) {
                 case 'confirm':
                     return $this->confirm();
