@@ -46,20 +46,18 @@ class Aplazame_Serializers
         foreach($items as $item => $values) {
             $product = new WC_Product($values['product_id']);
 
-            $tax_rate = 100 * ($product->get_price_including_tax() /
-                $product->get_price_excluding_tax() - 1);
+            $tax_rate = 100 * ($values['line_tax'] / $values['line_total']);
 
             $articles[] = array(
-                'id' => (string) $product->id,
+                'id' => $values['product_id'],
                 'sku' => $product->get_sku(),
-                'name' => $product->get_title(),
+                'name' => $values['name'],
                 'description' => $product->get_post_data()->post_content,
                 'url' => $product->get_permalink(),
                 'image_url' => wp_get_attachment_url(
-                    get_post_thumbnail_id($product->id)),
+                    get_post_thumbnail_id($values['product_id'])),
                 'quantity' => (int) $values['qty'],
-                'price' => Aplazame_Filters::decimals(
-                    $product->get_price_excluding_tax()),
+                'price' => Aplazame_Filters::decimals($values['line_total']),
                 'tax_rate' => Aplazame_Filters::decimals($tax_rate)
             );
         }
