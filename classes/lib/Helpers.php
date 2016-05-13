@@ -11,8 +11,7 @@ class Aplazame_Helpers
         $template_path = WC()->template_path() . '/aplazame/';
         $default_path = plugin_dir_path(__FILE__) . '../../templates/';
 
-        return wc_get_template(
-            $template_name, $args, $template_path, $default_path);
+        wc_get_template($template_name, $args, $template_path, $default_path);
     }
 
     /**

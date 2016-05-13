@@ -210,7 +210,9 @@ class WC_Aplazame
                 'numberposts'=> -1
             ));
 
-            return wp_send_json($serializers->get_history($qs));
+            wp_send_json($serializers->get_history($qs));
+
+	        return null;
         }
 
         status_header(403);
