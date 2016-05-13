@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/** @var WooCommerce $woocommerce */
 global $woocommerce;
 
 $cart = $woocommerce->cart;

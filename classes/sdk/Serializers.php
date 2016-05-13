@@ -1,9 +1,15 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Aplazame_Serializers
 {
 
+	/**
+	 * @return string
+	 */
     public static function woo_version()
     {
         if (!function_exists('get_plugins')) {
@@ -14,6 +20,9 @@ class Aplazame_Serializers
         return $woo['woocommerce.php']['Version'];
     }
 
+	/**
+	 * @return array
+	 */
     public static function get_meta()
     {
         return array(
@@ -25,6 +34,11 @@ class Aplazame_Serializers
         );
     }
 
+	/**
+	 * @param array $items
+	 *
+	 * @return array
+	 */
     public function get_articles($items)
     {
         $articles = array();
@@ -53,10 +67,15 @@ class Aplazame_Serializers
         return $articles;
     }
 
+	/**
+	 * @param WP_User $user
+	 *
+	 * @return array
+	 */
     public function get_user($user)
     {
         return array(
-            'id' => (string) $user->id,
+            'id' => (string) $user->ID,
             'type' => 'e',
             'gender' => 0,
             'email' => $user->user_email,
@@ -65,6 +84,11 @@ class Aplazame_Serializers
             'date_joined' => date(DATE_ISO8601, $user->user_registered));
     }
 
+	/**
+	 * @param string $billing_email
+	 *
+	 * @return array
+	 */
     public function get_customer($billing_email)
     {
         return array(
@@ -73,6 +97,12 @@ class Aplazame_Serializers
             'email' => $billing_email);
     }
 
+	/**
+	 * @param WC_Order $order
+	 * @param string $type
+	 *
+	 * @return array
+	 */
     public function get_address($order, $type)
     {
         $_field = function($name) use ($order, $type) {
@@ -94,6 +124,11 @@ class Aplazame_Serializers
         return $serializer;
     }
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return array
+	 */
     public function get_shipping_info($order)
     {
         $total = $order->get_total_shipping();
@@ -114,6 +149,11 @@ class Aplazame_Serializers
         return $serializer;
     }
 
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return array
+	 */
     public function get_order($order)
     {
         $serializer = array(
@@ -127,6 +167,13 @@ class Aplazame_Serializers
         return $serializer;
     }
 
+    /**
+     * @param WC_Order $order
+     * @param string $checkout_url
+     * @param WP_User $user
+     *
+     * @return array
+     */
     public function get_checkout($order, $checkout_url, $user)
     {
         $serializer = array(
@@ -141,7 +188,7 @@ class Aplazame_Serializers
                 'success_url' => html_entity_decode(
                     $order->get_checkout_order_received_url())
             ),
-            'customer' => $user->id?$this->get_user(
+            'customer' => $user->ID?$this->get_user(
                 $user):$this->get_customer($order->billing_email),
             'order' => $this->get_order($order),
             'billing' => $this->get_address($order, 'billing'),
@@ -156,6 +203,11 @@ class Aplazame_Serializers
         return $serializer;
     }
 
+	/**
+	 * @param array $qs
+	 *
+	 * @return array
+	 */
     public function get_history($qs)
     {
         $orders = array();

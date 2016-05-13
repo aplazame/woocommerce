@@ -2,11 +2,17 @@
 
 class Aplazame_Redirect
 {
+    /**
+     * @return bool
+     */
     public static function is_redirect()
     {
         return get_the_ID() === static::get_the_ID();
     }
 
+    /**
+     * @return int
+     */
     public static function get_the_ID()
     {
         $posts = get_posts(array(

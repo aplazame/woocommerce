@@ -3,9 +3,23 @@
 
 class Aplazame_Exception extends Exception
 {
+    /**
+     * @var stdClass
+     */
     private $body;
+    /**
+     * @var int
+     */
     private $status_code;
+    /**
+     * @var stdClass
+     */
+    private $error;
 
+    /**
+     * @param int $status_code
+     * @param stdClass $body
+     */
     public function __construct($status_code, $body)
     {
         parent::__construct('aplazame_api_error');
@@ -15,16 +29,27 @@ class Aplazame_Exception extends Exception
         $this->error = $body->error;
     }
 
+    /**
+     * @return int
+     */
     public function get_status_code()
     {
         return $this->status_code;
     }
 
+    /**
+     * @return stdClass
+     */
     public function get_body()
     {
         return $this->body;
     }
 
+    /**
+     * @param string $field
+     *
+     * @return string
+     */
     public function get_field_error($field)
     {
         $error_list = $this->error->fields->$field;
@@ -42,6 +67,12 @@ class Aplazame_Exception extends Exception
 
 class Aplazame_Client
 {
+    /**
+     * @param string $host
+     * @param string $version
+     * @param bool $sandbox
+     * @param string $private_api_key
+     */
     public function __construct($host, $version, $sandbox, $private_api_key)
     {
         $this->host = $host;
@@ -56,11 +87,19 @@ class Aplazame_Client
         }
     }
 
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
     protected function endpoint($path)
     {
         return trim(str_replace('://', '://api.', $this->host), '/') . $path;
     }
 
+    /**
+     * @return string[]
+     */
     protected function headers()
     {
         return array(
@@ -71,6 +110,15 @@ class Aplazame_Client
         );
     }
 
+    /**
+     * @param string $method
+     * @param string $path
+     * @param null|array $data
+     *
+     * @return stdClass
+     * @throws Aplazame_Exception
+     * @throws Exception
+     */
     public function request($method, $path, $data=null)
     {
         $args = array(
@@ -95,16 +143,38 @@ class Aplazame_Client
         return $body;
     }
 
+    /**
+     * @param int $order_id
+     * @param string $method
+     * @param string $path
+     * @param null|array $data
+     *
+     * @return stdClass
+     * @throws Aplazame_Exception
+     * @throws Exception
+     */
     protected function order_request($order_id, $method, $path, $data=null)
     {
         return $this->request($method, '/orders/' . $order_id . $path, $data);
     }
 
+    /**
+     * @param int $order_id
+     *
+     * @return stdClass
+     */
     public function authorize($order_id)
     {
         return $this->order_request($order_id, 'POST', '/authorize');
     }
 
+    /**
+     * @param int $order_id
+     * @param int $amount
+     * @param string $reason
+     *
+     * @return stdClass
+     */
     public function refund($order_id, $amount, $reason)
     {
         return $this->order_request($order_id, 'POST', '/refund', array(
@@ -113,6 +183,11 @@ class Aplazame_Client
         ));
     }
 
+    /**
+     * @param int $order_id
+     *
+     * @return stdClass
+     */
     public function cancel($order_id)
     {
         return $this->order_request($order_id, 'POST', '/cancel');
