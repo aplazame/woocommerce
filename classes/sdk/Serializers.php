@@ -72,7 +72,7 @@ class Aplazame_Serializers
     public function get_user($user)
     {
         return array(
-            'id' => (string) $user->id,
+            'id' => (string) $user->ID,
             'type' => 'e',
             'gender' => 0,
             'email' => $user->user_email,
@@ -185,7 +185,7 @@ class Aplazame_Serializers
                 'success_url' => html_entity_decode(
                     $order->get_checkout_order_received_url())
             ),
-            'customer' => $user->id?$this->get_user(
+            'customer' => $user->ID?$this->get_user(
                 $user):$this->get_customer($order->billing_email),
             'order' => $this->get_order($order),
             'billing' => $this->get_address($order, 'billing'),
