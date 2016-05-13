@@ -121,43 +121,36 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                 'description' => __(
                     'Determines if the module is on Sandbox mode', 'aplazame'),
                 'label' => __('Turn on Sandbox', 'aplazame'),
-                'default' => 'yes'
             ),
             'host' => array(
                 'type' => 'text',
                 'title' => 'Host',
                 'description' => __('Aplazame Host', 'aplazame'),
-                'default' => 'https://aplazame.com'
             ),
             'api_version' => array(
                 'type' => 'text',
                 'title' => __('API Version', 'aplazame'),
                 'description' => __('Aplazame API Version', 'aplazame'),
-                'default' => 'v1.2'
             ),
             'button' => array(
                 'type' => 'text',
                 'title' => __('Button', 'aplazame'),
                 'description' => __('Aplazame Button CSS Selector', 'aplazame'),
-                'default' => '#payment ul li:has(input#payment_method_aplazame)'
             ),
             'public_api_key' => array(
                 'type' => 'text',
                 'title' => __('Public API Key', 'aplazame'),
                 'description' => __('Aplazame Public Key', 'aplazame'),
-                'default' => ''
             ),
             'private_api_key' => array(
                 'type' => 'password',
                 'title' => __('Private API Key', 'aplazame'),
                 'description' => __('Aplazame Private Key', 'aplazame'),
-                'default' => ''
             ),
             'enable_analytics' => array(
                 'type' => 'checkbox',
                 'title' => __('Enable/Disable', 'aplazame'),
                 'label' => __('Enable Aplazame Analytics', 'aplazame'),
-                'default' => 'yes'
             ),
         );
     }

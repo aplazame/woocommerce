@@ -6,6 +6,10 @@ if (!defined('ABSPATH')) {
 
 /** @var WC_Aplazame $aplazame */
 global $aplazame;
+if (!$aplazame->enabled) {
+	return;
+}
+
 /** @var WooCommerce $woocommerce */
 global $woocommerce;
 ?>

@@ -20,6 +20,22 @@ class WC_Aplazame
     const VERSION = '0.0.8';
     const METHOD_ID = 'aplazame';
     const METHOD_TITLE = 'Aplazame';
+    /**
+     * @var array
+     */
+    public $settings;
+    /**
+     * @var null|bool Null when the plugin is not configured yet.
+     */
+    public $enabled;
+    /**
+     * @var bool
+     */
+    public $sandbox;
+    /**
+     * @var string
+     */
+    public $host;
 
     public function __construct()
     {
@@ -32,6 +48,8 @@ class WC_Aplazame
         include_once('classes/sdk/Client.php');
         include_once('classes/sdk/Serializers.php');
 
+        register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
+
         # Hooks: Gateway / Analytics
         add_filter('woocommerce_payment_gateways', array($this, 'add_gateway'));
         add_filter('woocommerce_integrations', array($this, 'add_analytics'));
@@ -41,7 +59,12 @@ class WC_Aplazame
             plugin_basename(__FILE__)) . '/l10n/es');
 
         # Settings
-        $this->settings = get_option('woocommerce_aplazame_settings', array());
+        register_activation_hook( __FILE__, 'WC_Aplazame_Install::resetSettings' );
+        $this->settings = get_option( 'woocommerce_aplazame_settings' );
+        if ( ! $this->settings ) {
+            $this->settings = WC_Aplazame_Install::resetSettings();
+        }
+        $this->enabled = $this->settings['enabled'] === 'yes';
         $this->sandbox = $this->settings['sandbox'] === 'yes';
         $this->host = $this->settings['host'];
         $this->private_api_key = $this->settings['private_api_key'];
@@ -260,6 +283,36 @@ class WC_Aplazame
     protected static function is_aplazame_order($order_id)
     {
         return Aplazame_Helpers::get_payment_method($order_id) === self::METHOD_ID;
+    }
+}
+
+class WC_Aplazame_Install {
+    public static $defaultSettings = array(
+        'enabled'          => null,
+        'sandbox'          => 'yes',
+        'host'             => 'https://aplazame.com',
+        'api_version'      => 'v1.2',
+        'button'           => '#payment ul li:has(input#payment_method_aplazame)',
+        'public_api_key'   => '',
+        'private_api_key'  => '',
+        'enable_analytics' => 'yes',
+    );
+
+    public static function uninstall() {
+        self::removeSettings();
+    }
+
+    /**
+     * @return array
+     */
+    public static function resetSettings() {
+        add_option( 'woocommerce_aplazame_settings', self::$defaultSettings );
+
+        return self::$defaultSettings;
+    }
+
+    public static function removeSettings() {
+        delete_option( 'woocommerce_aplazame_settings' );
     }
 }
 

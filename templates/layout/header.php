@@ -6,6 +6,10 @@ if (!defined('ABSPATH')) {
 
 /** @var WC_Aplazame $aplazame */
 global $aplazame;
+
+if (!$aplazame->enabled) {
+	return;
+}
 ?>
 
 <!-- TODO: nav hook and exclude redirect page -->
