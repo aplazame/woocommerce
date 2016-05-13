@@ -71,6 +71,9 @@ class WC_Aplazame
             $this, 'order_cancelled'));
     }
 
+    /**
+     * @param string $msg
+     */
     public function log($msg)
     {
         if ($this->sandbox) {
@@ -79,6 +82,9 @@ class WC_Aplazame
         }
     }
 
+	/**
+	 * @return Aplazame_Client
+	 */
     public function get_client()
     {
         return new Aplazame_Client(
@@ -88,12 +94,19 @@ class WC_Aplazame
             $this->private_api_key);
     }
 
+	/**
+	 * @param int|object|WC_Order $order_id.
+	 * @param string $msg
+	 */
     public function add_order_note($order_id, $msg)
     {
         $order = new WC_Order($order_id);
         $order->add_order_note($msg);
     }
 
+	/**
+	 * @return bool
+	 */
     protected function is_private_key_verified()
     {
         return ($this->private_api_key !== '') && (substr($_SERVER[
@@ -101,6 +114,11 @@ class WC_Aplazame
     }
 
     # Hooks
+    /**
+     * @param array $methods
+     *
+     * @return array|void
+     */
     public function add_gateway($methods)
     {
         if (!class_exists('WC_Payment_Gateway')) {
@@ -113,6 +131,11 @@ class WC_Aplazame
         return $methods;
     }
 
+    /**
+     * @param array $integrations
+     *
+     * @return array|void
+     */
     public function add_analytics($integrations)
     {
         if (!class_exists('WC_Integration')) {
@@ -126,6 +149,11 @@ class WC_Aplazame
     }
 
     # Controllers
+    /**
+     * @param string $template
+     *
+     * @return null|string
+     */
     public function router($template)
     {
         if (Aplazame_Redirect::is_redirect()) {
@@ -201,6 +229,9 @@ class WC_Aplazame
     }
 
     # Handlers (no return)
+    /**
+     * @param int $order_id
+     */
     public function order_cancelled($order_id)
     {
         if (static::is_aplazame_order($order_id)) {
@@ -219,6 +250,11 @@ class WC_Aplazame
     }
 
     # Static
+    /**
+     * @param int $order_id
+     *
+     * @return bool
+     */
     protected static function is_aplazame_order($order_id)
     {
         return Aplazame_Helpers::get_payment_method($order_id) === self::METHOD_ID;

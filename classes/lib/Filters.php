@@ -2,6 +2,11 @@
 
 class Aplazame_Filters
 {
+    /**
+     * @param int $amount
+     *
+     * @return int
+     */
     public static function decimals($amount=0)
     {
         $ret = '';

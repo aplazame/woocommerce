@@ -66,6 +66,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
     public function process_refund($order_id, $amount=null, $reason='')
     {
         if ($amount) {
+            /** @var WC_Aplazame $aplazame */
             global $aplazame;
 
             try {
