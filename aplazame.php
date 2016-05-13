@@ -27,6 +27,10 @@ class WC_Aplazame
     /**
      * @var bool
      */
+    public $enabled;
+    /**
+     * @var bool
+     */
     public $sandbox;
     /**
      * @var string
@@ -60,6 +64,7 @@ class WC_Aplazame
         if ( ! $this->settings ) {
             $this->settings = WC_Aplazame_Install::resetSettings();
         }
+        $this->enabled = $this->settings['enabled'] === 'yes';
         $this->sandbox = $this->settings['sandbox'] === 'yes';
         $this->host = $this->settings['host'];
         $this->private_api_key = $this->settings['private_api_key'];

@@ -4,6 +4,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/** @var WC_Aplazame $aplazame */
+global $aplazame;
+if (!$aplazame->enabled) {
+	return;
+}
+
 ?>
 
 <div
