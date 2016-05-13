@@ -113,6 +113,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                 'type' => 'checkbox',
                 'title' => __('Enable/Disable', 'aplazame'),
                 'label' => __('Enable Aplazame module', 'aplazame'),
+                'default' => 'yes'
             ),
             'sandbox' => array(
                 'type' => 'checkbox',

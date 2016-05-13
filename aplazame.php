@@ -25,7 +25,7 @@ class WC_Aplazame
      */
     public $settings;
     /**
-     * @var bool
+     * @var null|bool Null when the plugin is not configured yet.
      */
     public $enabled;
     /**
@@ -288,7 +288,7 @@ class WC_Aplazame
 
 class WC_Aplazame_Install {
     public static $defaultSettings = array(
-        'enabled'          => 'yes',
+        'enabled'          => null,
         'sandbox'          => 'yes',
         'host'             => 'https://aplazame.com',
         'api_version'      => 'v1.2',
