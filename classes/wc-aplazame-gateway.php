@@ -146,6 +146,9 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway
                 'type' => 'password',
                 'title' => __('Private API Key', 'aplazame'),
                 'description' => __('Aplazame Private Key', 'aplazame'),
+                'custom_attributes' => array(
+                    'autocomplete' => 'new-password',
+                ),
             ),
             'enable_analytics' => array(
                 'type' => 'checkbox',
