@@ -57,7 +57,7 @@ class Aplazame_Serializers
                 'image_url' => wp_get_attachment_url(
                     get_post_thumbnail_id($values['product_id'])),
                 'quantity' => (int) $values['qty'],
-                'price' => Aplazame_Filters::decimals($values['line_total']),
+                'price' => Aplazame_Filters::decimals($values['line_total']) / (int) $values['qty'],
                 'tax_rate' => Aplazame_Filters::decimals($tax_rate)
             );
         }
