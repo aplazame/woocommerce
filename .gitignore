@@ -12,6 +12,7 @@
 *-config.json
 
 .build
+.s3
 .wpcs
 .svn*
 secrets.yml
