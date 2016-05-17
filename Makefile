@@ -7,6 +7,9 @@ l10n_name ?= aplazame-es_ES
 files = $(shell find . -name "*.php")
 errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
 
+clean:
+	@rm -rf .s3
+	@rm -rf .wpcs
 
 syntax.checker:
 	@if [ "$(errors)" ];then exit 2;fi

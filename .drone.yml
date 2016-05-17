@@ -9,6 +9,7 @@ build:
     # Build release
     - 'apt-get update'
     - 'apt-get -y install zip'
+    - 'make clean'
     - 'make zip s3.path=wild-style/'
     - 'make style.req style'
     - 'make zip'
