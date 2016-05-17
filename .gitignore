@@ -15,4 +15,6 @@
 .s3
 .wpcs
 .svn*
+composer.lock
 secrets.yml
+vendor/
