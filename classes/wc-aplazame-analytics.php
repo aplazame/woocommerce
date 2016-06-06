@@ -4,9 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
-class WC_Aplazame_Analytics extends WC_Integration
-{
+class WC_Aplazame_Analytics extends WC_Integration {
 	public function __construct() {
 
 		$this->id = 'aplazame_analytics';
@@ -15,8 +13,7 @@ class WC_Aplazame_Analytics extends WC_Integration
 		$this->init_settings();
 
 		// Update options integration
-		add_action('woocommerce_update_options_integration_' .
-		$this->id, array( $this, 'process_admin_options' ));
+		add_action( 'woocommerce_update_options_integration_' . $this->id, array( $this, 'process_admin_options' ) );
 
 		// aplazame-js script
 		add_action( 'wp_head', array( $this, 'script' ), 999999 );

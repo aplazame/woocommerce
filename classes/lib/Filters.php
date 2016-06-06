@@ -1,7 +1,6 @@
 <?php
 
-class Aplazame_Filters
-{
+class Aplazame_Filters {
 	/**
 	 * @param int $amount
 	 *
@@ -18,12 +17,15 @@ class Aplazame_Filters
 
 		$parts = explode( '.', $str, 2 );
 
-		if ( ($parts === false) || (empty( $parts )) ||
-				(strcmp( $parts[0], 0 ) === 0 && strcmp( $parts[1], '00' ) === 0) ) {
+		if ( ( $parts === false ) ||
+		     ( empty( $parts ) ) ||
+		     ( strcmp( $parts[0], 0 ) === 0 && strcmp( $parts[1], '00' ) === 0 )
+		) {
 			return 0;
 		}
 
 		$ret .= ltrim( $parts[0] . substr( $parts[1], 0, 2 ), '0' );
+
 		return intval( $ret );
 	}
 }

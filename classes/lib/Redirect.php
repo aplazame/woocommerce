@@ -1,7 +1,6 @@
 <?php
 
-class Aplazame_Redirect
-{
+class Aplazame_Redirect {
 	/**
 	 * @return bool
 	 */
@@ -15,17 +14,17 @@ class Aplazame_Redirect
 	 */
 	public static function get_the_ID() {
 
-		$posts = get_posts(array(
-			'post_type' => 'page',
-			'meta_key' => 'aplazame-redirect',
-			'meta_value' => 'true',
-			'numberposts' => -1,
-		));
+		$posts = get_posts( array(
+			'post_type'   => 'page',
+			'meta_key'    => 'aplazame-redirect',
+			'meta_value'  => 'true',
+			'numberposts' => - 1,
+		) );
 
 		if ( empty( $posts ) ) {
 			$defaults = array(
-				'post_title' => __( 'Aplazame Redirect' ),
-				'post_type' => 'page',
+				'post_title'  => __( 'Aplazame Redirect' ),
+				'post_type'   => 'page',
 				'post_status' => 'publish',
 			);
 
@@ -41,8 +40,7 @@ class Aplazame_Redirect
 
 	public static function payload() {
 
-		if ( static::is_redirect() &&
-				((string) WC()->session->redirect_order_id === $_GET['order_id']) ) {
+		if ( static::is_redirect() && ( (string) WC()->session->redirect_order_id === $_GET['order_id'] ) ) {
 			Aplazame_Helpers::render_to_template( 'gateway/redirect.php' );
 		}
 	}

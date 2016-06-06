@@ -14,9 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
-class WC_Aplazame
-{
+class WC_Aplazame {
 	const VERSION = '0.0.8';
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
@@ -55,8 +53,7 @@ class WC_Aplazame
 		add_filter( 'woocommerce_integrations', array( $this, 'add_analytics' ) );
 
 		// l10n
-		load_plugin_textdomain('aplazame', false, dirname(
-		plugin_basename( __FILE__ )) . '/l10n/es');
+		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/l10n/es' );
 
 		// Settings
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::resetSettings' );
@@ -64,9 +61,9 @@ class WC_Aplazame
 		if ( ! $this->settings ) {
 			$this->settings = WC_Aplazame_Install::resetSettings();
 		}
-		$this->enabled = $this->settings['enabled'] === 'yes';
-		$this->sandbox = $this->settings['sandbox'] === 'yes';
-		$this->host = $this->settings['host'];
+		$this->enabled         = $this->settings['enabled'] === 'yes';
+		$this->sandbox         = $this->settings['sandbox'] === 'yes';
+		$this->host            = $this->settings['host'];
 		$this->private_api_key = $this->settings['private_api_key'];
 
 		// Redirect
@@ -79,26 +76,26 @@ class WC_Aplazame
 		add_filter( 'template_include', array( $this, 'router' ) );
 
 		// Widgets
-		add_action('woocommerce_single_product_summary', array(
+		add_action( 'woocommerce_single_product_summary', array(
 			$this,
 			'product_widget',
-		), 100);
+		), 100 );
 
-		add_action('woocommerce_after_cart_totals', array(
+		add_action( 'woocommerce_after_cart_totals', array(
 			$this,
 			'cart_widget',
-		), 100);
+		), 100 );
 
 		// Handlers
-		add_action('woocommerce_order_status_cancelled', array(
+		add_action( 'woocommerce_order_status_cancelled', array(
 			$this,
 			'order_cancelled',
-		));
+		) );
 
-		add_action('woocommerce_order_status_refunded', array(
+		add_action( 'woocommerce_order_status_refunded', array(
 			$this,
 			'order_cancelled',
-		));
+		) );
 	}
 
 	/**
@@ -116,16 +113,13 @@ class WC_Aplazame
 	 */
 	public function get_client() {
 
-		return new Aplazame_Client(
-			$this->host,
-			$this->settings['api_version'],
-			$this->sandbox,
-		$this->private_api_key);
+		return new Aplazame_Client( $this->host, $this->settings['api_version'], $this->sandbox,
+			$this->private_api_key );
 	}
 
 	/**
-	 * @param int|object|WC_Order $order_id.
-	 * @param string              $msg
+	 * @param int|object|WC_Order $order_id .
+	 * @param string $msg
 	 */
 	public function add_order_note( $order_id, $msg ) {
 		$order = new WC_Order( $order_id );
@@ -137,7 +131,8 @@ class WC_Aplazame
 	 */
 	protected function is_private_key_verified() {
 
-		return ($this->private_api_key !== '') && (substr( $_SERVER['HTTP_AUTHORIZATION'], 7 ) === $this->private_api_key);
+		return ( $this->private_api_key !== '' ) &&
+		       ( substr( $_SERVER['HTTP_AUTHORIZATION'], 7 ) === $this->private_api_key );
 	}
 
 	// Hooks
@@ -154,6 +149,7 @@ class WC_Aplazame
 		include_once( 'classes/wc-aplazame-gateway.php' );
 
 		$methods[] = 'WC_Aplazame_Gateway';
+
 		return $methods;
 	}
 
@@ -170,6 +166,7 @@ class WC_Aplazame
 		include_once( 'classes/wc-aplazame-analytics.php' );
 
 		$integrations[] = 'WC_Aplazame_Analytics';
+
 		return $integrations;
 	}
 
@@ -197,19 +194,21 @@ class WC_Aplazame
 		$order = new WC_Order( $_GET['order_id'] );
 
 		try {
-			$body = $this->get_client()->authorize( $order->id );
-		} catch (Aplazame_Exception $e) {
-			$order->update_status('failed', sprintf(
-				__( '%s ERROR: Order #%s cannot be confirmed.', 'aplazame' ),
-			self::METHOD_TITLE, $order->id));
+			$body = $this->get_client()
+			             ->authorize( $order->id )
+			;
+		} catch ( Aplazame_Exception $e ) {
+			$order->update_status( 'failed',
+				sprintf( __( '%s ERROR: Order #%s cannot be confirmed.', 'aplazame' ), self::METHOD_TITLE,
+					$order->id ) );
 
 			status_header( $e->get_status_code() );
+
 			return null;
 		}
 
 		if ( $body->amount === Aplazame_Filters::decimals( $order->get_total() ) ) {
-			$order->update_status('processing', sprintf(
-			__( 'Confirmed by %s.', 'aplazame' ), $this->host));
+			$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->host ) );
 
 			status_header( 204 );
 		} else {
@@ -223,23 +222,23 @@ class WC_Aplazame
 
 		$order = new WC_Order( $_GET['order_id'] );
 
-		if ( static::is_aplazame_order( $order->id ) &&
-				$this->is_private_key_verified() ) {
+		if ( static::is_aplazame_order( $order->id ) && $this->is_private_key_verified() ) {
 			$serializers = new Aplazame_Serializers();
 
-			$qs = get_posts(array(
-				'meta_key' => '_billing_email',
-				'meta_value' => $order->billing_email,
-				'post_type' => 'shop_order',
-				'numberposts' => -1,
-			));
+			$qs = get_posts( array(
+				'meta_key'    => '_billing_email',
+				'meta_value'  => $order->billing_email,
+				'post_type'   => 'shop_order',
+				'numberposts' => - 1,
+			) );
 
 			wp_send_json( $serializers->get_history( $qs ) );
 
-	        return null;
+			return null;
 		}
 
 		status_header( 403 );
+
 		return null;
 	}
 
@@ -261,15 +260,17 @@ class WC_Aplazame
 	public function order_cancelled( $order_id ) {
 		if ( static::is_aplazame_order( $order_id ) ) {
 			try {
-				$this->get_client()->cancel( $order_id );
+				$this->get_client()
+				     ->cancel( $order_id )
+				;
 
-				$this->add_order_note($order_id, sprintf(
-					__( 'Order #%s has been successful cancelled by %s.', 'aplazame' ),
-				$order_id, self::METHOD_TITLE));
-			} catch (Aplazame_Exception $e) {
-				$this->add_order_note($order_id, sprintf(
-					__( '%s ERROR: Order #%s cannot be cancelled.', 'aplazame' ),
-				self::METHOD_TITLE, $order_id));
+				$this->add_order_note( $order_id,
+					sprintf( __( 'Order #%s has been successful cancelled by %s.', 'aplazame' ), $order_id,
+						self::METHOD_TITLE ) );
+			} catch ( Aplazame_Exception $e ) {
+				$this->add_order_note( $order_id,
+					sprintf( __( '%s ERROR: Order #%s cannot be cancelled.', 'aplazame' ), self::METHOD_TITLE,
+						$order_id ) );
 			}
 		}
 	}

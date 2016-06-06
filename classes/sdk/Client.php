@@ -1,8 +1,6 @@
 <?php
 
-
-class Aplazame_Exception extends Exception
-{
+class Aplazame_Exception extends Exception {
 	/**
 	 * @var stdClass
 	 */
@@ -17,15 +15,15 @@ class Aplazame_Exception extends Exception
 	private $error;
 
 	/**
-	 * @param int      $status_code
+	 * @param int $status_code
 	 * @param stdClass $body
 	 */
 	public function __construct( $status_code, $body ) {
 		parent::__construct( 'aplazame_api_error' );
 
 		$this->status_code = $status_code;
-		$this->body = $body;
-		$this->error = $body->error;
+		$this->body        = $body;
+		$this->error       = $body->error;
 	}
 
 	/**
@@ -62,18 +60,16 @@ class Aplazame_Exception extends Exception
 	}
 }
 
-
-class Aplazame_Client
-{
+class Aplazame_Client {
 	/**
 	 * @param string $host
 	 * @param string $version
-	 * @param bool   $sandbox
+	 * @param bool $sandbox
 	 * @param string $private_api_key
 	 */
 	public function __construct( $host, $version, $sandbox, $private_api_key ) {
-		$this->host = $host;
-		$this->sandbox = $sandbox;
+		$this->host            = $host;
+		$this->sandbox         = $sandbox;
 		$this->private_api_key = $private_api_key;
 
 		if ( $version ) {
@@ -99,16 +95,18 @@ class Aplazame_Client
 	protected function headers() {
 
 		return array(
-			'Accept' => 'application/vnd.aplazame.' .
-				($this->sandbox?'sandbox.': '') . $this->version . '+json',
+			'Accept'        => 'application/vnd.aplazame.' .
+			                   ( $this->sandbox ? 'sandbox.' : '' ) .
+			                   $this->version .
+			                   '+json',
 			'Authorization' => 'Bearer ' . $this->private_api_key,
-			'User-Agent' => 'WooCommerce/sdk-' . WC_Aplazame::VERSION,
+			'User-Agent'    => 'WooCommerce/sdk-' . WC_Aplazame::VERSION,
 		);
 	}
 
 	/**
-	 * @param string     $method
-	 * @param string     $path
+	 * @param string $method
+	 * @param string $path
 	 * @param null|array $data
 	 *
 	 * @return stdClass
@@ -118,8 +116,8 @@ class Aplazame_Client
 	public function request( $method, $path, $data = null ) {
 		$args = array(
 			'headers' => $this->headers(),
-			'method' => $method,
-			'body' => $data,
+			'method'  => $method,
+			'body'    => $data,
 		);
 
 		$response = wp_remote_request( $this->endpoint( $path ), $args );
@@ -129,9 +127,9 @@ class Aplazame_Client
 		}
 
 		$status_code = wp_remote_retrieve_response_code( $response );
-		$body = json_decode( wp_remote_retrieve_body( $response ) );
+		$body        = json_decode( wp_remote_retrieve_body( $response ) );
 
-		if ( ($status_code < 200) || ($status_code >= 300) ) {
+		if ( ( $status_code < 200 ) || ( $status_code >= 300 ) ) {
 			throw new Aplazame_Exception( $status_code, $body );
 		}
 
@@ -139,9 +137,9 @@ class Aplazame_Client
 	}
 
 	/**
-	 * @param int        $order_id
-	 * @param string     $method
-	 * @param string     $path
+	 * @param int $order_id
+	 * @param string $method
+	 * @param string $path
 	 * @param null|array $data
 	 *
 	 * @return stdClass
@@ -162,17 +160,17 @@ class Aplazame_Client
 	}
 
 	/**
-	 * @param int    $order_id
-	 * @param int    $amount
+	 * @param int $order_id
+	 * @param int $amount
 	 * @param string $reason
 	 *
 	 * @return stdClass
 	 */
 	public function refund( $order_id, $amount, $reason ) {
-		return $this->order_request($order_id, 'POST', '/refund', array(
+		return $this->order_request( $order_id, 'POST', '/refund', array(
 			'amount' => $amount,
 			'reason' => $reason,
-		));
+		) );
 	}
 
 	/**

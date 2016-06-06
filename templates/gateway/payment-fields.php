@@ -16,13 +16,14 @@ global $woocommerce;
 
 <!-- TODO: aplazame-js feature require -->
 <style type="text/css">
-#payment ul li.payment_method_aplazame {
-	/*display: none;*/
-}
+	#payment ul li.payment_method_aplazame {
+		/*display: none;*/
+	}
 </style>
 
 <noscript>
-	<?php printf( __( 'It is necessary to enable JavaScript, %s does not work without JS.', 'aplazame' ), $aplazame->host ) ?>
+	<?php printf( __( 'It is necessary to enable JavaScript, %s does not work without JS.', 'aplazame' ),
+		$aplazame->host ) ?>
 </noscript>
 
 <p>
@@ -32,9 +33,9 @@ global $woocommerce;
 </p>
 
 <script>
-aplazame.button({
-	selector: "<?php echo $aplazame->settings['button']; ?>",
-	amount: <?php echo Aplazame_Filters::decimals( $woocommerce->cart->total ); ?>,
-	currency: "<?php echo get_woocommerce_currency() ?>"
-});
+	aplazame.button({
+		selector: "<?php echo $aplazame->settings['button']; ?>",
+		amount: <?php echo Aplazame_Filters::decimals( $woocommerce->cart->total ); ?>,
+		currency: "<?php echo get_woocommerce_currency() ?>"
+	});
 </script>

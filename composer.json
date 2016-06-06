@@ -1,7 +1,7 @@
-{  
+{
     "name": "aplazame/woocommerce",
     "description": "Aplazame Woocommerce module",
-    "keywords": [  
+    "keywords": [
         "aplazame",
         "api",
         "rest",
@@ -19,14 +19,17 @@
     ],
     "homepage": "https://aplazame.com/",
     "license": "GPL-3.0",
-    "authors": [  
-        {  
+    "authors": [
+        {
             "name": "calvin",
             "email": "dani@aplazame.com",
             "homepage": "https://aplazame.com"
         }
     ],
-    "require": {  
+    "require": {
         "php": ">=5.2"
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "dev-master"
     }
 }
