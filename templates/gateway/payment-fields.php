@@ -23,7 +23,7 @@ global $woocommerce;
 
 <noscript>
 	<?php printf( __( 'It is necessary to enable JavaScript, %s does not work without JS.', 'aplazame' ),
-		$aplazame->host ) ?>
+	$aplazame->host ) ?>
 </noscript>
 
 <p>

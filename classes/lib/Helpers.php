@@ -3,7 +3,7 @@
 class Aplazame_Helpers {
 	/**
 	 * @param string $template_name
-	 * @param array $args
+	 * @param array  $args
 	 */
 	public static function render_to_template( $template_name, $args = array() ) {
 		$template_path = WC()->template_path() . '/aplazame/';

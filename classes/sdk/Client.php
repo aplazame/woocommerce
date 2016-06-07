@@ -15,7 +15,7 @@ class Aplazame_Exception extends Exception {
 	private $error;
 
 	/**
-	 * @param int $status_code
+	 * @param int      $status_code
 	 * @param stdClass $body
 	 */
 	public function __construct( $status_code, $body ) {
@@ -64,7 +64,7 @@ class Aplazame_Client {
 	/**
 	 * @param string $host
 	 * @param string $version
-	 * @param bool $sandbox
+	 * @param bool   $sandbox
 	 * @param string $private_api_key
 	 */
 	public function __construct( $host, $version, $sandbox, $private_api_key ) {
@@ -105,8 +105,8 @@ class Aplazame_Client {
 	}
 
 	/**
-	 * @param string $method
-	 * @param string $path
+	 * @param string     $method
+	 * @param string     $path
 	 * @param null|array $data
 	 *
 	 * @return stdClass
@@ -137,9 +137,9 @@ class Aplazame_Client {
 	}
 
 	/**
-	 * @param int $order_id
-	 * @param string $method
-	 * @param string $path
+	 * @param int        $order_id
+	 * @param string     $method
+	 * @param string     $path
 	 * @param null|array $data
 	 *
 	 * @return stdClass
@@ -160,8 +160,8 @@ class Aplazame_Client {
 	}
 
 	/**
-	 * @param int $order_id
-	 * @param int $amount
+	 * @param int    $order_id
+	 * @param int    $amount
 	 * @param string $reason
 	 *
 	 * @return stdClass

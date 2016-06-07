@@ -94,7 +94,7 @@ class Aplazame_Serializers {
 
 	/**
 	 * @param WC_Order $order
-	 * @param string $type
+	 * @param string   $type
 	 *
 	 * @return array
 	 */
@@ -162,8 +162,8 @@ class Aplazame_Serializers {
 
 	/**
 	 * @param WC_Order $order
-	 * @param string $checkout_url
-	 * @param WP_User $user
+	 * @param string   $checkout_url
+	 * @param WP_User  $user
 	 *
 	 * @return array
 	 */

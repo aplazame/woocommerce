@@ -13,7 +13,7 @@ if ( ! $aplazame->enabled ) {
 /** @var WC_Product $product */
 global $product;
 
-switch ($product->get_type()) {
+switch ( $product->get_type() ) {
 	case 'variable':
 		$price_selector = '#main [itemtype="http://schema.org/Product"] .woocommerce-variation-price .amount';
 		$price = '';
