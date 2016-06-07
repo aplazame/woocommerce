@@ -15,7 +15,7 @@ global $product;
 
 switch ( $product->get_type() ) {
 	case 'variable':
-		$price_selector = '#main [itemtype="http://schema.org/Product"] .woocommerce-variation-price .amount';
+		$price_selector = '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount';
 		$price = '';
 		break;
 	default:
