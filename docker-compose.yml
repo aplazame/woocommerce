@@ -28,6 +28,15 @@ services:
     networks:
       - internal
 
+  l10n:
+    build:
+      dockerfile: Dockerfile_l10n
+      context: ./
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    entrypoint: make l10n
+
 networks:
   internal:
   public:
