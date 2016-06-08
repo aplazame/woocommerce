@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    depends_on:
+      - db
+    environment:
+      - WORDPRESS_DEBUG=true
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_PASSWORD=password
+    networks:
+      - internal
+      - public
+    volumes:
+      - ./plugin:/var/www/html/wp-content/plugins/aplazame
+    ports:
+      - "80:80"
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+    networks:
+      - internal
+
+networks:
+  internal:
+  public:
