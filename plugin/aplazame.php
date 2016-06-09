@@ -338,3 +338,4 @@ class WC_Aplazame_Install {
 }
 
 $GLOBALS['aplazame'] = new WC_Aplazame( defined( 'APLAZAME_API_BASE_URI' ) ? APLAZAME_API_BASE_URI : 'https://api.aplazame.com' );
+include_once( 'classes/wc-aplazame-proxy.php' );
