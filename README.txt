@@ -43,7 +43,7 @@ For any support request please drop us an email at [soporte.woo@aplazame.com](ma
 
 We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [dev@aplazame.com](mailto:dev@aplazame.com?subject=Hello).
 
-*We hope you'll enjoy using Aplázame's WooCommerce plugin!*
+*We hope you'll enjoy using Aplazame's WooCommerce plugin!*
 
 
 == Installation ==
