@@ -1,5 +1,5 @@
 === Aplazame ===
-Contributors: calvin
+Contributors: aplazame,calvin
 Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1

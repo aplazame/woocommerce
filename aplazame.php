@@ -4,7 +4,8 @@
  * Plugin URI: https://github.com/aplazame/woocommerce
  * Version: 0.0.8
  * Description: Aplazame offers a payment method to receive funding for the purchases.
- * Author: calvin
+ * Author: Aplazame
+ * Author URI: https://aplazame.com
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
