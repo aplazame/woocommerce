@@ -86,7 +86,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function checks() {
-		if ( ! $this->enabled ) {
+		if ( $this->enabled === 'no' ) {
 			return;
 		}
 
