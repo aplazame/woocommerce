@@ -1,5 +1,12 @@
 ## Change Log
 
+#### [v0.1.0](https://github.com/aplazame/woocommerce/tree/v0.1.0) (2016-06-13)
+
+[Full Changelog v0.1.0](https://github.com/aplazame/woocommerce/compare/v0.0.8...v0.1.0)
+
+* Fix many warnings and other kind of improvements.
+* Improvements for WooCommerce "Variable product"
+
 #### [v0.0.8](https://github.com/aplazame/woocommerce/tree/v0.0.8) (2016-03-16)
 
 [Full Changelog v0.0.8](https://github.com/aplazame/woocommerce/compare/v0.0.7...v0.0.8)
