@@ -84,7 +84,7 @@ Automatic updates should work great for you.
 == Frequently Asked Questions ==
 
 = How Can I Get an API Keys? =
-We will have a signup page soon, for now you can [contact us](mailto:soporte.woo@aplazame.com?subject=i-need-a-token) for the API Keys.
+Just signup for a vendor account at [https://vendors.aplazame.com/u/signup](https://vendors.aplazame.com/u/signup)
 
 = Can I cancel an order with Aplazame? =
 Yes, simply replace the status to *"cancelled"* or *"refunded"*.

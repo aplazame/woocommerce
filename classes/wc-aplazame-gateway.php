@@ -96,8 +96,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		if ( ! $this->settings['public_api_key'] || ! $this->settings['private_api_key'] ) {
 			$_render_to_notice( sprintf( __( 'Aplazame gateway requires the API keys, please ' .
-			                                 '<a href="%s">contact us</a> and take your keys.', 'aplazame' ),
-				'mailto:soporte.woo@aplazame.com?subject=i-need-a-token' ) );
+			                                 '<a href="%s">sign up</a> and take your keys.', 'aplazame' ),
+				'https://vendors.aplazame.com/u/signup' ) );
 		}
 	}
 
