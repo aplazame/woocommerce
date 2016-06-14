@@ -103,19 +103,24 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields = array(
-			'enabled'          => array(
+			'enabled'                         => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
 				'label'   => __( 'Enable Aplazame module', 'aplazame' ),
 				'default' => 'yes',
 			),
-			'sandbox'          => array(
+			'sandbox'                         => array(
 				'type'        => 'checkbox',
 				'title'       => 'Sandbox',
 				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
-			'private_api_key'  => array(
+			'api_details'                     => array(
+				'title'       => __( 'API Credentials', 'woocommerce' ),
+				'type'        => 'title',
+				'description' => '',
+			),
+			'private_api_key'                 => array(
 				'type'              => 'password',
 				'title'             => __( 'Private API Key', 'aplazame' ),
 				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
@@ -124,7 +129,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required'     => '',
 				),
 			),
-			'public_api_key'   => array(
+			'public_api_key'                  => array(
 				'type'              => 'text',
 				'title'             => __( 'Public API Key', 'aplazame' ),
 				'description'       => __( 'Aplazame API Public Key', 'aplazame' ),
@@ -132,7 +137,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'host'             => array(
+			'host'                            => array(
 				'type'              => 'text',
 				'title'             => 'Host',
 				'description'       => __( 'Aplazame Host', 'aplazame' ),
@@ -140,7 +145,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'api_version'      => array(
+			'api_version'                     => array(
 				'type'              => 'text',
 				'title'             => __( 'API Version', 'aplazame' ),
 				'description'       => __( 'Aplazame API Version', 'aplazame' ),
@@ -148,7 +153,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'button'           => array(
+			'advanced'                        => array(
+				'title'       => __( 'Advanced options', 'woocommerce' ),
+				'type'        => 'title',
+				'description' => '',
+			),
+			'button'                          => array(
 				'type'              => 'text',
 				'title'             => __( 'Button', 'aplazame' ),
 				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
@@ -156,7 +166,28 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'enable_analytics' => array(
+			'quantity_selector'               => array(
+				'type'        => 'text',
+				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
+				'description' => __( 'CSS selector pointing to product quantity', 'aplazame' ),
+				'placeholder' => '#main form.cart input[name="quantity"]',
+			),
+			'price_product_selector'          => array(
+				'type'        => 'text',
+				'title'       => __( 'Product price CSS selector', 'aplazame' ),
+				'description' => __( 'CSS selector pointing to product price', 'aplazame' ),
+				'placeholder' => '#main .price .amount',
+			),
+			'price_variable_product_selector' => array(
+				'type'              => 'text',
+				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
+				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
+				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'enable_analytics'                => array(
 				'type'  => 'checkbox',
 				'title' => __( 'Enable/Disable', 'aplazame' ),
 				'label' => __( 'Enable Aplazame Analytics', 'aplazame' ),

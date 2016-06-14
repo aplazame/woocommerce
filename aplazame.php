@@ -304,14 +304,17 @@ class WC_Aplazame {
 
 class WC_Aplazame_Install {
 	public static $defaultSettings = array(
-		'enabled'          => null,
-		'sandbox'          => 'yes',
-		'host'             => 'https://aplazame.com',
-		'api_version'      => 'v1.2',
-		'button'           => '#payment ul li:has(input#payment_method_aplazame)',
-		'public_api_key'   => '',
-		'private_api_key'  => '',
-		'enable_analytics' => 'yes',
+		'enabled'                         => null,
+		'sandbox'                         => 'yes',
+		'host'                            => 'https://aplazame.com',
+		'api_version'                     => 'v1.2',
+		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
+		'quantity_selector'               => '',
+		'price_product_selector'          => '',
+		'price_variable_product_selector' => '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount',
+		'public_api_key'                  => '',
+		'private_api_key'                 => '',
+		'enable_analytics'                => 'yes',
 	);
 
 	public static function uninstall() {
