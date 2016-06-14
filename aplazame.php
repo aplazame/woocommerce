@@ -62,6 +62,8 @@ class WC_Aplazame {
 		$this->settings = get_option( 'woocommerce_aplazame_settings' );
 		if ( ! $this->settings ) {
 			$this->settings = WC_Aplazame_Install::resetSettings();
+		} else {
+			$this->settings = array_merge(WC_Aplazame_Install::$defaultSettings, $this->settings);
 		}
 		$this->enabled         = $this->settings['enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';

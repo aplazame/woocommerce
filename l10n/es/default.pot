@@ -17,26 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:110
+#: aplazame.php:112
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:216
+#: aplazame.php:218
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr ""
 
-#: aplazame.php:225
+#: aplazame.php:227
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:282
+#: aplazame.php:284
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
 
-#: aplazame.php:286
+#: aplazame.php:288
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr ""
