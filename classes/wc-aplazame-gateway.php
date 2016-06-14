@@ -115,6 +115,23 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
+			'private_api_key'  => array(
+				'type'              => 'password',
+				'title'             => __( 'Private API Key', 'aplazame' ),
+				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
+				'custom_attributes' => array(
+					'autocomplete' => 'new-password',
+					'required'     => '',
+				),
+			),
+			'public_api_key'   => array(
+				'type'              => 'text',
+				'title'             => __( 'Public API Key', 'aplazame' ),
+				'description'       => __( 'Aplazame API Public Key', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
 			'host'             => array(
 				'type'              => 'text',
 				'title'             => 'Host',
@@ -137,23 +154,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
 				'custom_attributes' => array(
 					'required' => '',
-				),
-			),
-			'public_api_key'   => array(
-				'type'              => 'text',
-				'title'             => __( 'Public API Key', 'aplazame' ),
-				'description'       => __( 'Aplazame Public Key', 'aplazame' ),
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'private_api_key'  => array(
-				'type'              => 'password',
-				'title'             => __( 'Private API Key', 'aplazame' ),
-				'description'       => __( 'Aplazame Private Key', 'aplazame' ),
-				'custom_attributes' => array(
-					'autocomplete' => 'new-password',
-					'required'     => '',
 				),
 			),
 			'enable_analytics' => array(
