@@ -141,6 +141,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'text',
 				'title'             => 'Host',
 				'description'       => __( 'Aplazame Host', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['host'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
@@ -149,6 +150,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'text',
 				'title'             => __( 'API Version', 'aplazame' ),
 				'description'       => __( 'Aplazame API Version', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['api_version'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
@@ -162,6 +164,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'text',
 				'title'             => __( 'Button', 'aplazame' ),
 				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
@@ -183,6 +186,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
 				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
 				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
 				'custom_attributes' => array(
 					'required' => '',
 				),

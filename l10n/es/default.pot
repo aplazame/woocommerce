@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-14 12:47+0000\n"
+"POT-Creation-Date: 2016-06-14 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -62,7 +62,7 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:192
+#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:196
 msgid "Enable/Disable"
 msgstr ""
 
@@ -102,51 +102,51 @@ msgstr ""
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:150
+#: classes/wc-aplazame-gateway.php:151
 msgid "API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:151
+#: classes/wc-aplazame-gateway.php:152
 msgid "Aplazame API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:157
+#: classes/wc-aplazame-gateway.php:159
 msgid "Advanced options"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:163
+#: classes/wc-aplazame-gateway.php:165
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:164
+#: classes/wc-aplazame-gateway.php:166
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:171
+#: classes/wc-aplazame-gateway.php:174
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:172
+#: classes/wc-aplazame-gateway.php:175
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:177
+#: classes/wc-aplazame-gateway.php:180
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:178
+#: classes/wc-aplazame-gateway.php:181
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:183
+#: classes/wc-aplazame-gateway.php:186
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:184
+#: classes/wc-aplazame-gateway.php:187
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:193
+#: classes/wc-aplazame-gateway.php:197
 msgid "Enable Aplazame Analytics"
 msgstr ""
 
