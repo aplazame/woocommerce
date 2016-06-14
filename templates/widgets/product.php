@@ -28,13 +28,13 @@ switch ( $product->get_type() ) {
 	data-aplazame-simulator=""
 	data-view="product"
 	<?php if ( empty( $price_selector ) ) :  ?>
-		data-amount='<?php echo $price; ?>'
+		data-amount="<?php echo esc_attr( $price ); ?>"
 	<?php else : ?>
-		data-price='<?php echo $price_selector; ?>'
+		data-price="<?php echo esc_attr( $price_selector ); ?>"
 	<?php endif; ?>
 	<?php if ( ! empty( $aplazame->settings['quantity_selector'] ) ) :  ?>
-		data-qty='<?php echo $aplazame->settings['quantity_selector']; ?>'
+		data-qty="<?php echo esc_attr( $aplazame->settings['quantity_selector'] ); ?>"
 	<?php endif; ?>
-	data-currency="<?php echo get_woocommerce_currency(); ?>"
+	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	data-stock="<?php echo $product->is_in_stock() ? 'true' : 'false'; ?>">
 </div>

@@ -15,6 +15,6 @@ if ( ! $aplazame->enabled ) {
 <div
 	data-aplazame-simulator=""
 	data-view="cart"
-	data-amount="<?php echo Aplazame_Filters::decimals( WC()->cart->total ); ?>"
-	data-currency="<?php echo get_woocommerce_currency(); ?>">
+	data-amount="<?php echo esc_attr( Aplazame_Filters::decimals( WC()->cart->total ) ); ?>"
+	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>">
 </div>
