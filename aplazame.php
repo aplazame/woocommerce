@@ -50,6 +50,7 @@ class WC_Aplazame {
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
 		// Hooks: Gateway / Analytics
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'add_gateway' ) );
 		add_filter( 'woocommerce_integrations', array( $this, 'add_analytics' ) );
 
@@ -97,6 +98,18 @@ class WC_Aplazame {
 			$this,
 			'order_cancelled',
 		) );
+	}
+
+	/**
+	 * Add relevant links to plugins page
+	 * @param  array $links
+	 * @return array
+	 */
+	public function plugin_action_links( $links ) {
+		$plugin_links = array(
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_aplazame_gateway') . '">' . __( 'Settings', 'aplazame' ) . '</a>',
+		);
+		return array_merge( $plugin_links, $links );
 	}
 
 	/**
