@@ -54,7 +54,7 @@ msgstr ""
 "Se necesitan las claves de API para la pasarela de pago de Aplazame, por "
 "favor, <a href=\"%s\">regístrate</a> y obtén tus claves."
 
-#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:148
+#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:161
 msgid "Enable/Disable"
 msgstr "Activar/Desactivar"
 
@@ -74,39 +74,39 @@ msgstr "Activar modo Sandbox"
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:125
+#: classes/wc-aplazame-gateway.php:128
 msgid "API Version"
 msgstr "Versión de la API"
 
-#: classes/wc-aplazame-gateway.php:126
+#: classes/wc-aplazame-gateway.php:129
 msgid "Aplazame API Version"
 msgstr "Versión de API de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:130
+#: classes/wc-aplazame-gateway.php:136
 msgid "Button"
 msgstr "Botón"
 
-#: classes/wc-aplazame-gateway.php:131
+#: classes/wc-aplazame-gateway.php:137
 msgid "Aplazame Button CSS Selector"
 msgstr "Selector CSS del botón de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:135
+#: classes/wc-aplazame-gateway.php:144
 msgid "Public API Key"
 msgstr "Clave pública"
 
-#: classes/wc-aplazame-gateway.php:136
+#: classes/wc-aplazame-gateway.php:145
 msgid "Aplazame Public Key"
 msgstr "Clave pública de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:140
+#: classes/wc-aplazame-gateway.php:152
 msgid "Private API Key"
 msgstr "Clave privada"
 
-#: classes/wc-aplazame-gateway.php:141
+#: classes/wc-aplazame-gateway.php:153
 msgid "Aplazame Private Key"
 msgstr "Clave privada de Aplazame"
 
-#: classes/wc-aplazame-gateway.php:149
+#: classes/wc-aplazame-gateway.php:162
 msgid "Enable Aplazame Analytics"
 msgstr "Activar Aplazame Analytics"
 

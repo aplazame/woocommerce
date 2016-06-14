@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-14 10:03+0000\n"
+"POT-Creation-Date: 2016-06-14 10:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -62,7 +62,7 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:148
+#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:161
 msgid "Enable/Disable"
 msgstr ""
 
@@ -82,39 +82,39 @@ msgstr ""
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:125
+#: classes/wc-aplazame-gateway.php:128
 msgid "API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:126
+#: classes/wc-aplazame-gateway.php:129
 msgid "Aplazame API Version"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:130
+#: classes/wc-aplazame-gateway.php:136
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:131
+#: classes/wc-aplazame-gateway.php:137
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:135
+#: classes/wc-aplazame-gateway.php:144
 msgid "Public API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:136
+#: classes/wc-aplazame-gateway.php:145
 msgid "Aplazame Public Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:140
+#: classes/wc-aplazame-gateway.php:152
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:141
+#: classes/wc-aplazame-gateway.php:153
 msgid "Aplazame Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:149
+#: classes/wc-aplazame-gateway.php:162
 msgid "Enable Aplazame Analytics"
 msgstr ""
 

@@ -116,24 +116,36 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
 			'host'             => array(
-				'type'        => 'text',
-				'title'       => 'Host',
-				'description' => __( 'Aplazame Host', 'aplazame' ),
+				'type'              => 'text',
+				'title'             => 'Host',
+				'description'       => __( 'Aplazame Host', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
 			),
 			'api_version'      => array(
-				'type'        => 'text',
-				'title'       => __( 'API Version', 'aplazame' ),
-				'description' => __( 'Aplazame API Version', 'aplazame' ),
+				'type'              => 'text',
+				'title'             => __( 'API Version', 'aplazame' ),
+				'description'       => __( 'Aplazame API Version', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
 			),
 			'button'           => array(
-				'type'        => 'text',
-				'title'       => __( 'Button', 'aplazame' ),
-				'description' => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'type'              => 'text',
+				'title'             => __( 'Button', 'aplazame' ),
+				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
 			),
 			'public_api_key'   => array(
-				'type'        => 'text',
-				'title'       => __( 'Public API Key', 'aplazame' ),
-				'description' => __( 'Aplazame Public Key', 'aplazame' ),
+				'type'              => 'text',
+				'title'             => __( 'Public API Key', 'aplazame' ),
+				'description'       => __( 'Aplazame Public Key', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
 			),
 			'private_api_key'  => array(
 				'type'              => 'password',
@@ -141,6 +153,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description'       => __( 'Aplazame Private Key', 'aplazame' ),
 				'custom_attributes' => array(
 					'autocomplete' => 'new-password',
+					'required'     => '',
 				),
 			),
 			'enable_analytics' => array(
