@@ -211,10 +211,10 @@ class WC_Aplazame {
 
 		$order = new WC_Order( $_GET['order_id'] );
 
+		$client = $this->get_client();
+
 		try {
-			$body = $this->get_client()
-			             ->authorize( $order->id )
-			;
+			$body = $client->authorize( $order->id );
 		} catch ( Aplazame_Exception $e ) {
 			$order->update_status( 'failed',
 				sprintf( __( '%s ERROR: Order #%s cannot be confirmed.', 'aplazame' ), self::METHOD_TITLE,
@@ -276,21 +276,25 @@ class WC_Aplazame {
 	 * @param int $order_id
 	 */
 	public function order_cancelled( $order_id ) {
-		if ( static::is_aplazame_order( $order_id ) ) {
-			try {
-				$this->get_client()
-				     ->cancel( $order_id )
-				;
-
-				$this->add_order_note( $order_id,
-					sprintf( __( 'Order #%s has been successful cancelled by %s.', 'aplazame' ), $order_id,
-						self::METHOD_TITLE ) );
-			} catch ( Aplazame_Exception $e ) {
-				$this->add_order_note( $order_id,
-					sprintf( __( '%s ERROR: Order #%s cannot be cancelled.', 'aplazame' ), self::METHOD_TITLE,
-						$order_id ) );
-			}
+		if ( ! static::is_aplazame_order( $order_id ) ) {
+			return;
 		}
+
+		$client = $this->get_client();
+
+		try {
+			$client->cancel( $order_id );
+		} catch ( Aplazame_Exception $e ) {
+			$this->add_order_note( $order_id,
+				sprintf( __( '%s ERROR: Order #%s cannot be cancelled.', 'aplazame' ), self::METHOD_TITLE,
+					$order_id ) );
+
+			return;
+		}
+
+		$this->add_order_note( $order_id,
+			sprintf( __( 'Order #%s has been successful cancelled by %s.', 'aplazame' ), $order_id,
+				self::METHOD_TITLE ) );
 	}
 
 	// Static

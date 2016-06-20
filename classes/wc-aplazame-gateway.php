@@ -61,28 +61,28 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function process_refund( $order_id, $amount = null, $reason = '' ) {
-		if ( $amount ) {
-			/** @var WC_Aplazame $aplazame */
-			global $aplazame;
-
-			try {
-				$aplazame->get_client()
-				         ->refund( $order_id, Aplazame_Filters::decimals( $amount ), $reason )
-				;
-
-				$aplazame->add_order_note( $order_id,
-					sprintf( __( '%s has successfully returned %d %s of the order #%s.', 'aplazame' ),
-						$this->method_title, $amount, get_woocommerce_currency(), $order_id ) );
-
-				return true;
-			} catch ( Aplazame_Exception $e ) {
-				return new WP_Error( 'aplazame_refund_error',
-					sprintf( __( '%s Error: "%s"', 'aplazame' ), $this->method_title,
-						$e->get_field_error( 'amount' ) ) );
-			}
+		if ( ! $amount ) {
+			return false;
 		}
 
-		return false;
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
+
+		$client = $aplazame->get_client();
+
+		try {
+			$client->refund( $order_id, Aplazame_Filters::decimals( $amount ), $reason );
+		} catch ( Aplazame_Exception $e ) {
+			return new WP_Error( 'aplazame_refund_error',
+				sprintf( __( '%s Error: "%s"', 'aplazame' ), $this->method_title,
+					$e->get_field_error( 'amount' ) ) );
+		}
+
+		$aplazame->add_order_note( $order_id,
+			sprintf( __( '%s has successfully returned %d %s of the order #%s.', 'aplazame' ),
+				$this->method_title, $amount, get_woocommerce_currency(), $order_id ) );
+
+		return true;
 	}
 
 	public function checks() {
