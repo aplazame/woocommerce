@@ -1,5 +1,14 @@
 ## Change Log
 
+#### [v0.2.0](https://github.com/aplazame/woocommerce/tree/v0.2.0) (2016-06-20)
+
+[Full Changelog v0.2.0](https://github.com/aplazame/woocommerce/compare/v0.1.0...v0.2.0)
+
+* Add new settings for customize product price and product quantity CSS selectors.
+* Remove `host` and `version` settings.
+* Fix API error when refund.
+* Fix product amount for products with fixed prices.
+
 #### [v0.1.0](https://github.com/aplazame/woocommerce/tree/v0.1.0) (2016-06-13)
 
 [Full Changelog v0.1.0](https://github.com/aplazame/woocommerce/compare/v0.0.8...v0.1.0)

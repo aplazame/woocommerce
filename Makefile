@@ -2,7 +2,7 @@
 branch ?= dev
 l10n_path ?= l10n/es
 l10n_name ?= aplazame-es_ES
-version ?= v0.1.0
+version ?= v0.2.0
 
 # --- shell
 files = $(shell find . -name "*.php")
