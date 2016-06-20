@@ -23,7 +23,7 @@ if ( ! $aplazame->enabled ) {
 	type="text/javascript"
 	src="<?php echo esc_attr( $aplazame->host . '/static/aplazame.js' ); ?>"
 	data-aplazame="publicKey: <?php echo $aplazame->settings['public_api_key']; ?>"
-	data-version="<?php echo esc_attr( $aplazame->settings['api_version'] ); ?>"
+	data-version="v1.2"
 	data-sandbox="<?php echo $aplazame->sandbox ? 'true' : 'false'; ?>"
 	data-analytics="<?php echo ( $aplazame->settings['enable_analytics'] === 'yes' ) ? 'true' : 'false'; ?>">
 </script>

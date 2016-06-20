@@ -72,7 +72,6 @@ Automatic updates should work great for you.
 
 * **Sandbox**: Determines if the module is on Sandbox mode.
 * **Host**: Aplazame host `https://aplazame.com`
-* **API Version**: The latest version is `v1.2`
 * **Button**: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
 * **Secret API Key**: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
 * **Public API Key**: The Public Key provided by Aplazame.

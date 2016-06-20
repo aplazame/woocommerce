@@ -146,15 +146,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'api_version'                     => array(
-				'type'              => 'text',
-				'title'             => __( 'API Version', 'aplazame' ),
-				'description'       => __( 'Aplazame API Version', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['api_version'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
 			'advanced'                        => array(
 				'title'       => __( 'Advanced options', 'woocommerce' ),
 				'type'        => 'title',

@@ -129,7 +129,7 @@ class WC_Aplazame {
 	 */
 	public function get_client() {
 
-		return new Aplazame_Client( $this->host, $this->settings['api_version'], $this->sandbox,
+		return new Aplazame_Client( $this->host, $this->sandbox,
 			$this->private_api_key );
 	}
 
@@ -307,7 +307,6 @@ class WC_Aplazame_Install {
 		'enabled'                         => null,
 		'sandbox'                         => 'yes',
 		'host'                            => 'https://aplazame.com',
-		'api_version'                     => 'v1.2',
 		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
 		'quantity_selector'               => '',
 		'price_product_selector'          => '',

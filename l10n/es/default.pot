@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-14 12:56+0000\n"
+"POT-Creation-Date: 2016-06-20 13:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -62,7 +62,7 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:196
+#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:187
 msgid "Enable/Disable"
 msgstr ""
 
@@ -102,51 +102,43 @@ msgstr ""
 msgid "Aplazame Host"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:151
-msgid "API Version"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:152
-msgid "Aplazame API Version"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:159
+#: classes/wc-aplazame-gateway.php:150
 msgid "Advanced options"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:165
+#: classes/wc-aplazame-gateway.php:156
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:166
+#: classes/wc-aplazame-gateway.php:157
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:174
+#: classes/wc-aplazame-gateway.php:165
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:175
+#: classes/wc-aplazame-gateway.php:166
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:180
+#: classes/wc-aplazame-gateway.php:171
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:181
+#: classes/wc-aplazame-gateway.php:172
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:186
+#: classes/wc-aplazame-gateway.php:177
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:187
+#: classes/wc-aplazame-gateway.php:178
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:197
+#: classes/wc-aplazame-gateway.php:188
 msgid "Enable Aplazame Analytics"
 msgstr ""
 

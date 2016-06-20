@@ -63,21 +63,14 @@ class Aplazame_Exception extends Exception {
 class Aplazame_Client {
 	/**
 	 * @param string $host
-	 * @param string $version
 	 * @param bool   $sandbox
 	 * @param string $private_api_key
 	 */
-	public function __construct( $host, $version, $sandbox, $private_api_key ) {
+	public function __construct( $host, $sandbox, $private_api_key ) {
 		$this->host            = $host;
 		$this->sandbox         = $sandbox;
 		$this->private_api_key = $private_api_key;
-
-		if ( $version ) {
-			$this->version = explode( '.', $version );
-			$this->version = $this->version[0];
-		} else {
-			$this->version = $version;
-		}
+		$this->version         = 1;
 	}
 
 	/**
@@ -97,7 +90,7 @@ class Aplazame_Client {
 		return array(
 			'Accept'        => 'application/vnd.aplazame.' .
 			                   ( $this->sandbox ? 'sandbox.' : '' ) .
-			                   $this->version .
+			                   'v' . $this->version .
 			                   '+json',
 			'Authorization' => 'Bearer ' . $this->private_api_key,
 			'User-Agent'    => 'WooCommerce/sdk-' . WC_Aplazame::VERSION,
