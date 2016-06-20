@@ -16,11 +16,9 @@ global $product;
 switch ( $product->get_type() ) {
 	case 'variable':
 		$price_selector = $aplazame->settings['price_variable_product_selector'];
-		$price = '';
 		break;
 	default:
 		$price_selector = $aplazame->settings['price_product_selector'];
-		$price = Aplazame_Filters::decimals( $product->get_price() );
 }
 ?>
 
@@ -28,7 +26,7 @@ switch ( $product->get_type() ) {
 	data-aplazame-simulator=""
 	data-view="product"
 	<?php if ( empty( $price_selector ) ) :  ?>
-		data-amount="<?php echo esc_attr( $price ); ?>"
+		data-amount="<?php echo esc_attr( Aplazame_Filters::decimals( $product->get_price() ) ); ?>"
 	<?php else : ?>
 		data-price="<?php echo esc_attr( $price_selector ); ?>"
 	<?php endif; ?>
