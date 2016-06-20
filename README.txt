@@ -71,9 +71,12 @@ Automatic updates should work great for you.
 = Usage =
 
 * **Sandbox**: Determines if the module is on Sandbox mode.
-* **Button**: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
-* **Secret API Key**: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
+* **Private API Key**: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
 * **Public API Key**: The Public Key provided by Aplazame.
+* **Button**: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
+* **Product quantity CSS selector**: The CSS Selector for retrieve the product quantity in the product page. The default value is empty.
+* **Product price CSS selector**: The CSS Selector for retrieve the product price in the product page. The default value is empty.
+* **Variable product price CSS selector**: The CSS Selector for retrieve the variable product calculated price in the product page. The default selector is `#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount`.
 * **Enable Analytics**: If you want to enable customer tracking for better interests.
 
 > Be sure that on all fields you don't keep any whitespace. Otherwise the module can generate unexpected results.
