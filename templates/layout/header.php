@@ -10,6 +10,8 @@ global $aplazame;
 if ( ! $aplazame->enabled ) {
 	return;
 }
+
+defined( 'APLAZAME_JS_URI' ) || define( 'APLAZAME_JS_URI', 'https://aplazame.com/static/aplazame.js' );
 ?>
 
 <!-- TODO: nav hook and exclude redirect page -->
@@ -21,7 +23,7 @@ if ( ! $aplazame->enabled ) {
 
 <script
 	type="text/javascript"
-	src="<?php echo esc_attr( $aplazame->host . '/static/aplazame.js' ); ?>"
+	src="<?php echo esc_attr( APLAZAME_JS_URI ); ?>"
 	data-aplazame="publicKey: <?php echo $aplazame->settings['public_api_key']; ?>"
 	data-sandbox="<?php echo $aplazame->sandbox ? 'true' : 'false'; ?>"
 	data-analytics="<?php echo ( $aplazame->settings['enable_analytics'] === 'yes' ) ? 'true' : 'false'; ?>">

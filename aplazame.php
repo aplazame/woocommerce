@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+defined( 'APLAZAME_API_BASE_URI' ) || define( 'APLAZAME_API_BASE_URI', 'https://api.aplazame.com' );
+
 class WC_Aplazame {
 	const VERSION = '0.1.0';
 	const METHOD_ID = 'aplazame';
@@ -34,7 +36,7 @@ class WC_Aplazame {
 	/**
 	 * @var string
 	 */
-	public $host;
+	public $apiBaseUri;
 
 	public function __construct() {
 
@@ -67,7 +69,7 @@ class WC_Aplazame {
 		}
 		$this->enabled         = $this->settings['enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
-		$this->host            = $this->settings['host'];
+		$this->apiBaseUri      = APLAZAME_API_BASE_URI;
 		$this->private_api_key = $this->settings['private_api_key'];
 
 		// Redirect
@@ -129,7 +131,7 @@ class WC_Aplazame {
 	 */
 	public function get_client() {
 
-		return new Aplazame_Client( $this->host, $this->sandbox,
+		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox,
 			$this->private_api_key );
 	}
 
@@ -224,7 +226,7 @@ class WC_Aplazame {
 		}
 
 		if ( $body->amount === Aplazame_Filters::decimals( $order->get_total() ) ) {
-			$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->host ) );
+			$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
 
 			status_header( 204 );
 		} else {
@@ -306,7 +308,6 @@ class WC_Aplazame_Install {
 	public static $defaultSettings = array(
 		'enabled'                         => null,
 		'sandbox'                         => 'yes',
-		'host'                            => 'https://aplazame.com',
 		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
 		'quantity_selector'               => '',
 		'price_product_selector'          => '',

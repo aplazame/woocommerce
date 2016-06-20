@@ -62,12 +62,12 @@ class Aplazame_Exception extends Exception {
 
 class Aplazame_Client {
 	/**
-	 * @param string $host
+	 * @param string $apiBaseUri
 	 * @param bool   $sandbox
 	 * @param string $private_api_key
 	 */
-	public function __construct( $host, $sandbox, $private_api_key ) {
-		$this->host            = $host;
+	public function __construct( $apiBaseUri, $sandbox, $private_api_key ) {
+		$this->apiBaseUri      = $apiBaseUri;
 		$this->sandbox         = $sandbox;
 		$this->private_api_key = $private_api_key;
 		$this->version         = 1;
@@ -79,7 +79,7 @@ class Aplazame_Client {
 	 * @return string
 	 */
 	protected function endpoint( $path ) {
-		return trim( str_replace( '://', '://api.', $this->host ), '/' ) . $path;
+		return $this->apiBaseUri . $path;
 	}
 
 	/**

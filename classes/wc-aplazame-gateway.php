@@ -137,15 +137,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'host'                            => array(
-				'type'              => 'text',
-				'title'             => 'Host',
-				'description'       => __( 'Aplazame Host', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['host'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
 			'advanced'                        => array(
 				'title'       => __( 'Advanced options', 'woocommerce' ),
 				'type'        => 'title',
