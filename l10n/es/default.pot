@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-20 14:45+0000\n"
+"POT-Creation-Date: 2016-06-20 17:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -31,28 +31,28 @@ msgstr ""
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:286
-#, php-format
-msgid "Order #%s has been successful cancelled by %s."
-msgstr ""
-
-#: aplazame.php:290
+#: aplazame.php:289
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
+msgstr ""
+
+#: aplazame.php:296
+#, php-format
+msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
 
 #: classes/lib/Redirect.php:26
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:74
-#, php-format
-msgid "%s has successfully returned %d %s of the order #%s."
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:80
+#: classes/wc-aplazame-gateway.php:77
 #, php-format
 msgid "%s Error: \"%s\""
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:82
+#, php-format
+msgid "%s has successfully returned %d %s of the order #%s."
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:98

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-20 14:38+0000\n"
+"POT-Creation-Date: 2016-06-20 17:07+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,29 +21,29 @@ msgstr "ERROR en %s: El pedido #%s no se ha podido confirmar."
 msgid "Confirmed by %s."
 msgstr "Confirmado por %s."
 
-#: aplazame.php:286
-#, php-format
-msgid "Order #%s has been successful cancelled by %s."
-msgstr "El pedido #%s ha sido cancelado correctamente por %s."
-
-#: aplazame.php:290
+#: aplazame.php:289
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr "ERROR en %s: El pedido #%s no se ha podido cancelar."
+
+#: aplazame.php:296
+#, php-format
+msgid "Order #%s has been successful cancelled by %s."
+msgstr "El pedido #%s ha sido cancelado correctamente por %s."
 
 #: classes/lib/Redirect.php:26
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:74
-#, php-format
-msgid "%s has successfully returned %d %s of the order #%s."
-msgstr "%s ha devuelto correctamente la cantidad de %d %s en el pedido #%s."
-
-#: classes/wc-aplazame-gateway.php:80
+#: classes/wc-aplazame-gateway.php:77
 #, php-format
 msgid "%s Error: \"%s\""
 msgstr "Error en %s: \"%s\""
+
+#: classes/wc-aplazame-gateway.php:82
+#, php-format
+msgid "%s has successfully returned %d %s of the order #%s."
+msgstr "%s ha devuelto correctamente la cantidad de %d %s en el pedido #%s."
 
 #: classes/wc-aplazame-gateway.php:98
 #, php-format
