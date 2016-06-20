@@ -94,6 +94,7 @@ class Aplazame_Client {
 			                   '+json',
 			'Authorization' => 'Bearer ' . $this->private_api_key,
 			'User-Agent'    => 'WooCommerce/sdk-' . WC_Aplazame::VERSION,
+			'Content-Type'  => 'application/json',
 		);
 	}
 
@@ -110,7 +111,7 @@ class Aplazame_Client {
 		$args = array(
 			'headers' => $this->headers(),
 			'method'  => $method,
-			'body'    => $data,
+			'body'    => json_encode( $data ),
 		);
 
 		$response = wp_remote_request( $this->endpoint( $path ), $args );
