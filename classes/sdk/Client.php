@@ -86,6 +86,14 @@ class Aplazame_Client {
 	 * @return string[]
 	 */
 	protected function headers() {
+		global $wp_version;
+
+		$versions = array(
+			'PHP/' . PHP_VERSION,
+			'WordPress/' . $wp_version,
+			'WooCommerce/' . WC()->version,
+			'AplazameWooCommerce/' . WC_Aplazame::VERSION,
+		);
 
 		return array(
 			'Accept'        => 'application/vnd.aplazame.' .
@@ -93,7 +101,7 @@ class Aplazame_Client {
 			                   'v' . $this->version .
 			                   '+json',
 			'Authorization' => 'Bearer ' . $this->private_api_key,
-			'User-Agent'    => 'WooCommerce/sdk-' . WC_Aplazame::VERSION,
+			'User-Agent'    => implode(', ', $versions),
 			'Content-Type'  => 'application/json',
 		);
 	}
