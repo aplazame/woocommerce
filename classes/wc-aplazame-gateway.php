@@ -173,11 +173,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'enable_analytics'                => array(
-				'type'  => 'checkbox',
-				'title' => __( 'Enable/Disable', 'aplazame' ),
-				'label' => __( 'Enable Aplazame Analytics', 'aplazame' ),
-			),
 		);
 	}
 }

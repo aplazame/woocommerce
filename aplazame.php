@@ -52,10 +52,8 @@ class WC_Aplazame {
 
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
-		// Hooks: Gateway / Analytics
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'add_gateway' ) );
-		add_filter( 'woocommerce_integrations', array( $this, 'add_analytics' ) );
 
 		// l10n
 		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/l10n/es' );
@@ -72,6 +70,9 @@ class WC_Aplazame {
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
 		$this->apiBaseUri      = $apiBaseUri;
 		$this->private_api_key = $this->settings['private_api_key'];
+
+		// Aplazame JS
+		add_action( 'wp_head', array( $this, 'aplazameJs' ), 999999 );
 
 		// Redirect
 		register_activation_hook( __FILE__, 'Aplazame_Redirect::get_the_ID' );
@@ -172,23 +173,6 @@ class WC_Aplazame {
 		return $methods;
 	}
 
-	/**
-	 * @param array $integrations
-	 *
-	 * @return array|void
-	 */
-	public function add_analytics( $integrations ) {
-		if ( ! class_exists( 'WC_Integration' ) ) {
-			return;
-		}
-
-		include_once( 'classes/wc-aplazame-analytics.php' );
-
-		$integrations[] = 'WC_Aplazame_Analytics';
-
-		return $integrations;
-	}
-
 	// Controllers
 	/**
 	 * @param string $template
@@ -261,6 +245,11 @@ class WC_Aplazame {
 		return null;
 	}
 
+	public function aplazameJs() {
+
+		Aplazame_Helpers::render_to_template( 'layout/header.php' );
+	}
+
 	// Widgets
 	public function product_widget() {
 
@@ -319,7 +308,6 @@ class WC_Aplazame_Install {
 		'price_variable_product_selector' => '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
-		'enable_analytics'                => 'yes',
 	);
 
 	public static function uninstall() {

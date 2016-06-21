@@ -22,7 +22,6 @@
 * **Product quantity CSS selector**: The CSS Selector for retrieve the product quantity in the product page. The default value is empty.
 * **Product price CSS selector**: The CSS Selector for retrieve the product price in the product page. The default value is empty.
 * **Variable product price CSS selector**: The CSS Selector for retrieve the variable product calculated price in the product page. The default selector is `#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount`.
-* **Enable Analytics**: If you want to enable customer tracking for better interests.
 
 > Be sure that on all fields you don't keep any whitespace. Otherwise the module can generate unexpected results.
 

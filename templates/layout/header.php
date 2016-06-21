@@ -25,6 +25,5 @@ $aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://aplaz
 	type="text/javascript"
 	src="<?php echo esc_attr( $aplazameJsUri ); ?>"
 	data-aplazame="publicKey: <?php echo $aplazame->settings['public_api_key']; ?>"
-	data-sandbox="<?php echo $aplazame->sandbox ? 'true' : 'false'; ?>"
-	data-analytics="<?php echo ( $aplazame->settings['enable_analytics'] === 'yes' ) ? 'true' : 'false'; ?>">
+	data-sandbox="<?php echo $aplazame->sandbox ? 'true' : 'false'; ?>">
 </script>

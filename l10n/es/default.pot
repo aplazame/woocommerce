@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-06-21 07:26+0000\n"
+"POT-Creation-Date: 2016-06-21 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,26 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:115
+#: aplazame.php:116
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:221
+#: aplazame.php:205
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr ""
 
-#: aplazame.php:230
+#: aplazame.php:214
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:290
+#: aplazame.php:279
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr ""
 
-#: aplazame.php:297
+#: aplazame.php:286
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
@@ -62,7 +62,7 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:108 classes/wc-aplazame-gateway.php:178
+#: classes/wc-aplazame-gateway.php:108
 msgid "Enable/Disable"
 msgstr ""
 
@@ -132,10 +132,6 @@ msgstr ""
 
 #: classes/wc-aplazame-gateway.php:169
 msgid "CSS selector pointing to variable product price"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:179
-msgid "Enable Aplazame Analytics"
 msgstr ""
 
 #: templates/gateway/payment-fields.php:25
