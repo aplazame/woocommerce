@@ -101,7 +101,7 @@ class Aplazame_Client {
 			                   'v' . $this->version .
 			                   '+json',
 			'Authorization' => 'Bearer ' . $this->private_api_key,
-			'User-Agent'    => implode(', ', $versions),
+			'User-Agent'    => implode( ', ', $versions ),
 			'Content-Type'  => 'application/json',
 		);
 	}
