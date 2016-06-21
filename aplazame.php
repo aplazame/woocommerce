@@ -15,8 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-defined( 'APLAZAME_API_BASE_URI' ) || define( 'APLAZAME_API_BASE_URI', 'https://api.aplazame.com' );
-
 class WC_Aplazame {
 	const VERSION = '0.2.0';
 	const METHOD_ID = 'aplazame';
@@ -38,7 +36,10 @@ class WC_Aplazame {
 	 */
 	public $apiBaseUri;
 
-	public function __construct() {
+	/**
+	 * @param string $apiBaseUri
+	 */
+	public function __construct($apiBaseUri) {
 
 		// Dependencies
 		include_once( 'classes/lib/Filters.php' );
@@ -69,7 +70,7 @@ class WC_Aplazame {
 		}
 		$this->enabled         = $this->settings['enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
-		$this->apiBaseUri      = APLAZAME_API_BASE_URI;
+		$this->apiBaseUri      = $apiBaseUri;
 		$this->private_api_key = $this->settings['private_api_key'];
 
 		// Redirect
@@ -339,4 +340,4 @@ class WC_Aplazame_Install {
 	}
 }
 
-$GLOBALS['aplazame'] = new WC_Aplazame();
+$GLOBALS['aplazame'] = new WC_Aplazame( defined( 'APLAZAME_API_BASE_URI' ) ? APLAZAME_API_BASE_URI : 'https://api.aplazame.com' );
