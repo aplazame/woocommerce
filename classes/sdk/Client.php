@@ -162,16 +162,14 @@ class Aplazame_Client {
 	}
 
 	/**
-	 * @param int    $order_id
-	 * @param int    $amount
-	 * @param string $reason
+	 * @param int $order_id
+	 * @param int $amount
 	 *
 	 * @return stdClass
 	 */
-	public function refund( $order_id, $amount, $reason ) {
+	public function refund( $order_id, $amount ) {
 		return $this->order_request( $order_id, 'POST', '/refund', array(
 			'amount' => $amount,
-			'reason' => $reason,
 		) );
 	}
 
