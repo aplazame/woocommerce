@@ -1,4 +1,3 @@
 /.s3/
-/.wpcs/
 /vendor/
 composer.lock

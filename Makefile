@@ -10,17 +10,15 @@ errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors
 
 clean:
 	@rm -rf .s3
-	@rm -rf .wpcs
 
 syntax.checker:
 	@if [ "$(errors)" ];then exit 2;fi
 
 style.req:
-	@composer create-project wp-coding-standards/wpcs:dev-master\
-		.wpcs --no-dev --no-interaction --quiet
+	@composer install --no-interaction --quiet
 
 style:
-	@.wpcs/vendor/bin/phpcbf --standard=WordPress $(plugin_path)/* || :
+	@vendor/bin/phpcbf || :
 
 zip:
 	@mkdir -p .s3/$(s3.path)
