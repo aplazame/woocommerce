@@ -18,6 +18,7 @@ deploy:
   rsync:
     user: $$DEPLOY_USER
     host: woo.aplazame.com
+    source: plugin/
     target: $$RELEASE_PATH
     delete: true
     recursive: true

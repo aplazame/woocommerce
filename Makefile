@@ -1,11 +1,11 @@
 # --- defaults
 branch ?= dev
+plugin_path ?= plugin
 l10n_path ?= l10n/es
 l10n_name ?= aplazame-es_ES
 version ?= v0.2.0
 
 # --- shell
-files = $(shell find . -name "*.php")
 errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
 
 clean:
@@ -20,25 +20,27 @@ style.req:
 		.wpcs --no-dev --no-interaction --quiet
 
 style:
-	@.wpcs/vendor/bin/phpcbf --standard=WordPress * || :
+	@.wpcs/vendor/bin/phpcbf --standard=WordPress $(plugin_path)/* || :
 
 zip:
 	@mkdir -p .s3/$(s3.path)
-	@zip -r .s3/$(s3.path)aplazame.latest.zip *
+	@cd $(plugin_path); zip -r aplazame.latest.zip *
+	@mv $(plugin_path)/aplazame.latest.zip .s3/$(s3.path)
 
 pot:
-	@xgettext -o $(l10n_path)/default.pot $(files) --add-location --from-code=UTF-8 -k_e -k_x -k__ \
+	@cd $(plugin_path); \
+	xgettext -o $(l10n_path)/default.pot `find . -name "*.php"` --add-location --from-code=UTF-8 -k_e -k_x -k__ \
 		--package-name=Aplazame --package-version=$(version) \
-		--msgid-bugs-address="https://github.com/aplazame/woocommerce"
-	@sed --in-place $(l10n_path)/default.pot --expression=s/CHARSET/UTF-8/
-	@sed --in-place $(l10n_path)/default.pot --expression="s#\"Language-Team.*#\"Language-Team: https://github.com/aplazame/woocommerce\\\n\"#"
-	@sed --in-place $(l10n_path)/default.pot --expression="s/\"Language:.*/\"Language: en_US\\\n\"/"
+		--msgid-bugs-address="https://github.com/aplazame/woocommerce"; \
+	sed --in-place $(l10n_path)/default.pot --expression=s/CHARSET/UTF-8/; \
+	sed --in-place $(l10n_path)/default.pot --expression="s#\"Language-Team.*#\"Language-Team: https://github.com/aplazame/woocommerce\\\n\"#"; \
+	sed --in-place $(l10n_path)/default.pot --expression="s/\"Language:.*/\"Language: en_US\\\n\"/"
 
 po:
-	@msgmerge $(l10n_path)/default.po $(l10n_path)/default.pot --update --no-fuzzy-matching --backup=off
+	@cd $(plugin_path); msgmerge $(l10n_path)/default.po $(l10n_path)/default.pot --update --no-fuzzy-matching --backup=off
 
 mo:
-	@msgfmt $(l10n_path)/default.po -o $(l10n_path)/$(l10n_name).mo
+	@cd $(plugin_path); msgfmt $(l10n_path)/default.po -o $(l10n_path)/$(l10n_name).mo
 
 l10n: pot po mo
 
