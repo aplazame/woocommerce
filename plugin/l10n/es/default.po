@@ -11,12 +11,20 @@ msgstr ""
 msgid "Settings"
 msgstr "Ajustes"
 
-#: aplazame.php:214
+#: aplazame.php:116 aplazame.php:138
+msgid "Aplazame Campaigns"
+msgstr "Campañas Aplazame"
+
+#: aplazame.php:156
+msgid "Settings"
+msgstr "Ajustes"
+
+#: aplazame.php:245
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr "ERROR en %s: El pedido #%s no se ha podido confirmar."
 
-#: aplazame.php:223
+#: aplazame.php:254
 #, php-format
 msgid "Confirmed by %s."
 msgstr "Confirmado por %s."
@@ -26,7 +34,7 @@ msgstr "Confirmado por %s."
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr "ERROR en %s: El pedido #%s no se ha podido cancelar."
 
-#: aplazame.php:295
+#: aplazame.php:326
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr "El pedido #%s ha sido cancelado correctamente por %s."

@@ -111,6 +111,22 @@ class WC_Aplazame {
 			$this,
 			'order_cancelled',
 		) );
+
+		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
+		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
+	}
+
+	public function aplazame_campaigns_tab( $tabs ) {
+		$tabs['aplazame_campaigns'] = array(
+			'label' => __( 'Aplazame Campaigns', 'aplazame' ),
+			'target' => 'aplazame_campaigns_tab',
+		);
+
+		return $tabs;
+	}
+
+	public function product_campaigns() {
+		Aplazame_Helpers::render_to_template( 'product/campaigns.php' );
 	}
 
 	/**
