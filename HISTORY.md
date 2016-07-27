@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.3.0](https://github.com/aplazame/woocommerce/tree/v0.3.0) (2016-07-27)
+
+[Full Changelog v0.3.0](https://github.com/aplazame/woocommerce/compare/v0.2.0...v0.3.0)
+
+* Many performance improvements.
+
 #### [v0.2.0](https://github.com/aplazame/woocommerce/tree/v0.2.0) (2016-06-20)
 
 [Full Changelog v0.2.0](https://github.com/aplazame/woocommerce/compare/v0.1.0...v0.2.0)
