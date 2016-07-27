@@ -51,7 +51,10 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function process_payment( $order_id ) {
-		$url                             = get_permalink( Aplazame_Redirect::get_the_ID() );
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
+
+		$url = get_permalink( $aplazame->redirect->id );
 		WC()->session->redirect_order_id = $order_id;
 
 		return array(

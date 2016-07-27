@@ -16,8 +16,8 @@ $aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://aplaz
 
 <!-- TODO: nav hook and exclude redirect page -->
 <style type="text/css">
-	li.page-item-<?php echo Aplazame_Redirect::get_the_ID() ?> {
-		display: none;
+	li.page-item-<?php echo $aplazame->redirect->id ?> {
+		display: none !important;
 	}
 </style>
 

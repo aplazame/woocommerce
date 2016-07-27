@@ -2,46 +2,77 @@
 
 class Aplazame_Redirect {
 	/**
-	 * @return bool
+	 * @var string
 	 */
-	public static function is_redirect() {
+	public $id;
 
-		return get_the_ID() === static::get_the_ID();
+	public function __construct() {
+		$this->id = $this->getRedirectPageId();
 	}
 
 	/**
-	 * @return int
+	 * @return bool
 	 */
-	public static function get_the_ID() {
+	public function isRedirect( $id ) {
 
-		$posts = get_posts( array(
-			'post_type'   => 'page',
-			'meta_key'    => 'aplazame-redirect',
-			'meta_value'  => 'true',
-			'numberposts' => - 1,
-		) );
-
-		if ( empty( $posts ) ) {
-			$defaults = array(
-				'post_title'  => __( 'Aplazame Redirect' ),
-				'post_type'   => 'page',
-				'post_status' => 'publish',
-			);
-
-			$post_id = array( wp_insert_post( $defaults ) );
-			$post_id = $post_id[0];
-			add_post_meta( $post_id, 'aplazame-redirect', 'true' );
-		} else {
-			$post_id = $posts[0]->ID;
-		}
-
-		return $post_id;
+		return ( $this->id === $id );
 	}
 
-	public static function payload() {
+	public function checkout() {
 
-		if ( static::is_redirect() && ( (string) WC()->session->redirect_order_id === $_GET['order_id'] ) ) {
-			Aplazame_Helpers::render_to_template( 'gateway/redirect.php' );
+		if ( ! isset( $_GET['order_id'] )
+		     || ( (string) WC()->session->redirect_order_id !== $_GET['order_id'] )
+		     || ! $this->isRedirect( get_the_ID() )
+		) {
+			return;
+		}
+
+		Aplazame_Helpers::render_to_template( 'gateway/redirect.php' );
+	}
+
+	/**
+	 * @return int|WP_Error
+	 */
+	public function addRedirectPage() {
+		if ( $this->id ) {
+			return $this->id;
+		}
+
+		$post = array(
+			'post_name'  => 'aplazame-redirect',
+			'post_title'  => __( 'Aplazame Redirect' ),
+			'post_type'   => 'page',
+			'post_status' => 'publish',
+			'meta_input'  => array(
+				'aplazame-redirect' => 'true',
+			),
+		);
+
+		$id = wp_insert_post( $post );
+
+		return $id;
+	}
+
+	public function removeRedirectPage() {
+		while ( $id = $this->getRedirectPageId() ) {
+			wp_delete_post( $id, true );
+		}
+	}
+
+	/**
+	 * @return int|false
+	 */
+	private function getRedirectPageId() {
+		$posts = get_posts( array(
+			'post_type' => 'page',
+			'meta_key'  => 'aplazame-redirect',
+		) );
+
+		switch ( count( $posts ) ) {
+			case 0:
+				return false;
+			default:
+				return $posts[0]->ID;
 		}
 	}
 }

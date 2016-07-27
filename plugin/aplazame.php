@@ -37,6 +37,11 @@ class WC_Aplazame {
 	public $apiBaseUri;
 
 	/**
+	 * @var Aplazame_Redirect
+	 */
+	public $redirect;
+
+	/**
 	 * @param string $apiBaseUri
 	 */
 	public function __construct($apiBaseUri) {
@@ -75,8 +80,10 @@ class WC_Aplazame {
 		add_action( 'wp_head', array( $this, 'aplazameJs' ), 999999 );
 
 		// Redirect
-		register_activation_hook( __FILE__, 'Aplazame_Redirect::get_the_ID' );
-		add_action( 'wp_footer', 'Aplazame_Redirect::payload' );
+		$this->redirect = new Aplazame_Redirect();
+		register_activation_hook( __FILE__, array( $this->redirect, 'addRedirectPage' ) );
+		register_deactivation_hook( __FILE__, array( $this->redirect, 'removeRedirectPage' ) );
+		add_action( 'wp_footer', array( $this->redirect, 'checkout' ) );
 
 		// TODO: Redirect nav
 		// add_filter('wp_nav_menu_objects', '?');
@@ -180,13 +187,15 @@ class WC_Aplazame {
 	 * @return null|string
 	 */
 	public function router( $template ) {
-		if ( Aplazame_Redirect::is_redirect() && isset( $_GET['action'] ) ) {
-			switch ( $_GET['action'] ) {
-				case 'confirm':
-					return $this->confirm();
-				case 'history':
-					return $this->history();
-			}
+		if (! isset( $_GET['action'] ) || ! $this->redirect->isRedirect(get_the_ID())) {
+			return $template;
+		}
+
+		switch ( $_GET['action'] ) {
+			case 'confirm':
+				return $this->confirm();
+			case 'history':
+				return $this->history();
 		}
 
 		return $template;
