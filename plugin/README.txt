@@ -112,7 +112,7 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.4.0)
 
-* Many performance improvements.
+* Aplazame Campaigns.
 
 
 #### [v0.3.0] (2016-07-27)
