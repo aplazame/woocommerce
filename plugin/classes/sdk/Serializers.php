@@ -218,4 +218,42 @@ class Aplazame_Serializers {
 
 		return $orders;
 	}
+
+	/**
+	 * @param WP_Post $product
+	 *
+	 * @return array
+	 */
+	public function getArticleCampaign( $product ) {
+		$productId = $product->ID;
+
+		$product = new WC_Product( $productId );
+
+		$serialized = array(
+			'id'          => $productId,
+			'name'        => $product->get_title(),
+			'url'         => $product->get_permalink(),
+		);
+
+		$description = $product->get_post_data()->post_content;
+		if ( ! empty( $description ) ) {
+			$serialized['description'] = $description;
+		}
+
+		$imageUrl = wp_get_attachment_url( get_post_thumbnail_id( $productId ) );
+		if ( ! empty( $imageUrl ) ) {
+			$serialized['image_url'] = $imageUrl;
+		}
+
+		return $serialized;
+	}
+
+	public function getArticlesCampaign( array $products ) {
+		$articles = array();
+		foreach ( $products as $product ) {
+			$articles[] = $this->getArticleCampaign( $product );
+		}
+
+		return $articles;
+	}
 }
