@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aplazame v0.3.0\n"
+"Project-Id-Version: Aplazame v0.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
 "POT-Creation-Date: 2016-08-09 15:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
