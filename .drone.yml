@@ -15,14 +15,6 @@ build:
     - 'make zip'
 
 deploy:
-  rsync:
-    user: $$DEPLOY_USER
-    host: woo.aplazame.com
-    source: plugin/
-    target: $$RELEASE_PATH
-    delete: true
-    recursive: true
-
   s3:
     acl: public-read
     region: $$S3_REGION
