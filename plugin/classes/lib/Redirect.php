@@ -19,10 +19,12 @@ class Aplazame_Redirect {
 	}
 
 	public function checkout() {
+		global $wp_query;
+	    $post_id = $wp_query->get_queried_object_id();
 
 		if ( ! isset( $_GET['order_id'] )
 		     || ( (string) WC()->session->redirect_order_id !== $_GET['order_id'] )
-		     || ! $this->isRedirect( get_the_ID() )
+		     || ! $this->isRedirect( $post_id )
 		) {
 			return;
 		}
