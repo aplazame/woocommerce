@@ -4,7 +4,7 @@ Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
 Tested up to: 4.5.2
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -108,6 +108,13 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### [v0.4.1] (2016-08-18)
+
+[view on Github](https://github.com/aplazame/woocommerce/tree/v0.4.1)
+
+* Fix third party plugins conflict with aplazame redirect.
+
+
 #### [v0.4.0] (2016-08-16)
 
 [view on Github](https://github.com/aplazame/woocommerce/tree/v0.4.0)
@@ -202,6 +209,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.4.0 =
+= v0.4.1 =
 
 The latest release has passed all quality checks.
