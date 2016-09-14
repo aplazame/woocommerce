@@ -3,7 +3,7 @@ Contributors: aplazame,calvin
 Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 4.5.2
+Tested up to: 4.6.0
 Stable tag: 0.4.1
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
