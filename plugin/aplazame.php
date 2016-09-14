@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 0.4.1
+ * Version: 0.4.2
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_Aplazame {
-	const VERSION = '0.4.1';
+	const VERSION = '0.4.2';
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 	/**

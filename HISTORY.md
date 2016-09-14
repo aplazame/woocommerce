@@ -1,5 +1,12 @@
 ## Change Log
 
+#### [v0.4.2](https://github.com/aplazame/woocommerce/tree/v0.4.2) (2016-09-14)
+
+[Full Changelog v0.4.2](https://github.com/aplazame/woocommerce/compare/v0.4.1...v0.4.2)
+
+* Fix compatibility with WooCommerce < 2.4
+* Tested up to WordPress 4.6
+
 #### [v0.4.1](https://github.com/aplazame/woocommerce/tree/v0.4.1) (2016-08-18)
 
 [Full Changelog v0.4.1](https://github.com/aplazame/woocommerce/compare/v0.4.0...v0.4.1)
