@@ -13,7 +13,7 @@ if ( ! $aplazame->enabled ) {
 /** @var WC_Product $product */
 global $product;
 
-switch ( $product->get_type() ) {
+switch ( $product->product_type ) {
 	case 'variable':
 		$price_selector = $aplazame->settings['price_variable_product_selector'];
 		break;
