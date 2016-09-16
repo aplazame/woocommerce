@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.4.3](https://github.com/aplazame/woocommerce/tree/v0.4.3) (2016-09-16)
+
+[Full Changelog v0.4.3](https://github.com/aplazame/woocommerce/compare/v0.4.2...v0.4.3)
+
+* Fix aplazame-redirect for WP < 4.4
+
 #### [v0.4.2](https://github.com/aplazame/woocommerce/tree/v0.4.2) (2016-09-14)
 
 [Full Changelog v0.4.2](https://github.com/aplazame/woocommerce/compare/v0.4.1...v0.4.2)
