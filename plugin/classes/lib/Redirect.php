@@ -45,12 +45,12 @@ class Aplazame_Redirect {
 			'post_title'  => __( 'Aplazame Redirect' ),
 			'post_type'   => 'page',
 			'post_status' => 'publish',
-			'meta_input'  => array(
-				'aplazame-redirect' => 'true',
-			),
 		);
 
 		$id = wp_insert_post( $post );
+
+		// Compatibility with WP < 4.4
+		add_post_meta( $id, 'aplazame-redirect', 'true' );
 
 		return $id;
 	}
