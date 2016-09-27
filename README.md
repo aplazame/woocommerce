@@ -48,4 +48,4 @@ For new features check [this](HISTORY.md).
 
 **Have a question about Aplazame?**
 
-For any support request please drop us an email at [soporte.woo@aplazame.com](mailto:soporte.woo@aplazame.com?subject=Help me with the module).
+For any support request please drop us an email at [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Help me with the module).

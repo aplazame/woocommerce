@@ -37,7 +37,7 @@ All of our Spanish translators are professionally qualified, native speakers.
 
 = Support =
 
-For any support request please drop us an email at [soporte.woo@aplazame.com](mailto:soporte.woo@aplazame.com?subject=Help-me). Our support team is available 24/7.
+For any support request please drop us an email at [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Help-me). Our support team is available 24/7.
 
 = Feedback =
 
