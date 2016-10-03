@@ -33,6 +33,5 @@ switch ( $product->product_type ) {
 	<?php if ( ! empty( $aplazame->settings['quantity_selector'] ) ) :  ?>
 		data-qty="<?php echo esc_attr( $aplazame->settings['quantity_selector'] ); ?>"
 	<?php endif; ?>
-	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
-	data-stock="<?php echo $product->is_in_stock() ? 'true' : 'false'; ?>">
+	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>">
 </div>
