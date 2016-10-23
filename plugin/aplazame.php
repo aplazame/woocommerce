@@ -251,8 +251,6 @@ class WC_Aplazame {
 		$order = new WC_Order( $_GET['order_id'] );
 
 		if ( static::is_aplazame_order( $order->id ) && $this->is_private_key_verified() ) {
-			$serializers = new Aplazame_Serializers();
-
 			$qs = get_posts( array(
 				'meta_key'    => '_billing_email',
 				'meta_value'  => $order->billing_email,
@@ -260,7 +258,7 @@ class WC_Aplazame {
 				'numberposts' => - 1,
 			) );
 
-			wp_send_json( $serializers->get_history( $qs ) );
+			wp_send_json( Aplazame_Serializers::get_history( $qs ) );
 
 			return null;
 		}

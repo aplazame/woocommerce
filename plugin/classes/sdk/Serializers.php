@@ -36,7 +36,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_articles( $items ) {
+	public static function get_articles( $items ) {
 		$articles = array();
 
 		foreach ( $items as $item => $values ) {
@@ -65,7 +65,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_user( $user ) {
+	public static function get_user( $user ) {
 		$dateJoined = new DateTime( $user->user_registered );
 
 		return array(
@@ -84,7 +84,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_customer( $billing_email ) {
+	public static function get_customer( $billing_email ) {
 		return array(
 			'type'   => 'n',
 			'gender' => 0,
@@ -98,7 +98,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_address( $order, $type ) {
+	public static function get_address( $order, $type ) {
 		$_field = function ( $name ) use ( $order, $type ) {
 			$_key = ( $type . '_' . $name );
 
@@ -125,7 +125,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_shipping_info( $order ) {
+	public static function get_shipping_info( $order ) {
 		$total = $order->get_total_shipping();
 
 		if ( $total ) {
@@ -134,7 +134,7 @@ class Aplazame_Serializers {
 			$tax_rate = 0;
 		}
 
-		$serializer = array_merge( $this->get_address( $order, 'shipping' ), array(
+		$serializer = array_merge( self::get_address( $order, 'shipping' ), array(
 			'price'    => Aplazame_Filters::decimals( $total ),
 			'tax_rate' => Aplazame_Filters::decimals( $tax_rate ),
 			'name'     => $order->get_shipping_method(),
@@ -148,10 +148,10 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_order( $order ) {
+	public static function get_order( $order ) {
 		$serializer = array(
 			'id'           => (string) $order->id,
-			'articles'     => $this->get_articles( $order->get_items() ),
+			'articles'     => self::get_articles( $order->get_items() ),
 			'currency'     => get_woocommerce_currency(),
 			'total_amount' => Aplazame_Filters::decimals( $order->get_total() ),
 			'discount'     => Aplazame_Filters::decimals( $order->get_total_discount() ),
@@ -167,7 +167,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_checkout( $order, $checkout_url, $user ) {
+	public static function get_checkout( $order, $checkout_url, $user ) {
 		$serializer = array(
 			'toc'      => true,
 			'merchant' => array(
@@ -176,16 +176,16 @@ class Aplazame_Serializers {
 				'checkout_url'     => html_entity_decode( $order->get_cancel_order_url( $checkout_url ) ),
 				'success_url'      => html_entity_decode( $order->get_checkout_order_received_url() ),
 			),
-			'customer' => $user->ID ? $this->get_user( $user ) : $this->get_customer( $order->billing_email ),
-			'order'    => $this->get_order( $order ),
-			'billing'  => $this->get_address( $order, 'billing' ),
+			'customer' => $user->ID ? self::get_user( $user ) : self::get_customer( $order->billing_email ),
+			'order'    => self::get_order( $order ),
+			'billing'  => self::get_address( $order, 'billing' ),
 			'meta'     => static::get_meta(),
 		);
 
 		$shipping_method = $order->get_shipping_method();
 
 		if ( ! empty( $shipping_method ) ) {
-			$serializer['shipping'] = $this->get_shipping_info( $order );
+			$serializer['shipping'] = self::get_shipping_info( $order );
 		}
 
 		return $serializer;
@@ -196,7 +196,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function get_history( $qs ) {
+	public static function get_history( $qs ) {
 		$orders = array();
 
 		foreach ( $qs as $item => $values ) {
@@ -211,8 +211,8 @@ class Aplazame_Serializers {
 				'type'       => Aplazame_Helpers::get_payment_method( $order->id ),
 				'order_date' => $orderDate->format( DATE_ISO8601 ),
 				'currency'   => $order->get_order_currency(),
-				'billing'    => $this->get_address( $order, 'billing' ),
-				'shipping'   => $this->get_shipping_info( $order ),
+				'billing'    => self::get_address( $order, 'billing' ),
+				'shipping'   => self::get_shipping_info( $order ),
 			);
 		}
 
@@ -224,7 +224,7 @@ class Aplazame_Serializers {
 	 *
 	 * @return array
 	 */
-	public function getArticleCampaign( $product ) {
+	public static function getArticleCampaign( $product ) {
 		$productId = $product->ID;
 
 		$product = new WC_Product( $productId );
@@ -248,10 +248,10 @@ class Aplazame_Serializers {
 		return $serialized;
 	}
 
-	public function getArticlesCampaign( array $products ) {
+	public static function getArticlesCampaign( array $products ) {
 		$articles = array();
 		foreach ( $products as $product ) {
-			$articles[] = $this->getArticleCampaign( $product );
+			$articles[] = self::getArticleCampaign( $product );
 		}
 
 		return $articles;
