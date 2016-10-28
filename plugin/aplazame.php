@@ -169,15 +169,6 @@ class WC_Aplazame {
 		$order->add_order_note( $msg );
 	}
 
-	/**
-	 * @return bool
-	 */
-	protected function is_private_key_verified() {
-
-		return ( $this->private_api_key !== '' ) &&
-		       ( substr( $_SERVER['HTTP_AUTHORIZATION'], 7 ) === $this->private_api_key );
-	}
-
 	// Hooks
 	/**
 	 * @param array $methods
@@ -210,8 +201,16 @@ class WC_Aplazame {
 		switch ( $_GET['action'] ) {
 			case 'confirm':
 				return $this->confirm();
-			case 'history':
-				return $this->history();
+			case 'aplazame_api':
+				$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
+				$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
+				$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
+
+				include_once( 'classes/api/Aplazame_Api_Router.php' );
+				$api = new Aplazame_Api_Router( $this->private_api_key );
+
+				$api->process( $path, $pathArguments, $queryArguments ); // die
+				break;
 		}
 
 		return $template;
@@ -242,28 +241,6 @@ class WC_Aplazame {
 		} else {
 			status_header( 403 );
 		}
-
-		return null;
-	}
-
-	public function history() {
-
-		$order = new WC_Order( $_GET['order_id'] );
-
-		if ( static::is_aplazame_order( $order->id ) && $this->is_private_key_verified() ) {
-			$qs = get_posts( array(
-				'meta_key'    => '_billing_email',
-				'meta_value'  => $order->billing_email,
-				'post_type'   => 'shop_order',
-				'numberposts' => - 1,
-			) );
-
-			wp_send_json( Aplazame_Serializers::get_history( $qs ) );
-
-			return null;
-		}
-
-		status_header( 403 );
 
 		return null;
 	}

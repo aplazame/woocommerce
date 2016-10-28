@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$articles = Aplazame_Serializers::getArticlesCampaign( array( $post ) );
+$articles = array( Aplazame_Api_Serializer::article( new WC_Product( $post ) ) );
 ?>
 
 <div id="aplazame_campaigns_tab" class="panel woocommerce_options_panel">

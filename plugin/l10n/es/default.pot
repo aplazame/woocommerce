@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.4.4\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-09-14 07:30+0000\n"
+"POT-Creation-Date: 2016-10-29 09:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -25,22 +25,22 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:230
+#: aplazame.php:235
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr ""
 
-#: aplazame.php:239
+#: aplazame.php:244
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:304
+#: aplazame.php:285
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr ""
 
-#: aplazame.php:311
+#: aplazame.php:292
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
