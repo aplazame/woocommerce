@@ -19,6 +19,6 @@ $order      = new WC_Order( $_GET['order_id'] );
 ?>
 
 <script type="text/javascript">
-	aplazame.checkout(<?php echo json_encode( Aplazame_Serializers::get_checkout( $order, $cart->get_checkout_url(), $user ),
+	aplazame.checkout(<?php echo json_encode( Aplazame_Serializers::get_checkout( $order, $cart->get_checkout_url(), $aplazame->redirect->id, $user ),
 	128 ) ?>);
 </script>

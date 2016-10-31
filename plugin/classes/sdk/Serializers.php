@@ -163,15 +163,16 @@ class Aplazame_Serializers {
 	/**
 	 * @param WC_Order $order
 	 * @param string   $checkout_url
+	 * @param int      $redirect_id
 	 * @param WP_User  $user
 	 *
 	 * @return array
 	 */
-	public static function get_checkout( $order, $checkout_url, $user ) {
+	public static function get_checkout( $order, $checkout_url, $redirect_id, $user ) {
 		$serializer = array(
 			'toc'      => true,
 			'merchant' => array(
-				'confirmation_url' => home_url( add_query_arg( 'action', 'confirm' ) ),
+				'confirmation_url' => add_query_arg( 'action', 'confirm', get_permalink( $redirect_id ) ),
 				'cancel_url'       => html_entity_decode( $order->get_cancel_order_url() ),
 				'checkout_url'     => html_entity_decode( $order->get_cancel_order_url( $checkout_url ) ),
 				'success_url'      => html_entity_decode( $order->get_checkout_order_received_url() ),
