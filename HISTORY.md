@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.4.4](https://github.com/aplazame/woocommerce/tree/v0.4.4) (2016-10-31)
+
+[Full Changelog v0.4.4](https://github.com/aplazame/woocommerce/compare/v0.4.3...v0.4.4)
+
+* Fix confirmation_url generation
+
 #### [v0.4.3](https://github.com/aplazame/woocommerce/tree/v0.4.3) (2016-09-16)
 
 [Full Changelog v0.4.3](https://github.com/aplazame/woocommerce/compare/v0.4.2...v0.4.3)
