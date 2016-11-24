@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.4.4\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-09-14 07:30+0000\n"
+"POT-Creation-Date: 2016-11-24 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -35,12 +35,12 @@ msgstr ""
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:304
+#: aplazame.php:302
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr ""
 
-#: aplazame.php:311
+#: aplazame.php:309
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
@@ -94,47 +94,47 @@ msgstr ""
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:137
+#: classes/wc-aplazame-gateway.php:136
 msgid "Public API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:138
+#: classes/wc-aplazame-gateway.php:137
 msgid "Aplazame API Public Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:144
+#: classes/wc-aplazame-gateway.php:143
 msgid "Advanced options"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:150
+#: classes/wc-aplazame-gateway.php:149
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:151
+#: classes/wc-aplazame-gateway.php:150
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:159
+#: classes/wc-aplazame-gateway.php:158
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:160
+#: classes/wc-aplazame-gateway.php:159
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:165
+#: classes/wc-aplazame-gateway.php:164
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:166
+#: classes/wc-aplazame-gateway.php:165
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:171
+#: classes/wc-aplazame-gateway.php:170
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:172
+#: classes/wc-aplazame-gateway.php:171
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
