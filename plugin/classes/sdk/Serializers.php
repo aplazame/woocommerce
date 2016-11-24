@@ -174,7 +174,7 @@ class Aplazame_Serializers {
 			'merchant' => array(
 				'confirmation_url' => add_query_arg( 'action', 'confirm', get_permalink( $redirect_id ) ),
 				'cancel_url'       => html_entity_decode( $order->get_cancel_order_url() ),
-				'checkout_url'     => html_entity_decode( $order->get_cancel_order_url( $checkout_url ) ),
+				'checkout_url'     => html_entity_decode( $checkout_url ),
 				'success_url'      => html_entity_decode( $order->get_checkout_order_received_url() ),
 			),
 			'customer' => $user->ID ? self::get_user( $user ) : self::get_customer( $order->billing_email ),
