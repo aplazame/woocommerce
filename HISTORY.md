@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.4.5](https://github.com/aplazame/woocommerce/tree/v0.4.5) (2016-11-24)
+
+[Full Changelog v0.4.5](https://github.com/aplazame/woocommerce/compare/v0.4.4...v0.4.5)
+
+* [fixed] When return to shop current order is cancelled. 
+
 #### [v0.4.4](https://github.com/aplazame/woocommerce/tree/v0.4.4) (2016-10-31)
 
 [Full Changelog v0.4.4](https://github.com/aplazame/woocommerce/compare/v0.4.3...v0.4.4)
