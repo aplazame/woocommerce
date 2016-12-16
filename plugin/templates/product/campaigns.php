@@ -60,6 +60,12 @@ $articles = Aplazame_Serializers::getArticlesCampaign( array( $post ) );
 		checkbox["data-campaignId"] = campaign.id;
 		checkbox.addEventListener("click", campaignToggle, false);
 
+		if (!campaign.partial) {
+		    checkbox.checked = true;
+		    checkbox.disabled = true;
+		    checkbox.title = "<?php echo __( 'The campaign applies to all products from your catalogue', 'aplazame' ) ?>";
+		}
+
 		/**
 		 * @type {HTMLLabelElement|Element}
 		 */

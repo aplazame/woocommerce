@@ -134,3 +134,7 @@ msgstr "Selector CSS para obtener el precio variable del producto"
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
 msgstr "Es necesatio habilitar JavaScript para que %s funcione."
+
+#: templates/product/campaigns.php:66
+msgid "The campaign applies to all products from your catalogue"
+msgstr "La campaña aplica a todo el catálogo de productos."

@@ -142,3 +142,7 @@ msgstr ""
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
 msgstr ""
+
+#: templates/product/campaigns.php:66
+msgid "The campaign applies to all products from your catalogue"
+msgstr ""
