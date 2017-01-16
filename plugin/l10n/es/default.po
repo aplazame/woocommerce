@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2017-01-16 13:13+0000\n"
+"POT-Creation-Date: 2017-01-16 17:56+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,6 +65,10 @@ msgstr "Activar/Desactivar"
 #: classes/wc-aplazame-gateway.php:111
 msgid "Enable Aplazame module"
 msgstr "Activar módulo de Aplazame"
+
+#: classes/wc-aplazame-gateway.php:116
+msgid "Test mode (Sandbox)"
+msgstr "Modo de Pruebas (Sandbox)"
 
 #: classes/wc-aplazame-gateway.php:117
 msgid "Determines if the module is on Sandbox mode"

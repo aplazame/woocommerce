@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.4.5\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2017-01-16 13:13+0000\n"
+"POT-Creation-Date: 2017-01-16 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -72,6 +72,10 @@ msgstr ""
 
 #: classes/wc-aplazame-gateway.php:111
 msgid "Enable Aplazame module"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:116
+msgid "Test mode (Sandbox)"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:117
