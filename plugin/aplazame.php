@@ -224,7 +224,13 @@ class WC_Aplazame {
 		$client = $this->get_client();
 
 		try {
-			$body = $client->authorize( $order->id );
+			$aOrder = $client->fetch( $order->id );
+			if ( $aOrder->total_amount !== Aplazame_Filters::decimals( $order->get_total() ) || $aOrder->currency->code !== $order->get_order_currency() ) {
+				status_header( 403 );
+				return null;
+			}
+
+			$client->authorize( $order->id );
 		} catch ( Aplazame_Exception $e ) {
 			$order->update_status( 'failed',
 				sprintf( __( '%s ERROR: Order #%s cannot be confirmed.', 'aplazame' ), self::METHOD_TITLE,
@@ -235,13 +241,8 @@ class WC_Aplazame {
 			return null;
 		}
 
-		if ( $body->amount === Aplazame_Filters::decimals( $order->get_total() ) ) {
-			$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
-
-			status_header( 204 );
-		} else {
-			status_header( 403 );
-		}
+		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
+		status_header( 204 );
 
 		return null;
 	}

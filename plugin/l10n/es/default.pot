@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.4.5\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2016-11-24 16:14+0000\n"
+"POT-Creation-Date: 2017-01-16 13:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -25,22 +25,22 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:230
+#: aplazame.php:236
 #, php-format
 msgid "%s ERROR: Order #%s cannot be confirmed."
 msgstr ""
 
-#: aplazame.php:239
+#: aplazame.php:244
 #, php-format
 msgid "Confirmed by %s."
 msgstr ""
 
-#: aplazame.php:302
+#: aplazame.php:303
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled."
 msgstr ""
 
-#: aplazame.php:309
+#: aplazame.php:310
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
@@ -49,92 +49,92 @@ msgstr ""
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:80
+#: classes/wc-aplazame-gateway.php:79
 #, php-format
 msgid "%s Error: \"%s\""
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:85
+#: classes/wc-aplazame-gateway.php:84
 #, php-format
 msgid "%s has successfully returned %d %s of the order #%s."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:101
+#: classes/wc-aplazame-gateway.php:100
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:111
+#: classes/wc-aplazame-gateway.php:110
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:112
+#: classes/wc-aplazame-gateway.php:111
 msgid "Enable Aplazame module"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:118
+#: classes/wc-aplazame-gateway.php:117
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:119
+#: classes/wc-aplazame-gateway.php:118
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:122
+#: classes/wc-aplazame-gateway.php:121
 msgid "API Credentials"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:128
+#: classes/wc-aplazame-gateway.php:127
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:129
+#: classes/wc-aplazame-gateway.php:128
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:136
+#: classes/wc-aplazame-gateway.php:135
 msgid "Public API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:137
+#: classes/wc-aplazame-gateway.php:136
 msgid "Aplazame API Public Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:143
+#: classes/wc-aplazame-gateway.php:142
 msgid "Advanced options"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:149
+#: classes/wc-aplazame-gateway.php:148
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:150
+#: classes/wc-aplazame-gateway.php:149
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:158
+#: classes/wc-aplazame-gateway.php:157
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:159
+#: classes/wc-aplazame-gateway.php:158
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:164
+#: classes/wc-aplazame-gateway.php:163
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:165
+#: classes/wc-aplazame-gateway.php:164
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:170
+#: classes/wc-aplazame-gateway.php:169
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:171
+#: classes/wc-aplazame-gateway.php:170
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 

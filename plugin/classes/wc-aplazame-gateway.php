@@ -36,7 +36,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 	public function is_available() {
 		if ( ( $this->enabled === 'no' ) ||
-		     ( get_woocommerce_currency() !== 'EUR' ) ||
 		     ( ! $this->settings['public_api_key'] ) ||
 		     ( ! $this->settings['private_api_key'] )
 		) {

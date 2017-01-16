@@ -119,8 +119,10 @@ class Aplazame_Client {
 		$args = array(
 			'headers' => $this->headers(),
 			'method'  => $method,
-			'body'    => json_encode( $data ),
 		);
+		if ( $data ) {
+			$args['body'] = json_encode( $data );
+		}
 
 		$response = wp_remote_request( $this->endpoint( $path ), $args );
 
@@ -180,5 +182,16 @@ class Aplazame_Client {
 	 */
 	public function cancel( $order_id ) {
 		return $this->order_request( $order_id, 'POST', '/cancel' );
+	}
+
+	/**
+	 * @param int $order_id
+	 *
+	 * @return stdClass
+	 */
+	public function fetch( $order_id ) {
+		$orders = $this->request( 'GET', '/orders?mid=' . $order_id );
+
+		return $orders->results[0];
 	}
 }
