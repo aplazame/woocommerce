@@ -34,12 +34,7 @@ class WC_Aplazame_Proxy {
 			$data = json_decode( stripslashes_deep( $_POST['data'] ), true );
 		}
 
-		try {
-			$response = $this->client->request( $method, $path, $data );
-		} catch ( Aplazame_Exception $e ) {
-			http_send_status( 402 );
-			$response = $e->get_body();
-		}
+		$response = $this->client->apiClient->request( $method, $path, $data );
 
 		wp_send_json( $response );
 	}

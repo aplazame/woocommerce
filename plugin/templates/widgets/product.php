@@ -26,7 +26,7 @@ switch ( $product->product_type ) {
 	data-aplazame-simulator=""
 	data-view="product"
 	<?php if ( empty( $price_selector ) ) :  ?>
-		data-amount="<?php echo esc_attr( Aplazame_Filters::decimals( $product->get_price() ) ); ?>"
+		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $product->get_price() )->jsonSerialize() ); ?>"
 	<?php else : ?>
 		data-price="<?php echo esc_attr( $price_selector ); ?>"
 	<?php endif; ?>

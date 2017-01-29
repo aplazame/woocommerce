@@ -73,11 +73,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		$client = $aplazame->get_client();
 
 		try {
-			$client->refund( $order_id, Aplazame_Filters::decimals( $amount ) );
-		} catch ( Aplazame_Exception $e ) {
+			$client->refund( $order_id, $amount );
+		} catch ( Exception $e ) {
 			return new WP_Error( 'aplazame_refund_error',
 				sprintf( __( '%s Error: "%s"', 'aplazame' ), $this->method_title,
-					$e->get_field_error( 'amount' ) ) );
+					$e->getMessage() ) );
 		}
 
 		$aplazame->add_order_note( $order_id,

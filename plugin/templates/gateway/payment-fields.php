@@ -34,7 +34,7 @@ global $woocommerce;
 <script>
 	aplazame.button({
 		selector: <?php echo json_encode( $aplazame->settings['button'] ); ?>,
-		amount: <?php echo json_encode( Aplazame_Filters::decimals( $woocommerce->cart->total ) ); ?>,
+		amount: <?php echo json_encode( Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize() ); ?>,
 		currency: <?php echo json_encode( get_woocommerce_currency() ) ?>
 	});
 </script>

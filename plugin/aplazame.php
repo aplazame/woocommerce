@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+include_once( 'lib/Aplazame/Sdk/autoload.php' );
+include_once( 'lib/Aplazame/Aplazame/autoload.php' );
+
 class WC_Aplazame {
 	const VERSION = '0.4.5';
 	const METHOD_ID = 'aplazame';
@@ -47,13 +50,8 @@ class WC_Aplazame {
 	public function __construct($apiBaseUri) {
 
 		// Dependencies
-		include_once( 'classes/lib/Filters.php' );
 		include_once( 'classes/lib/Helpers.php' );
 		include_once( 'classes/lib/Redirect.php' );
-
-		// Sdk
-		include_once( 'classes/sdk/Client.php' );
-		include_once( 'classes/sdk/Serializers.php' );
 
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
@@ -155,6 +153,7 @@ class WC_Aplazame {
 	 * @return Aplazame_Client
 	 */
 	public function get_client() {
+		include_once( 'classes/sdk/Client.php' );
 
 		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox,
 			$this->private_api_key );
@@ -167,15 +166,6 @@ class WC_Aplazame {
 	public function add_order_note( $order_id, $msg ) {
 		$order = new WC_Order( $order_id );
 		$order->add_order_note( $msg );
-	}
-
-	/**
-	 * @return bool
-	 */
-	protected function is_private_key_verified() {
-
-		return ( $this->private_api_key !== '' ) &&
-		       ( substr( $_SERVER['HTTP_AUTHORIZATION'], 7 ) === $this->private_api_key );
 	}
 
 	// Hooks
@@ -208,6 +198,16 @@ class WC_Aplazame {
 		}
 
 		switch ( $_GET['action'] ) {
+			case 'aplazame_api':
+				$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
+				$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
+				$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
+
+				include_once( 'classes/api/Aplazame_Api_Router.php' );
+				$api = new Aplazame_Api_Router( $this->private_api_key );
+
+				$api->process( $path, $pathArguments, $queryArguments ); // die
+				break;
 			case 'confirm':
 				return $this->confirm();
 			case 'history':
@@ -225,20 +225,23 @@ class WC_Aplazame {
 
 		try {
 			$aOrder = $client->fetch( $order->id );
-			if ( $aOrder->total_amount !== Aplazame_Filters::decimals( $order->get_total() ) || $aOrder->currency->code !== $order->get_order_currency() ) {
+			if ( $aOrder['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize()
+			     || $aOrder['currency']['code'] !== $order->get_order_currency()
+			) {
 				status_header( 403 );
 				return null;
 			}
 
 			$client->authorize( $order->id );
-		} catch ( Aplazame_Exception $e ) {
+		} catch ( Exception $e ) {
 			$order->update_status( 'failed',
-				sprintf( __( '%s ERROR: Order #%s cannot be confirmed.', 'aplazame' ), self::METHOD_TITLE,
-					$order->id ) );
+				sprintf( __( '%s ERROR: Order #%s cannot be confirmed. Reason: %s', 'aplazame' ),
+					self::METHOD_TITLE,
+					$order->id,
+					$e->getMessage()
+				) );
 
-			status_header( $e->get_status_code() );
-
-			return null;
+			throw $e;
 		}
 
 		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
@@ -248,24 +251,33 @@ class WC_Aplazame {
 	}
 
 	public function history() {
-
-		$order = new WC_Order( $_GET['order_id'] );
-
-		if ( static::is_aplazame_order( $order->id ) && $this->is_private_key_verified() ) {
-			$qs = get_posts( array(
-				'meta_key'    => '_billing_email',
-				'meta_value'  => $order->billing_email,
-				'post_type'   => 'shop_order',
-				'numberposts' => - 1,
-			) );
-
-			wp_send_json( Aplazame_Serializers::get_history( $qs ) );
-
+		include_once( 'classes/api/Aplazame_Api_Router.php' );
+		if ( ! Aplazame_Api_Router::verify_authentication( $this->private_api_key ) ) {
+			status_header( 403 );
 			return null;
 		}
 
-		status_header( 403 );
+		$order = wc_get_order( $_GET['order_id'] );
+		if ( ! $order ) {
+			status_header( 404 );
+			return null;
+		}
 
+		/** @var WP_Post[] $wcOrders */
+		$wcOrders = get_posts( array(
+			'meta_key'    => '_billing_email',
+			'meta_value'  => $order->billing_email,
+			'post_type'   => 'shop_order',
+			'numberposts' => - 1,
+		) );
+
+		$historyOrders = array();
+
+		foreach ( $wcOrders as $wcOrder ) {
+			$historyOrders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::createFromOrder( new WC_Order( $wcOrder->ID ) );
+		}
+
+		wp_send_json( $historyOrders );
 		return null;
 	}
 
@@ -298,10 +310,13 @@ class WC_Aplazame {
 
 		try {
 			$client->cancel( $order_id );
-		} catch ( Aplazame_Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->add_order_note( $order_id,
-				sprintf( __( '%s ERROR: Order #%s cannot be cancelled.', 'aplazame' ), self::METHOD_TITLE,
-					$order_id ) );
+				sprintf( __( '%s ERROR: Order #%s cannot be cancelled. Reason: %s', 'aplazame' ),
+					self::METHOD_TITLE,
+					$order_id,
+					$e->getMessage()
+				) );
 
 			return;
 		}

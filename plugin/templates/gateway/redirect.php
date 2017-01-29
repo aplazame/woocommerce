@@ -14,11 +14,10 @@ if ( ! $aplazame->enabled ) {
 global $woocommerce;
 
 $cart       = $woocommerce->cart;
-$user       = wp_get_current_user();
 $order      = new WC_Order( $_GET['order_id'] );
+$checkout   = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $cart->get_checkout_url(), $aplazame->redirect->id );
 ?>
 
 <script type="text/javascript">
-	aplazame.checkout(<?php echo json_encode( Aplazame_Serializers::get_checkout( $order, $cart->get_checkout_url(), $aplazame->redirect->id, $user ),
-	128 ) ?>);
+	aplazame.checkout(<?php echo json_encode( Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $checkout ) ); ?>);
 </script>
