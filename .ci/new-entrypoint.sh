@@ -1,5 +1,5 @@
 #!/bin/bash
 
-/entrypoint.sh php-fpm || /configure.sh
+/usr/local/bin/docker-entrypoint.sh php-fpm || /configure.sh
 
 exec "$@"
