@@ -16,7 +16,7 @@ class Aplazame_Aplazame_Http_WpClient implements Aplazame_Sdk_Http_ClientInterfa
 
 		$wpResponse = wp_remote_request( $request->getUri(), $args );
 	    if ( is_wp_error( $wpResponse ) ) {
-		    throw new RuntimeException( $wpResponse->get_error_message(), $wpResponse->get_error_code() );
+		    throw new RuntimeException( $wpResponse->get_error_message(), (int) $wpResponse->get_error_code() );
 		}
 
 		$responseBody = wp_remote_retrieve_body( $wpResponse );
