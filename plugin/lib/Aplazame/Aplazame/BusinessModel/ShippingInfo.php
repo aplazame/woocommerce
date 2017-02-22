@@ -24,4 +24,10 @@ class Aplazame_Aplazame_BusinessModel_ShippingInfo {
 
 		return $shippingInfo;
 	}
+
+	public static function hasOrderShippingInfo( WC_Order $order ) {
+		$shipping_method = $order->get_shipping_method();
+
+		return ( ! empty( $shipping_method ) );
+	}
 }

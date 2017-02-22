@@ -14,8 +14,11 @@ class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 			'order_date' => $orderDate->format( DATE_ISO8601 ),
 			'currency'   => $order->get_order_currency(),
 			'billing'    => Aplazame_Aplazame_BusinessModel_Address::createFromOrder( $order, 'billing' ),
-			'shipping'   => Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order ),
 		);
+
+		if ( Aplazame_Aplazame_BusinessModel_ShippingInfo::hasOrderShippingInfo( $order ) ) {
+			$serialized['shipping'] = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
+		}
 
 		return $serialized;
 	}

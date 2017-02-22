@@ -18,7 +18,11 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 		$checkout->order = Aplazame_Aplazame_BusinessModel_Order::crateFromOrder( $order );
 		$checkout->customer = Aplazame_Aplazame_BusinessModel_Customer::createFromOrder( $order );
 		$checkout->billing = Aplazame_Aplazame_BusinessModel_Address::createFromOrder( $order, 'billing' );
-		$checkout->shipping = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
+
+		if ( Aplazame_Aplazame_BusinessModel_ShippingInfo::hasOrderShippingInfo( $order ) ) {
+			$checkout->shipping = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
+		}
+
 		$checkout->meta = array(
 	        'module' => array(
 		        'name'    => 'aplazame:woocommerce',
