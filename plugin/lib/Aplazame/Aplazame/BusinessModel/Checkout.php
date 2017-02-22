@@ -9,8 +9,8 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 		$merchant = new stdClass();
 		$merchant->confirmation_url = add_query_arg( 'action', 'confirm', get_permalink( $redirect_id ) );
 		$merchant->cancel_url = html_entity_decode( $order->get_cancel_order_url() );
-		$merchant->success_url = html_entity_decode( $checkout_url );
-		$merchant->checkout_url = html_entity_decode( $order->get_checkout_order_received_url() );
+		$merchant->checkout_url = html_entity_decode( $checkout_url );
+		$merchant->success_url = html_entity_decode( $order->get_checkout_order_received_url() );
 
 		$checkout = new self();
 		$checkout->toc = true;
