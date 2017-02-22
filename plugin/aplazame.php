@@ -22,6 +22,15 @@ class WC_Aplazame {
 	const VERSION = '0.4.5';
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
+
+	/**
+	 * @param string $msg
+	 */
+	public static function log( $msg ) {
+		$log = new WC_Logger();
+		$log->add( self::METHOD_ID, $msg );
+	}
+
 	/**
 	 * @var array
 	 */
@@ -140,16 +149,6 @@ class WC_Aplazame {
 	}
 
 	/**
-	 * @param string $msg
-	 */
-	public function log( $msg ) {
-		if ( $this->sandbox ) {
-			$log = new WC_Logger();
-			$log->add( self::METHOD_ID, $msg );
-		}
-	}
-
-	/**
 	 * @return Aplazame_Client
 	 */
 	public function get_client() {
@@ -241,7 +240,9 @@ class WC_Aplazame {
 					$e->getMessage()
 				) );
 
-			throw $e;
+			status_header( 500 );
+
+			return null;
 		}
 
 		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );

@@ -36,7 +36,7 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
 	protected function order_request( $order_id, $method, $path, $data = null ) {
-		return $this->apiClient->request( $method, '/orders/' . $order_id . $path, $data );
+		return $this->request( $method, '/orders/' . $order_id . $path, $data );
 	}
 
 	/**
@@ -97,8 +97,43 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
 	public function fetch( $order_id ) {
-		$orders = $this->apiClient->request( 'GET', '/orders?mid=' . $order_id );
+		$orders = $this->request( 'GET', '/orders?mid=' . $order_id );
 
 		return $orders['results'][0];
+	}
+	/**
+	 * @param string     $method The HTTP method of the request.
+	 * @param string     $path The path of the request.
+	 * @param array|null $data The data of the request.
+	 *
+	 * @return array The data of the response.
+	 *
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
+	 */
+	public function request( $method, $path, array $data = null ) {
+		try {
+			return $this->apiClient->request( $method, $path, $data );
+		} catch (Aplazame_Sdk_Api_ApiClientException $e) {
+			$details = json_encode( $e->getError() );
+
+			WC_Aplazame::log( "Error: {$path}; {$e->getStatusCode()}; {$details}" );
+
+			throw $e;
+		} catch (Aplazame_Sdk_Api_ApiServerException $e) {
+			$details = json_encode( $e->getError() );
+
+			WC_Aplazame::log( "Error: {$path}; {$e->getStatusCode()}; {$details}" );
+
+			throw $e;
+		} catch (Exception $e) {
+			$exceptionClass = get_class( $e );
+
+			WC_Aplazame::log( "Error: {$path} {$exceptionClass} {$e->getMessage()}" );
+
+			throw $e;
+		}
 	}
 }
