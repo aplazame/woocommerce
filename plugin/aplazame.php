@@ -218,12 +218,13 @@ class WC_Aplazame {
 
 	public function confirm() {
 
-		$order = new WC_Order( $_GET['order_id'] );
+		$order_id = $_GET['order_id'];
+		$order = new WC_Order( $order_id );
 
 		$client = $this->get_client();
 
 		try {
-			$aOrder = $client->fetch( $order->id );
+			$aOrder = $client->fetch( $order_id );
 			if ( $aOrder['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize()
 			     || $aOrder['currency']['code'] !== $order->get_order_currency()
 			) {
@@ -231,12 +232,12 @@ class WC_Aplazame {
 				return null;
 			}
 
-			$client->authorize( $order->id );
+			$client->authorize( $order_id );
 		} catch ( Exception $e ) {
 			$order->update_status( 'failed',
 				sprintf( __( '%s ERROR: Order #%s cannot be confirmed. Reason: %s', 'aplazame' ),
 					self::METHOD_TITLE,
-					$order->id,
+					$order_id,
 					$e->getMessage()
 				) );
 
