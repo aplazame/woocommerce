@@ -68,7 +68,7 @@ class Aplazame_Client {
 		$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $amount );
 
 		return $this->order_request( $order_id, 'POST', '/refund', array(
-			'amount' => $amount,
+			'amount' => $amount->jsonSerialize(),
 		) );
 	}
 
