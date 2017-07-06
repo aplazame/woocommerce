@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.6.1](https://github.com/aplazame/woocommerce/tree/v0.6.1) (2017-07-06)
+
+[Full Changelog v0.6.1](https://github.com/aplazame/woocommerce/compare/v0.6.0...v0.6.1)
+
+* Fix error on checkout payload
+
 #### [v0.6.0](https://github.com/aplazame/woocommerce/tree/v0.6.0) (2017-04-10)
 
 [Full Changelog v0.6.0](https://github.com/aplazame/woocommerce/compare/v0.5.2...v0.6.0)
