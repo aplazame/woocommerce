@@ -50,7 +50,7 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$aArticle->sku = $product->get_sku();
 		$aArticle->name = $product->get_title();
 		$aArticle->url = $product->get_permalink();
-		$aArticle->quantity = $item_product->get_quantity();
+		$aArticle->quantity = (int) $item_product->get_quantity();
 		$aArticle->price = Aplazame_Sdk_Serializer_Decimal::fromFloat( $item_product->get_total() / $item_product->get_quantity() );
 		$aArticle->tax_rate = Aplazame_Sdk_Serializer_Decimal::fromFloat( $tax_rate );
 
