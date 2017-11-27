@@ -18,7 +18,11 @@ class Aplazame_Sdk_Serializer_JsonSerializer {
 		}
 
 		if ( is_object( $value ) ) {
-			$value = (array) $value;
+			foreach ( get_object_vars( $value ) as $nestedKey => $nestedValue ) {
+				$value->{$nestedKey} = self::serializeValue( $nestedValue );
+			}
+
+			return $value;
 		}
 
 		if ( is_array( $value ) ) {

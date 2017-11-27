@@ -2,7 +2,7 @@
 
 class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 
-	const SDK_VERSION = '0.2.1';
+	const SDK_VERSION = '0.2.2';
 	const FORMAT_JSON = 'json';
 	const FORMAT_XML = 'xml';
 	const FORMAT_YAML = 'yaml';
