@@ -159,11 +159,11 @@ class Aplazame_Sdk_Api_Client {
 		}
 
 		if ( $response->getStatusCode() >= 500 ) {
-			throw Aplazame_Sdk_Api_ApiClientException::fromResponse( $response );
+			throw Aplazame_Sdk_Api_ApiServerException::fromResponse( $response );
 		}
 
 		if ( $response->getStatusCode() >= 400 ) {
-			throw Aplazame_Sdk_Api_ApiServerException::fromResponse( $response );
+			throw Aplazame_Sdk_Api_ApiClientException::fromResponse( $response );
 		}
 
 		$payload = $this->decodeResponseBody( (string) $response->getBody() );
