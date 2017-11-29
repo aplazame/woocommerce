@@ -12,9 +12,6 @@ services:
       - WORDPRESS_DEBUG=true
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_PASSWORD=password
-    networks:
-      - internal
-      - public
     volumes:
       - ./plugin:/var/www/html/wp-content/plugins/aplazame
     ports:
@@ -25,8 +22,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=wordpress
-    networks:
-      - internal
+    ports:
+      - "3306:3306"
 
   l10n:
     build:
@@ -36,7 +33,3 @@ services:
       - ./:/var/www
     working_dir: /var/www
     entrypoint: make l10n
-
-networks:
-  internal:
-  public:
