@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v0.6.2](https://github.com/aplazame/woocommerce/tree/v0.6.2) (2017-11-29)
+
+[Full Changelog v0.6.2](https://github.com/aplazame/woocommerce/compare/v0.6.1...v0.6.2)
+
+* Fix simulator does not calculate the price with taxes included
+
 #### [v0.6.1](https://github.com/aplazame/woocommerce/tree/v0.6.1) (2017-07-06)
 
 [Full Changelog v0.6.1](https://github.com/aplazame/woocommerce/compare/v0.6.0...v0.6.1)
