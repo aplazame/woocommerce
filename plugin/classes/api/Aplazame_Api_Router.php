@@ -51,14 +51,15 @@ class Aplazame_Api_Router {
 	}
 
 	/**
-	 * @param string $path
-	 * @param array  $pathArguments
-	 * @param array  $queryArguments
+	 * @param string     $path
+	 * @param array      $pathArguments
+	 * @param array      $queryArguments
+     * @param null|array $payload
 	 *
 	 * @return void
 	 */
-	public function process( $path, array $pathArguments, array $queryArguments ) {
-		$response = $this->route( $path, $pathArguments, $queryArguments );
+	public function process( $path, array $pathArguments, array $queryArguments, $payload ) {
+		$response = $this->route( $path, $pathArguments, $queryArguments, $payload );
 
 		status_header( $response['status_code'] );
 
@@ -66,13 +67,14 @@ class Aplazame_Api_Router {
 	}
 
 	/**
-	 * @param string $path
-	 * @param array  $pathArguments
-	 * @param array  $queryArguments
+	 * @param string     $path
+	 * @param array      $pathArguments
+	 * @param array      $queryArguments
+     * @param null|array $payload
 	 *
 	 * @return array
 	 */
-	public function route( $path, array $pathArguments, array $queryArguments ) {
+	public function route( $path, array $pathArguments, array $queryArguments, $payload ) {
 		if ( ! $this->verifyAuthentication() ) {
 			return self::forbidden();
 		}

@@ -204,11 +204,12 @@ class WC_Aplazame {
 				$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
 				$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
 				$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
+				$payload        = json_decode(file_get_contents('php://input'), true);
 
 				include_once( 'classes/api/Aplazame_Api_Router.php' );
 				$api = new Aplazame_Api_Router( $this->private_api_key );
 
-				$api->process( $path, $pathArguments, $queryArguments ); // die
+				$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
 				break;
 			case 'confirm':
 				return $this->confirm();
