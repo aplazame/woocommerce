@@ -171,7 +171,15 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
             $value
         );
 
-		$response = $client->get('/me');
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
+
+		$response = $client->patch('/me', array(
+            'confirmation_url' => add_query_arg( array(
+            	'action' => 'aplazame_api',
+	            'path' => '/confirm/',
+            ), get_permalink( $aplazame->redirect->id ) )
+        ));
 
         $this->settings['public_api_key'] = $response['public_api_key'];
 

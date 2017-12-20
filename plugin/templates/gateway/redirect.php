@@ -15,7 +15,7 @@ global $woocommerce;
 
 $cart       = $woocommerce->cart;
 $order      = new WC_Order( $_GET['order_id'] );
-$checkout   = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $cart->get_checkout_url(), $aplazame->redirect->id );
+$checkout   = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $cart->get_checkout_url() );
 ?>
 
 <script type="text/javascript">

@@ -21,6 +21,17 @@ class Aplazame_Api_Router {
 		);
 	}
 
+	public static function client_error( $detail ) {
+		return array(
+			'status_code' => 400,
+			'payload' => array(
+				'status' => 400,
+				'type' => 'CLIENT_ERROR',
+				'detail' => $detail,
+			),
+		);
+	}
+
 	public static function collection( $page, $page_size, array $elements ) {
 		return array(
 			'status_code' => 200,
@@ -40,14 +51,20 @@ class Aplazame_Api_Router {
 	private $private_api_key;
 
 	/**
+	 * @var string
+	 */
+	private $sandbox;
+
+	/**
 	 * @param string $private_api_key
 	 */
-	public function __construct( $private_api_key ) {
+	public function __construct( $private_api_key, $sandbox ) {
 		if ( empty( $private_api_key ) ) {
 			throw new InvalidArgumentException( 'Aplazame Private API Key is required' );
 		}
 
 		$this->private_api_key = $private_api_key;
+		$this->sandbox = $sandbox;
 	}
 
 	/**
@@ -85,6 +102,11 @@ class Aplazame_Api_Router {
 				$controller = new Aplazame_Api_ArticleController();
 
 				return $controller->articles( $queryArguments );
+			case '/confirm/':
+				include_once( 'Aplazame_Api_ConfirmController.php' );
+				$controller = new Aplazame_Api_ConfirmController( $this->sandbox );
+
+				return $controller->confirm( $payload );
 			case '/order/{order_id}/history/':
 				include_once( 'Aplazame_Api_OrderController.php' );
 				$controller = new Aplazame_Api_OrderController();

@@ -211,12 +211,10 @@ class WC_Aplazame {
 				$payload        = json_decode( file_get_contents( 'php://input' ), true );
 
 				include_once( 'classes/api/Aplazame_Api_Router.php' );
-				$api = new Aplazame_Api_Router( $this->private_api_key );
+				$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
 
 				$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
 				break;
-			case 'confirm':
-				return $this->confirm();
 			case 'history':
 				include_once( 'classes/Aplazame_History.php' );
 				$api = new Aplazame_History( $this->private_api_key );
@@ -225,42 +223,6 @@ class WC_Aplazame {
 		}
 
 		return $template;
-	}
-
-	public function confirm() {
-
-		$order_id = $_GET['order_id'];
-		$order = new WC_Order( $order_id );
-
-		$client = $this->get_client();
-
-		try {
-			$aOrder = $client->fetch( $order_id );
-			if ( $aOrder['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize()
-			     || $aOrder['currency']['code'] !== $order->get_order_currency()
-			) {
-				status_header( 403 );
-				return null;
-			}
-
-			$client->authorize( $order_id );
-		} catch ( Exception $e ) {
-			$order->update_status( 'failed',
-				sprintf( __( '%s ERROR: Order #%s cannot be confirmed. Reason: %s', 'aplazame' ),
-					self::METHOD_TITLE,
-					$order_id,
-					$e->getMessage()
-				) );
-
-			status_header( 500 );
-
-			return null;
-		}
-
-		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
-		status_header( 204 );
-
-		return null;
 	}
 
 	public function aplazameJs() {
