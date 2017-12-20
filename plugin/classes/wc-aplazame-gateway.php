@@ -117,25 +117,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
-			'api_details'                     => array(
-				'title'       => __( 'API Credentials', 'woocommerce' ),
-				'type'        => 'title',
-				'description' => '',
-			),
 			'private_api_key'                 => array(
 				'type'              => 'text',
 				'title'             => __( 'Private API Key', 'aplazame' ),
 				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
 				'custom_attributes' => array(
 					'required'     => '',
-				),
-			),
-			'public_api_key'                  => array(
-				'type'              => 'text',
-				'title'             => __( 'Public API Key', 'aplazame' ),
-				'description'       => __( 'Aplazame API Public Key', 'aplazame' ),
-				'custom_attributes' => array(
-					'required' => '',
 				),
 			),
 			'advanced'                        => array(
@@ -175,5 +162,19 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 			),
 		);
+	}
+
+	protected function validate_private_api_key_field( $key, $value ) {
+        $client = new Aplazame_Sdk_Api_Client(
+            getenv('APLAZAME_API_BASE_URI') ? getenv('APLAZAME_API_BASE_URI') : 'https://api.aplazame.com',
+            ($this->settings['sandbox'] ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
+            $value
+        );
+
+		$response = $client->get('/me');
+
+        $this->settings['public_api_key'] = $response['public_api_key'];
+
+        return $value;
 	}
 }
