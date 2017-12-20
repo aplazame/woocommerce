@@ -213,7 +213,10 @@ class WC_Aplazame {
 			case 'confirm':
 				return $this->confirm();
 			case 'history':
-				return $this->history();
+				include_once( 'classes/Aplazame_History.php' );
+				$api = new Aplazame_History( $this->private_api_key );
+
+				$api->process( $_GET['order_id'] ); // die
 		}
 
 		return $template;
@@ -252,37 +255,6 @@ class WC_Aplazame {
 		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
 		status_header( 204 );
 
-		return null;
-	}
-
-	public function history() {
-		include_once( 'classes/api/Aplazame_Api_Router.php' );
-		if ( ! Aplazame_Api_Router::verify_authentication( $this->private_api_key ) ) {
-			status_header( 403 );
-			return null;
-		}
-
-		$order = wc_get_order( $_GET['order_id'] );
-		if ( ! $order ) {
-			status_header( 404 );
-			return null;
-		}
-
-		/** @var WP_Post[] $wcOrders */
-		$wcOrders = get_posts( array(
-			'meta_key'    => '_billing_email',
-			'meta_value'  => $order->billing_email,
-			'post_type'   => 'shop_order',
-			'numberposts' => - 1,
-		) );
-
-		$historyOrders = array();
-
-		foreach ( $wcOrders as $wcOrder ) {
-			$historyOrders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::createFromOrder( new WC_Order( $wcOrder->ID ) );
-		}
-
-		wp_send_json( $historyOrders );
 		return null;
 	}
 

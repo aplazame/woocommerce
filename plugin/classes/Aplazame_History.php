@@ -1,39 +1,6 @@
 <?php
 
-class Aplazame_Api_Router {
-	public static function forbidden() {
-		return array(
-			'status_code' => 403,
-			'payload'     => array(
-				'status' => 403,
-				'type'   => 'FORBIDDEN',
-			),
-		);
-	}
-
-	public static function not_found() {
-		return array(
-			'status_code' => 404,
-			'payload'     => array(
-				'status' => 404,
-				'type'   => 'NOT_FOUND',
-			),
-		);
-	}
-
-	public static function collection( $page, $page_size, array $elements ) {
-		return array(
-			'status_code' => 200,
-			'payload'     => array(
-				'query'    => array(
-					'page'      => $page,
-					'page_size' => $page_size,
-				),
-				'elements' => $elements,
-			),
-		);
-	}
-
+class Aplazame_History {
 	/**
 	 * @var string
 	 */
@@ -51,46 +18,35 @@ class Aplazame_Api_Router {
 	}
 
 	/**
-	 * @param string $path
-	 * @param array  $pathArguments
-	 * @param array  $queryArguments
-	 *
 	 * @return void
 	 */
-	public function process( $path, array $pathArguments, array $queryArguments ) {
-		$response = $this->route( $path, $pathArguments, $queryArguments );
-
-		status_header( $response['status_code'] );
-
-		wp_send_json( $response['payload'] );
-	}
-
-	/**
-	 * @param string $path
-	 * @param array  $pathArguments
-	 * @param array  $queryArguments
-	 *
-	 * @return array
-	 */
-	public function route( $path, array $pathArguments, array $queryArguments ) {
+	public function process( $orderId ) {
 		if ( ! $this->verifyAuthentication() ) {
-			return self::forbidden();
+			status_header( 403 );
+			return;
 		}
 
-		switch ( $path ) {
-			case '/article/':
-				include_once( 'Aplazame_Api_ArticleController.php' );
-				$controller = new Aplazame_Api_ArticleController();
-
-				return $controller->articles( $queryArguments );
-			case '/order/{order_id}/history/':
-				include_once( 'Aplazame_Api_OrderController.php' );
-				$controller = new Aplazame_Api_OrderController();
-
-				return $controller->history( $pathArguments, $queryArguments );
-			default:
-				return self::not_found();
+		$order = wc_get_order( $orderId );
+		if ( ! $order ) {
+			status_header( 404 );
+			return;
 		}
+
+		/** @var WP_Post[] $wcOrders */
+		$wcOrders = get_posts( array(
+			'meta_key'    => '_billing_email',
+			'meta_value'  => $order->billing_email,
+			'post_type'   => 'shop_order',
+			'numberposts' => - 1,
+		) );
+
+		$historyOrders = array();
+
+		foreach ( $wcOrders as $wcOrder ) {
+			$historyOrders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::createFromOrder( new WC_Order( $wcOrder->ID ) );
+		}
+
+		wp_send_json( $historyOrders );
 	}
 
     /**
