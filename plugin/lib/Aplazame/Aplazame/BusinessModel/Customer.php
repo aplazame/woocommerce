@@ -33,10 +33,10 @@ class Aplazame_Aplazame_BusinessModel_Customer {
 		$aCustomer->id = $user->ID;
 		$aCustomer->first_name = $user->first_name;
 		$aCustomer->last_name = $user->last_name;
-		if ( ($birthday = $user->getDob()) !== null ) {
+		if ( ($birthday = $user->getDob()) != null ) {
 			$aCustomer->birthday = Aplazame_Sdk_Serializer_Date::fromDateTime( new DateTime( $birthday ) );
 		}
-		if ( ($document_id = $user->getTaxvat()) !== null ) {
+		if ( ($document_id = $user->getTaxvat()) != null ) {
 			$aCustomer->document_id = $document_id;
 		}
 		$aCustomer->date_joined = Aplazame_Sdk_Serializer_Date::fromDateTime( new DateTime( $user->user_registered ) );
