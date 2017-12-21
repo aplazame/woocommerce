@@ -1,5 +1,12 @@
 ## Change Log
 
+#### [v0.7.0](https://github.com/aplazame/woocommerce/tree/v0.7.0) (2017-12-21)
+
+* [ADD] Private Key is automatically validated when set
+* [ADD] Public Key is not longer needed to manual set
+* [ADD] Many other compatibility improvements
+* [FIX] Default customer date of birth
+
 #### [v0.6.2](https://github.com/aplazame/woocommerce/tree/v0.6.2) (2017-11-29)
 
 * Fix simulator does not calculate the price with taxes included

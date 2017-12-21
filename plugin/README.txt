@@ -1,9 +1,9 @@
 === Aplazame ===
-Contributors: aplazame,calvin
+Contributors: aplazame
 Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 4.9.0
+Tested up to: 4.9.1
 Stable tag: 0.6.2
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -107,6 +107,13 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v0.7.0](https://github.com/aplazame/woocommerce/tree/v0.7.0) (2017-12-21)
+
+* [ADD] Private Key is automatically validated when set
+* [ADD] Public Key is not longer needed to manual set
+* [ADD] Many other compatibility improvements
+* [FIX] Default customer date of birth
 
 #### [v0.6.2](https://github.com/aplazame/woocommerce/tree/v0.6.2) (2017-11-29)
 
@@ -220,6 +227,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.6.2 =
+= v0.7.0 =
 
 The latest release has passed all quality checks.

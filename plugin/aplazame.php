@@ -22,7 +22,7 @@ include_once( 'lib/Aplazame/Sdk/autoload.php' );
 include_once( 'lib/Aplazame/Aplazame/autoload.php' );
 
 class WC_Aplazame {
-	const VERSION = '0.6.2';
+	const VERSION = '0.7.0';
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
