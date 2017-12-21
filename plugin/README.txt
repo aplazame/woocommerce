@@ -1,10 +1,10 @@
 === Aplazame ===
 Contributors: aplazame
-Donate link: https://aplazame.com?action=show-me-the-money
 Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
 Tested up to: 4.9.1
-Stable tag: 0.6.2
+Requires PHP: 5.3.0
+Stable tag: 0.7.1
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -41,7 +41,7 @@ For any support request please drop us an email at [soporte@aplazame.com](mailto
 
 = Feedback =
 
-We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [dev@aplazame.com](mailto:dev@aplazame.com?subject=Hello).
+We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Hello).
 
 *We hope you'll enjoy using Aplazame's WooCommerce plugin!*
 
@@ -56,7 +56,7 @@ We are open to changes in the API documentation and our services. For any sugges
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of Aplazame for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
-In the search field type Aplazame for WooCommerce and click Search Plugins. Once you've found our plugin you can install it by simply clicking Install Now.
+In the search field type Aplazame for WooCommerce and click Search Plugins. Once you've found our plugin you can install it by simply clicking Install Now.
 
 = Latest version =
 
@@ -72,7 +72,6 @@ Automatic updates should work great for you.
 
 * **Sandbox**: Determines if the module is on Sandbox mode.
 * **Private API Key**: The Secret Key provided by Aplazame. You cannot share this key with anyone!!
-* **Public API Key**: The Public Key provided by Aplazame.
 * **Button**: The CSS Selector for Aplazame payment method. The default selector is `#payment ul li:has(input#payment_method_aplazame)`.
 * **Product quantity CSS selector**: The CSS Selector for retrieve the product quantity in the product page. The default value is empty.
 * **Product price CSS selector**: The CSS Selector for retrieve the product price in the product page. The default value is empty.
@@ -107,6 +106,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v0.7.1](https://github.com/aplazame/woocommerce/tree/v0.7.1) (2017-12-21)
+
+* Minor changes
 
 #### [v0.7.0](https://github.com/aplazame/woocommerce/tree/v0.7.0) (2017-12-21)
 
@@ -227,6 +230,6 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.7.0 =
+= v0.7.1 =
 
 The latest release has passed all quality checks.

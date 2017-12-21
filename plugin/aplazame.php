@@ -2,13 +2,16 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 0.6.2
+ * Version: 0.7.1
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
  *
- * WC requires at least: 2.0
- * WC tested up to: 3.2.5
+ * Text Domain: aplazame
+ * Domain Path: /i18n/languages/
+ *
+ * WC requires at least: 2.1
+ * WC tested up to: 3.2.6
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -22,7 +25,7 @@ include_once( 'lib/Aplazame/Sdk/autoload.php' );
 include_once( 'lib/Aplazame/Aplazame/autoload.php' );
 
 class WC_Aplazame {
-	const VERSION = '0.7.0';
+	const VERSION = '0.7.1';
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -70,8 +73,8 @@ class WC_Aplazame {
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'add_gateway' ) );
 
-		// l10n
-		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/l10n/es' );
+		// i18n
+		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
 
 		// Settings
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::resetSettings' );

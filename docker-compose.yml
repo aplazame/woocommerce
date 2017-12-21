@@ -25,11 +25,11 @@ services:
     ports:
       - "3306:3306"
 
-  l10n:
+  i18n:
     build:
-      dockerfile: Dockerfile_l10n
+      dockerfile: Dockerfile_i18n
       context: ./
     volumes:
       - ./:/var/www
     working_dir: /var/www
-    entrypoint: make l10n
+    entrypoint: make i18n

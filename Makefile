@@ -1,9 +1,9 @@
 # --- defaults
 branch ?= dev
 plugin_path ?= plugin
-l10n_path ?= l10n/es
-l10n_name ?= aplazame-es_ES
-version ?= v0.7.0
+i18n_path ?= i18n/languages
+i18n_name ?= aplazame-es_ES
+version ?= v0.7.1
 
 # --- shell
 errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
@@ -27,20 +27,20 @@ zip:
 
 pot:
 	@cd $(plugin_path); \
-	xgettext -o $(l10n_path)/default.pot `find . -name "*.php"` --add-location --from-code=UTF-8 -k_e -k_x -k__ \
+	xgettext -o $(i18n_path)/aplazame.pot `find . -name "*.php"` --add-location --from-code=UTF-8 -k_e -k_x -k__ \
 		--package-name=Aplazame --package-version=$(version) \
 		--msgid-bugs-address="https://github.com/aplazame/woocommerce"; \
-	sed --in-place $(l10n_path)/default.pot --expression=s/CHARSET/UTF-8/; \
-	sed --in-place $(l10n_path)/default.pot --expression="s#\"Language-Team.*#\"Language-Team: https://github.com/aplazame/woocommerce\\\n\"#"; \
-	sed --in-place $(l10n_path)/default.pot --expression="s/\"Language:.*/\"Language: en_US\\\n\"/"
+	sed --in-place $(i18n_path)/aplazame.pot --expression=s/CHARSET/UTF-8/; \
+	sed --in-place $(i18n_path)/aplazame.pot --expression="s#\"Language-Team.*#\"Language-Team: https://github.com/aplazame/woocommerce\\\n\"#"; \
+	sed --in-place $(i18n_path)/aplazame.pot --expression="s/\"Language:.*/\"Language: en_US\\\n\"/"
 
 po:
-	@cd $(plugin_path); msgmerge $(l10n_path)/default.po $(l10n_path)/default.pot --update --no-fuzzy-matching --backup=off
+	@cd $(plugin_path); msgmerge $(i18n_path)/aplazame.po $(i18n_path)/aplazame.pot --update --no-fuzzy-matching --backup=off
 
 mo:
-	@cd $(plugin_path); msgfmt $(l10n_path)/default.po -o $(l10n_path)/$(l10n_name).mo
+	@cd $(plugin_path); msgfmt $(i18n_path)/aplazame.po -o $(i18n_path)/$(i18n_name).mo
 
-l10n: pot po mo
+i18n: pot po mo
 
 push:
 	@git push origin HEAD

@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v0.7.1](https://github.com/aplazame/woocommerce/tree/v0.7.1) (2017-12-21)
+
+* Minor changes
+
 #### [v0.7.0](https://github.com/aplazame/woocommerce/tree/v0.7.0) (2017-12-21)
 
 * [ADD] Private Key is automatically validated when set
