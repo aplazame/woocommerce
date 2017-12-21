@@ -3,7 +3,7 @@
 class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 
 	public static function createFromOrder( WC_Order $order ) {
-		if (method_exists($order, 'get_id')) {
+		if ( method_exists( $order, 'get_id' ) ) {
 			$order_id = $order->get_id();
 		} else {
 			$order_id = $order->id;

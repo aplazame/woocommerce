@@ -6,7 +6,7 @@
 class Aplazame_Aplazame_BusinessModel_Order {
 
 	public static function crateFromOrder( WC_Order $order ) {
-		if (method_exists($order, 'get_id')) {
+		if ( method_exists( $order, 'get_id' ) ) {
 			$order_id = $order->get_id();
 		} else {
 			$order_id = $order->id;

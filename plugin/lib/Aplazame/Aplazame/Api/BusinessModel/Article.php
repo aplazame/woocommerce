@@ -2,7 +2,7 @@
 
 class Aplazame_Aplazame_Api_BusinessModel_Article {
 	public static function createFromProduct( WC_Product $product ) {
-		if (method_exists($product, 'get_id')) {
+		if ( method_exists( $product, 'get_id' ) ) {
 			$product_id = $product->get_id();
 		} else {
 			$product_id = $product->id;

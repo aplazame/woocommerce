@@ -23,7 +23,7 @@ class Aplazame_Aplazame_BusinessModel_Address {
 		) as $key => $field ) {
 			$field = $type . '_' . $field;
 
-			if (method_exists($order, 'get_' . $field)) {
+			if ( method_exists( $order, 'get_' . $field ) ) {
 				$aAddress->$key = $order->{'get_' . $field}();
 			} else {
 				$aAddress->$key = $order->$field;

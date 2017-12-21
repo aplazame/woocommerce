@@ -46,7 +46,7 @@ class Aplazame_Aplazame_BusinessModel_Customer {
 
 	public static function createGuessCustomerFromOrder( WC_Order $order ) {
 		$aCustomer = new self();
-		if (method_exists($order, 'get_id')) {
+		if ( method_exists( $order, 'get_id' ) ) {
 			$aCustomer->email = $order->get_billing_email();
 		} else {
 			$aCustomer->email = $order->billing_email;

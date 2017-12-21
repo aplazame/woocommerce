@@ -7,10 +7,10 @@ class Aplazame_Aplazame_BusinessModel_Article {
 
 	public static function createFromOrderItem( $item ) {
 	    if ( $item instanceof WC_Order_Item_Product ) {
-	    	return self::createFromOrderItemProduct($item);
+	    	return self::createFromOrderItemProduct( $item );
 	    }
 
-	    return self::createFromOrderItemArray($item);
+	    return self::createFromOrderItemArray( $item );
 	}
 
 	public static function createFromOrderItemArray( array $values ) {
