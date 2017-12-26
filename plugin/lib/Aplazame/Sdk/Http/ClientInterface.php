@@ -9,5 +9,5 @@ interface Aplazame_Sdk_Http_ClientInterface {
 	 *
 	 * @throws RuntimeException If requests cannot be performed due network issues.
 	 */
-	public function send( Aplazame_Sdk_Http_RequestInterface $request);
+	public function send( Aplazame_Sdk_Http_RequestInterface $request );
 }
