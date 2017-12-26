@@ -1,0 +1,7 @@
+FROM composer
+
+WORKDIR /project
+
+ADD composer.json ./
+
+RUN composer install

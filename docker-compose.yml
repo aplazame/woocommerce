@@ -27,9 +27,18 @@ services:
 
   i18n:
     build:
-      dockerfile: Dockerfile_i18n
+      dockerfile: Dockerfile.i18n
       context: ./
     volumes:
       - ./:/var/www
     working_dir: /var/www
     entrypoint: make i18n
+
+  style:
+    build:
+      dockerfile: Dockerfile.style
+      context: ./
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    entrypoint: vendor/bin/phpcbf
