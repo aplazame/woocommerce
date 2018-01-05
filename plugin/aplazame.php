@@ -37,6 +37,28 @@ class WC_Aplazame {
 		$log->add( self::METHOD_ID, $msg );
 	}
 
+	public static function configure_aplazame_profile( $sandbox, $private_key, $redirect_id ) {
+		$client = new Aplazame_Sdk_Api_Client(
+			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
+			($sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
+			$private_key
+		);
+
+		$response = $client->patch( '/me',
+			array(
+				'confirmation_url' => add_query_arg(
+					array(
+						'action' => 'aplazame_api',
+						'path'   => '/confirm/',
+					),
+					get_permalink( $redirect_id )
+				),
+			)
+		);
+
+		return $response;
+	}
+
 	/**
 	 * @var array
 	 */
@@ -96,6 +118,10 @@ class WC_Aplazame {
 		$this->redirect = new Aplazame_Redirect();
 		register_activation_hook( __FILE__, array( $this->redirect, 'addRedirectPage' ) );
 		register_deactivation_hook( __FILE__, array( $this->redirect, 'removeRedirectPage' ) );
+
+		add_action( 'init', array( 'WC_Aplazame_Install', 'upgrade' ), 5 );
+		register_activation_hook( __FILE__, 'WC_Aplazame_Install::upgrade' );
+
 		add_action( 'wp_footer', array( $this->redirect, 'checkout' ) );
 
 		// TODO: Redirect nav
@@ -293,6 +319,14 @@ class WC_Aplazame_Install {
 		'private_api_key'                 => '',
 	);
 
+	public static function upgrade() {
+		if ( version_compare( get_option( 'aplazame_version' ), WC_Aplazame::VERSION, '<' ) ) {
+			self::set_aplazame_profile();
+
+			self::update_aplazame_version();
+		}
+	}
+
 	public static function uninstall() {
 		self::removeSettings();
 	}
@@ -308,6 +342,31 @@ class WC_Aplazame_Install {
 
 	public static function removeSettings() {
 		delete_option( 'woocommerce_aplazame_settings' );
+	}
+
+	private static function update_aplazame_version() {
+		delete_option( 'aplazame_version' );
+		add_option( 'aplazame_version', WC_Aplazame::VERSION );
+	}
+
+	private static function set_aplazame_profile() {
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
+
+		if ( ! $aplazame->private_api_key ) {
+			return;
+		}
+
+		try {
+			WC_Aplazame::configure_aplazame_profile(
+				$aplazame->settings['sandbox'],
+				$aplazame->private_api_key,
+				$aplazame->redirect->id
+			);
+		} catch (Exception $e) {
+			$aplazame->private_api_key = null;
+			$aplazame->settings['private_api_key'] = null;
+		}
 	}
 }
 
