@@ -8,10 +8,12 @@ wp --allow-root core install --skip-email --title=Aplazame --admin_user=wordpres
     && wp --allow-root theme install storefront --activate \
     && wp --allow-root plugin install woocommerce --activate \
     && wp --allow-root plugin activate aplazame \
-    && wp --allow-root wc product create --title="Simple" --regular_price=1 \
-    && wp --allow-root wc product create --title="Variable" --type="variable" \
-       --attributes.0.name="size" --attributes.0.variation="true" --attributes.0.options="X|XL" \
-       --variations.0.attributes.size="X" --variations.0.regular_price=1 \
-       --variations.1.attributes.size="XL" --variations.1.regular_price=2
+    && wp --allow-root --user=1 wc product create --name="Simple" --type="simple" --regular_price="1.00" \
+    && wp --allow-root --user=1 wc product create --name="Variable" --type="variable" \
+       --attributes='[ { "name":"size", "variation":"true", "options":"X|XL" } ]' \
+    && wp --allow-root --user=1 wc product_variation create 5 \
+       --attributes='[ { "name":"size", "option":"X" } ]' --regular_price="1.00" \
+    && wp --allow-root --user=1 wc product_variation create 5 \
+       --attributes='[ { "name":"size", "option":"XL" } ]' --regular_price="2.00"
 
 echo >&2 "Complete! WordPress has been configured"
