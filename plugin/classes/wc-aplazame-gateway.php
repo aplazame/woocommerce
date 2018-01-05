@@ -168,7 +168,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		/** @var WC_Aplazame $aplazame */
 		global $aplazame;
 
-		$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value, $aplazame->redirect->id );
+		try {
+			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value, $aplazame->redirect->id );
+		} catch (Exception $e) {
+			// Workaround https://github.com/woocommerce/woocommerce/issues/11952
+			WC_Admin_Settings::add_error( $e->getMessage() );
+
+			throw $e;
+		}
 
 		$this->settings['public_api_key'] = $response['public_api_key'];
 
