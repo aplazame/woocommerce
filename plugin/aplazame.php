@@ -62,7 +62,7 @@ class WC_Aplazame {
 	/**
 	 * @param string $apiBaseUri
 	 */
-	public function __construct($apiBaseUri) {
+	public function __construct( $apiBaseUri ) {
 
 		// Dependencies
 		include_once( 'classes/lib/Helpers.php' );
@@ -82,7 +82,7 @@ class WC_Aplazame {
 		if ( ! $this->settings ) {
 			$this->settings = WC_Aplazame_Install::resetSettings();
 		} else {
-			$this->settings = array_merge(WC_Aplazame_Install::$defaultSettings, $this->settings);
+			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
 		}
 		$this->enabled         = $this->settings['enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
@@ -144,12 +144,13 @@ class WC_Aplazame {
 
 	/**
 	 * Add relevant links to plugins page
+	 *
 	 * @param  array $links
 	 * @return array
 	 */
 	public function plugin_action_links( $links ) {
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_aplazame_gateway') . '">' . __( 'Settings', 'aplazame' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_aplazame_gateway' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -161,12 +162,12 @@ class WC_Aplazame {
 		include_once( 'classes/sdk/Client.php' );
 
 		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox,
-			$this->private_api_key );
+		$this->private_api_key );
 	}
 
 	/**
 	 * @param int|object|WC_Order $order_id .
-	 * @param string $msg
+	 * @param string              $msg
 	 */
 	public function add_order_note( $order_id, $msg ) {
 		$order = new WC_Order( $order_id );
@@ -198,7 +199,7 @@ class WC_Aplazame {
 	 * @return null|string
 	 */
 	public function router( $template ) {
-		if (! isset( $_GET['action'] ) || ! $this->redirect->isRedirect(get_the_ID())) {
+		if ( ! isset( $_GET['action'] ) || ! $this->redirect->isRedirect( get_the_ID() ) ) {
 			return $template;
 		}
 
@@ -207,7 +208,7 @@ class WC_Aplazame {
 				$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
 				$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
 				$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
-				$payload        = json_decode(file_get_contents('php://input'), true);
+				$payload        = json_decode( file_get_contents( 'php://input' ), true );
 
 				include_once( 'classes/api/Aplazame_Api_Router.php' );
 				$api = new Aplazame_Api_Router( $this->private_api_key );
