@@ -165,16 +165,20 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	protected function validate_private_api_key_field( $key, $value ) {
-        $client = new Aplazame_Sdk_Api_Client(
-            getenv('APLAZAME_API_BASE_URI') ? getenv('APLAZAME_API_BASE_URI') : 'https://api.aplazame.com',
-            ($this->settings['sandbox'] ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
-            $value
-        );
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
 
-		$response = $client->get('/me');
+		try {
+			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value, $aplazame->redirect->id );
+		} catch (Exception $e) {
+			// Workaround https://github.com/woocommerce/woocommerce/issues/11952
+			WC_Admin_Settings::add_error( $e->getMessage() );
 
-        $this->settings['public_api_key'] = $response['public_api_key'];
+			throw $e;
+		}
 
-        return $value;
+		$this->settings['public_api_key'] = $response['public_api_key'];
+
+		return $value;
 	}
 }

@@ -41,20 +41,6 @@ class Aplazame_Client {
 
 	/**
 	 * @param int $order_id
-	 *
-	 * @return array
-	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
-	 */
-	public function authorize( $order_id ) {
-		return $this->order_request( $order_id, 'POST', '/authorize' );
-	}
-
-	/**
-	 * @param int $order_id
 	 * @param int $amount
 	 *
 	 * @return array
@@ -86,21 +72,6 @@ class Aplazame_Client {
 		return $this->order_request( $order_id, 'POST', '/cancel' );
 	}
 
-	/**
-	 * @param int $order_id
-	 *
-	 * @return array
-	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
-	 */
-	public function fetch( $order_id ) {
-		$orders = $this->request( 'GET', '/orders?mid=' . $order_id );
-
-		return $orders['results'][0];
-	}
 	/**
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.

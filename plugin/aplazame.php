@@ -37,6 +37,28 @@ class WC_Aplazame {
 		$log->add( self::METHOD_ID, $msg );
 	}
 
+	public static function configure_aplazame_profile( $sandbox, $private_key, $redirect_id ) {
+		$client = new Aplazame_Sdk_Api_Client(
+			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
+			($sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
+			$private_key
+		);
+
+		$response = $client->patch( '/me',
+			array(
+				'confirmation_url' => add_query_arg(
+					array(
+						'action' => 'aplazame_api',
+						'path'   => '/confirm/',
+					),
+					get_permalink( $redirect_id )
+				),
+			)
+		);
+
+		return $response;
+	}
+
 	/**
 	 * @var array
 	 */
@@ -96,6 +118,10 @@ class WC_Aplazame {
 		$this->redirect = new Aplazame_Redirect();
 		register_activation_hook( __FILE__, array( $this->redirect, 'addRedirectPage' ) );
 		register_deactivation_hook( __FILE__, array( $this->redirect, 'removeRedirectPage' ) );
+
+		add_action( 'init', array( 'WC_Aplazame_Install', 'upgrade' ), 5 );
+		register_activation_hook( __FILE__, 'WC_Aplazame_Install::upgrade' );
+
 		add_action( 'wp_footer', array( $this->redirect, 'checkout' ) );
 
 		// TODO: Redirect nav
@@ -211,12 +237,10 @@ class WC_Aplazame {
 				$payload        = json_decode( file_get_contents( 'php://input' ), true );
 
 				include_once( 'classes/api/Aplazame_Api_Router.php' );
-				$api = new Aplazame_Api_Router( $this->private_api_key );
+				$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
 
 				$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
 				break;
-			case 'confirm':
-				return $this->confirm();
 			case 'history':
 				include_once( 'classes/Aplazame_History.php' );
 				$api = new Aplazame_History( $this->private_api_key );
@@ -225,42 +249,6 @@ class WC_Aplazame {
 		}
 
 		return $template;
-	}
-
-	public function confirm() {
-
-		$order_id = $_GET['order_id'];
-		$order = new WC_Order( $order_id );
-
-		$client = $this->get_client();
-
-		try {
-			$aOrder = $client->fetch( $order_id );
-			if ( $aOrder['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize()
-			     || $aOrder['currency']['code'] !== $order->get_order_currency()
-			) {
-				status_header( 403 );
-				return null;
-			}
-
-			$client->authorize( $order_id );
-		} catch ( Exception $e ) {
-			$order->update_status( 'failed',
-				sprintf( __( '%s ERROR: Order #%s cannot be confirmed. Reason: %s', 'aplazame' ),
-					self::METHOD_TITLE,
-					$order_id,
-					$e->getMessage()
-				) );
-
-			status_header( 500 );
-
-			return null;
-		}
-
-		$order->update_status( 'processing', sprintf( __( 'Confirmed by %s.', 'aplazame' ), $this->apiBaseUri ) );
-		status_header( 204 );
-
-		return null;
 	}
 
 	public function aplazameJs() {
@@ -331,6 +319,14 @@ class WC_Aplazame_Install {
 		'private_api_key'                 => '',
 	);
 
+	public static function upgrade() {
+		if ( version_compare( get_option( 'aplazame_version' ), WC_Aplazame::VERSION, '<' ) ) {
+			self::set_aplazame_profile();
+
+			self::update_aplazame_version();
+		}
+	}
+
 	public static function uninstall() {
 		self::removeSettings();
 	}
@@ -346,6 +342,31 @@ class WC_Aplazame_Install {
 
 	public static function removeSettings() {
 		delete_option( 'woocommerce_aplazame_settings' );
+	}
+
+	private static function update_aplazame_version() {
+		delete_option( 'aplazame_version' );
+		add_option( 'aplazame_version', WC_Aplazame::VERSION );
+	}
+
+	private static function set_aplazame_profile() {
+		/** @var WC_Aplazame $aplazame */
+		global $aplazame;
+
+		if ( ! $aplazame->private_api_key ) {
+			return;
+		}
+
+		try {
+			WC_Aplazame::configure_aplazame_profile(
+				$aplazame->settings['sandbox'],
+				$aplazame->private_api_key,
+				$aplazame->redirect->id
+			);
+		} catch (Exception $e) {
+			$aplazame->private_api_key = null;
+			$aplazame->settings['private_api_key'] = null;
+		}
 	}
 }
 
