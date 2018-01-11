@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.7.1\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2017-12-21 18:16+0000\n"
+"POT-Creation-Date: 2018-01-11 07:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,30 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:134
+#: aplazame.php:160
 msgid "Aplazame Campaigns"
 msgstr ""
 
-#: aplazame.php:152
+#: aplazame.php:179
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:248
-#, php-format
-msgid "%s ERROR: Order #%s cannot be confirmed. Reason: %s"
-msgstr ""
-
-#: aplazame.php:259
-#, php-format
-msgid "Confirmed by %s."
-msgstr ""
-
-#: aplazame.php:296
+#: aplazame.php:285
 #, php-format
 msgid "%s ERROR: Order #%s cannot be cancelled. Reason: %s"
 msgstr ""
 
-#: aplazame.php:306
+#: aplazame.php:295
 #, php-format
 msgid "Order #%s has been successful cancelled by %s."
 msgstr ""
@@ -128,6 +118,19 @@ msgstr ""
 
 #: classes/wc-aplazame-gateway.php:157
 msgid "CSS selector pointing to variable product price"
+msgstr ""
+
+#: classes/api/Aplazame_Api_ConfirmController.php:52
+msgid "Cancelled"
+msgstr ""
+
+#: classes/api/Aplazame_Api_ConfirmController.php:61
+msgid "Confirmed"
+msgstr ""
+
+#: classes/api/Aplazame_Api_ConfirmController.php:69
+#, php-format
+msgid "Cancelled by %s"
 msgstr ""
 
 #: templates/gateway/payment-fields.php:25
