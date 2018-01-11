@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v0.8.0](https://github.com/aplazame/woocommerce/tree/v0.8.0) (2018-01-11)
+
+* Support for orders with pending status
+
 #### [v0.7.1](https://github.com/aplazame/woocommerce/tree/v0.7.1) (2017-12-21)
 
 * Minor changes

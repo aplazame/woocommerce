@@ -4,7 +4,7 @@ Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,fi
 Requires at least: 4.0.1
 Tested up to: 4.9.1
 Requires PHP: 5.3.0
-Stable tag: 0.7.1
+Stable tag: 0.8.0
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -106,6 +106,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v0.8.0](https://github.com/aplazame/woocommerce/tree/v0.8.0) (2018-01-11)
+
+* Support for orders with pending status
 
 #### [v0.7.1](https://github.com/aplazame/woocommerce/tree/v0.7.1) (2017-12-21)
 
