@@ -86,7 +86,7 @@ Automatic updates should work great for you.
 Just signup for a vendor account at [https://vendors.aplazame.com/u/signup](https://vendors.aplazame.com/u/signup)
 
 = Can I cancel an order with Aplazame? =
-Yes, simply replace the status to *"cancelled"* or *"refunded"*.
+No, you can refund the order for the total amount
 
 = Can I refund an order with Aplazame? =
 Of course, simply select an *"Aplazame refund"* in the product detail.

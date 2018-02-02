@@ -25,16 +25,6 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: aplazame.php:285
-#, php-format
-msgid "%s ERROR: Order #%s cannot be cancelled. Reason: %s"
-msgstr ""
-
-#: aplazame.php:295
-#, php-format
-msgid "Order #%s has been successful cancelled by %s."
-msgstr ""
-
 #: classes/lib/Redirect.php:45
 msgid "Aplazame Redirect"
 msgstr ""

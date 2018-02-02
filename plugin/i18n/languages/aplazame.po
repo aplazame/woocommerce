@@ -15,16 +15,6 @@ msgstr "Campañas Aplazame"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: aplazame.php:285
-#, php-format
-msgid "%s ERROR: Order #%s cannot be cancelled. Reason: %s"
-msgstr "ERROR en %s: El pedido #%s no ha podido cancelar. Motivo: %s"
-
-#: aplazame.php:295
-#, php-format
-msgid "Order #%s has been successful cancelled by %s."
-msgstr "El pedido #%s ha sido cancelado correctamente por %s."
-
 #: classes/lib/Redirect.php:45
 msgid "Aplazame Redirect"
 msgstr ""

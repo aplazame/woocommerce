@@ -140,17 +140,6 @@ class WC_Aplazame {
 			'cart_widget',
 		), 100 );
 
-		// Handlers
-		add_action( 'woocommerce_order_status_cancelled', array(
-			$this,
-			'order_cancelled',
-		) );
-
-		add_action( 'woocommerce_order_status_refunded', array(
-			$this,
-			'order_cancelled',
-		) );
-
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
 	}
@@ -265,35 +254,6 @@ class WC_Aplazame {
 	public function cart_widget() {
 
 		Aplazame_Helpers::render_to_template( 'widgets/cart.php' );
-	}
-
-	// Handlers (no return)
-	/**
-	 * @param int $order_id
-	 */
-	public function order_cancelled( $order_id ) {
-		if ( ! static::is_aplazame_order( $order_id ) ) {
-			return;
-		}
-
-		$client = $this->get_client();
-
-		try {
-			$client->cancel( $order_id );
-		} catch ( Exception $e ) {
-			$this->add_order_note( $order_id,
-				sprintf( __( '%s ERROR: Order #%s cannot be cancelled. Reason: %s', 'aplazame' ),
-					self::METHOD_TITLE,
-					$order_id,
-					$e->getMessage()
-				) );
-
-			return;
-		}
-
-		$this->add_order_note( $order_id,
-			sprintf( __( 'Order #%s has been successful cancelled by %s.', 'aplazame' ), $order_id,
-				self::METHOD_TITLE ) );
 	}
 
 	// Static
