@@ -125,19 +125,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required'     => '',
 				),
 			),
-			'advanced'                        => array(
-				'title'       => __( 'Advanced options', 'woocommerce' ),
+			'product_widget_section'          => array(
+				'title'       => __( 'Product widget', 'woocommerce' ),
 				'type'        => 'title',
 				'description' => '',
 			),
-			'button'                          => array(
-				'type'              => 'text',
-				'title'             => __( 'Button', 'aplazame' ),
-				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
+			'product_widget_enabled'           => array(
+				'type'    => 'checkbox',
+				'title'   => __( 'Enable/Disable', 'aplazame' ),
+				'label'   => __( 'Show widget on product page', 'aplazame' ),
+				'default' => 'yes',
 			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
@@ -157,6 +154,26 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
 				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
 				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'cart_widget_section'             => array(
+				'title'       => __( 'Cart widget', 'woocommerce' ),
+				'type'        => 'title',
+				'description' => '',
+			),
+			'cart_widget_enabled'              => array(
+				'type'    => 'checkbox',
+				'title'   => __( 'Enable/Disable', 'aplazame' ),
+				'label'   => __( 'Show widget on cart page', 'aplazame' ),
+				'default' => 'yes',
+			),
+			'button'                          => array(
+				'type'              => 'text',
+				'title'             => __( 'Button', 'aplazame' ),
+				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
 				'custom_attributes' => array(
 					'required' => '',
 				),

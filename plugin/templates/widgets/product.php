@@ -6,9 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** @var WC_Aplazame $aplazame */
 global $aplazame;
-if ( ! $aplazame->enabled ) {
-	return;
-}
 
 /** @var WC_Product $product */
 global $product;
