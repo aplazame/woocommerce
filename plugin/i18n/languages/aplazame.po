@@ -131,7 +131,7 @@ msgstr "Cancelada por %s"
 #: templates/gateway/payment-fields.php:25
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
-msgstr "Es necesatio habilitar JavaScript para que %s funcione."
+msgstr "Es necesario habilitar JavaScript para que %s funcione."
 
 #: templates/product/campaigns.php:66
 msgid "The campaign applies to all products from your catalogue"
