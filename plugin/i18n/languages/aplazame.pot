@@ -46,8 +46,7 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:110 classes/wc-aplazame-gateway.php:135
-#: classes/wc-aplazame-gateway.php:168
+#: classes/wc-aplazame-gateway.php:110
 msgid "Enable/Disable"
 msgstr ""
 
@@ -77,6 +76,10 @@ msgstr ""
 
 #: classes/wc-aplazame-gateway.php:129
 msgid "Product widget"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:135 classes/wc-aplazame-gateway.php:168
+msgid "Show/Hide"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:136

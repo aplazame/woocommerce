@@ -38,8 +38,7 @@ msgstr ""
 "Se necesitan las claves de API para la pasarela de pago de Aplazame, por "
 "favor, <a href=\"%s\">regístrate</a> y obtén tus claves."
 
-#: classes/wc-aplazame-gateway.php:110 classes/wc-aplazame-gateway.php:135
-#: classes/wc-aplazame-gateway.php:168
+#: classes/wc-aplazame-gateway.php:110
 msgid "Enable/Disable"
 msgstr "Activar/Desactivar"
 
@@ -70,6 +69,10 @@ msgstr "Clave API privada de Aplazame"
 #: classes/wc-aplazame-gateway.php:129
 msgid "Product widget"
 msgstr "Widget del producto"
+
+#: classes/wc-aplazame-gateway.php:135 classes/wc-aplazame-gateway.php:168
+msgid "Show/Hide"
+msgstr "Mostrar/Ocultar"
 
 #: classes/wc-aplazame-gateway.php:136
 msgid "Show widget on product page"

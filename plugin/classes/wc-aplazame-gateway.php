@@ -132,7 +132,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			),
 			'product_widget_enabled'           => array(
 				'type'    => 'checkbox',
-				'title'   => __( 'Enable/Disable', 'aplazame' ),
+				'title'   => __( 'Show/Hide', 'aplazame' ),
 				'label'   => __( 'Show widget on product page', 'aplazame' ),
 				'default' => 'yes',
 			),
@@ -165,7 +165,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			),
 			'cart_widget_enabled'              => array(
 				'type'    => 'checkbox',
-				'title'   => __( 'Enable/Disable', 'aplazame' ),
+				'title'   => __( 'Show/Hide', 'aplazame' ),
 				'label'   => __( 'Show widget on cart page', 'aplazame' ),
 				'default' => 'yes',
 			),
