@@ -67,40 +67,56 @@ msgid "Aplazame API Private Key"
 msgstr "Clave API privada de Aplazame"
 
 #: classes/wc-aplazame-gateway.php:129
-msgid "Advanced options"
-msgstr "Opciones Avanzadas"
+msgid "Product widget"
+msgstr "Widget del producto"
 
-#: classes/wc-aplazame-gateway.php:135
-msgid "Button"
-msgstr "Botón"
+#: classes/wc-aplazame-gateway.php:135 classes/wc-aplazame-gateway.php:168
+msgid "Show/Hide"
+msgstr "Mostrar/Ocultar"
 
 #: classes/wc-aplazame-gateway.php:136
-msgid "Aplazame Button CSS Selector"
-msgstr "Selector CSS del botón de Aplazame"
+msgid "Show widget on product page"
+msgstr "Mostrar el widget en la página del producto"
 
-#: classes/wc-aplazame-gateway.php:144
+#: classes/wc-aplazame-gateway.php:141
 msgid "Product quantity CSS selector"
 msgstr "Selector CSS del número de unidades del producto"
 
-#: classes/wc-aplazame-gateway.php:145
+#: classes/wc-aplazame-gateway.php:142
 msgid "CSS selector pointing to product quantity"
 msgstr "Selector CSS para obtener la cantidad de producto"
 
-#: classes/wc-aplazame-gateway.php:150
+#: classes/wc-aplazame-gateway.php:147
 msgid "Product price CSS selector"
 msgstr "Selector CSS del precio del producto"
 
-#: classes/wc-aplazame-gateway.php:151
+#: classes/wc-aplazame-gateway.php:148
 msgid "CSS selector pointing to product price"
 msgstr "Selector CSS para obtener el precio del producto"
 
-#: classes/wc-aplazame-gateway.php:156
+#: classes/wc-aplazame-gateway.php:153
 msgid "Variable product price CSS selector"
 msgstr "Selector CSS del precio variable del producto"
 
-#: classes/wc-aplazame-gateway.php:157
+#: classes/wc-aplazame-gateway.php:154
 msgid "CSS selector pointing to variable product price"
 msgstr "Selector CSS para obtener el precio variable del producto"
+
+#: classes/wc-aplazame-gateway.php:162
+msgid "Cart widget"
+msgstr "Widget del carrito"
+
+#: classes/wc-aplazame-gateway.php:169
+msgid "Show widget on cart page"
+msgstr "Mostrar el widget en la página del carrito"
+
+#: classes/wc-aplazame-gateway.php:174
+msgid "Button"
+msgstr "Botón"
+
+#: classes/wc-aplazame-gateway.php:175
+msgid "Aplazame Button CSS Selector"
+msgstr "Selector CSS del botón de Aplazame"
 
 #: classes/api/Aplazame_Api_ConfirmController.php:52
 msgid "Cancelled"
@@ -118,7 +134,7 @@ msgstr "Cancelada por %s"
 #: templates/gateway/payment-fields.php:25
 #, php-format
 msgid "It is necessary to enable JavaScript, %s does not work without JS."
-msgstr "Es necesatio habilitar JavaScript para que %s funcione."
+msgstr "Es necesario habilitar JavaScript para que %s funcione."
 
 #: templates/product/campaigns.php:66
 msgid "The campaign applies to all products from your catalogue"

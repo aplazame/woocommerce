@@ -246,12 +246,26 @@ class WC_Aplazame {
 	}
 
 	// Widgets
+	public function is_product_widget_enabled() {
+		return $this->enabled && $this->settings['product_widget_enabled'] == 'yes';
+	}
+
 	public function product_widget() {
+		if ( ! $this->is_product_widget_enabled() ) {
+			return;
+		}
 
 		Aplazame_Helpers::render_to_template( 'widgets/product.php' );
 	}
 
+	public function is_cart_widget_enabled() {
+		return $this->enabled && $this->settings['cart_widget_enabled'] == 'yes';
+	}
+
 	public function cart_widget() {
+		if ( ! $this->is_cart_widget_enabled() ) {
+			return;
+		}
 
 		Aplazame_Helpers::render_to_template( 'widgets/cart.php' );
 	}
