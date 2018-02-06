@@ -283,12 +283,14 @@ class WC_Aplazame {
 
 class WC_Aplazame_Install {
 	public static $defaultSettings = array(
+		'cart_widget_enabled'             => 'yes',
 		'enabled'                         => null,
 		'sandbox'                         => 'yes',
 		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
 		'quantity_selector'               => '',
 		'price_product_selector'          => '',
 		'price_variable_product_selector' => '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount',
+		'product_widget_enabled'          => 'yes',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
 	);
