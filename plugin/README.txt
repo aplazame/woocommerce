@@ -1,6 +1,6 @@
 === Aplazame ===
 Contributors: aplazame
-Tags: aplazame,api,rest,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
+Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
 Tested up to: 4.9.1
 Requires PHP: 5.3.0
@@ -21,27 +21,9 @@ The module allows the customer to defer the payment of his online purchases in e
 
 Ease of implementation is the main objective we had in mind when developing Aplazame.
 
-= Continuous Integration =
-
-Automated syntax review and deployment using continuous integration tools like [drone.io](http://drone.aplazame.com/github.com/aplazame/woocommerce).
-
-= Coding Standards =
-Aplazame maintain a consistent style so the code can become clean and easy to read at a glance.
-
-In continuous integration processes we deploy a release using the Wordpress package [WordPress-Coding-Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) to validate code developed for WordPress.
-
-= l10n =
-
-Development according to standards for i18n and l10n.
-All of our Spanish translators are professionally qualified, native speakers.
-
 = Support =
 
 For any support request please drop us an email at [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Help-me). Our support team is available 24/7.
-
-= Feedback =
-
-We are open to changes in the API documentation and our services. For any suggestions please send us an email to  [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Hello).
 
 *We hope you'll enjoy using Aplazame's WooCommerce plugin!*
 
@@ -57,12 +39,6 @@ We are open to changes in the API documentation and our services. For any sugges
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of Aplazame for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
 In the search field type Aplazame for WooCommerce and click Search Plugins. Once you've found our plugin you can install it by simply clicking Install Now.
-
-= Latest version =
-
-1. **Download** the latest plugin from [here](https://s3.eu-central-1.amazonaws.com/aplazame/modules/woocommerce/aplazame.latest.zip) to local directory as `aplazame.latest.zip`.
-2. Go to the Wordpress administration page, and then go to **Plugins** > **Add New**.
-3. **Add new plugin** and select the `aplazame.latest.zip` file from your computer.
 
 = Updating =
 
