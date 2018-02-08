@@ -2,7 +2,7 @@
 
 #### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
 
-**Removed the option to cancel/refund orders using the status select has been removed.**
+**The option to cancel/refund orders using the status select has been removed.**
 Order refund can be performed using the “Refund” option under the order’s item list as usual.  
 
 * [ADD] Added a new setting for toggle the rendering of Aplazame's widget on product page.

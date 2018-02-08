@@ -85,7 +85,7 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 #### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
 
-**The option of cancel or refund orders using the status select has been removed.**
+**The option to cancel/refund orders using the status select has been removed.**
 You can still doing normal refunds using the "Refund" option below the order's item list.
 
 * [ADD] Added a new settings for toggle the rendering of Aplazame's widget on product page.
@@ -205,7 +205,6 @@ You can still doing normal refunds using the "Refund" option below the order's i
 * update composer.json
 * make options
 
-
 #### [v0.0.2](https://github.com/aplazame/woocommerce/tree/v0.0.2) (2015-09-14)
 
 * l10n fix and review
@@ -221,8 +220,8 @@ You can still doing normal refunds using the "Refund" option below the order's i
 == Upgrade Notice ==
 
 = 0.9.0 =
-**Removed the option to cancel/refund orders using the status select has been removed.**
+**The option to cancel/refund orders using the status select has been removed.**
 Order refund can be performed using the “Refund” option under the order’s item list as usual.
 
 = 0.8.0 =
-Now orders will keep in "Pending" status while Aplazame finish to check all validations. No more manual actions are required!
+Now the orders status will keep in "Pending" while Aplazame finish to check all validations. No more manual actions are required!
