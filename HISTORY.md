@@ -1,5 +1,15 @@
 ## Change Log
 
+#### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
+
+**Removed the option to cancel/refund orders using the status select has been removed.**
+Order refund can be performed using the “Refund” option under the order’s item list as usual.  
+
+* [ADD] Added a new setting for toggle the rendering of Aplazame's widget on product page.
+* [ADD] Added a new setting for toggle the rendering of Aplazame's widget on cart page.
+* [DEL] Removed the option of cancel the credit when order is manually set to *Cancelled*.
+* [DEL] Removed the option of refund the credit when order is manually set to *Refunded*.
+
 #### [v0.8.0](https://github.com/aplazame/woocommerce/tree/v0.8.0) (2018-01-11)
 
 * Support for orders with pending status

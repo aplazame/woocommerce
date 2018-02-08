@@ -2,9 +2,9 @@
 Contributors: aplazame
 Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 4.9.1
+Tested up to: 4.9.4
 Requires PHP: 5.3.0
-Stable tag: 0.8.0
+Stable tag: 0.9.0
 License: GPLv3 or later License
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -82,6 +82,16 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
+
+**The option of cancel or refund orders using the status select has been removed.**
+You can still doing normal refunds using the "Refund" option below the order's item list.
+
+* [ADD] Added a new settings for toggle the rendering of Aplazame's widget on product page.
+* [ADD] Added a new settings for toggle the rendering of Aplazame's widget on cart page.
+* [DEL] Removed the option of cancel the credit when order is manually set to *Cancelled*.
+* [DEL] Removed the option of refund the credit when order is manually set to *Refunded*.
 
 #### [v0.8.0](https://github.com/aplazame/woocommerce/tree/v0.8.0) (2018-01-11)
 
@@ -210,6 +220,9 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Upgrade Notice ==
 
-= v0.7.1 =
+= 0.9.0 =
+**Removed the option to cancel/refund orders using the status select has been removed.**
+Order refund can be performed using the “Refund” option under the order’s item list as usual.
 
-The latest release has passed all quality checks.
+= 0.8.0 =
+Now orders will keep in "Pending" status while Aplazame finish to check all validations. No more manual actions are required!

@@ -3,7 +3,7 @@ branch ?= dev
 plugin_path ?= plugin
 i18n_path ?= i18n/languages
 i18n_name ?= aplazame-es_ES
-version ?= v0.8.0
+version ?= v0.9.0
 
 # --- shell
 errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
