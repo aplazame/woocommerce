@@ -18,20 +18,6 @@ class Aplazame_Redirect {
 		return ( $this->id === $id );
 	}
 
-	public function checkout() {
-		global $wp_query;
-	    $post_id = $wp_query->get_queried_object_id();
-
-		if ( ! isset( $_GET['order_id'] )
-		     || ( (string) WC()->session->redirect_order_id !== $_GET['order_id'] )
-		     || ! $this->isRedirect( $post_id )
-		) {
-			return;
-		}
-
-		Aplazame_Helpers::render_to_template( 'gateway/redirect.php' );
-	}
-
 	/**
 	 * @return int|WP_Error
 	 */

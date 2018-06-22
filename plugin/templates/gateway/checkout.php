@@ -9,13 +9,6 @@ global $aplazame;
 if ( ! $aplazame->enabled ) {
 	return;
 }
-
-/** @var WooCommerce $woocommerce */
-global $woocommerce;
-
-$cart       = $woocommerce->cart;
-$order      = new WC_Order( $_GET['order_id'] );
-$checkout   = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $cart->get_checkout_url() );
 ?>
 
 <script type="text/javascript">

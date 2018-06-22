@@ -29,100 +29,100 @@ msgstr ""
 msgid "Aplazame Redirect"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:79
+#: classes/wc-aplazame-gateway.php:91
 #, php-format
 msgid "%s Error: \"%s\""
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:84
+#: classes/wc-aplazame-gateway.php:96
 #, php-format
 msgid "%s has successfully returned %d %s of the order #%s."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:100
+#: classes/wc-aplazame-gateway.php:112
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:110
+#: classes/wc-aplazame-gateway.php:122
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:111
+#: classes/wc-aplazame-gateway.php:123
 msgid "Enable Aplazame module"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:116
+#: classes/wc-aplazame-gateway.php:128
 msgid "Test mode (Sandbox)"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:117
+#: classes/wc-aplazame-gateway.php:129
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:118
+#: classes/wc-aplazame-gateway.php:130
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:122
+#: classes/wc-aplazame-gateway.php:134
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:123
+#: classes/wc-aplazame-gateway.php:135
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:129
+#: classes/wc-aplazame-gateway.php:141
 msgid "Product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:135 classes/wc-aplazame-gateway.php:168
+#: classes/wc-aplazame-gateway.php:147 classes/wc-aplazame-gateway.php:180
 msgid "Show/Hide"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:136
+#: classes/wc-aplazame-gateway.php:148
 msgid "Show widget on product page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:141
+#: classes/wc-aplazame-gateway.php:153
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:142
+#: classes/wc-aplazame-gateway.php:154
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:147
+#: classes/wc-aplazame-gateway.php:159
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:148
+#: classes/wc-aplazame-gateway.php:160
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:153
+#: classes/wc-aplazame-gateway.php:165
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:154
+#: classes/wc-aplazame-gateway.php:166
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:162
+#: classes/wc-aplazame-gateway.php:174
 msgid "Cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:169
+#: classes/wc-aplazame-gateway.php:181
 msgid "Show widget on cart page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:174
+#: classes/wc-aplazame-gateway.php:186
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:175
+#: classes/wc-aplazame-gateway.php:187
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 

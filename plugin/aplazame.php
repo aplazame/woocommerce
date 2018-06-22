@@ -122,8 +122,6 @@ class WC_Aplazame {
 		add_action( 'init', array( 'WC_Aplazame_Install', 'upgrade' ), 5 );
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::upgrade' );
 
-		add_action( 'wp_footer', array( $this->redirect, 'checkout' ) );
-
 		// TODO: Redirect nav
 		// add_filter('wp_nav_menu_objects', '?');
 		// Router to action

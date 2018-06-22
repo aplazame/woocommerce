@@ -32,6 +32,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			array( $this, 'process_admin_options' ) );
 
 		add_action( 'admin_notices', array( $this, 'checks' ) );
+
+		add_action('woocommerce_receipt_aplazame', array( $this, 'checkout'));
 	}
 
 	public function is_available() {
@@ -50,15 +52,25 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function process_payment( $order_id ) {
-		/** @var WC_Aplazame $aplazame */
-		global $aplazame;
+        $order = new WC_Order($order_id);
+        return array(
+            'result' => 'success',
+            'redirect' => $order->get_checkout_payment_url(true)
+        );
+	}
 
-		$url = get_permalink( $aplazame->redirect->id );
-		WC()->session->redirect_order_id = $order_id;
+	public function checkout($order_id) {
+		/** @var WooCommerce $woocommerce */
+		global $woocommerce;
 
-		return array(
-			'result'   => 'success',
-			'redirect' => add_query_arg( array( 'order_id' => $order_id ), $url ),
+		$cart  = $woocommerce->cart;
+		$order = new WC_Order( $order_id );
+
+		Aplazame_Helpers::render_to_template(
+			'gateway/checkout.php',
+			array(
+				'checkout' => Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $cart->get_checkout_url() ),
+			)
 		);
 	}
 
