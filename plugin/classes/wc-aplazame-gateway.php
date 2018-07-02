@@ -33,7 +33,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		add_action( 'admin_notices', array( $this, 'checks' ) );
 
-		add_action('woocommerce_receipt_aplazame', array( $this, 'checkout'));
+		add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'checkout' ) );
 	}
 
 	public function is_available() {
