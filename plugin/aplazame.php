@@ -29,6 +29,22 @@ class WC_Aplazame {
 	const METHOD_ID = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
+	public static function _m_or_a( $obj, $method, $attribute ) {
+		if ( method_exists( $obj, $method ) ) {
+			return $obj->$method();
+		}
+
+		return $obj->$attribute;
+	}
+
+	public static function _m_or_m( $obj, $method1, $method2 ) {
+		if ( method_exists( $obj, $method1 ) ) {
+			return $obj->$method1();
+		}
+
+		return $obj->$method2();
+	}
+
 	/**
 	 * @param string $msg
 	 */
@@ -71,6 +87,7 @@ class WC_Aplazame {
 	 * @var bool
 	 */
 	public $sandbox;
+
 	/**
 	 * @var string
 	 */
