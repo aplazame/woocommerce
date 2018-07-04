@@ -12,5 +12,5 @@ if ( ! $aplazame->enabled ) {
 ?>
 
 <script type="text/javascript">
-	aplazame.checkout(<?php echo json_encode( Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $checkout ) ); ?>);
+	aplazame.checkout(<?php echo json_encode( $checkout ); ?>);
 </script>

@@ -60,14 +60,9 @@ class WC_Aplazame {
 			$private_key
 		);
 
-		$response = $client->patch( '/me',
+		$response = $client->get( '/me',
 			array(
-				'confirmation_url' => add_query_arg(
-					array(
-						'path' => '/confirm/',
-					),
-					WC()->api_request_url( 'aplazame' )
-				),
+				'confirmation_url' => '',
 			)
 		);
 

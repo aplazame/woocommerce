@@ -59,6 +59,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 				'WooCommerce/' . WC()->version,
 				'AplazameWooCommerce/' . WC_Aplazame::VERSION,
 			),
+			'Accept-Language' => array( 'es' ),
 		);
 
 		if ( $data && ! is_string( $data ) ) {
