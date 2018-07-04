@@ -148,7 +148,7 @@ class Aplazame_Sdk_Api_Client {
 	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
-	public function request( $method, $path, array $data = null ) {
+	public function request( $method, $path, $data = null ) {
 		$uri = $this->apiBaseUri . '/' . ltrim( $path, '/' );
 
 		$request = new Aplazame_Sdk_Api_ApiRequest( $this->useSandbox, $this->accessToken, $method, $uri, $data );

@@ -70,7 +70,7 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
-	public function request( $method, $path, array $data = null ) {
+	public function request( $method, $path, $data = null ) {
 		try {
 			return $this->apiClient->request( $method, $path, $data );
 		} catch (Aplazame_Sdk_Api_ApiClientException $e) {
