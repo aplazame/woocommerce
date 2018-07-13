@@ -53,7 +53,7 @@ class WC_Aplazame {
 		$log->add( self::METHOD_ID, $msg );
 	}
 
-	public static function configure_aplazame_profile( $sandbox, $private_key, $redirect_id ) {
+	public static function configure_aplazame_profile( $sandbox, $private_key ) {
 		$client = new Aplazame_Sdk_Api_Client(
 			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
 			($sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
@@ -64,10 +64,9 @@ class WC_Aplazame {
 			array(
 				'confirmation_url' => add_query_arg(
 					array(
-						'action' => 'aplazame_api',
-						'path'   => '/confirm/',
+						'path' => '/confirm/',
 					),
-					get_permalink( $redirect_id )
+					WC()->api_request_url( 'aplazame' )
 				),
 			)
 		);
@@ -157,6 +156,8 @@ class WC_Aplazame {
 
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
+
+		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
 	}
 
 	public function aplazame_campaigns_tab( $tabs ) {
@@ -235,15 +236,7 @@ class WC_Aplazame {
 
 		switch ( $_GET['action'] ) {
 			case 'aplazame_api':
-				$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
-				$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
-				$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
-				$payload        = json_decode( file_get_contents( 'php://input' ), true );
-
-				include_once( 'classes/api/Aplazame_Api_Router.php' );
-				$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
-
-				$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
+				$this->api_router();
 				break;
 			case 'history':
 				include_once( 'classes/Aplazame_History.php' );
@@ -293,6 +286,18 @@ class WC_Aplazame {
 	 */
 	protected static function is_aplazame_order( $order_id ) {
 		return Aplazame_Helpers::get_payment_method( $order_id ) === self::METHOD_ID;
+	}
+
+	public function api_router() {
+		$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
+		$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
+		$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
+		$payload        = json_decode( file_get_contents( 'php://input' ), true );
+
+		include_once( 'classes/api/Aplazame_Api_Router.php' );
+		$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
+
+		$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
 	}
 }
 
@@ -349,11 +354,7 @@ class WC_Aplazame_Install {
 		}
 
 		try {
-			WC_Aplazame::configure_aplazame_profile(
-				$aplazame->settings['sandbox'],
-				$aplazame->private_api_key,
-				$aplazame->redirect->id
-			);
+			WC_Aplazame::configure_aplazame_profile( $aplazame->settings['sandbox'], $aplazame->private_api_key );
 		} catch (Exception $e) {
 			$aplazame->private_api_key = null;
 			$aplazame->settings['private_api_key'] = null;

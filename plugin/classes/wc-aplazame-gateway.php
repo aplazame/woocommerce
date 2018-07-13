@@ -198,7 +198,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		global $aplazame;
 
 		try {
-			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value, $aplazame->redirect->id );
+			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
 		} catch (Exception $e) {
 			// Workaround https://github.com/woocommerce/woocommerce/issues/11952
 			WC_Admin_Settings::add_error( $e->getMessage() );
