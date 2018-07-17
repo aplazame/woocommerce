@@ -111,7 +111,7 @@ class Aplazame_Api_Router {
 				include_once( 'Aplazame_Api_OrderController.php' );
 				$controller = new Aplazame_Api_OrderController();
 
-				return $controller->history( $pathArguments, $queryArguments );
+				return $controller->history( $pathArguments );
 			default:
 				return self::not_found();
 		}
