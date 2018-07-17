@@ -10,37 +10,6 @@ class Aplazame_Redirect {
 		$this->id = $this->getRedirectPageId();
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isRedirect( $id ) {
-
-		return ( $this->id === $id );
-	}
-
-	/**
-	 * @return int|WP_Error
-	 */
-	public function addRedirectPage() {
-		if ( $this->id ) {
-			return $this->id;
-		}
-
-		$post = array(
-			'post_name'  => 'aplazame-redirect',
-			'post_title'  => __( 'Aplazame Redirect' ),
-			'post_type'   => 'page',
-			'post_status' => 'publish',
-		);
-
-		$id = wp_insert_post( $post );
-
-		// Compatibility with WP < 4.4
-		add_post_meta( $id, 'aplazame-redirect', 'true' );
-
-		return $id;
-	}
-
 	public function removeRedirectPage() {
 		while ( $id = $this->getRedirectPageId() ) {
 			wp_delete_post( $id, true );

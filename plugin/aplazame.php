@@ -93,18 +93,12 @@ class WC_Aplazame {
 	public $apiBaseUri;
 
 	/**
-	 * @var Aplazame_Redirect
-	 */
-	public $redirect;
-
-	/**
 	 * @param string $apiBaseUri
 	 */
 	public function __construct( $apiBaseUri ) {
 
 		// Dependencies
 		include_once( 'classes/lib/Helpers.php' );
-		include_once( 'classes/lib/Redirect.php' );
 
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
@@ -130,19 +124,11 @@ class WC_Aplazame {
 		// Aplazame JS
 		add_action( 'wp_head', array( $this, 'aplazameJs' ), 999999 );
 
-		// Redirect
-		$this->redirect = new Aplazame_Redirect();
-		register_activation_hook( __FILE__, array( $this->redirect, 'addRedirectPage' ) );
-		register_deactivation_hook( __FILE__, array( $this->redirect, 'removeRedirectPage' ) );
-
 		add_action( 'init', array( 'WC_Aplazame_Install', 'upgrade' ), 5 );
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::upgrade' );
 
 		// TODO: Redirect nav
 		// add_filter('wp_nav_menu_objects', '?');
-		// Router to action
-		add_filter( 'template_include', array( $this, 'router' ) );
-
 		// Widgets
 		add_action( 'woocommerce_single_product_summary', array(
 			$this,
@@ -223,31 +209,6 @@ class WC_Aplazame {
 		return $methods;
 	}
 
-	// Controllers
-	/**
-	 * @param string $template
-	 *
-	 * @return null|string
-	 */
-	public function router( $template ) {
-		if ( ! isset( $_GET['action'] ) || ! $this->redirect->isRedirect( get_the_ID() ) ) {
-			return $template;
-		}
-
-		switch ( $_GET['action'] ) {
-			case 'aplazame_api':
-				$this->api_router();
-				break;
-			case 'history':
-				include_once( 'classes/Aplazame_History.php' );
-				$api = new Aplazame_History( $this->private_api_key );
-
-				$api->process( $_GET['order_id'] ); // die
-		}
-
-		return $template;
-	}
-
 	public function aplazameJs() {
 
 		Aplazame_Helpers::render_to_template( 'layout/header.php' );
@@ -318,6 +279,7 @@ class WC_Aplazame_Install {
 	public static function upgrade() {
 		if ( version_compare( get_option( 'aplazame_version' ), WC_Aplazame::VERSION, '<' ) ) {
 			self::set_aplazame_profile();
+			self::removeRedirectPage();
 
 			self::update_aplazame_version();
 		}
@@ -359,6 +321,12 @@ class WC_Aplazame_Install {
 			$aplazame->private_api_key = null;
 			$aplazame->settings['private_api_key'] = null;
 		}
+	}
+
+	private static function removeRedirectPage() {
+		include_once( 'classes/lib/Redirect.php' );
+		$redirect = new Aplazame_Redirect();
+		$redirect->removeRedirectPage();
 	}
 }
 
