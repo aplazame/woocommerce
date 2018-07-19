@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php
+    working_directory: ~/aplazame
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+          - v1-dependencies-
+
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run:
+          name: Check Syntax
+          command: make syntax.checker
+
+      - run:
+          name: CS
+          command: make style
+
+  deploy:
+    machine:
+      enabled: true
+    working_directory: ~/aplazame
+    steps:
+      - run:
+          name: Create bundle
+          command: make zip
+
+      - run:
+          name: Deploy to S3 when release
+          command: aws s3 sync aplazame.latest.zip s3://aplazame/modules/woocommerce/ --delete
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
