@@ -258,6 +258,10 @@ class WC_Aplazame {
 }
 
 class WC_Aplazame_Install {
+	const SETTINGS_KEY = 'woocommerce_aplazame_settings';
+
+	const VERSION_KEY = 'aplazame_version';
+
 	public static $defaultSettings = array(
 		'cart_widget_enabled'             => 'yes',
 		'enabled'                         => null,
@@ -272,7 +276,7 @@ class WC_Aplazame_Install {
 	);
 
 	public static function upgrade() {
-		if ( version_compare( get_option( 'aplazame_version' ), WC_Aplazame::VERSION, '<' ) ) {
+		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
 			self::set_aplazame_profile();
 			self::removeRedirectPage();
 
@@ -288,18 +292,18 @@ class WC_Aplazame_Install {
 	 * @return array
 	 */
 	public static function resetSettings() {
-		add_option( 'woocommerce_aplazame_settings', self::$defaultSettings );
+		add_option( self::SETTINGS_KEY, self::$defaultSettings );
 
 		return self::$defaultSettings;
 	}
 
 	public static function removeSettings() {
-		delete_option( 'woocommerce_aplazame_settings' );
+		delete_option( self::SETTINGS_KEY );
 	}
 
 	private static function update_aplazame_version() {
-		delete_option( 'aplazame_version' );
-		add_option( 'aplazame_version', WC_Aplazame::VERSION );
+		delete_option( self::VERSION_KEY );
+		add_option( self::VERSION_KEY, WC_Aplazame::VERSION );
 	}
 
 	private static function set_aplazame_profile() {
