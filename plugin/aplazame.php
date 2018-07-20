@@ -273,12 +273,19 @@ class WC_Aplazame_Install {
 		'product_widget_enabled'          => 'yes',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
+		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-158x32.png',
 	);
 
 	public static function upgrade() {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
 			self::set_aplazame_profile();
 			self::remove_redirect_page();
+			/** @var WC_Aplazame $aplazame */
+			global $aplazame;
+			if (!isset($aplazame->settings['button_image'])) {
+				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
+			}
+			self::save_settings( $aplazame->settings );
 
 			self::update_aplazame_version();
 		}
@@ -287,6 +294,10 @@ class WC_Aplazame_Install {
 	public static function uninstall() {
 		self::remove_settings();
 		self::remove_aplazame_version();
+	}
+
+	private static function save_settings( $settings ) {
+		update_option( self::SETTINGS_KEY, $settings );
 	}
 
 	/**
