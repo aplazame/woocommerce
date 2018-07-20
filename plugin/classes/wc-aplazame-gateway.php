@@ -212,9 +212,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	protected function validate_private_api_key_field( $key, $value ) {
-		/** @var WC_Aplazame $aplazame */
-		global $aplazame;
-
 		try {
 			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
 		} catch (Exception $e) {
