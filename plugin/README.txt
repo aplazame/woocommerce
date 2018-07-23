@@ -68,19 +68,6 @@ No, you can refund the order for the total amount
 Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
-== Screenshots ==
-
-1. Configure
-2. Cart
-3. Signin
-4. Pin Code
-5. Discounts
-6. Connect
-7. Select payment method
-8. Add payment method
-9. Success
-
-
 == Changelog ==
 
 #### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
