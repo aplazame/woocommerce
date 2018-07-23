@@ -5,8 +5,8 @@ Requires at least: 4.0.1
 Tested up to: 4.9.4
 Requires PHP: 5.3.0
 Stable tag: 0.9.0
-License: GPLv3 or later License
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+License: BSD-3-Clause
+License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
 Aplazame para WooCommerce, compra ahora y paga después
 
