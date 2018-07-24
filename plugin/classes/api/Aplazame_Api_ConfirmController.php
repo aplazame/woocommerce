@@ -1,23 +1,26 @@
 <?php
 
 final class Aplazame_Api_ConfirmController {
-	private static function ok() {
 
-		return array(
-			'status_code' => 200,
-			'payload' => array(
-				'status' => 'ok',
-			),
+	private static function ok() {
+		return Aplazame_Api_Router::success(
+			array(
+				'status_code' => 200,
+				'payload' => array(
+					'status' => 'ok',
+				),
+			)
 		);
 	}
 
 	private static function ko() {
-
-		return array(
-			'status_code' => 200,
-			'payload' => array(
-				'status' => 'ko',
-			),
+		return Aplazame_Api_Router::success(
+			array(
+				'status_code' => 200,
+				'payload' => array(
+					'status' => 'ko',
+				),
+			)
 		);
 	}
 

@@ -32,16 +32,22 @@ class Aplazame_Api_Router {
 		);
 	}
 
-	public static function collection( $page, $page_size, array $elements ) {
+	public static function success( array $payload ) {
 		return array(
 			'status_code' => 200,
-			'payload'     => array(
+			'payload' => $payload,
+		);
+	}
+
+	public static function collection( $page, $page_size, array $elements ) {
+		return self::success(
+			array(
 				'query'    => array(
 					'page'      => $page,
 					'page_size' => $page_size,
 				),
 				'elements' => $elements,
-			),
+			)
 		);
 	}
 
