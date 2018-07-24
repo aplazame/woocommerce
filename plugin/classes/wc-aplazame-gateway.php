@@ -16,7 +16,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		$this->title   = $this->method_title;
 		$this->enabled = $this->settings['enabled'];
-		$this->icon    = plugins_url( 'assets/img/icon.png', dirname( __FILE__ ) );
 
 		$this->supports = array(
 			'products',
@@ -34,6 +33,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		add_action( 'admin_notices', array( $this, 'checks' ) );
 
 		add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'checkout' ) );
+	}
+
+	public function get_icon() {
+		if (!empty($this->settings['button_image'])) {
+			$icon = '<img src="' . $this->settings['button_image'] . '" alt="' . esc_attr( $this->get_title() ) . '" />';
+		} else {
+			$icon = '';
+		}
+
+		return apply_filters( 'woocommerce_gateway_icon', $icon, $this->id );
 	}
 
 	public function is_available() {
@@ -207,6 +216,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'custom_attributes' => array(
 					'required' => '',
 				),
+			),
+			'button_image'                     => array(
+				'type'              => 'text',
+				'title'             => __( 'Button Image', 'aplazame' ),
+				'description'       => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_image'],
 			),
 		);
 	}
