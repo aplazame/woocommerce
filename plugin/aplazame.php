@@ -286,6 +286,7 @@ class WC_Aplazame_Install {
 
 	public static function uninstall() {
 		self::remove_settings();
+		self::remove_aplazame_version();
 	}
 
 	/**
@@ -304,6 +305,10 @@ class WC_Aplazame_Install {
 	private static function update_aplazame_version() {
 		delete_option( self::VERSION_KEY );
 		add_option( self::VERSION_KEY, WC_Aplazame::VERSION );
+	}
+
+	private static function remove_aplazame_version() {
+		delete_option( self::VERSION_KEY );
 	}
 
 	private static function set_aplazame_profile() {
