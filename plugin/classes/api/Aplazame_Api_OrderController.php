@@ -32,6 +32,6 @@ final class Aplazame_Api_OrderController {
 			$historyOrders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::createFromOrder( new WC_Order( $order_id ) );
 		}
 
-		return Aplazame_Api_Router::success( $historyOrders );
+		return Aplazame_Api_Router::success( Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $historyOrders ) );
 	}
 }
