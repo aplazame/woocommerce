@@ -75,14 +75,13 @@ class Aplazame_Api_Router {
 
 	/**
 	 * @param string     $path
-	 * @param array      $pathArguments
 	 * @param array      $queryArguments
 	 * @param null|array $payload
 	 *
 	 * @return void
 	 */
-	public function process( $path, array $pathArguments, array $queryArguments, $payload ) {
-		$response = $this->route( $path, $pathArguments, $queryArguments, $payload );
+	public function process( $path, array $queryArguments, $payload ) {
+		$response = $this->route( $path, $queryArguments, $payload );
 
 		status_header( $response['status_code'] );
 
@@ -91,13 +90,12 @@ class Aplazame_Api_Router {
 
 	/**
 	 * @param string     $path
-	 * @param array      $pathArguments
 	 * @param array      $queryArguments
 	 * @param null|array $payload
 	 *
 	 * @return array
 	 */
-	public function route( $path, array $pathArguments, array $queryArguments, $payload ) {
+	public function route( $path, array $queryArguments, $payload ) {
 		if ( ! $this->verifyAuthentication() ) {
 			return self::forbidden();
 		}
@@ -117,7 +115,7 @@ class Aplazame_Api_Router {
 				include_once( 'Aplazame_Api_OrderController.php' );
 				$controller = new Aplazame_Api_OrderController();
 
-				return $controller->history( $pathArguments );
+				return $controller->history( $queryArguments );
 			default:
 				return self::not_found();
 		}

@@ -246,14 +246,13 @@ class WC_Aplazame {
 
 	public function api_router() {
 		$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
-		$pathArguments  = isset( $_GET['path_arguments'] ) ? json_decode( stripslashes_deep( $_GET['path_arguments'] ), true ) : array();
-		$queryArguments = isset( $_GET['query_arguments'] ) ? json_decode( stripslashes_deep( $_GET['query_arguments'] ), true ) : array();
+		$queryArguments = $_GET;
 		$payload        = json_decode( file_get_contents( 'php://input' ), true );
 
 		include_once( 'classes/api/Aplazame_Api_Router.php' );
 		$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
 
-		$api->process( $path, $pathArguments, $queryArguments, $payload ); // die
+		$api->process( $path, $queryArguments, $payload ); // die
 	}
 }
 
