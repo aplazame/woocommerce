@@ -107,7 +107,7 @@ class WC_Aplazame {
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::resetSettings' );
 		$this->settings = get_option( 'woocommerce_aplazame_settings' );
 		if ( ! $this->settings ) {
-			$this->settings = WC_Aplazame_Install::resetSettings();
+			$this->settings = WC_Aplazame_Install::reset_settings();
 		} else {
 			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
 		}
@@ -278,26 +278,26 @@ class WC_Aplazame_Install {
 	public static function upgrade() {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
 			self::set_aplazame_profile();
-			self::removeRedirectPage();
+			self::remove_redirect_page();
 
 			self::update_aplazame_version();
 		}
 	}
 
 	public static function uninstall() {
-		self::removeSettings();
+		self::remove_settings();
 	}
 
 	/**
 	 * @return array
 	 */
-	public static function resetSettings() {
+	public static function reset_settings() {
 		add_option( self::SETTINGS_KEY, self::$defaultSettings );
 
 		return self::$defaultSettings;
 	}
 
-	public static function removeSettings() {
+	public static function remove_settings() {
 		delete_option( self::SETTINGS_KEY );
 	}
 
@@ -322,7 +322,7 @@ class WC_Aplazame_Install {
 		}
 	}
 
-	private static function removeRedirectPage() {
+	private static function remove_redirect_page() {
 		include_once( 'classes/lib/Redirect.php' );
 		$redirect = new Aplazame_Redirect();
 		$redirect->removeRedirectPage();
