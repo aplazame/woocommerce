@@ -32,7 +32,7 @@ For any support request please drop us an email at [soporte@aplazame.com](mailto
 
 = Requirements =
 
-*WooCommerce 2.1 or higher*
+*WooCommerce 2.3 or higher*
 
 = Quick install =
 
