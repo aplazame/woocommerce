@@ -8,24 +8,31 @@ Stable tag: 0.9.0
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
-Aplazame para WooCommerce, compra ahora y paga después
+Aplazame is an instant credit payment method for online purchases that allows Magento stores to boost sales by 50% by using financing as a marketing lever.
 
 
 == Description ==
 
 = Introduction =
 
-[Aplazame](https://aplazame.com) is a consumer credit company, offers a payment system that can be used by online buyers to receive funding for their purchases.
+[Aplazame](https://aplazame.com) is an instant credit payment method for online purchases that allows WooCommerce stores to sell more and increase average ticket values with a risk-free solution. A simple, secure and flexible over time payment method integrated at the ecommerce checkout. Once you activate and successfully integrate Aplazame in your site, you will be able to offer financing as a payment method to your customers.
 
-The module allows the customer to defer the payment of his online purchases in ecommerces offering Aplazame as a payment method. Aplazame's mission is to increase sales of any online store eliminating any friction in the process.
+WooCommerce stores can highlight our instant credit solution in activating our widget. This widget is a minimal and fully customizable credit simulator that will be displayed on both your product description and shopping cart views. It will allow the ecommerce to easily communicate the customer the possibility of financing her/his purchases at every step of the customer journey.
 
-Ease of implementation is the main objective we had in mind when developing Aplazame.
+Once Aplazame is integrated in WooCommerce stores, they can achieve:
 
-= Support =
+* Boost sales by 50% and reach more customers
+* Increase the average order value by 200%
+* Improve conversion rate by 20%
+* Aplazame guarantees all purchases and settles directly with merchants after order confirmation
+* Reduce your cart abandonment rate by reducing price sensitivity and increasing affordability
+* In order to start working with us in your store, you have to create a free merchant account with Aplazame. You have to do this before starting the configuration. You can create your own free account from this link: https://aplazame.com/#/account/signup
 
-For any support request please drop us an email at [soporte@aplazame.com](mailto:soporte@aplazame.com?subject=Help-me). Our support team is available 24/7.
+The plugin is free. Our business pricing is just a variable fee per transaction that ranges from 0,5 to 1,5% of the order amount depending on the volume (https://aplazame.com/prices/)
 
-*We hope you'll enjoy using Aplazame's WooCommerce plugin!*
+Aplazame operates in Spain. So if your store is located in Spain, you can integrate Aplazame as your payment method.
+
+At this moment our service only use Euros.
 
 
 == Installation ==
@@ -95,120 +102,9 @@ You can still doing normal refunds using the "Refund" option below the order's i
 * [ADD] Many other compatibility improvements
 * [FIX] Default customer date of birth
 
-#### [v0.6.2](https://github.com/aplazame/woocommerce/tree/v0.6.2) (2017-11-29)
-
-* Fix simulator does not calculate the price with taxes included
-
-#### [v0.6.1](https://github.com/aplazame/woocommerce/tree/v0.6.1) (2017-07-06)
-
-* Fix error on checkout payload
-
-#### [v0.6.0](https://github.com/aplazame/woocommerce/tree/v0.6.0) (2017-04-10)
-
-* Fix refunds.
-* Add compatibility with WooCommerce v3
-
-#### [v0.5.2](https://github.com/aplazame/woocommerce/tree/v0.5.2) (2017-02-23)
-
-* Many fixes and improvements.
-
-#### [v0.5.1](https://github.com/aplazame/woocommerce/tree/v0.5.1) (2017-02-22)
-
-* Many fixes and improvements.
-
-#### [v0.5.0](https://github.com/aplazame/woocommerce/tree/v0.5.0) (2017-02-22)
-
-* Many fixes and improvements.
-
-#### [v0.4.5](https://github.com/aplazame/woocommerce/tree/v0.4.5) (2016-11-24)
-
-* [fixed] When return to shop current order is cancelled.
-
-#### [v0.4.4](https://github.com/aplazame/woocommerce/tree/v0.4.4) (2016-10-31)
-
-* Fix confirmation_url generation
-
-#### [v0.4.3](https://github.com/aplazame/woocommerce/tree/v0.4.3) (2016-09-16)
-
-* Fix aplazame-redirect for WP < 4.4
-
-#### [v0.4.2](https://github.com/aplazame/woocommerce/tree/v0.4.2) (2016-09-14)
-
-* Fix compatibility with WooCommerce < 2.4
-* Tested up to WordPress 4.6
-
-#### [v0.4.1](https://github.com/aplazame/woocommerce/tree/v0.4.1) (2016-08-18)
-
-* Fix third party plugins conflict with aplazame redirect.
-
-#### [v0.4.0](https://github.com/aplazame/woocommerce/tree/v0.4.0) (2016-08-16)
-
-* Aplazame Campaigns.
-
-#### [v0.3.0](https://github.com/aplazame/woocommerce/tree/v0.3.0) (2016-07-27)
-
-* Many performance improvements.
-
-#### [v0.2.0](https://github.com/aplazame/woocommerce/tree/v0.2.0) (2016-06-20)
-
-* Add new settings for customize product price and product quantity CSS selectors.
-* Remove `host` and `version` settings.
-* Fix API error when refund.
-* Fix product amount for products with fixed prices.
-
-#### [v0.1.0](https://github.com/aplazame/woocommerce/tree/v0.1.0) (2016-06-13)
-
-* Fix many warnings and other kind of improvements.
-* Improvements for WooCommerce "Variable product"
-
-#### [v0.0.8](https://github.com/aplazame/woocommerce/tree/v0.0.8) (2016-03-16)
-
-* Widget data view
-
-#### [v0.0.7](https://github.com/aplazame/woocommerce/tree/v0.0.7) (2016-02-17)
-
-* Cart widget
-
-#### [v0.0.6](https://github.com/aplazame/woocommerce/tree/v0.0.6) (2015-12-15)
-
-* Fix order get_total_shipping method
-
-#### [v0.0.5](https://github.com/aplazame/woocommerce/tree/v0.0.5) (2015-12-15)
-
-* Fix PHP 5.3 compatibility
-* Fix shipping division by zero
-* Minor improvements
-
-#### [v0.0.4](https://github.com/aplazame/woocommerce/tree/v0.0.4) (2015-09-25)
-
-* Allow empty shipping
-* Fix security, order session key
-* Fix customer serializer
-
-#### [v0.0.3](https://github.com/aplazame/woocommerce/tree/v0.0.3) (2015-09-15)
-
-* Admin notices checks
-* l10n review
-* update composer.json
-* make options
-
-#### [v0.0.2](https://github.com/aplazame/woocommerce/tree/v0.0.2) (2015-09-14)
-
-* l10n fix and review
-* API exception handler
-* process_refund on gateway class
-* Full Readme.txt
-
-#### [v0.0.1](https://github.com/aplazame/woocommerce/tree/v0.0.1) (2015-09-12)
-
-* birth
-
 
 == Upgrade Notice ==
 
 = 0.9.0 =
 **The option to cancel/refund orders using the status select has been removed.**
 Order refund can be performed using the “Refund” option under the order’s item list as usual.
-
-= 0.8.0 =
-Now the orders status will keep in "Pending" while Aplazame finish to check all validations. No more manual actions are required!
