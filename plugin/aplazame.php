@@ -272,7 +272,7 @@ class WC_Aplazame_Install {
 		'product_widget_enabled'          => 'yes',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
-		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-158x32.png',
+		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-148x46.png',
 	);
 
 	public static function upgrade() {
