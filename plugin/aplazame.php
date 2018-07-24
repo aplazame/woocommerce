@@ -282,7 +282,7 @@ class WC_Aplazame_Install {
 			self::remove_redirect_page();
 			/** @var WC_Aplazame $aplazame */
 			global $aplazame;
-			if (!isset($aplazame->settings['button_image'])) {
+			if ( ! isset( $aplazame->settings['button_image'] ) ) {
 				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
 			}
 			self::save_settings( $aplazame->settings );
