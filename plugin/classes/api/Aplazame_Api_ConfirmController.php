@@ -66,7 +66,7 @@ final class Aplazame_Api_ConfirmController {
 				$order->update_status(
 					'cancelled',
 		            sprintf(
-	                    __( 'Cancelled by %s', 'aplazame' ),
+	                    __( 'Order has been cancelled: %s', 'aplazame' ),
 	                    $payload['status_reason']
 		            )
 	            );

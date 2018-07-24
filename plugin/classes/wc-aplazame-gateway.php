@@ -88,7 +88,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		try {
 			$payload = $aplazame->get_client()->create_checkout( $payload );
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
-			wc_add_notice( 'Aplazame Error: ' . $e->getMessage(), 'error' );
+			$message = $e->getMessage();
+			$order->update_status(
+				'cancelled',
+	            sprintf(
+                    __( 'Order has been cancelled: %s', 'aplazame' ),
+                    $message
+	            )
+            );
+
+			wc_add_notice( 'Aplazame Error: ' . $message, 'error' );
 			wp_redirect( $checkout_url );
 			exit;
 		}
