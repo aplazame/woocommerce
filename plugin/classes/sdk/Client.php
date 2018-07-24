@@ -15,7 +15,7 @@ class Aplazame_Client {
 		include_once( __DIR__ . '/../../lib/Aplazame/Aplazame/Http/WpClient.php' );
 
 		$this->apiClient = new Aplazame_Sdk_Api_Client(
-			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
+			$apiBaseUri,
 			$sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION,
 			$private_api_key,
 			new Aplazame_Aplazame_Http_WpClient()
