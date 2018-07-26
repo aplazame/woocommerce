@@ -1,5 +1,11 @@
 ## Change Log
 
+#### [v1.0.0](https://github.com/aplazame/woocommerce/tree/v1.0.0) (2018-07-26)
+
+* Redirect page has been removed.
+* Many other improvements.
+ 
+
 #### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
 
 **The option to cancel/refund orders using the status select has been removed.**
