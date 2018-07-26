@@ -6,17 +6,8 @@ jobs:
     working_directory: ~/aplazame
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "composer.json" }}
-          - v1-dependencies-
 
       - run: composer install -n --prefer-dist
-
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run:
           name: Check Syntax
@@ -26,7 +17,7 @@ jobs:
           name: CS
           command: make style
 
-  deploy:
+  deploy_to_s3:
     machine:
       enabled: true
     working_directory: ~/aplazame
@@ -39,12 +30,49 @@ jobs:
           name: Deploy to S3 when release
           command: aws s3 sync aplazame.latest.zip s3://aplazame/modules/woocommerce/ --delete
 
+  deploy_to_wordpress:
+    machine:
+      enabled: true
+    working_directory: ~/aplazame
+    steps:
+      - run:
+          name: Install dependencies
+          command: sudo apt install -y rsync
+
+      - run:
+          name: Clone wordpress repository
+          command: svn co https://plugins.svn.wordpress.org/aplazame svn
+
+      - run:
+          name: Sync assets
+          command: rsync -r -p assets/* svn/assets
+
+      - run:
+          name: Sync trunk
+          command: rsync -r -p plugin/* svn/trunk
+
+      - run:
+          name: Tag release
+          command: svn cp trunk tags/${CIRCLECI_TAG:1}
+
+      - run:
+          name: Commit
+          command: svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version ${CIRCLECI_TAG:1}"
+
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
-      - deploy:
+      - deploy_to_s3:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - deploy_to_wordpress:
           requires:
             - build
           filters:
