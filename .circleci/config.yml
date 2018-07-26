@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: Tag release
-          command: svn cp trunk tags/${CIRCLECI_TAG:1}
+          command: svn cp svn/trunk svn/tags/${CIRCLECI_TAG:1}
 
       - run:
           name: Commit
