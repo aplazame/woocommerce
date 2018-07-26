@@ -7,29 +7,34 @@ if ( ! function_exists( 'json_last_error_msg' ) ) {
 class Aplazame_Sdk_Api_Client {
 
 	const ENVIRONMENT_PRODUCTION = 'production';
-	const ENVIRONMENT_SANDBOX = 'sandbox';
+	const ENVIRONMENT_SANDBOX    = 'sandbox';
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $apiBaseUri;
 
 	/**
+	 *
 	 * @var bool
 	 */
 	private $useSandbox;
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $accessToken;
 
 	/**
+	 *
 	 * @var Aplazame_Sdk_Http_ClientInterface
 	 */
 	private $httpClient;
 
 	/**
+	 *
 	 * @param string                                 $apiBaseUri The API base URI.
 	 * @param string                                 $environment Destination of the request.
 	 * @param string                                 $accessToken The Access Token of the request (Public API key or Private API key)
@@ -41,10 +46,10 @@ class Aplazame_Sdk_Api_Client {
 		$accessToken,
 		Aplazame_Sdk_Http_ClientInterface $httpClient = null
 	) {
-		$this->apiBaseUri = $apiBaseUri;
-		$this->useSandbox = ($environment === self::ENVIRONMENT_SANDBOX) ? true : false;
+		$this->apiBaseUri  = $apiBaseUri;
+		$this->useSandbox  = ( $environment === self::ENVIRONMENT_SANDBOX ) ? true : false;
 		$this->accessToken = $accessToken;
-		$this->httpClient = $httpClient ? $httpClient : new Aplazame_Sdk_Http_CurlClient();
+		$this->httpClient  = $httpClient ? $httpClient : new Aplazame_Sdk_Http_CurlClient();
 	}
 
 	/**
@@ -137,6 +142,7 @@ class Aplazame_Sdk_Api_Client {
 	}
 
 	/**
+	 *
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.
 	 * @param array|null $data The data of the request.
@@ -154,7 +160,7 @@ class Aplazame_Sdk_Api_Client {
 		$request = new Aplazame_Sdk_Api_ApiRequest( $this->useSandbox, $this->accessToken, $method, $uri, $data );
 		try {
 			$response = $this->httpClient->send( $request );
-		} catch (RuntimeException $e) {
+		} catch ( RuntimeException $e ) {
 			throw Aplazame_Sdk_Api_ApiCommunicationException::fromException( $e );
 		}
 
@@ -172,6 +178,7 @@ class Aplazame_Sdk_Api_Client {
 	}
 
 	/**
+	 *
 	 * @param string $responseBody The HTTP response body.
 	 *
 	 * @return array Decoded payload.

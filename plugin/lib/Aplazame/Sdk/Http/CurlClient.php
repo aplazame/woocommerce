@@ -29,7 +29,7 @@ class Aplazame_Sdk_Http_CurlClient implements Aplazame_Sdk_Http_ClientInterface 
 
 		if ( false === $responseBody ) {
 			$message = curl_error( $ch );
-			$code = curl_errno( $ch );
+			$code    = curl_errno( $ch );
 
 			curl_close( $ch );
 

@@ -12,7 +12,7 @@ $articles = array( Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduc
 <script>
 	var campaignsContainer = document.getElementById("aplazame_campaigns_container");
 
-	var articles = <?php echo json_encode( $articles ) ?>;
+	var articles = <?php echo json_encode( $articles ); ?>;
 
 	function associateArticlesToCampaign(articles, campaignId) {
 		apiRequest("POST", "/me/campaigns/" + campaignId + "/articles", articles, function () {
@@ -61,9 +61,9 @@ $articles = array( Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduc
 		checkbox.addEventListener("click", campaignToggle, false);
 
 		if (!campaign.partial) {
-		    checkbox.checked = true;
-		    checkbox.disabled = true;
-		    checkbox.title = "<?php echo __( 'The campaign applies to all products from your catalogue', 'aplazame' ) ?>";
+			checkbox.checked = true;
+			checkbox.disabled = true;
+			checkbox.title = "<?php echo __( 'The campaign applies to all products from your catalogue', 'aplazame' ); ?>";
 		}
 
 		/**

@@ -2,17 +2,19 @@
 
 class Aplazame_Client {
 	/**
+	 *
 	 * @var Aplazame_Sdk_Api_Client
 	 */
 	public $apiClient;
 
 	/**
+	 *
 	 * @param string $apiBaseUri
 	 * @param bool   $sandbox
 	 * @param string $private_api_key
 	 */
 	public function __construct( $apiBaseUri, $sandbox, $private_api_key ) {
-		include_once( __DIR__ . '/../../lib/Aplazame/Aplazame/Http/WpClient.php' );
+		include_once __DIR__ . '/../../lib/Aplazame/Aplazame/Http/WpClient.php';
 
 		$this->apiClient = new Aplazame_Sdk_Api_Client(
 			$apiBaseUri,
@@ -23,6 +25,7 @@ class Aplazame_Client {
 	}
 
 	/**
+	 *
 	 * @param int        $order_id
 	 * @param string     $method
 	 * @param string     $path
@@ -40,6 +43,7 @@ class Aplazame_Client {
 	}
 
 	/**
+	 *
 	 * @param int $order_id
 	 * @param int $amount
 	 *
@@ -53,12 +57,18 @@ class Aplazame_Client {
 	public function refund( $order_id, $amount ) {
 		$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $amount );
 
-		return $this->order_request( $order_id, 'POST', '/refund', array(
-			'amount' => $amount->jsonSerialize(),
-		) );
+		return $this->order_request(
+			$order_id,
+			'POST',
+			'/refund',
+			array(
+				'amount' => $amount->jsonSerialize(),
+			)
+		);
 	}
 
 	/**
+	 *
 	 * @param array|null $data The data of the request.
 	 *
 	 * @return array
@@ -73,6 +83,24 @@ class Aplazame_Client {
 	}
 
 	/**
+	 *
+	 * @param int $order_id
+	 *
+	 * @return array
+	 *
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
+	 */
+	public function fetch( $order_id ) {
+		$orders = $this->request( 'GET', '/orders?mid=' . $order_id );
+
+		return array_shift( $orders['results'] );
+	}
+
+	/**
+	 *
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.
 	 * @param array|null $data The data of the request.
@@ -87,19 +115,19 @@ class Aplazame_Client {
 	public function request( $method, $path, $data = null ) {
 		try {
 			return $this->apiClient->request( $method, $path, $data );
-		} catch (Aplazame_Sdk_Api_ApiClientException $e) {
+		} catch ( Aplazame_Sdk_Api_ApiClientException $e ) {
 			$details = json_encode( $e->getError() );
 
 			WC_Aplazame::log( "Error: {$path}; {$e->getStatusCode()}; {$details}" );
 
 			throw $e;
-		} catch (Aplazame_Sdk_Api_ApiServerException $e) {
+		} catch ( Aplazame_Sdk_Api_ApiServerException $e ) {
 			$details = json_encode( $e->getError() );
 
 			WC_Aplazame::log( "Error: {$path}; {$e->getStatusCode()}; {$details}" );
 
 			throw $e;
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			$exceptionClass = get_class( $e );
 
 			WC_Aplazame::log( "Error: {$path} {$exceptionClass} {$e->getMessage()}" );

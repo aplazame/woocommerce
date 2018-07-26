@@ -10,11 +10,13 @@ class Aplazame_Sdk_Serializer_Decimal implements Aplazame_Sdk_Serializer_JsonSer
 	}
 
 	/**
+	 *
 	 * @var null|int
 	 */
 	public $value;
 
 	/**
+	 *
 	 * @param int $value
 	 */
 	public function __construct( $value ) {
@@ -22,6 +24,7 @@ class Aplazame_Sdk_Serializer_Decimal implements Aplazame_Sdk_Serializer_JsonSer
 	}
 
 	/**
+	 *
 	 * @return float
 	 */
 	public function asFloat() {

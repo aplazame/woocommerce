@@ -5,10 +5,7 @@ final class Aplazame_Api_ConfirmController {
 	private static function ok() {
 		return Aplazame_Api_Router::success(
 			array(
-				'status_code' => 200,
-				'payload' => array(
-					'status' => 'ok',
-				),
+				'status' => 'ok',
 			)
 		);
 	}
@@ -16,15 +13,13 @@ final class Aplazame_Api_ConfirmController {
 	private static function ko() {
 		return Aplazame_Api_Router::success(
 			array(
-				'status_code' => 200,
-				'payload' => array(
-					'status' => 'ko',
-				),
+				'status' => 'ko',
 			)
 		);
 	}
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $sandbox;
@@ -61,18 +56,20 @@ final class Aplazame_Api_ConfirmController {
 			case 'pending':
 				switch ( $payload['status_reason'] ) {
 					case 'confirmation_required':
-						$order->update_status( 'processing', sprintf( __( 'Confirmed', 'aplazame' ) ) );
+						if ( ! $order->payment_complete() ) {
+							return self::ko();
+						}
 						break;
 				}
 				break;
 			case 'ko':
 				$order->update_status(
 					'cancelled',
-		            sprintf(
-	                    __( 'Order has been cancelled: %s', 'aplazame' ),
-	                    $payload['status_reason']
-		            )
-	            );
+					sprintf(
+						__( 'Order has been cancelled: %s', 'aplazame' ),
+						$payload['status_reason']
+					)
+				);
 				break;
 		}
 
@@ -80,7 +77,7 @@ final class Aplazame_Api_ConfirmController {
 	}
 
 	private function isFraud( array $payload, WC_Order $order ) {
-		return ($payload['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize() ||
-			    $payload['currency']['code'] !== $order->get_order_currency());
+		return ( $payload['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize() ||
+				$payload['currency']['code'] !== $order->get_order_currency() );
 	}
 }

@@ -2,6 +2,7 @@
 
 class Aplazame_Helpers {
 	/**
+	 *
 	 * @param string $template_name
 	 * @param array  $args
 	 */
@@ -13,6 +14,7 @@ class Aplazame_Helpers {
 	}
 
 	/**
+	 *
 	 * @param int $order_id
 	 *
 	 * @return string

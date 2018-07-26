@@ -1,8 +1,10 @@
 <?php
 
 class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface {
-
-	/** @var array Map of standard HTTP status code/reason phrases */
+	/**
+	 *
+	 * @var array Map of standard HTTP status code/reason phrases
+	 */
 	private static $phrases = array(
 		100 => 'Continue',
 		101 => 'Switching Protocols',
@@ -65,27 +67,31 @@ class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface 
 	);
 
 	/**
+	 *
 	 * @var int
 	 */
 	private $statusCode;
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $reasonPhrase = '';
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $body;
 
 	/**
+	 *
 	 * @param int    $statusCode
 	 * @param string $body
 	 */
 	public function __construct( $statusCode, $body ) {
 		$this->statusCode = $statusCode;
-		$this->body = $body;
+		$this->body       = $body;
 
 		if ( isset( self::$phrases[ $this->statusCode ] ) ) {
 			$this->reasonPhrase = self::$phrases[ $statusCode ];

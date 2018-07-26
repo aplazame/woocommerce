@@ -2,11 +2,11 @@
 
 $baseDir = dirname( __FILE__ );
 
-include $baseDir . '/Api/BusinessModel/Article.php';
-include $baseDir . '/Api/BusinessModel/HistoricalOrder.php';
-include $baseDir . '/BusinessModel/Address.php';
-include $baseDir . '/BusinessModel/Article.php';
-include $baseDir . '/BusinessModel/Checkout.php';
-include $baseDir . '/BusinessModel/Customer.php';
-include $baseDir . '/BusinessModel/Order.php';
-include $baseDir . '/BusinessModel/ShippingInfo.php';
+require $baseDir . '/Api/BusinessModel/Article.php';
+require $baseDir . '/Api/BusinessModel/HistoricalOrder.php';
+require $baseDir . '/BusinessModel/Address.php';
+require $baseDir . '/BusinessModel/Article.php';
+require $baseDir . '/BusinessModel/Checkout.php';
+require $baseDir . '/BusinessModel/Customer.php';
+require $baseDir . '/BusinessModel/Order.php';
+require $baseDir . '/BusinessModel/ShippingInfo.php';

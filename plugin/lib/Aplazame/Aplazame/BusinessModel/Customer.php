@@ -26,17 +26,17 @@ class Aplazame_Aplazame_BusinessModel_Customer {
 				$gender = 0;
 		}
 
-		$aCustomer = new self();
-		$aCustomer->email = $user->user_email;
-		$aCustomer->type = 'e';
-		$aCustomer->gender = $gender;
-		$aCustomer->id = $user->ID;
+		$aCustomer             = new self();
+		$aCustomer->email      = $user->user_email;
+		$aCustomer->type       = 'e';
+		$aCustomer->gender     = $gender;
+		$aCustomer->id         = $user->ID;
 		$aCustomer->first_name = $user->first_name;
-		$aCustomer->last_name = $user->last_name;
-		if ( ($birthday = $user->getDob()) != null ) {
+		$aCustomer->last_name  = $user->last_name;
+		if ( ( $birthday = $user->getDob() ) != null ) {
 			$aCustomer->birthday = Aplazame_Sdk_Serializer_Date::fromDateTime( new DateTime( $birthday ) );
 		}
-		if ( ($document_id = $user->getTaxvat()) != null ) {
+		if ( ( $document_id = $user->getTaxvat() ) != null ) {
 			$aCustomer->document_id = $document_id;
 		}
 		$aCustomer->date_joined = Aplazame_Sdk_Serializer_Date::fromDateTime( new DateTime( $user->user_registered ) );
@@ -45,9 +45,9 @@ class Aplazame_Aplazame_BusinessModel_Customer {
 	}
 
 	public static function createGuessCustomerFromOrder( WC_Order $order ) {
-		$aCustomer = new self();
-		$aCustomer->email = WC_Aplazame::_m_or_a( $order, 'get_billing_email', 'billing_email' );
-		$aCustomer->type = 'g';
+		$aCustomer         = new self();
+		$aCustomer->email  = WC_Aplazame::_m_or_a( $order, 'get_billing_email', 'billing_email' );
+		$aCustomer->type   = 'g';
 		$aCustomer->gender = 0;
 
 		return $aCustomer;

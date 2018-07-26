@@ -4,10 +4,11 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 
 	const SDK_VERSION = '0.2.2';
 	const FORMAT_JSON = 'json';
-	const FORMAT_XML = 'xml';
+	const FORMAT_XML  = 'xml';
 	const FORMAT_YAML = 'yaml';
 
 	/**
+	 *
 	 * @param string $accessToken
 	 *
 	 * @return string
@@ -17,6 +18,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 	}
 
 	/**
+	 *
 	 * @param bool   $useSandbox
 	 * @param int    $apiVersion
 	 * @param string $format
@@ -34,6 +36,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 	}
 
 	/**
+	 *
 	 * @param bool   $useSandbox
 	 * @param string $accessToken The Access Token of the request (Public API key or Private API key)
 	 * @param string $method The HTTP method of the request.
@@ -47,15 +50,15 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 		$uri,
 		$data = null
 	) {
-	    global $wp_version;
+		global $wp_version;
 
 		$headers = array(
-			'Accept' => array( self::createAcceptHeader( $useSandbox, 1, self::FORMAT_JSON ) ),
-			'Authorization' => array( self::createAuthorizationHeader( $accessToken ) ),
-			'User-Agent' => array(
+			'Accept'          => array( self::createAcceptHeader( $useSandbox, 1, self::FORMAT_JSON ) ),
+			'Authorization'   => array( self::createAuthorizationHeader( $accessToken ) ),
+			'User-Agent'      => array(
 				'Sdk/' . self::SDK_VERSION,
 				'PHP/' . PHP_VERSION,
-	            'WordPress/' . $wp_version,
+				'WordPress/' . $wp_version,
 				'WooCommerce/' . WC()->version,
 				'AplazameWooCommerce/' . WC_Aplazame::VERSION,
 			),

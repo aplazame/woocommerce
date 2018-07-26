@@ -4,7 +4,7 @@ class Aplazame_Aplazame_Api_BusinessModel_Article {
 	public static function createFromProduct( WC_Product $product ) {
 		$product_id = WC_Aplazame::_m_or_a( $product, 'get_id', 'id' );
 
-		$article   = array(
+		$article = array(
 			'id'   => $product_id,
 			'name' => $product->get_title(),
 			'url'  => $product->get_permalink(),

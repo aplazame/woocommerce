@@ -2,6 +2,7 @@
 
 class WC_Aplazame_Proxy {
 	/**
+	 *
 	 * @var Aplazame_Client
 	 */
 	private $client;
@@ -40,7 +41,10 @@ class WC_Aplazame_Proxy {
 	}
 }
 
-/** @var WC_Aplazame $aplazame */
+/**
+ *
+ * @var WC_Aplazame $aplazame
+ */
 global $aplazame;
 
 $proxy = new WC_Aplazame_Proxy( $aplazame->get_client() );

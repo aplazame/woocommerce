@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v0.9.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2018-07-24 12:05+0000\n"
+"POT-Creation-Date: 2018-07-26 13:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,123 +17,119 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: classes/wc-aplazame-gateway.php:95
-#: classes/api/Aplazame_Api_ConfirmController.php:72
+#: classes/wc-aplazame-gateway.php:102
+#: classes/api/Aplazame_Api_ConfirmController.php:68
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:127
+#: classes/wc-aplazame-gateway.php:134
 #, php-format
 msgid "%s Error: \"%s\""
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:132
+#: classes/wc-aplazame-gateway.php:139
 #, php-format
 msgid "%s has successfully returned %d %s of the order #%s."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:148
+#: classes/wc-aplazame-gateway.php:155
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:158
+#: classes/wc-aplazame-gateway.php:165
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:159
+#: classes/wc-aplazame-gateway.php:166
 msgid "Enable Aplazame module"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:164
+#: classes/wc-aplazame-gateway.php:171
 msgid "Test mode (Sandbox)"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:165
+#: classes/wc-aplazame-gateway.php:172
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:166
+#: classes/wc-aplazame-gateway.php:173
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:170
+#: classes/wc-aplazame-gateway.php:177
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:171
+#: classes/wc-aplazame-gateway.php:178
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:177
+#: classes/wc-aplazame-gateway.php:184
 msgid "Product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:183 classes/wc-aplazame-gateway.php:216
+#: classes/wc-aplazame-gateway.php:190 classes/wc-aplazame-gateway.php:223
 msgid "Show/Hide"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:184
+#: classes/wc-aplazame-gateway.php:191
 msgid "Show widget on product page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:189
+#: classes/wc-aplazame-gateway.php:196
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:190
+#: classes/wc-aplazame-gateway.php:197
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:195
+#: classes/wc-aplazame-gateway.php:202
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:196
+#: classes/wc-aplazame-gateway.php:203
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:201
+#: classes/wc-aplazame-gateway.php:208
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:202
+#: classes/wc-aplazame-gateway.php:209
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:210
+#: classes/wc-aplazame-gateway.php:217
 msgid "Cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:217
+#: classes/wc-aplazame-gateway.php:224
 msgid "Show widget on cart page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:222
+#: classes/wc-aplazame-gateway.php:229
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:223
+#: classes/wc-aplazame-gateway.php:230
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:231
+#: classes/wc-aplazame-gateway.php:238
 msgid "Button Image"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:232
+#: classes/wc-aplazame-gateway.php:239
 msgid "Aplazame Button Image that you want to show"
 msgstr ""
 
-#: classes/api/Aplazame_Api_ConfirmController.php:55
+#: classes/api/Aplazame_Api_ConfirmController.php:49
 msgid "Cancelled"
-msgstr ""
-
-#: classes/api/Aplazame_Api_ConfirmController.php:64
-msgid "Confirmed"
 msgstr ""
 
 #: templates/product/campaigns.php:66

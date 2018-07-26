@@ -24,9 +24,9 @@ class Aplazame_Api_Router {
 	public static function client_error( $detail ) {
 		return array(
 			'status_code' => 400,
-			'payload' => array(
+			'payload'     => array(
 				'status' => 400,
-				'type' => 'CLIENT_ERROR',
+				'type'   => 'CLIENT_ERROR',
 				'detail' => $detail,
 			),
 		);
@@ -35,7 +35,7 @@ class Aplazame_Api_Router {
 	public static function success( array $payload ) {
 		return array(
 			'status_code' => 200,
-			'payload' => $payload,
+			'payload'     => $payload,
 		);
 	}
 
@@ -52,16 +52,19 @@ class Aplazame_Api_Router {
 	}
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $private_api_key;
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $sandbox;
 
 	/**
+	 *
 	 * @param string $private_api_key
 	 */
 	public function __construct( $private_api_key, $sandbox ) {
@@ -70,10 +73,11 @@ class Aplazame_Api_Router {
 		}
 
 		$this->private_api_key = $private_api_key;
-		$this->sandbox = $sandbox;
+		$this->sandbox         = $sandbox;
 	}
 
 	/**
+	 *
 	 * @param string     $path
 	 * @param array      $queryArguments
 	 * @param null|array $payload
@@ -89,6 +93,7 @@ class Aplazame_Api_Router {
 	}
 
 	/**
+	 *
 	 * @param string     $path
 	 * @param array      $queryArguments
 	 * @param null|array $payload
@@ -102,17 +107,17 @@ class Aplazame_Api_Router {
 
 		switch ( $path ) {
 			case '/article/':
-				include_once( 'Aplazame_Api_ArticleController.php' );
+				include_once 'Aplazame_Api_ArticleController.php';
 				$controller = new Aplazame_Api_ArticleController();
 
 				return $controller->articles( $queryArguments );
 			case '/confirm/':
-				include_once( 'Aplazame_Api_ConfirmController.php' );
+				include_once 'Aplazame_Api_ConfirmController.php';
 				$controller = new Aplazame_Api_ConfirmController( $this->sandbox );
 
 				return $controller->confirm( $payload );
 			case '/order/{order_id}/history/':
-				include_once( 'Aplazame_Api_OrderController.php' );
+				include_once 'Aplazame_Api_OrderController.php';
 				$controller = new Aplazame_Api_OrderController();
 
 				return $controller->history( $queryArguments );
@@ -122,6 +127,7 @@ class Aplazame_Api_Router {
 	}
 
 	/**
+	 *
 	 * @return bool
 	 */
 	private function verifyAuthentication() {
@@ -132,7 +138,7 @@ class Aplazame_Api_Router {
 			return false;
 		}
 
-		return ($authorization === $privateKey);
+		return ( $authorization === $privateKey );
 	}
 
 	private function getAuthorizationFromRequest() {

@@ -21,12 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-include_once( 'lib/Aplazame/Sdk/autoload.php' );
-include_once( 'lib/Aplazame/Aplazame/autoload.php' );
+require_once 'lib/Aplazame/Sdk/autoload.php';
+require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION = '0.9.0';
-	const METHOD_ID = 'aplazame';
+	const VERSION      = '0.9.0';
+	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
 	public static function _m_or_a( $obj, $method, $attribute ) {
@@ -46,6 +46,7 @@ class WC_Aplazame {
 	}
 
 	/**
+	 *
 	 * @param string $msg
 	 */
 	public static function log( $msg ) {
@@ -56,11 +57,12 @@ class WC_Aplazame {
 	public static function configure_aplazame_profile( $sandbox, $private_key ) {
 		$client = new Aplazame_Sdk_Api_Client(
 			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
-			($sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION),
+			( $sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION ),
 			$private_key
 		);
 
-		$response = $client->get( '/me',
+		$response = $client->get(
+			'/me',
 			array(
 				'confirmation_url' => '',
 			)
@@ -70,30 +72,35 @@ class WC_Aplazame {
 	}
 
 	/**
+	 *
 	 * @var array
 	 */
 	public $settings;
 	/**
+	 *
 	 * @var null|bool Null when the plugin is not configured yet.
 	 */
 	public $enabled;
 	/**
+	 *
 	 * @var bool
 	 */
 	public $sandbox;
 
 	/**
+	 *
 	 * @var string
 	 */
 	public $apiBaseUri;
 
 	/**
+	 *
 	 * @param string $apiBaseUri
 	 */
 	public function __construct( $apiBaseUri ) {
 
 		// Dependencies
-		include_once( 'classes/lib/Helpers.php' );
+		include_once 'classes/lib/Helpers.php';
 
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
@@ -104,7 +111,7 @@ class WC_Aplazame {
 		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
 
 		// Settings
-		register_activation_hook( __FILE__, 'WC_Aplazame_Install::resetSettings' );
+		register_activation_hook( __FILE__, 'WC_Aplazame_Install::reset_settings' );
 		$this->settings = get_option( 'woocommerce_aplazame_settings' );
 		if ( ! $this->settings ) {
 			$this->settings = WC_Aplazame_Install::reset_settings();
@@ -125,15 +132,23 @@ class WC_Aplazame {
 		// TODO: Redirect nav
 		// add_filter('wp_nav_menu_objects', '?');
 		// Widgets
-		add_action( 'woocommerce_single_product_summary', array(
-			$this,
-			'product_widget',
-		), 100 );
+		add_action(
+			'woocommerce_single_product_summary',
+			array(
+				$this,
+				'product_widget',
+			),
+			100
+		);
 
-		add_action( 'woocommerce_after_cart_totals', array(
-			$this,
-			'cart_widget',
-		), 100 );
+		add_action(
+			'woocommerce_after_cart_totals',
+			array(
+				$this,
+				'cart_widget',
+			),
+			100
+		);
 
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
@@ -143,7 +158,7 @@ class WC_Aplazame {
 
 	public function aplazame_campaigns_tab( $tabs ) {
 		$tabs['aplazame_campaigns'] = array(
-			'label' => __( 'Aplazame Campaigns', 'aplazame' ),
+			'label'  => __( 'Aplazame Campaigns', 'aplazame' ),
 			'target' => 'aplazame_campaigns_tab',
 		);
 
@@ -168,16 +183,17 @@ class WC_Aplazame {
 	}
 
 	/**
+	 *
 	 * @return Aplazame_Client
 	 */
 	public function get_client() {
-		include_once( 'classes/sdk/Client.php' );
+		include_once 'classes/sdk/Client.php';
 
-		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox,
-		$this->private_api_key );
+		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox, $this->private_api_key );
 	}
 
 	/**
+	 *
 	 * @param int|object|WC_Order $order_id .
 	 * @param string              $msg
 	 */
@@ -188,6 +204,7 @@ class WC_Aplazame {
 
 	// Hooks
 	/**
+	 *
 	 * @param array $methods
 	 *
 	 * @return array|void
@@ -197,7 +214,7 @@ class WC_Aplazame {
 			return;
 		}
 
-		include_once( 'classes/wc-aplazame-gateway.php' );
+		include_once 'classes/wc-aplazame-gateway.php';
 
 		$methods[] = 'WC_Aplazame_Gateway';
 
@@ -236,6 +253,7 @@ class WC_Aplazame {
 
 	// Static
 	/**
+	 *
 	 * @param int $order_id
 	 *
 	 * @return bool
@@ -249,7 +267,7 @@ class WC_Aplazame {
 		$queryArguments = $_GET;
 		$payload        = json_decode( file_get_contents( 'php://input' ), true );
 
-		include_once( 'classes/api/Aplazame_Api_Router.php' );
+		include_once 'classes/api/Aplazame_Api_Router.php';
 		$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
 
 		$api->process( $path, $queryArguments, $payload ); // die
@@ -279,7 +297,10 @@ class WC_Aplazame_Install {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
 			self::set_aplazame_profile();
 			self::remove_redirect_page();
-			/** @var WC_Aplazame $aplazame */
+			/**
+			 *
+			 * @var WC_Aplazame $aplazame
+			 */
 			global $aplazame;
 			if ( ! isset( $aplazame->settings['button_image'] ) ) {
 				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
@@ -300,6 +321,7 @@ class WC_Aplazame_Install {
 	}
 
 	/**
+	 *
 	 * @return array
 	 */
 	public static function reset_settings() {
@@ -322,7 +344,10 @@ class WC_Aplazame_Install {
 	}
 
 	private static function set_aplazame_profile() {
-		/** @var WC_Aplazame $aplazame */
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
 		global $aplazame;
 
 		if ( ! $aplazame->private_api_key ) {
@@ -331,18 +356,18 @@ class WC_Aplazame_Install {
 
 		try {
 			WC_Aplazame::configure_aplazame_profile( $aplazame->settings['sandbox'], $aplazame->private_api_key );
-		} catch (Exception $e) {
-			$aplazame->private_api_key = null;
+		} catch ( Exception $e ) {
+			$aplazame->private_api_key             = null;
 			$aplazame->settings['private_api_key'] = null;
 		}
 	}
 
 	private static function remove_redirect_page() {
-		include_once( 'classes/lib/Redirect.php' );
+		include_once 'classes/lib/Redirect.php';
 		$redirect = new Aplazame_Redirect();
 		$redirect->removeRedirectPage();
 	}
 }
 
 $GLOBALS['aplazame'] = new WC_Aplazame( defined( 'APLAZAME_API_BASE_URI' ) ? APLAZAME_API_BASE_URI : 'https://api.aplazame.com' );
-include_once( 'classes/wc-aplazame-proxy.php' );
+require_once 'classes/wc-aplazame-proxy.php';

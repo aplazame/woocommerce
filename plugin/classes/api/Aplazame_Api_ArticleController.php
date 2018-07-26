@@ -5,12 +5,17 @@ final class Aplazame_Api_ArticleController {
 		$page      = ( isset( $queryArguments['page'] ) ) ? $queryArguments['page'] : 1;
 		$page_size = ( isset( $queryArguments['page_size'] ) ) ? $queryArguments['page_size'] : 10;
 
-		/** @var WP_Post[] $products */
-		$products = get_posts( array(
-			'post_type'   => 'product',
-			'numberposts' => $page_size,
-			'offset'      => ($page - 1) * $page_size,
-		) );
+		/**
+		 *
+		 * @var WP_Post[] $products
+		 */
+		$products = get_posts(
+			array(
+				'post_type'   => 'product',
+				'numberposts' => $page_size,
+				'offset'      => ( $page - 1 ) * $page_size,
+			)
+		);
 
 		$articles = array();
 

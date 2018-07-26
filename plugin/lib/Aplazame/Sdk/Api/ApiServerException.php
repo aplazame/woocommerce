@@ -6,6 +6,7 @@
 class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Aplazame_Sdk_Api_AplazameExceptionInterface {
 
 	/**
+	 *
 	 * @param Aplazame_Sdk_Http_ResponseInterface $response
 	 *
 	 * @return Aplazame_Sdk_Api_ApiServerException
@@ -27,16 +28,19 @@ class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Ap
 	}
 
 	/**
+	 *
 	 * @var string
 	 */
 	private $type;
 
 	/**
+	 *
 	 * @var array
 	 */
 	private $error;
 
 	/**
+	 *
 	 * @param string $statusCode
 	 * @param string $message
 	 * @param string $type
@@ -45,7 +49,7 @@ class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Ap
 	public function __construct( $statusCode, $message, $type = '', array $error = array() ) {
 		parent::__construct( $message, $statusCode );
 
-		$this->type = $type;
+		$this->type  = $type;
 		$this->error = $error;
 	}
 
@@ -54,6 +58,7 @@ class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Ap
 	}
 
 	/**
+	 *
 	 * @return string
 	 */
 	public function getType() {
@@ -61,6 +66,7 @@ class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Ap
 	}
 
 	/**
+	 *
 	 * @return array
 	 */
 	public function getError() {

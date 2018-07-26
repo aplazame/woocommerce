@@ -2,6 +2,7 @@
 
 class Aplazame_Redirect {
 	/**
+	 *
 	 * @var string
 	 */
 	public $id;
@@ -17,13 +18,16 @@ class Aplazame_Redirect {
 	}
 
 	/**
+	 *
 	 * @return int|false
 	 */
 	private function getRedirectPageId() {
-		$posts = get_posts( array(
-			'post_type' => 'page',
-			'meta_key'  => 'aplazame-redirect',
-		) );
+		$posts = get_posts(
+			array(
+				'post_type' => 'page',
+				'meta_key'  => 'aplazame-redirect',
+			)
+		);
 
 		switch ( count( $posts ) ) {
 			case 0:

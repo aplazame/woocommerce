@@ -6,6 +6,7 @@
 class Aplazame_Sdk_Serializer_Date implements Aplazame_Sdk_Serializer_JsonSerializable {
 
 	/**
+	 *
 	 * @param DateTime $value
 	 *
 	 * @return Aplazame_Sdk_Serializer_Date
@@ -15,11 +16,13 @@ class Aplazame_Sdk_Serializer_Date implements Aplazame_Sdk_Serializer_JsonSerial
 	}
 
 	/**
+	 *
 	 * @var null|string
 	 */
 	public $value;
 
 	/**
+	 *
 	 * @param string $value
 	 */
 	public function __construct( $value ) {
@@ -27,6 +30,7 @@ class Aplazame_Sdk_Serializer_Date implements Aplazame_Sdk_Serializer_JsonSerial
 	}
 
 	/**
+	 *
 	 * @return DateTime
 	 */
 	public function asDateTime() {

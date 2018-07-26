@@ -3,6 +3,7 @@
 interface Aplazame_Sdk_Http_ClientInterface {
 
 	/**
+	 *
 	 * @param Aplazame_Sdk_Http_RequestInterface $request
 	 *
 	 * @return Aplazame_Sdk_Http_ResponseInterface

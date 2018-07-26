@@ -2,20 +2,20 @@
 
 $baseDir = dirname( __FILE__ );
 
-include $baseDir . '/Http/ClientInterface.php';
-include $baseDir . '/Http/RequestInterface.php';
-include $baseDir . '/Http/ResponseInterface.php';
-include $baseDir . '/Http/CurlClient.php';
-include $baseDir . '/Http/Request.php';
-include $baseDir . '/Http/Response.php';
-include $baseDir . '/Api/AplazameExceptionInterface.php';
-include $baseDir . '/Api/ApiClientException.php';
-include $baseDir . '/Api/ApiCommunicationException.php';
-include $baseDir . '/Api/ApiRequest.php';
-include $baseDir . '/Api/ApiServerException.php';
-include $baseDir . '/Api/Client.php';
-include $baseDir . '/Api/DeserializeException.php';
-include $baseDir . '/Serializer/JsonSerializable.php';
-include $baseDir . '/Serializer/Date.php';
-include $baseDir . '/Serializer/Decimal.php';
-include $baseDir . '/Serializer/JsonSerializer.php';
+require $baseDir . '/Http/ClientInterface.php';
+require $baseDir . '/Http/RequestInterface.php';
+require $baseDir . '/Http/ResponseInterface.php';
+require $baseDir . '/Http/CurlClient.php';
+require $baseDir . '/Http/Request.php';
+require $baseDir . '/Http/Response.php';
+require $baseDir . '/Api/AplazameExceptionInterface.php';
+require $baseDir . '/Api/ApiClientException.php';
+require $baseDir . '/Api/ApiCommunicationException.php';
+require $baseDir . '/Api/ApiRequest.php';
+require $baseDir . '/Api/ApiServerException.php';
+require $baseDir . '/Api/Client.php';
+require $baseDir . '/Api/DeserializeException.php';
+require $baseDir . '/Serializer/JsonSerializable.php';
+require $baseDir . '/Serializer/Date.php';
+require $baseDir . '/Serializer/Decimal.php';
+require $baseDir . '/Serializer/JsonSerializer.php';
