@@ -61,13 +61,7 @@ class WC_Aplazame {
 			$private_key
 		);
 
-		$response = $client->get(
-			'/me',
-			array(
-				'confirmation_url' => '',
-			)
-		);
-
+		$response = $client->get( '/me' );
 		return $response;
 	}
 
@@ -354,8 +348,14 @@ class WC_Aplazame_Install {
 			return;
 		}
 
+		$client = $aplazame->get_client()->apiClient;
 		try {
-			WC_Aplazame::configure_aplazame_profile( $aplazame->settings['sandbox'], $aplazame->private_api_key );
+			$client->post(
+				'/me',
+				array(
+					'confirmation_url' => '',
+				)
+			);
 		} catch ( Exception $e ) {
 			$aplazame->private_api_key             = null;
 			$aplazame->settings['private_api_key'] = null;
