@@ -350,7 +350,7 @@ class WC_Aplazame_Install {
 
 		$client = $aplazame->get_client()->apiClient;
 		try {
-			$client->post(
+			$client->patch(
 				'/me',
 				array(
 					'confirmation_url' => '',
