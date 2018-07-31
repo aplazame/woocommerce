@@ -171,7 +171,7 @@ class WC_Aplazame {
 	 */
 	public function plugin_action_links( $links ) {
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=wc_aplazame_gateway' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
