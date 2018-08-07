@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2018-07-31 14:32+0000\n"
+"POT-Creation-Date: 2018-08-07 13:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,114 +17,114 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: classes/wc-aplazame-gateway.php:114
+#: classes/wc-aplazame-gateway.php:115
 #: classes/api/Aplazame_Api_ConfirmController.php:69
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:151
+#: classes/wc-aplazame-gateway.php:152
 #, php-format
 msgid "%1$s Error: \"%2$s\""
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:160
+#: classes/wc-aplazame-gateway.php:161
 #, php-format
 msgid "%1$s has successfully returned %2$d %3$s of the order #%4$s."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:184
+#: classes/wc-aplazame-gateway.php:185
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
 "and take your keys."
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:197
+#: classes/wc-aplazame-gateway.php:198
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:198
+#: classes/wc-aplazame-gateway.php:199
 msgid "Enable Aplazame module"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:203
+#: classes/wc-aplazame-gateway.php:204
 msgid "Test mode (Sandbox)"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:204
+#: classes/wc-aplazame-gateway.php:205
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:205
+#: classes/wc-aplazame-gateway.php:206
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:209
+#: classes/wc-aplazame-gateway.php:210
 msgid "Private API Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:210
+#: classes/wc-aplazame-gateway.php:211
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:216
+#: classes/wc-aplazame-gateway.php:217
 msgid "Product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:222 classes/wc-aplazame-gateway.php:255
+#: classes/wc-aplazame-gateway.php:223 classes/wc-aplazame-gateway.php:256
 msgid "Show/Hide"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:223
+#: classes/wc-aplazame-gateway.php:224
 msgid "Show widget on product page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:228
+#: classes/wc-aplazame-gateway.php:229
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:229
+#: classes/wc-aplazame-gateway.php:230
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:234
+#: classes/wc-aplazame-gateway.php:235
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:235
+#: classes/wc-aplazame-gateway.php:236
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:240
+#: classes/wc-aplazame-gateway.php:241
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:241
+#: classes/wc-aplazame-gateway.php:242
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:249
+#: classes/wc-aplazame-gateway.php:250
 msgid "Cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:256
+#: classes/wc-aplazame-gateway.php:257
 msgid "Show widget on cart page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:261
+#: classes/wc-aplazame-gateway.php:262
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:262
+#: classes/wc-aplazame-gateway.php:263
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:270
+#: classes/wc-aplazame-gateway.php:271
 msgid "Button Image"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:271
+#: classes/wc-aplazame-gateway.php:272
 msgid "Aplazame Button Image that you want to show"
 msgstr ""
 

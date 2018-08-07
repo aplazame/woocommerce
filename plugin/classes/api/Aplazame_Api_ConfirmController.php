@@ -78,6 +78,6 @@ final class Aplazame_Api_ConfirmController {
 
 	private function isFraud( array $payload, WC_Order $order ) {
 		return ( $payload['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize() ||
-				$payload['currency']['code'] !== $order->get_order_currency() );
+				$payload['currency']['code'] !== WC_Aplazame::_m_or_m( $order, 'get_currency', 'get_order_currency' ) );
 	}
 }

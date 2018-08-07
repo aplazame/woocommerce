@@ -10,7 +10,7 @@ class Aplazame_Aplazame_Api_BusinessModel_Article {
 			'url'  => $product->get_permalink(),
 		);
 
-		$description = $product->get_post_data()->post_content;
+		$description = WC_Aplazame::_m_or_m( $product, 'get_post', 'get_post_data' )->post_content;
 		if ( ! empty( $description ) ) {
 			$article['description'] = $description;
 		}

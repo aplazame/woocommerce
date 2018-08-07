@@ -92,6 +92,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		if ( function_exists( 'wc_get_checkout_url' ) ) {
 			$checkout_url = wc_get_checkout_url();
 		} else {
+			/** @noinspection PhpDeprecationInspection */
 			$checkout_url = $cart->get_checkout_url();
 		}
 		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url );

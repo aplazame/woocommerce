@@ -16,12 +16,19 @@ global $aplazame;
  */
 global $product;
 
-switch ( $product->product_type ) {
+switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
 	case 'variable':
 		$price_selector = $aplazame->settings['price_variable_product_selector'];
 		break;
 	default:
 		$price_selector = $aplazame->settings['price_product_selector'];
+}
+
+if ( function_exists( 'wc_get_price_including_tax' ) ) {
+	$price = wc_get_price_including_tax( $product );
+} else {
+	/** @noinspection PhpDeprecationInspection */
+	$price = $product->get_price_including_tax();
 }
 ?>
 
@@ -29,7 +36,7 @@ switch ( $product->product_type ) {
 	data-aplazame-simulator=""
 	data-view="product"
 	<?php if ( empty( $price_selector ) ) : ?>
-		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $product->get_price_including_tax() )->jsonSerialize() ); ?>"
+		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->jsonSerialize() ); ?>"
 	<?php else : ?>
 		data-price="<?php echo esc_attr( $price_selector ); ?>"
 	<?php endif; ?>
