@@ -5,3 +5,7 @@ WORKDIR /project
 ADD composer.json ./
 
 RUN composer install
+
+ADD phpcs.xml ./
+
+ENTRYPOINT vendor/bin/phpcbf

@@ -39,6 +39,4 @@ services:
       dockerfile: Dockerfile.style
       context: ./
     volumes:
-      - ./:/var/www
-    working_dir: /var/www
-    entrypoint: vendor/bin/phpcbf
+      - ./plugin:/project/plugin
