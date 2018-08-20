@@ -100,7 +100,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		$client = $aplazame->get_client();
 		try {
-			$payload = $client->create_checkout( $payload );
+			$aplazame_payload = $client->create_checkout( $payload );
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
 			$message = $e->getMessage();
 			$aOrder  = $client->fetch( $payload->order->id );
@@ -125,7 +125,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		Aplazame_Helpers::render_to_template(
 			'gateway/checkout.php',
 			array(
-				'checkout' => $payload,
+				'aid' => $aplazame_payload['id'],
 			)
 		);
 	}

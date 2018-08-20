@@ -15,5 +15,5 @@ if ( ! $aplazame->enabled ) {
 ?>
 
 <script type="text/javascript">
-	aplazame.checkout(<?php echo json_encode( $checkout ); ?>);
+	aplazame.checkout("<?php echo $aid; ?>");
 </script>
