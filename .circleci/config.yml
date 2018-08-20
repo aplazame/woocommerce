@@ -24,6 +24,8 @@ jobs:
       enabled: true
     working_directory: ~/aplazame
     steps:
+      - checkout
+
       - run:
           name: Create bundle
           command: make zip
@@ -37,9 +39,11 @@ jobs:
       enabled: true
     working_directory: ~/aplazame
     steps:
+      - checkout
+
       - run:
           name: Install dependencies
-          command: sudo apt install -y rsync
+          command: sudo apt install -y rsync svn
 
       - run:
           name: Clone wordpress repository
