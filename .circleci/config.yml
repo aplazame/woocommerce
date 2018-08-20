@@ -66,6 +66,9 @@ workflows:
   build-deploy:
     jobs:
       - build
+          filters:
+            tags:
+              only: /.*/
       - deploy_to_s3:
           requires:
             - build
