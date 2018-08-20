@@ -7,7 +7,9 @@ jobs:
     steps:
       - checkout
 
-      - run: composer install -n --prefer-dist
+      - run:
+          name: Install dependencies
+          command: composer install -n --prefer-dist
 
       - run:
           name: Check Syntax
@@ -68,15 +70,15 @@ workflows:
           requires:
             - build
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/
       - deploy_to_wordpress:
           requires:
             - build
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/
