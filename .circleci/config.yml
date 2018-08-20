@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Deploy to S3 when release
-          command: aws s3 sync aplazame.latest.zip s3://aplazame/modules/woocommerce/ --delete
+          command: aws s3 cp aplazame.latest.zip s3://aplazame/modules/woocommerce/
 
   deploy_to_wordpress:
     machine:
@@ -43,7 +43,7 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: sudo apt install -y rsync svn
+          command: sudo apt-get update; sudo apt install -y rsync subversion
 
       - run:
           name: Clone wordpress repository
