@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v1.1.1](https://github.com/aplazame/woocommerce/tree/v1.1.1) (2018-09-07)
+
+* Fix compatibility with WooCommerce v2.
+
 #### [v1.1.0](https://github.com/aplazame/woocommerce/tree/v1.1.0) (2018-08-20)
 
 * Prevent conflicts with 3rd party systems who perform unsafe filtering 
