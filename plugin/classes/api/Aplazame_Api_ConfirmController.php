@@ -56,8 +56,12 @@ final class Aplazame_Api_ConfirmController {
 			case 'pending':
 				switch ( $payload['status_reason'] ) {
 					case 'confirmation_required':
-						if ( ! $order->payment_complete() ) {
-							return self::ko();
+						if ( method_exists( $order, 'payment_complete' ) ) {
+							if ( ! $order->payment_complete() ) {
+								return self::ko();
+							}
+						} else {
+							$order->update_status( 'processing', sprintf( __( 'Confirmed', 'aplazame' ) ) );
 						}
 						break;
 				}
