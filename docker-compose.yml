@@ -12,6 +12,7 @@ services:
       - WORDPRESS_DEBUG=true
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_PASSWORD=password
+      - XDEBUG_CONFIG
     volumes:
       - ./plugin:/var/www/html/wp-content/plugins/aplazame
     ports:

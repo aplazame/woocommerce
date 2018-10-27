@@ -3,15 +3,10 @@ FROM wordpress
 RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x /usr/local/bin/wp
 
-ARG XDEBUG_REMOTE_OPTION=xdebug.remote_connect_back=on
+ENV XDEBUG_CONFIG="remote_enable=on remote_connect_back=on"
 
-RUN pecl install xdebug \
+RUN pecl install xdebug-2.5.5 \
     && docker-php-ext-enable xdebug
-
-RUN echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo $XDEBUG_REMOTE_OPTION >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.default_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.coverage_enable=0" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 ADD ./.ci/ /
 RUN chmod +x /*.sh
