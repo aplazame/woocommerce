@@ -109,9 +109,18 @@ $articles = array( Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduc
 
 	apiRequest("GET", "/me/campaigns", null, function (payload) {
 		var campaigns = payload.results;
+		var dateObj = new Date();
+		var currentDate = dateObj.toISOString();
+		var byEndDate = function (campaign) {
+			return (campaign.end_date > currentDate);
+		};
+
+		campaigns = campaigns.filter(byEndDate);
 
 		apiRequest("GET", "/me/campaigns?articles-mid=" + articles[0].id, null, function (payload) {
 			var selectedCampaigns = payload.results;
+
+			selectedCampaigns = selectedCampaigns.filter(byEndDate);
 
 			displayCampaigns(campaigns);
 			selectCampaigns(selectedCampaigns);
