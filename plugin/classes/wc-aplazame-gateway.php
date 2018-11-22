@@ -149,7 +149,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			return new WP_Error(
 				'aplazame_refund_error',
 				sprintf(
-					__( '%1$s Error: "%2$s"', 'aplazame' ), $this->method_title,
+					__( '%1$s Error: "%2$s"', 'aplazame' ),
+					$this->method_title,
 					$e->getMessage()
 				)
 			);
@@ -218,11 +219,17 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'        => 'title',
 				'description' => '',
 			),
-			'product_widget_enabled'          => array(
-				'type'    => 'checkbox',
-				'title'   => __( 'Show/Hide', 'aplazame' ),
-				'label'   => __( 'Show widget on product page', 'aplazame' ),
-				'default' => 'yes',
+			'product_widget_action'           => array(
+				'type'        => 'select',
+				'title'       => __( 'Place to show', 'aplazame' ),
+				'description' => __( 'Widget place on product page', 'aplazame' ),
+				'options'     => array(
+					'disabled'                             => __( '~ Disabled ~', 'aplazame' ),
+					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
+					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
+					'woocommerce_single_product_summary'   => __( 'The lowest', 'aplazame' ),
+				),
+				'default'     => 'woocommerce_single_product_summary',
 			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
@@ -251,11 +258,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'        => 'title',
 				'description' => '',
 			),
-			'cart_widget_enabled'             => array(
-				'type'    => 'checkbox',
-				'title'   => __( 'Show/Hide', 'aplazame' ),
-				'label'   => __( 'Show widget on cart page', 'aplazame' ),
-				'default' => 'yes',
+			'cart_widget_action'              => array(
+				'type'        => 'select',
+				'title'       => __( 'Place to show', 'aplazame' ),
+				'description' => __( 'Widget place on cart page', 'aplazame' ),
+				'options'     => array(
+					'disabled'                       => __( '~ Disabled ~', 'aplazame' ),
+					'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
+					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
+				),
+				'default'     => 'woocommerce_after_cart_totals',
 			),
 			'button'                          => array(
 				'type'              => 'text',

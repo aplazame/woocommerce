@@ -126,23 +126,27 @@ class WC_Aplazame {
 		// TODO: Redirect nav
 		// add_filter('wp_nav_menu_objects', '?');
 		// Widgets
-		add_action(
-			'woocommerce_single_product_summary',
-			array(
-				$this,
-				'product_widget',
-			),
-			100
-		);
+		if ( $this->is_product_widget_enabled() ) {
+			add_action(
+				$this->settings['product_widget_action'],
+				array(
+					$this,
+					'product_widget',
+				),
+				100
+			);
+		};
 
-		add_action(
-			'woocommerce_after_cart_totals',
-			array(
-				$this,
-				'cart_widget',
-			),
-			100
-		);
+		if ( $this->is_cart_widget_enabled() ) {
+			add_action(
+				$this->settings['cart_widget_action'],
+				array(
+					$this,
+					'cart_widget',
+				),
+				100
+			);
+		};
 
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
@@ -222,7 +226,7 @@ class WC_Aplazame {
 
 	// Widgets
 	public function is_product_widget_enabled() {
-		return $this->enabled && $this->settings['product_widget_enabled'] == 'yes';
+		return $this->enabled && $this->settings['product_widget_action'] != 'disabled';
 	}
 
 	public function product_widget() {
@@ -234,7 +238,7 @@ class WC_Aplazame {
 	}
 
 	public function is_cart_widget_enabled() {
-		return $this->enabled && $this->settings['cart_widget_enabled'] == 'yes';
+		return $this->enabled && $this->settings['cart_widget_action'] != 'disabled';
 	}
 
 	public function cart_widget() {
@@ -274,17 +278,17 @@ class WC_Aplazame_Install {
 	const VERSION_KEY = 'aplazame_version';
 
 	public static $defaultSettings = array(
-		'cart_widget_enabled'             => 'yes',
 		'enabled'                         => null,
 		'sandbox'                         => 'yes',
 		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
 		'quantity_selector'               => '',
 		'price_product_selector'          => '',
 		'price_variable_product_selector' => '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount',
-		'product_widget_enabled'          => 'yes',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
 		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-148x46.png',
+		'product_widget_action'           => 'woocommerce_single_product_summary',
+		'cart_widget_action'              => 'woocommerce_after_cart_totals',
 	);
 
 	public static function upgrade() {
