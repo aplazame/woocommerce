@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2018-11-21 17:29+0000\n"
+"POT-Creation-Date: 2018-11-23 10:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -81,7 +81,7 @@ msgid "Widget place on product page"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:227 classes/wc-aplazame-gateway.php:266
-msgid "~ Disabled ~"
+msgid "~ Not show ~"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:228

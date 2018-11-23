@@ -224,7 +224,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Place to show', 'aplazame' ),
 				'description' => __( 'Widget place on product page', 'aplazame' ),
 				'options'     => array(
-					'disabled'                             => __( '~ Disabled ~', 'aplazame' ),
+					'disabled'                             => __( '~ Not show ~', 'aplazame' ),
 					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
 					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
 					'woocommerce_single_product_summary'   => __( 'The lowest', 'aplazame' ),
@@ -263,7 +263,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Place to show', 'aplazame' ),
 				'description' => __( 'Widget place on cart page', 'aplazame' ),
 				'options'     => array(
-					'disabled'                       => __( '~ Disabled ~', 'aplazame' ),
+					'disabled'                       => __( '~ Not show ~', 'aplazame' ),
 					'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
 					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
 				),

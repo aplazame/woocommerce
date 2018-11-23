@@ -74,8 +74,8 @@ msgid "Widget place on product page"
 msgstr "Lugar del widget en la página del producto"
 
 #: classes/wc-aplazame-gateway.php:227 classes/wc-aplazame-gateway.php:266
-msgid "~ Disabled ~"
-msgstr "~ Desactivar ~"
+msgid "~ Not show ~"
+msgstr "~ No mostrar ~"
 
 #: classes/wc-aplazame-gateway.php:228
 msgid "Before add to cart button"
