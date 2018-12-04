@@ -303,6 +303,12 @@ class WC_Aplazame_Install {
 			if ( ! isset( $aplazame->settings['button_image'] ) ) {
 				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
 			}
+			if ( isset( $aplazame->settings['product_widget_enabled'] ) && $aplazame->settings['product_widget_enabled'] == 'no' ) {
+				$aplazame->settings['product_widget_action'] = 'disabled';
+			}
+			if ( isset( $aplazame->settings['cart_widget_enabled'] ) && $aplazame->settings['cart_widget_enabled'] == 'no' ) {
+				$aplazame->settings['cart_widget_action'] = 'disabled';
+			}
 			self::save_settings( $aplazame->settings );
 
 			self::update_aplazame_version();

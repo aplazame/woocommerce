@@ -79,15 +79,15 @@ msgstr "~ No mostrar ~"
 
 #: classes/wc-aplazame-gateway.php:228
 msgid "Before add to cart button"
-msgstr "Antes del botón de añadir"
+msgstr "Antes del botón de añadir al carrito"
 
 #: classes/wc-aplazame-gateway.php:229
 msgid "After add to cart button"
-msgstr "Después del botón de añadir"
+msgstr "Después del botón de añadir al carrito"
 
 #: classes/wc-aplazame-gateway.php:230
-msgid "The lowest"
-msgstr "El más bajo"
+msgid "After summary"
+msgstr "Después del resumen"
 
 #: classes/wc-aplazame-gateway.php:236
 msgid "Product quantity CSS selector"
