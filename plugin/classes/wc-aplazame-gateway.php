@@ -227,7 +227,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'disabled'                             => __( '~ Not show ~', 'aplazame' ),
 					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
 					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
-					'woocommerce_single_product_summary'   => __( 'The lowest', 'aplazame' ),
+					'woocommerce_single_product_summary'   => __( 'After summary', 'aplazame' ),
 				),
 				'default'     => 'woocommerce_single_product_summary',
 			),
