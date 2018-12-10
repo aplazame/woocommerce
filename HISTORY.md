@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v1.2.0](https://github.com/aplazame/woocommerce/tree/v1.2.0) (2018-12-10)
+
+* [ADD] Improve customization of widget place in both product and cart pages.
+* [DEL] Hide finished campaigns.
+
 #### [v1.1.1](https://github.com/aplazame/woocommerce/tree/v1.1.1) (2018-09-07)
 
 * Fix compatibility with WooCommerce v2.
