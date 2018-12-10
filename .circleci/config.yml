@@ -59,11 +59,11 @@ jobs:
 
       - run:
           name: Tag release
-          command: svn cp svn/trunk svn/tags/${CIRCLECI_TAG:1}
+          command: svn cp svn/trunk svn/tags/${CIRCLE_TAG:1}
 
       - run:
           name: Commit
-          command: svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version ${CIRCLECI_TAG:1}"
+          command: svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version ${CIRCLE_TAG:1}"
 
 workflows:
   version: 2
