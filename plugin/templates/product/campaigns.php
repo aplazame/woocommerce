@@ -1,7 +1,23 @@
 <?php
 global $post;
 
-$articles = array( Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( new WC_Product( $post ) ) );
+$articles = array();
+$product = wc_get_product( $post );
+
+switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
+	case 'variable':
+		$children_ids = $product->get_children();
+
+		foreach ( $children_ids as $child_id ) {
+			$child = wc_get_product( $child_id );
+			$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( $child );
+		}
+		break;
+
+	default:
+		$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( $product );
+}
+
 ?>
 
 <div id="aplazame_campaigns_tab" class="panel woocommerce_options_panel">
