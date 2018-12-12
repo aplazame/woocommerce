@@ -2,14 +2,14 @@
 global $post;
 
 $articles = array();
-$product = wc_get_product( $post );
+$product  = wc_get_product( $post );
 
 switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
 	case 'variable':
 		$children_ids = $product->get_children();
 
 		foreach ( $children_ids as $child_id ) {
-			$child = wc_get_product( $child_id );
+			$child      = wc_get_product( $child_id );
 			$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( $child );
 		}
 		break;

@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v1.2.1](https://github.com/aplazame/woocommerce/tree/v1.2.1) (2018-12-12)
+
+* [FIX] Variable products to campaigns.
+
 #### [v1.2.0](https://github.com/aplazame/woocommerce/tree/v1.2.0) (2018-12-10)
 
 * [ADD] Improve customization of widget place in both product and cart pages.
@@ -11,7 +15,7 @@
 
 #### [v1.1.0](https://github.com/aplazame/woocommerce/tree/v1.1.0) (2018-08-20)
 
-* Prevent conflicts with 3rd party systems who perform unsafe filtering 
+* Prevent conflicts with 3rd party systems who perform unsafe filtering
 
 #### [v1.0.1](https://github.com/aplazame/woocommerce/tree/v1.0.1) (2018-07-31)
 
@@ -25,7 +29,7 @@
 #### [v0.9.0](https://github.com/aplazame/woocommerce/tree/v0.9.0) (2018-02-08)
 
 **The option to cancel/refund orders using the status select has been removed.**
-Order refund can be performed using the “Refund” option under the order’s item list as usual.  
+Order refund can be performed using the “Refund” option under the order’s item list as usual.
 
 * [ADD] Added a new setting for toggle the rendering of Aplazame's widget on product page.
 * [ADD] Added a new setting for toggle the rendering of Aplazame's widget on cart page.
@@ -70,11 +74,11 @@ Order refund can be performed using the “Refund” option under the order’s 
 
 #### [v0.5.0](https://github.com/aplazame/woocommerce/tree/v0.5.0) (2017-02-22)
 
-* Many fixes and improvements. 
+* Many fixes and improvements.
 
 #### [v0.4.5](https://github.com/aplazame/woocommerce/tree/v0.4.5) (2016-11-24)
 
-* [fixed] When return to shop current order is cancelled. 
+* [fixed] When return to shop current order is cancelled.
 
 #### [v0.4.4](https://github.com/aplazame/woocommerce/tree/v0.4.4) (2016-10-31)
 
