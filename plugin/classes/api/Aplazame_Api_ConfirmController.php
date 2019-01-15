@@ -10,10 +10,11 @@ final class Aplazame_Api_ConfirmController {
 		);
 	}
 
-	private static function ko() {
+	private static function ko( $reason ) {
 		return Aplazame_Api_Router::success(
 			array(
 				'status' => 'ko',
+				'reason' => $reason,
 			)
 		);
 	}
@@ -49,7 +50,7 @@ final class Aplazame_Api_ConfirmController {
 		if ( $this->isFraud( $payload, $order ) ) {
 			$order->update_status( 'cancelled', sprintf( __( 'Cancelled', 'aplazame' ) ) );
 
-			return self::ko();
+			return self::ko( 'Fraud detected' );
 		}
 
 		switch ( $payload['status'] ) {
@@ -58,7 +59,7 @@ final class Aplazame_Api_ConfirmController {
 					case 'confirmation_required':
 						if ( method_exists( $order, 'payment_complete' ) ) {
 							if ( ! $order->payment_complete() ) {
-								return self::ko();
+								return self::ko( "'payment_complete' function failed" );
 							}
 						} else {
 							$order->update_status( 'processing', sprintf( __( 'Confirmed', 'aplazame' ) ) );
