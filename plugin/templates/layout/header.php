@@ -14,7 +14,7 @@ if ( ! $aplazame->enabled ) {
 	return;
 }
 
-$aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://aplazame.com/static/aplazame.js';
+$aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://cdn.aplazame.com/aplazame.js';
 ?>
 
 <script
