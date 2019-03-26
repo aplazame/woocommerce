@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2018-12-12 15:29+0000\n"
+"POT-Creation-Date: 2019-03-26 11:22+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: classes/wc-aplazame-gateway.php:115
-#: classes/api/Aplazame_Api_ConfirmController.php:73
+#: classes/api/Aplazame_Api_ConfirmController.php:74
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr "El pedido ha sido cancelado: %s"
@@ -145,11 +145,11 @@ msgstr "Imagen del botón de Aplazame"
 msgid "Aplazame Button Image that you want to show"
 msgstr "Imagen del botón de Aplazame que quieres mostrar"
 
-#: classes/api/Aplazame_Api_ConfirmController.php:50
+#: classes/api/Aplazame_Api_ConfirmController.php:51
 msgid "Cancelled"
 msgstr "Cancelada"
 
-#: classes/api/Aplazame_Api_ConfirmController.php:64
+#: classes/api/Aplazame_Api_ConfirmController.php:65
 msgid "Confirmed"
 msgstr ""
 

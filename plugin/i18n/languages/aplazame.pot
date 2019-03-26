@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aplazame v1.2.1\n"
+"Project-Id-Version: Aplazame v1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2018-12-12 15:34+0000\n"
+"POT-Creation-Date: 2019-03-26 11:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: classes/wc-aplazame-gateway.php:115
-#: classes/api/Aplazame_Api_ConfirmController.php:73
+#: classes/api/Aplazame_Api_ConfirmController.php:74
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr ""
@@ -152,11 +152,11 @@ msgstr ""
 msgid "Aplazame Button Image that you want to show"
 msgstr ""
 
-#: classes/api/Aplazame_Api_ConfirmController.php:50
+#: classes/api/Aplazame_Api_ConfirmController.php:51
 msgid "Cancelled"
 msgstr ""
 
-#: classes/api/Aplazame_Api_ConfirmController.php:64
+#: classes/api/Aplazame_Api_ConfirmController.php:65
 msgid "Confirmed"
 msgstr ""
 

@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v1.2.2](https://github.com/aplazame/woocommerce/tree/v1.2.2) (2019-03-26)
+
+* [FIX] Changed total to subtotal in article prices to maintain consistency with other attributes.
+
 #### [v1.2.1](https://github.com/aplazame/woocommerce/tree/v1.2.1) (2018-12-12)
 
 * [FIX] Variable products to campaigns.
