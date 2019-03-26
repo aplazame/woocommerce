@@ -25,7 +25,7 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$aArticle->name     = $product->get_title();
 		$aArticle->url      = $product->get_permalink();
 		$aArticle->quantity = (int) $values['qty'];
-		$aArticle->price    = Aplazame_Sdk_Serializer_Decimal::fromFloat( $values['line_total'] / $values['qty'] );
+		$aArticle->price    = Aplazame_Sdk_Serializer_Decimal::fromFloat( $values['line_subtotal'] / $values['qty'] );
 		$aArticle->tax_rate = Aplazame_Sdk_Serializer_Decimal::fromFloat( $tax_rate );
 
 		$description = WC_Aplazame::_m_or_m( $product, 'get_post', 'get_post_data' )->post_content;
@@ -51,7 +51,7 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$aArticle->name     = $product->get_title();
 		$aArticle->url      = $product->get_permalink();
 		$aArticle->quantity = (int) $item_product->get_quantity();
-		$aArticle->price    = Aplazame_Sdk_Serializer_Decimal::fromFloat( $item_product->get_total() / $item_product->get_quantity() );
+		$aArticle->price    = Aplazame_Sdk_Serializer_Decimal::fromFloat( $item_product->get_subtotal() / $item_product->get_quantity() );
 		$aArticle->tax_rate = Aplazame_Sdk_Serializer_Decimal::fromFloat( $tax_rate );
 
 		$description = WC_Aplazame::_m_or_m( $product, 'get_post', 'get_post_data' )->post_content;
