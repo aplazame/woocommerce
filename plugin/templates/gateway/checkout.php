@@ -15,5 +15,7 @@ if ( ! $aplazame->enabled ) {
 ?>
 
 <script type="text/javascript">
-	aplazame.checkout("<?php echo $aid; ?>");
+	(window.aplazame = window.aplazame || []).push(function (aplazame) {
+		aplazame.checkout("<?php echo $aid; ?>")
+	})
 </script>
