@@ -16,13 +16,11 @@ if ( ! $aplazame->enabled ) {
 
 $aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://cdn.aplazame.com/aplazame.js';
 
-$aplazameJsParams = urldecode(
-	http_build_query(
-		array(
-			'public_key' => $aplazame->settings['public_api_key'],
-			'sandbox'    => $aplazame->sandbox ? 'true' : 'false',
-			'host'       => $aplazame->apiBaseUri,
-		)
+$aplazameJsParams = http_build_query(
+	array(
+		'public_key' => $aplazame->settings['public_api_key'],
+		'sandbox'    => $aplazame->sandbox ? 'true' : 'false',
+		'host'       => $aplazame->apiBaseUri,
 	)
 );
 ?>
