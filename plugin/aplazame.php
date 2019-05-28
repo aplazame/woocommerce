@@ -55,8 +55,14 @@ class WC_Aplazame {
 	}
 
 	public static function configure_aplazame_profile( $sandbox, $private_key ) {
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
+
 		$client = new Aplazame_Sdk_Api_Client(
-			getenv( 'APLAZAME_API_BASE_URI' ) ? getenv( 'APLAZAME_API_BASE_URI' ) : 'https://api.aplazame.com',
+			$aplazame->apiBaseUri,
 			( $sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION ),
 			$private_key
 		);
