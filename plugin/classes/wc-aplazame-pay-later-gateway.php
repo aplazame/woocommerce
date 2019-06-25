@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class WC_Aplazame_Gateway extends WC_Payment_Gateway {
+class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	public function __construct() {
-		$this->id                 = WC_Aplazame::METHOD_ID;
-		$this->method_title       = WC_Aplazame::METHOD_TITLE;
-		$this->method_description = __( 'Instalments pay with Aplazame', 'aplazame' );
+		$this->id                 = WC_Aplazame::METHOD_ID . '_pay_later';
+		$this->method_title       = WC_Aplazame::METHOD_TITLE . ' Pay Later';
+		$this->method_description = __( 'Pay later with Aplazame', 'aplazame' );
 		$this->has_fields         = true;
 
 		// Settings
@@ -42,7 +42,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function get_option_key() {
-		$this->settings['instalments_enabled'] = $this->settings['enabled'];
+		$this->settings['pay_later_enabled'] = $this->settings['enabled'];
 		return 'woocommerce_aplazame_settings';
 	}
 
@@ -68,7 +68,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function payment_fields() {
-		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php' );
+		Aplazame_Helpers::render_to_template( 'gateway/payment-fields-pay-later.php' );
 	}
 
 	public function process_payment( $order_id ) {
@@ -101,7 +101,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			/** @noinspection PhpDeprecationInspection */
 			$checkout_url = $cart->get_checkout_url();
 		}
-		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url, 'instalments' );
+		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url, 'pay_later' );
 		$payload = Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $payload );
 
 		$client = $aplazame->get_client();
@@ -198,116 +198,27 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		}
 	}
 
-	public static function form_fields() {
-		return array(
-			'sandbox'                         => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Test mode (Sandbox)' ),
-				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
-				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
-			),
-			'private_api_key'                 => array(
-				'type'              => 'text',
-				'title'             => __( 'Private API Key', 'aplazame' ),
-				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'product_widget_section'          => array(
-				'title'       => __( 'Product widget', 'woocommerce' ),
-				'type'        => 'title',
-				'description' => '',
-			),
-			'product_widget_action'           => array(
-				'type'        => 'select',
-				'title'       => __( 'Place to show', 'aplazame' ),
-				'description' => __( 'Widget place on product page', 'aplazame' ),
-				'options'     => array(
-					'disabled'                             => __( '~ Not show ~', 'aplazame' ),
-					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
-					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
-					'woocommerce_single_product_summary'   => __( 'After summary', 'aplazame' ),
-				),
-				'default'     => 'woocommerce_single_product_summary',
-			),
-			'quantity_selector'               => array(
-				'type'        => 'text',
-				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
-				'description' => __( 'CSS selector pointing to product quantity', 'aplazame' ),
-				'placeholder' => '#main form.cart input[name="quantity"]',
-			),
-			'price_product_selector'          => array(
-				'type'        => 'text',
-				'title'       => __( 'Product price CSS selector', 'aplazame' ),
-				'description' => __( 'CSS selector pointing to product price', 'aplazame' ),
-				'placeholder' => '#main .price .amount',
-			),
-			'price_variable_product_selector' => array(
-				'type'              => 'text',
-				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
-				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
-				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'cart_widget_section'             => array(
-				'title'       => __( 'Cart widget', 'woocommerce' ),
-				'type'        => 'title',
-				'description' => '',
-			),
-			'cart_widget_action'              => array(
-				'type'        => 'select',
-				'title'       => __( 'Place to show', 'aplazame' ),
-				'description' => __( 'Widget place on cart page', 'aplazame' ),
-				'options'     => array(
-					'disabled'                       => __( '~ Not show ~', 'aplazame' ),
-					'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
-					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
-				),
-				'default'     => 'woocommerce_after_cart_totals',
-			),
-			'button'                          => array(
-				'type'              => 'text',
-				'title'             => __( 'Button', 'aplazame' ),
-				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'button_image'                    => array(
-				'type'        => 'text',
-				'title'       => __( 'Button Image', 'aplazame' ),
-				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
-			),
-		);
-	}
-
 	public function init_form_fields() {
 		$this->form_fields  = array(
-			'enabled'           => array(
+			'instalments_enabled' => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
 				'label'   => __( 'Enable Aplazame instalments', 'aplazame' ),
 				'default' => 'yes',
 			),
-			'pay_later_enabled' => array(
+			'enabled'             => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
 				'label'   => __( 'Enable Aplazame pay later', 'aplazame' ),
 				'default' => 'no',
 			),
 		);
-		$this->form_fields += $this->form_fields();
+		$this->form_fields += WC_Aplazame_Gateway::form_fields();
 	}
 
 	public function init_settings() {
 		$this->settings            = get_option( 'woocommerce_aplazame_settings', null );
-		$this->settings['enabled'] = $this->settings['instalments_enabled'];
+		$this->settings['enabled'] = $this->settings['pay_later_enabled'];
 		$this->enabled             = ! empty( $this->settings['enabled'] ) && 'yes' === $this->settings['enabled'] ? 'yes' : 'no';
 	}
 

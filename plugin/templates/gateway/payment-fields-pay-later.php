@@ -21,7 +21,7 @@ global $woocommerce;
 ?>
 
 <p>
-	Aplaza o fracciona tu compra con <a href="https://aplazame.com" target="_blank">Aplazame</a>.<br>
+	Paga en 15 días tu compra con <a href="https://aplazame.com" target="_blank">Aplazame</a>.<br>
 	Obtén financiación al instante sólo con tu Nombre y Apellidos, DNI/NIE, Teléfono y tarjeta de débito o crédito.<br>
 	Sin comisiones ocultas ni letra pequeña.<br>
 </p>
@@ -33,7 +33,7 @@ global $woocommerce;
 			amount: <?php echo json_encode( Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize() ); ?>,
 			currency: <?php echo json_encode( get_woocommerce_currency() ); ?>,
 			product: {
-				type: 'instalments'
+				type: 'pay_later'
 			}
 		})
 	})

@@ -118,7 +118,7 @@ class WC_Aplazame {
 		} else {
 			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
 		}
-		$this->enabled         = $this->settings['enabled'] === 'yes';
+		$this->enabled         = $this->settings['instalments_enabled'] === 'yes' || $this->settings['pay_later_enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
 		$this->apiBaseUri      = $apiBaseUri;
 		$this->private_api_key = $this->settings['private_api_key'];
@@ -219,8 +219,10 @@ class WC_Aplazame {
 		}
 
 		include_once 'classes/wc-aplazame-gateway.php';
+		include_once 'classes/wc-aplazame-pay-later-gateway.php';
 
 		$methods[] = 'WC_Aplazame_Gateway';
+		$methods[] = 'WC_Aplazame_Pay_Later_Gateway';
 
 		return $methods;
 	}
@@ -295,6 +297,8 @@ class WC_Aplazame_Install {
 		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-148x46.png',
 		'product_widget_action'           => 'woocommerce_single_product_summary',
 		'cart_widget_action'              => 'woocommerce_after_cart_totals',
+		'instalments_enabled'             => null,
+		'pay_later_enabled'               => 'no',
 	);
 
 	public static function upgrade() {
@@ -314,6 +318,12 @@ class WC_Aplazame_Install {
 			}
 			if ( isset( $aplazame->settings['cart_widget_enabled'] ) && $aplazame->settings['cart_widget_enabled'] == 'no' ) {
 				$aplazame->settings['cart_widget_action'] = 'disabled';
+			}
+			if ( ! isset( $aplazame->settings['instalments_enabled'] ) ) {
+				$aplazame->settings['instalments_enabled'] = $aplazame->settings['enabled'];
+			}
+			if ( ! isset( $aplazame->settings['pay_later_enabled'] ) ) {
+				$aplazame->settings['pay_later_enabled'] = self::$defaultSettings['pay_later_enabled'];
 			}
 			self::save_settings( $aplazame->settings );
 
