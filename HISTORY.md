@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v1.2.3](https://github.com/aplazame/woocommerce/tree/v1.2.3) (2019-07-11)
+
+* [FIX] Check if Aplazame is the current payment method.
+* [ADD] JS async load.
+
 #### [v1.2.2](https://github.com/aplazame/woocommerce/tree/v1.2.2) (2019-03-26)
 
 * [FIX] Changed total to subtotal in article prices to maintain consistency with other attributes.
