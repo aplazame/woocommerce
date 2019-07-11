@@ -48,7 +48,7 @@ final class Aplazame_Api_ConfirmController {
 		}
 
 		if ( $order->get_payment_method() != WC_Aplazame::METHOD_ID ) {
-			return self::ko( 'Aplazame is not the payment method' );
+			return self::ko( 'Aplazame is not the current payment method' );
 		}
 
 		if ( $this->isFraud( $payload, $order ) ) {
