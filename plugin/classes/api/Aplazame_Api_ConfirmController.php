@@ -47,6 +47,10 @@ final class Aplazame_Api_ConfirmController {
 			return Aplazame_Api_Router::not_found();
 		}
 
+		if ( $order->get_payment_method() != WC_Aplazame::METHOD_ID ) {
+			return self::ko( 'Aplazame is not the payment method' );
+		}
+
 		if ( $this->isFraud( $payload, $order ) ) {
 			$order->update_status( 'cancelled', sprintf( __( 'Cancelled', 'aplazame' ) ) );
 
