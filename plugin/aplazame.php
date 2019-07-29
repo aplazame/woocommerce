@@ -234,7 +234,7 @@ class WC_Aplazame {
 
 	// Widgets
 	public function is_product_widget_enabled() {
-		return $this->enabled && $this->settings['product_widget_action'] != 'disabled';
+		return $this->settings['instalments_enabled'] === 'yes' && $this->settings['product_widget_action'] != 'disabled';
 	}
 
 	public function product_widget() {
@@ -246,7 +246,7 @@ class WC_Aplazame {
 	}
 
 	public function is_cart_widget_enabled() {
-		return $this->enabled && $this->settings['cart_widget_action'] != 'disabled';
+		return $this->settings['instalments_enabled'] === 'yes' && $this->settings['cart_widget_action'] != 'disabled';
 	}
 
 	public function cart_widget() {
@@ -299,6 +299,7 @@ class WC_Aplazame_Install {
 		'cart_widget_action'              => 'woocommerce_after_cart_totals',
 		'instalments_enabled'             => null,
 		'pay_later_enabled'               => 'no',
+		'button_pay_later'                => '#payment ul li:has(input#payment_method_aplazame_pay_later)',
 	);
 
 	public static function upgrade() {
@@ -324,6 +325,9 @@ class WC_Aplazame_Install {
 			}
 			if ( ! isset( $aplazame->settings['pay_later_enabled'] ) ) {
 				$aplazame->settings['pay_later_enabled'] = self::$defaultSettings['pay_later_enabled'];
+			}
+			if ( ! isset( $aplazame->settings['button_pay_later'] ) ) {
+				$aplazame->settings['button_pay_later'] = self::$defaultSettings['button_pay_later'];
 			}
 			self::save_settings( $aplazame->settings );
 

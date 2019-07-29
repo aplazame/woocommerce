@@ -278,6 +278,15 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
+			'button_pay_later'                => array(
+				'type'              => 'text',
+				'title'             => __( 'Pay Later Button', 'aplazame' ),
+				'description'       => __( 'Aplazame Pay Later Button CSS Selector', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_pay_later'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
 			'button_image'                    => array(
 				'type'        => 'text',
 				'title'       => __( 'Button Image', 'aplazame' ),

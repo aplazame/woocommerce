@@ -29,7 +29,7 @@ global $woocommerce;
 <script>
 	(window.aplazame = window.aplazame || []).push(function (aplazame) {
 		aplazame.button({
-			selector: <?php echo json_encode( $aplazame->settings['button'] ); ?>,
+			selector: <?php echo json_encode( $aplazame->settings['button_pay_later'] ); ?>,
 			amount: <?php echo json_encode( Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize() ); ?>,
 			currency: <?php echo json_encode( get_woocommerce_currency() ); ?>,
 			product: {
