@@ -156,6 +156,7 @@ class WC_Aplazame {
 
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
+		add_action( 'woocommerce_order_status_completed', array( $this, 'capture_order' ) );
 
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
 	}
@@ -171,6 +172,36 @@ class WC_Aplazame {
 
 	public function product_campaigns() {
 		Aplazame_Helpers::render_to_template( 'product/campaigns.php' );
+	}
+
+	public function capture_order( $order_id ) {
+		if ( $this->is_aplazame_pay_later_order( $order_id ) ) {
+			/**
+			 *
+			 * @var WC_Aplazame $aplazame
+			 */
+			global $aplazame;
+
+			$client = $aplazame->get_client()->apiClient;
+
+			$order  = wc_get_order( $order_id );
+			$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize();
+
+			try {
+				$response = $client->post(
+					'/orders/' . $order_id . '/captures',
+					array(
+						'amount' => $amount,
+					)
+				);
+			} catch ( Exception $e ) {
+				return $e;
+			}
+
+			return $response;
+		}
+
+		return false;
 	}
 
 	/**
@@ -266,6 +297,16 @@ class WC_Aplazame {
 	 */
 	protected static function is_aplazame_order( $order_id ) {
 		return Aplazame_Helpers::get_payment_method( $order_id ) === self::METHOD_ID;
+	}
+
+	/**
+	 *
+	 * @param int $order_id
+	 *
+	 * @return bool
+	 */
+	protected static function is_aplazame_pay_later_order( $order_id ) {
+		return Aplazame_Helpers::get_payment_method( $order_id ) === self::METHOD_ID . '_pay_later';
 	}
 
 	public function api_router() {
