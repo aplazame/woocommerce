@@ -293,6 +293,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
 				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
 			),
+			'button_image_pay_later'          => array(
+				'type'        => 'text',
+				'title'       => __( 'Pay Later Button Image', 'aplazame' ),
+				'description' => __( 'Aplazame Pay Later Button Image that you want to show', 'aplazame' ),
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image_pay_later'],
+			),
 		);
 	}
 

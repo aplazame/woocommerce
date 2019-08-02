@@ -47,8 +47,8 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function get_icon() {
-		if ( ! empty( $this->settings['button_image'] ) ) {
-			$icon = '<img src="' . $this->settings['button_image'] . '" alt="' . esc_attr( $this->get_title() ) . '" />';
+		if ( ! empty( $this->settings['button_image_pay_later'] ) ) {
+			$icon = '<img src="' . $this->settings['button_image_pay_later'] . '" alt="' . esc_attr( $this->get_title() ) . '" />';
 		} else {
 			$icon = '';
 		}

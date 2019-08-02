@@ -341,6 +341,7 @@ class WC_Aplazame_Install {
 		'instalments_enabled'             => null,
 		'pay_later_enabled'               => 'no',
 		'button_pay_later'                => '#payment ul li:has(input#payment_method_aplazame_pay_later)',
+		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/white-148x46.png',
 	);
 
 	public static function upgrade() {
@@ -369,6 +370,9 @@ class WC_Aplazame_Install {
 			}
 			if ( ! isset( $aplazame->settings['button_pay_later'] ) ) {
 				$aplazame->settings['button_pay_later'] = self::$defaultSettings['button_pay_later'];
+			}
+			if ( ! isset( $aplazame->settings['button_image_pay_later'] ) ) {
+				$aplazame->settings['button_image_pay_later'] = self::$defaultSettings['button_image_pay_later'];
 			}
 			self::save_settings( $aplazame->settings );
 
