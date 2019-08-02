@@ -22,4 +22,294 @@ class Aplazame_Helpers {
 	public static function get_payment_method( $order_id ) {
 		return get_post_meta( $order_id, '_payment_method', true );
 	}
+
+	/**
+	 *
+	 * @param string $image_url
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	public static function get_html_button_image( $image_url, $title ) {
+		if ( ! empty( $image_url ) ) {
+			return '<img src="' . $image_url . '" alt="' . esc_attr( $title ) . '" />';
+		}
+
+		return '';
+	}
+
+	/**
+	 *
+	 * @param WC_Aplazame_Gateway|WC_Aplazame_Pay_Later_Gateway $gateway
+	 *
+	 * @return bool
+	 */
+	public static function is_gateway_available( $gateway ) {
+		if ( ( $gateway->enabled === 'no' ) ||
+			 ( ! $gateway->settings['public_api_key'] ) ||
+			 ( ! $gateway->settings['private_api_key'] )
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 *
+	 * @param int $order_id
+	 *
+	 * @return array
+	 */
+	public static function do_payment( $order_id ) {
+		$order = new WC_Order( $order_id );
+
+		return array(
+			'result'   => 'success',
+			'redirect' => $order->get_checkout_payment_url( true ),
+		);
+	}
+
+	/**
+	 *
+	 * @param int    $order_id
+	 * @param string $type
+	 */
+	public static function aplazame_checkout( $order_id, $type ) {
+		/**
+		 *
+		 * @var WooCommerce $woocommerce
+		 */
+		global $woocommerce;
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
+
+		$cart  = $woocommerce->cart;
+		$order = new WC_Order( $order_id );
+
+		if ( function_exists( 'wc_get_checkout_url' ) ) {
+			$checkout_url = wc_get_checkout_url();
+		} else {
+			/** @noinspection PhpDeprecationInspection */
+			$checkout_url = $cart->get_checkout_url();
+		}
+		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url, $type );
+		$payload = Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $payload );
+
+		$client = $aplazame->get_client();
+		try {
+			$aplazame_payload = $client->create_checkout( $payload );
+		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
+			$message = $e->getMessage();
+			$aOrder  = $client->fetch( $payload->order->id );
+			if ( $aOrder ) {
+				wp_redirect( $payload->merchant->success_url );
+				exit;
+			}
+
+			$order->update_status(
+				'cancelled',
+				sprintf(
+					__( 'Order has been cancelled: %s', 'aplazame' ),
+					$message
+				)
+			);
+
+			wc_add_notice( 'Aplazame Error: ' . $message, 'error' );
+			wp_redirect( $checkout_url );
+			exit;
+		}
+
+		self::render_to_template(
+			'gateway/checkout.php',
+			array(
+				'aid' => $aplazame_payload['id'],
+			)
+		);
+	}
+
+	/**
+	 *
+	 * @param int    $order_id
+	 * @param int    $amount
+	 * @param string $method_title
+	 *
+	 * @return bool|WP_Error
+	 */
+	public static function aplazame_refund( $order_id, $amount, $method_title ) {
+		if ( ! $amount ) {
+			return false;
+		}
+
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
+
+		$client = $aplazame->get_client();
+
+		try {
+			$client->refund( $order_id, $amount );
+		} catch ( Exception $e ) {
+			return new WP_Error(
+				'aplazame_refund_error',
+				sprintf(
+					__( '%1$s Error: "%2$s"', 'aplazame' ),
+					$method_title,
+					$e->getMessage()
+				)
+			);
+		}
+
+		$aplazame->add_order_note(
+			$order_id,
+			sprintf(
+				__( '%1$s has successfully returned %2$d %3$s of the order #%4$s.', 'aplazame' ),
+				$method_title,
+				$amount,
+				get_woocommerce_currency(),
+				$order_id
+			)
+		);
+
+		return true;
+	}
+
+	/**
+	 *
+	 * @param WC_Aplazame_Gateway|WC_Aplazame_Pay_Later_Gateway $gateway
+	 */
+	public static function gateway_checks( $gateway ) {
+		if ( $gateway->enabled === 'no' ) {
+			return;
+		}
+
+		$_render_to_notice = function ( $msg ) {
+			echo '<div class="error"><p>' . $msg . '</p></div>';
+		};
+
+		if ( ! $gateway->settings['public_api_key'] || ! $gateway->settings['private_api_key'] ) {
+			$_render_to_notice(
+				sprintf(
+					__(
+						'Aplazame gateway requires the API keys, please <a href="%s">sign up</a> and take your keys.',
+						'aplazame'
+					),
+					'https://vendors.aplazame.com/u/signup'
+				)
+			);
+		}
+	}
+
+	/**
+	 *
+	 * @return array
+	 */
+	public static function form_fields() {
+		return array(
+			'sandbox'                         => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Test mode (Sandbox)' ),
+				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
+				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
+			),
+			'private_api_key'                 => array(
+				'type'              => 'text',
+				'title'             => __( 'Private API Key', 'aplazame' ),
+				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'product_widget_section'          => array(
+				'title'       => __( 'Product widget', 'woocommerce' ),
+				'type'        => 'title',
+				'description' => '',
+			),
+			'product_widget_action'           => array(
+				'type'        => 'select',
+				'title'       => __( 'Place to show', 'aplazame' ),
+				'description' => __( 'Widget place on product page', 'aplazame' ),
+				'options'     => array(
+					'disabled'                             => __( '~ Not show ~', 'aplazame' ),
+					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
+					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
+					'woocommerce_single_product_summary'   => __( 'After summary', 'aplazame' ),
+				),
+				'default'     => 'woocommerce_single_product_summary',
+			),
+			'quantity_selector'               => array(
+				'type'        => 'text',
+				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
+				'description' => __( 'CSS selector pointing to product quantity', 'aplazame' ),
+				'placeholder' => '#main form.cart input[name="quantity"]',
+			),
+			'price_product_selector'          => array(
+				'type'        => 'text',
+				'title'       => __( 'Product price CSS selector', 'aplazame' ),
+				'description' => __( 'CSS selector pointing to product price', 'aplazame' ),
+				'placeholder' => '#main .price .amount',
+			),
+			'price_variable_product_selector' => array(
+				'type'              => 'text',
+				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
+				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
+				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'cart_widget_section'             => array(
+				'title'       => __( 'Cart widget', 'woocommerce' ),
+				'type'        => 'title',
+				'description' => '',
+			),
+			'cart_widget_action'              => array(
+				'type'        => 'select',
+				'title'       => __( 'Place to show', 'aplazame' ),
+				'description' => __( 'Widget place on cart page', 'aplazame' ),
+				'options'     => array(
+					'disabled'                       => __( '~ Not show ~', 'aplazame' ),
+					'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
+					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
+				),
+				'default'     => 'woocommerce_after_cart_totals',
+			),
+			'button'                          => array(
+				'type'              => 'text',
+				'title'             => __( 'Button', 'aplazame' ),
+				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'button_pay_later'                => array(
+				'type'              => 'text',
+				'title'             => __( 'Pay Later Button', 'aplazame' ),
+				'description'       => __( 'Aplazame Pay Later Button CSS Selector', 'aplazame' ),
+				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_pay_later'],
+				'custom_attributes' => array(
+					'required' => '',
+				),
+			),
+			'button_image'                    => array(
+				'type'        => 'text',
+				'title'       => __( 'Button Image', 'aplazame' ),
+				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
+			),
+			'button_image_pay_later'          => array(
+				'type'        => 'text',
+				'title'       => __( 'Pay Later Button Image', 'aplazame' ),
+				'description' => __( 'Aplazame Pay Later Button Image that you want to show', 'aplazame' ),
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image_pay_later'],
+			),
+		);
+	}
 }

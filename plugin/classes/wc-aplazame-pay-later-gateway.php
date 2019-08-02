@@ -47,24 +47,15 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function get_icon() {
-		if ( ! empty( $this->settings['button_image_pay_later'] ) ) {
-			$icon = '<img src="' . $this->settings['button_image_pay_later'] . '" alt="' . esc_attr( $this->get_title() ) . '" />';
-		} else {
-			$icon = '';
-		}
-
-		return apply_filters( 'woocommerce_gateway_icon', $icon, $this->id );
+		return apply_filters(
+			'woocommerce_gateway_icon',
+			Aplazame_Helpers::get_html_button_image( $this->settings['button_image_pay_later'], $this->get_title() ),
+			$this->id
+		);
 	}
 
 	public function is_available() {
-		if ( ( $this->enabled === 'no' ) ||
-			 ( ! $this->settings['public_api_key'] ) ||
-			 ( ! $this->settings['private_api_key'] )
-		) {
-			return false;
-		}
-
-		return true;
+		return Aplazame_Helpers::is_gateway_available( $this );
 	}
 
 	public function payment_fields() {
@@ -72,130 +63,19 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function process_payment( $order_id ) {
-		$order = new WC_Order( $order_id );
-
-		return array(
-			'result'   => 'success',
-			'redirect' => $order->get_checkout_payment_url( true ),
-		);
+		return Aplazame_Helpers::do_payment( $order_id );
 	}
 
 	public function checkout( $order_id ) {
-		/**
-		 *
-		 * @var WooCommerce $woocommerce
-		 */
-		global $woocommerce;
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
-		global $aplazame;
-
-		$cart  = $woocommerce->cart;
-		$order = new WC_Order( $order_id );
-
-		if ( function_exists( 'wc_get_checkout_url' ) ) {
-			$checkout_url = wc_get_checkout_url();
-		} else {
-			/** @noinspection PhpDeprecationInspection */
-			$checkout_url = $cart->get_checkout_url();
-		}
-		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url, 'pay_later' );
-		$payload = Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $payload );
-
-		$client = $aplazame->get_client();
-		try {
-			$aplazame_payload = $client->create_checkout( $payload );
-		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
-			$message = $e->getMessage();
-			$aOrder  = $client->fetch( $payload->order->id );
-			if ( $aOrder ) {
-				wp_redirect( $payload->merchant->success_url );
-				exit;
-			}
-
-			$order->update_status(
-				'cancelled',
-				sprintf(
-					__( 'Order has been cancelled: %s', 'aplazame' ),
-					$message
-				)
-			);
-
-			wc_add_notice( 'Aplazame Error: ' . $message, 'error' );
-			wp_redirect( $checkout_url );
-			exit;
-		}
-
-		Aplazame_Helpers::render_to_template(
-			'gateway/checkout.php',
-			array(
-				'aid' => $aplazame_payload['id'],
-			)
-		);
+		Aplazame_Helpers::aplazame_checkout( $order_id, 'pay_later' );
 	}
 
 	public function process_refund( $order_id, $amount = null, $reason = '' ) {
-		if ( ! $amount ) {
-			return false;
-		}
-
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
-		global $aplazame;
-
-		$client = $aplazame->get_client();
-
-		try {
-			$client->refund( $order_id, $amount );
-		} catch ( Exception $e ) {
-			return new WP_Error(
-				'aplazame_refund_error',
-				sprintf(
-					__( '%1$s Error: "%2$s"', 'aplazame' ),
-					$this->method_title,
-					$e->getMessage()
-				)
-			);
-		}
-
-		$aplazame->add_order_note(
-			$order_id,
-			sprintf(
-				__( '%1$s has successfully returned %2$d %3$s of the order #%4$s.', 'aplazame' ),
-				$this->method_title,
-				$amount,
-				get_woocommerce_currency(),
-				$order_id
-			)
-		);
-
-		return true;
+		return Aplazame_Helpers::aplazame_refund( $order_id, $amount, $this->method_title );
 	}
 
 	public function checks() {
-		if ( $this->enabled === 'no' ) {
-			return;
-		}
-
-		$_render_to_notice = function ( $msg ) {
-			echo '<div class="error"><p>' . $msg . '</p></div>';
-		};
-
-		if ( ! $this->settings['public_api_key'] || ! $this->settings['private_api_key'] ) {
-			$_render_to_notice(
-				sprintf(
-					__(
-						'Aplazame gateway requires the API keys, please <a href="%s">sign up</a> and take your keys.',
-						'aplazame'
-					),
-					'https://vendors.aplazame.com/u/signup'
-				)
-			);
-		}
+		Aplazame_Helpers::gateway_checks( $this );
 	}
 
 	public function init_form_fields() {
@@ -213,7 +93,7 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 				'default' => 'no',
 			),
 		);
-		$this->form_fields += WC_Aplazame_Gateway::form_fields();
+		$this->form_fields += Aplazame_Helpers::form_fields();
 	}
 
 	public function init_settings() {
