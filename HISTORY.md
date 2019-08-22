@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v1.2.4](https://github.com/aplazame/woocommerce/tree/v1.2.4) (2019-08-22)
+
+* [FIX] Payment method description for countries different than Spain.
+
 #### [v1.2.3](https://github.com/aplazame/woocommerce/tree/v1.2.3) (2019-07-11)
 
 * [FIX] Check if Aplazame is the current payment method.
