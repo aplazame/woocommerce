@@ -22,7 +22,7 @@ global $woocommerce;
 
 <p>
 	Paga en 15 días tu compra con <a href="https://aplazame.com" target="_blank">Aplazame</a>.<br>
-	Obtén financiación al instante sólo con tu Nombre y Apellidos, DNI/NIE, Teléfono y tarjeta de débito o crédito.<br>
+	Obtén financiación al instante sólo con tu Nombre y Apellidos, Teléfono y tarjeta de débito o crédito.<br>
 	Sin comisiones ocultas ni letra pequeña.<br>
 </p>
 
