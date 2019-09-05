@@ -185,7 +185,7 @@ class WC_Aplazame {
 			$client = $aplazame->get_client()->apiClient;
 
 			$order  = wc_get_order( $order_id );
-			$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize();
+			$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() - $order->get_total_refunded() )->jsonSerialize();
 
 			try {
 				$response = $client->post(
