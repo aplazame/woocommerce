@@ -59,7 +59,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function payment_fields() {
-		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php' );
+		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php', array( 'type' => 'instalments' ) );
 	}
 
 	public function process_payment( $order_id ) {
