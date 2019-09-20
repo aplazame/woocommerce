@@ -341,7 +341,7 @@ class WC_Aplazame_Install {
 		'instalments_enabled'             => null,
 		'pay_later_enabled'               => 'no',
 		'button_pay_later'                => '#payment ul li:has(input#payment_method_aplazame_pay_later)',
-		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/white-148x46.png',
+		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/pay-later-227x46.png',
 	);
 
 	public static function upgrade() {
