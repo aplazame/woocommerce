@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Deploy to S3 when release
-          command: aws s3 cp aplazame.latest.zip s3://aplazame/modules/woocommerce/
+          command: aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
 
   deploy_to_wordpress:
     machine:
