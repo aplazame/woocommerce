@@ -282,8 +282,8 @@ class Aplazame_Helpers {
 			),
 			'button'                          => array(
 				'type'              => 'text',
-				'title'             => __( 'Button', 'aplazame' ),
-				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
+				'title'             => __( '"Flexible financing" Button', 'aplazame' ),
+				'description'       => __( 'Aplazame "Flexible financing" Button CSS Selector', 'aplazame' ),
 				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
 				'custom_attributes' => array(
 					'required' => '',
@@ -291,8 +291,8 @@ class Aplazame_Helpers {
 			),
 			'button_pay_later'                => array(
 				'type'              => 'text',
-				'title'             => __( 'Pay Later Button', 'aplazame' ),
-				'description'       => __( 'Aplazame Pay Later Button CSS Selector', 'aplazame' ),
+				'title'             => __( '"Pay in 15 days" Button', 'aplazame' ),
+				'description'       => __( 'Aplazame "Pay in 15 days" Button CSS Selector', 'aplazame' ),
 				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_pay_later'],
 				'custom_attributes' => array(
 					'required' => '',
@@ -300,14 +300,14 @@ class Aplazame_Helpers {
 			),
 			'button_image'                    => array(
 				'type'        => 'text',
-				'title'       => __( 'Button Image', 'aplazame' ),
-				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
+				'title'       => __( '"Flexible financing" Button Image', 'aplazame' ),
+				'description' => __( 'Aplazame "Flexible financing" Button Image that you want to show', 'aplazame' ),
 				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
 			),
 			'button_image_pay_later'          => array(
 				'type'        => 'text',
-				'title'       => __( 'Pay Later Button Image', 'aplazame' ),
-				'description' => __( 'Aplazame Pay Later Button Image that you want to show', 'aplazame' ),
+				'title'       => __( '"Pay in 15 days" Button Image', 'aplazame' ),
+				'description' => __( 'Aplazame "Pay in 15 days" Button Image that you want to show', 'aplazame' ),
 				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image_pay_later'],
 			),
 		);
