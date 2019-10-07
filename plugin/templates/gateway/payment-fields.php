@@ -21,21 +21,17 @@ global $woocommerce;
 
 switch ( $type ) {
 	case 'instalments':
-		$text   = 'Aplaza o fracciona';
+		$text   = 'Financia tu compra en segundos y sin documentación con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
+				Puedes dividir el pago en cuotas mensuales y obtener una respuesta instantánea a tu solicitud. Sin comisiones ocultas.';
 		$button = $aplazame->settings['button'];
 		break;
 	case 'pay_later':
-		$text   = 'Paga en 15 días';
+		$text   = 'Prueba primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
+ 				Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y paga 15 días después de recibir tu compra sólo lo que te quedes.';
 		$button = $aplazame->settings['button_pay_later'];
 		break;
 }
 ?>
-
-<p>
-	<?php echo $text; ?> tu compra con <a href="https://aplazame.com" target="_blank">Aplazame</a>.<br>
-	Obtén financiación al instante sólo con tu Nombre y Apellidos, Teléfono y tarjeta de débito o crédito.<br>
-	Sin comisiones ocultas ni letra pequeña.<br>
-</p>
 
 <script>
 	(window.aplazame = window.aplazame || []).push(function (aplazame) {
@@ -47,3 +43,5 @@ switch ( $type ) {
 		})
 	})
 </script>
+
+<p><?php echo $text; ?></p>

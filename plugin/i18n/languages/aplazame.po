@@ -171,7 +171,7 @@ msgstr "Selector CSS del botón 'Pago en 15 días' de Aplazame"
 
 #: classes/lib/Helpers.php:303
 msgid "\"Flexible financing\" Button Image"
-msgstr "Imagen del botón 'Pago a plazos' de Aplazame"
+msgstr "Imagen del botón 'Pago a plazos'"
 
 #: classes/lib/Helpers.php:304
 msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
@@ -179,7 +179,7 @@ msgstr "Imagen del botón 'Pago a plazos' de Aplazame que quieres mostrar"
 
 #: classes/lib/Helpers.php:309
 msgid "\"Pay in 15 days\" Button Image"
-msgstr "Imagen del botón 'Pago en 15 días' de Aplazame"
+msgstr "Imagen del botón 'Pago en 15 días'"
 
 #: classes/lib/Helpers.php:310
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
