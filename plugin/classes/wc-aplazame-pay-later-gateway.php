@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	public function __construct() {
 		$this->id                 = WC_Aplazame::METHOD_ID . '_pay_later';
-		$this->method_title       = WC_Aplazame::METHOD_TITLE . ' Pay Later';
-		$this->method_description = __( 'Pay later with Aplazame', 'aplazame' );
+		$this->method_title       = WC_Aplazame::METHOD_TITLE . __( ' - Pay in 15 days', 'aplazame' );
+		$this->method_description = __( 'Pay in 15 days with Aplazame', 'aplazame' );
 		$this->has_fields         = true;
 
 		// Settings
@@ -83,13 +83,13 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 			'instalments_enabled' => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
-				'label'   => __( 'Enable Aplazame instalments', 'aplazame' ),
+				'label'   => __( 'Enable Aplazame "Flexible financing"', 'aplazame' ),
 				'default' => 'yes',
 			),
 			'enabled'             => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
-				'label'   => __( 'Enable Aplazame pay later', 'aplazame' ),
+				'label'   => __( 'Enable Aplazame "Pay in 15 days"', 'aplazame' ),
 				'default' => 'no',
 			),
 		);
