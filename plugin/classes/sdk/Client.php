@@ -60,7 +60,7 @@ class Aplazame_Client {
 		return $this->order_request(
 			$order_id,
 			'POST',
-			'/refund',
+			'/refund_all',
 			array(
 				'amount' => $amount->jsonSerialize(),
 			)
