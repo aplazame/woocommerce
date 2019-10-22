@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.0.0](https://github.com/aplazame/woocommerce/tree/v2.0.0) (2019-10-22)
+
+* [ADD] 'Pay in 15 days' as payment method.
+
 #### [v1.2.4](https://github.com/aplazame/woocommerce/tree/v1.2.4) (2019-08-22)
 
 * [FIX] Payment method description for countries different than Spain.
