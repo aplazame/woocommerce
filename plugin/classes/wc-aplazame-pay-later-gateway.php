@@ -4,11 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class WC_Aplazame_Gateway extends WC_Payment_Gateway {
+class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	public function __construct() {
-		$this->id                 = WC_Aplazame::METHOD_ID;
-		$this->method_title       = WC_Aplazame::METHOD_TITLE . __( ' - Flexible financing', 'aplazame' );
-		$this->method_description = __( 'Flexible financing with Aplazame', 'aplazame' );
+		$this->id                 = WC_Aplazame::METHOD_ID . '_pay_later';
+		$this->method_title       = WC_Aplazame::METHOD_TITLE . __( ' - Pay in 15 days', 'aplazame' );
+		$this->method_description = __( 'Pay in 15 days with Aplazame', 'aplazame' );
 		$this->has_fields         = true;
 
 		// Settings
@@ -42,14 +42,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function get_option_key() {
-		$this->settings['instalments_enabled'] = $this->settings['enabled'];
+		$this->settings['pay_later_enabled'] = $this->settings['enabled'];
 		return 'woocommerce_aplazame_settings';
 	}
 
 	public function get_icon() {
 		return apply_filters(
 			'woocommerce_gateway_icon',
-			Aplazame_Helpers::get_html_button_image( $this->settings['button_image'], $this->get_title() ),
+			Aplazame_Helpers::get_html_button_image( $this->settings['button_image_pay_later'], $this->get_title() ),
 			$this->id
 		);
 	}
@@ -59,7 +59,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function payment_fields() {
-		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php', array( 'type' => 'instalments' ) );
+		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php', array( 'type' => 'pay_later' ) );
 	}
 
 	public function process_payment( $order_id ) {
@@ -67,7 +67,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function checkout( $order_id ) {
-		Aplazame_Helpers::aplazame_checkout( $order_id, 'instalments' );
+		Aplazame_Helpers::aplazame_checkout( $order_id, 'pay_later' );
 	}
 
 	public function process_refund( $order_id, $amount = null, $reason = '' ) {
@@ -80,13 +80,13 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields  = array(
-			'enabled'           => array(
+			'instalments_enabled' => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
 				'label'   => __( 'Enable Aplazame "Flexible financing"', 'aplazame' ),
 				'default' => 'yes',
 			),
-			'pay_later_enabled' => array(
+			'enabled'             => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
 				'label'   => __( 'Enable Aplazame "Pay in 15 days"', 'aplazame' ),
@@ -98,7 +98,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 	public function init_settings() {
 		$this->settings            = get_option( 'woocommerce_aplazame_settings', null );
-		$this->settings['enabled'] = $this->settings['instalments_enabled'];
+		$this->settings['enabled'] = $this->settings['pay_later_enabled'];
 		$this->enabled             = ! empty( $this->settings['enabled'] ) && 'yes' === $this->settings['enabled'] ? 'yes' : 'no';
 	}
 

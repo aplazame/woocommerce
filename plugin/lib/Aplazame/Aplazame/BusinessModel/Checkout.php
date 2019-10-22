@@ -5,7 +5,7 @@
  */
 class Aplazame_Aplazame_BusinessModel_Checkout {
 
-	public static function createFromOrder( WC_Order $order, $checkout_url ) {
+	public static function createFromOrder( WC_Order $order, $checkout_url, $type ) {
 		$apiRouter = WC()->api_request_url( 'aplazame' );
 
 		$merchant                   = new stdClass();
@@ -34,6 +34,8 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 			),
 			'version' => WC()->version,
 		);
+
+		$checkout->product = array( 'type' => $type );
 
 		return $checkout;
 	}

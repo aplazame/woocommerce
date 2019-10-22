@@ -47,7 +47,8 @@ final class Aplazame_Api_ConfirmController {
 			return Aplazame_Api_Router::not_found();
 		}
 
-		if ( $order->get_payment_method() != WC_Aplazame::METHOD_ID ) {
+		if ( $order->get_payment_method() != WC_Aplazame::METHOD_ID &&
+			 $order->get_payment_method() != WC_Aplazame::METHOD_ID . '_pay_later' ) {
 			return self::ko( 'Aplazame is not the current payment method' );
 		}
 
