@@ -55,7 +55,9 @@ jobs:
 
       - run:
           name: Sync trunk
-          command: rsync -r -p plugin/* svn/trunk
+          command: |
+            rsync -r -p plugin/* svn/trunk
+            svn add --force svn/trunk
 
       - run:
           name: Tag release
