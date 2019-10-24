@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.0.1](https://github.com/aplazame/woocommerce/tree/v2.0.1) (2019-10-24)
+
+* [FIX] Repository deploy.
+
 #### [v2.0.0](https://github.com/aplazame/woocommerce/tree/v2.0.0) (2019-10-22)
 
 * [ADD] 'Pay in 15 days' as payment method.
