@@ -38,12 +38,12 @@ switch ( $type ) {
 		aplazame.button(
 		<?php
 		echo json_encode(
-			[
+			array(
 				'selector' => $button,
 				'amount'   => Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize(),
 				'currency' => get_woocommerce_currency(),
-				'product'  => [ 'type' => $type ],
-			]
+				'product'  => array( 'type' => $type ),
+			)
 		)
 		?>
 		)

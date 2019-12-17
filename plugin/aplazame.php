@@ -296,7 +296,8 @@ class WC_Aplazame {
 	 * @return bool
 	 */
 	protected static function is_aplazame_order( $order_id ) {
-		return Aplazame_Helpers::get_payment_method( $order_id ) === self::METHOD_ID;
+		$order = wc_get_order( $order_id );
+		return $order->get_payment_method() === self::METHOD_ID;
 	}
 
 	/**
@@ -306,7 +307,8 @@ class WC_Aplazame {
 	 * @return bool
 	 */
 	protected static function is_aplazame_pay_later_order( $order_id ) {
-		return Aplazame_Helpers::get_payment_method( $order_id ) === self::METHOD_ID . '_pay_later';
+		$order = wc_get_order( $order_id );
+		return $order->get_payment_method() === self::METHOD_ID . '_pay_later';
 	}
 
 	public function api_router() {

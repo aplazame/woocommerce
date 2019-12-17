@@ -15,16 +15,6 @@ class Aplazame_Helpers {
 
 	/**
 	 *
-	 * @param int $order_id
-	 *
-	 * @return string
-	 */
-	public static function get_payment_method( $order_id ) {
-		return get_post_meta( $order_id, '_payment_method', true );
-	}
-
-	/**
-	 *
 	 * @param string $image_url
 	 * @param string $title
 	 *
