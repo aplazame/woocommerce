@@ -33,7 +33,7 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 ?>
 
 <div
-	data-aplazame-simulator=""
+	data-aplazame-widget-instalments=""
 	data-view="product"
 	<?php if ( empty( $price_selector ) ) : ?>
 		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->jsonSerialize() ); ?>"
@@ -43,5 +43,6 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	<?php if ( ! empty( $aplazame->settings['quantity_selector'] ) ) : ?>
 		data-qty="<?php echo esc_attr( $aplazame->settings['quantity_selector'] ); ?>"
 	<?php endif; ?>
-	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>">
+	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
+	data-article-id="<?php echo esc_attr( $product->get_id() ); ?>">
 </div>
