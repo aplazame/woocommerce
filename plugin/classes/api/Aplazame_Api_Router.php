@@ -116,7 +116,7 @@ class Aplazame_Api_Router {
 				$controller = new Aplazame_Api_ConfirmController( $this->sandbox );
 
 				return $controller->confirm( $payload );
-			case '/order/{order_id}/history/':
+			case '/order/history/':
 				include_once 'Aplazame_Api_OrderController.php';
 				$controller = new Aplazame_Api_OrderController();
 
