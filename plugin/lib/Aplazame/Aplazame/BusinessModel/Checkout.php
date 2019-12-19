@@ -27,14 +27,7 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 			$checkout->shipping = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
 		}
 
-		$checkout->meta = array(
-			'module'  => array(
-				'name'    => 'aplazame:woocommerce',
-				'version' => WC_Aplazame::VERSION,
-			),
-			'version' => WC()->version,
-		);
-
+		$checkout->meta    = Aplazame_Aplazame_BusinessModel_Meta::create();
 		$checkout->product = array( 'type' => $type );
 
 		return $checkout;

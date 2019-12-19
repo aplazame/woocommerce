@@ -39,13 +39,7 @@ class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 			'customer' => Aplazame_Aplazame_BusinessModel_Customer::createFromOrder( $order ),
 			'order'    => Aplazame_Aplazame_BusinessModel_Order::crateFromOrder( $order, $order_date ),
 			'billing'  => Aplazame_Aplazame_BusinessModel_Address::createFromOrder( $order, 'billing' ),
-			'meta'     => array(
-				'module'  => array(
-					'name'    => 'aplazame:woocommerce',
-					'version' => WC_Aplazame::VERSION,
-				),
-				'version' => WC()->version,
-			),
+			'meta'     => Aplazame_Aplazame_BusinessModel_Meta::create(),
 			'payment'  => array(
 				'method' => $order->get_payment_method(),
 				'status' => $payment_status,
