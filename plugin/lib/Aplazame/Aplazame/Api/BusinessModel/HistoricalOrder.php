@@ -3,8 +3,7 @@
 class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 
 	public static function createFromOrder( WC_Order $order ) {
-		$order_id = WC_Aplazame::_m_or_a( $order, 'get_id', 'id' );
-		$status   = $order->get_status();
+		$status = $order->get_status();
 
 		if ( method_exists( $order, 'get_date_created' ) ) {
 			$order_date = $order->get_date_created();
