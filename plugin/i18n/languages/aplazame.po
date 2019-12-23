@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2019-09-27 11:10+0000\n"
+"POT-Creation-Date: 2019-12-23 12:34+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,24 +39,24 @@ msgstr " - Pago a plazos"
 msgid "Flexible financing with Aplazame"
 msgstr "Paga a plazos con Aplazame"
 
-#: classes/lib/Helpers.php:116
-#: classes/api/Aplazame_Api_ConfirmController.php:79
+#: classes/lib/Helpers.php:106
+#: classes/api/Aplazame_Api_ConfirmController.php:78
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr "El pedido ha sido cancelado: %s"
 
-#: classes/lib/Helpers.php:161
+#: classes/lib/Helpers.php:151
 #, php-format
 msgid "%1$s Error: \"%2$s\""
 msgstr "Error en %1$s: \"%2$s\""
 
-#: classes/lib/Helpers.php:171
+#: classes/lib/Helpers.php:161
 #, php-format
 msgid "%1$s has successfully returned %2$d %3$s of the order #%4$s."
 msgstr ""
 "%1$s ha devuelto correctamente la cantidad de %2$d %3$s en el pedido #%4$s"
 
-#: classes/lib/Helpers.php:199
+#: classes/lib/Helpers.php:189
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
@@ -65,131 +65,131 @@ msgstr ""
 "Se necesitan las claves de API para la pasarela de pago de Aplazame, por "
 "favor, <a href=\"%s\">regístrate</a> y obtén tus claves."
 
-#: classes/lib/Helpers.php:216
+#: classes/lib/Helpers.php:206
 msgid "Test mode (Sandbox)"
 msgstr "Modo de Pruebas (Sandbox)"
 
-#: classes/lib/Helpers.php:217
+#: classes/lib/Helpers.php:207
 msgid "Determines if the module is on Sandbox mode"
 msgstr "Determina si el módulo se encuentra en modo Sandbox"
 
-#: classes/lib/Helpers.php:218
+#: classes/lib/Helpers.php:208
 msgid "Turn on Sandbox"
 msgstr "Activar modo Sandbox"
 
-#: classes/lib/Helpers.php:222
+#: classes/lib/Helpers.php:212
 msgid "Private API Key"
 msgstr "Clave API privada"
 
-#: classes/lib/Helpers.php:223
+#: classes/lib/Helpers.php:213
 msgid "Aplazame API Private Key"
 msgstr "Clave API privada de Aplazame"
 
-#: classes/lib/Helpers.php:229
+#: classes/lib/Helpers.php:219
 msgid "Product widget"
 msgstr "Widget del producto"
 
-#: classes/lib/Helpers.php:235 classes/lib/Helpers.php:274
+#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:264
 msgid "Place to show"
 msgstr "Lugar a mostrar"
 
-#: classes/lib/Helpers.php:236
+#: classes/lib/Helpers.php:226
 msgid "Widget place on product page"
 msgstr "Lugar del widget en la página del producto"
 
-#: classes/lib/Helpers.php:238 classes/lib/Helpers.php:277
+#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:267
 msgid "~ Not show ~"
 msgstr "~ No mostrar ~"
 
-#: classes/lib/Helpers.php:239
+#: classes/lib/Helpers.php:229
 msgid "Before add to cart button"
 msgstr "Antes del botón de añadir al carrito"
 
-#: classes/lib/Helpers.php:240
+#: classes/lib/Helpers.php:230
 msgid "After add to cart button"
 msgstr "Después del botón de añadir al carrito"
 
-#: classes/lib/Helpers.php:241
+#: classes/lib/Helpers.php:231
 msgid "After summary"
 msgstr "Después del resumen"
 
-#: classes/lib/Helpers.php:247
+#: classes/lib/Helpers.php:237
 msgid "Product quantity CSS selector"
 msgstr "Selector CSS del número de unidades del producto"
 
-#: classes/lib/Helpers.php:248
+#: classes/lib/Helpers.php:238
 msgid "CSS selector pointing to product quantity"
 msgstr "Selector CSS para obtener la cantidad de producto"
 
-#: classes/lib/Helpers.php:253
+#: classes/lib/Helpers.php:243
 msgid "Product price CSS selector"
 msgstr "Selector CSS del precio del producto"
 
-#: classes/lib/Helpers.php:254
+#: classes/lib/Helpers.php:244
 msgid "CSS selector pointing to product price"
 msgstr "Selector CSS para obtener el precio del producto"
 
-#: classes/lib/Helpers.php:259
+#: classes/lib/Helpers.php:249
 msgid "Variable product price CSS selector"
 msgstr "Selector CSS del precio variable del producto"
 
-#: classes/lib/Helpers.php:260
+#: classes/lib/Helpers.php:250
 msgid "CSS selector pointing to variable product price"
 msgstr "Selector CSS para obtener el precio variable del producto"
 
-#: classes/lib/Helpers.php:268
+#: classes/lib/Helpers.php:258
 msgid "Cart widget"
 msgstr "Widget del carrito"
 
-#: classes/lib/Helpers.php:275
+#: classes/lib/Helpers.php:265
 msgid "Widget place on cart page"
 msgstr "Lugar del widget en la página del carrito"
 
-#: classes/lib/Helpers.php:278
+#: classes/lib/Helpers.php:268
 msgid "Before cart totals"
 msgstr "Antes del total"
 
-#: classes/lib/Helpers.php:279
+#: classes/lib/Helpers.php:269
 msgid "After cart totals"
 msgstr "Después del total"
 
-#: classes/lib/Helpers.php:285
+#: classes/lib/Helpers.php:275
 msgid "\"Flexible financing\" Button"
 msgstr "Botón 'Pago a plazos'"
 
-#: classes/lib/Helpers.php:286
+#: classes/lib/Helpers.php:276
 msgid "Aplazame \"Flexible financing\" Button CSS Selector"
 msgstr "Selector CSS del botón 'Pago a plazos' de Aplazame"
 
-#: classes/lib/Helpers.php:294
+#: classes/lib/Helpers.php:284
 msgid "\"Pay in 15 days\" Button"
 msgstr "Botón 'Pago en 15 días'"
 
-#: classes/lib/Helpers.php:295
+#: classes/lib/Helpers.php:285
 msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
 msgstr "Selector CSS del botón 'Pago en 15 días' de Aplazame"
 
-#: classes/lib/Helpers.php:303
+#: classes/lib/Helpers.php:293
 msgid "\"Flexible financing\" Button Image"
 msgstr "Imagen del botón 'Pago a plazos'"
 
-#: classes/lib/Helpers.php:304
+#: classes/lib/Helpers.php:294
 msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
 msgstr "Imagen del botón 'Pago a plazos' de Aplazame que quieres mostrar"
 
-#: classes/lib/Helpers.php:309
+#: classes/lib/Helpers.php:299
 msgid "\"Pay in 15 days\" Button Image"
 msgstr "Imagen del botón 'Pago en 15 días'"
 
-#: classes/lib/Helpers.php:310
+#: classes/lib/Helpers.php:300
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr "Imagen del botón 'Pago en 15 días' de Aplazame que quieres mostrar"
 
-#: classes/api/Aplazame_Api_ConfirmController.php:56
+#: classes/api/Aplazame_Api_ConfirmController.php:55
 msgid "Cancelled"
 msgstr "Cancelada"
 
-#: classes/api/Aplazame_Api_ConfirmController.php:70
+#: classes/api/Aplazame_Api_ConfirmController.php:69
 msgid "Confirmed"
 msgstr "Confirmada"
 

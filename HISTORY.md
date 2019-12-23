@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v2.0.2](https://github.com/aplazame/woocommerce/tree/v2.0.2) (2019-12-23)
+
+* [ADD] Update history endpoint.
+* [FIX] Various fixes and improvements.
+
 #### [v2.0.1](https://github.com/aplazame/woocommerce/tree/v2.0.1) (2019-10-24)
 
 * [FIX] Repository deploy.
