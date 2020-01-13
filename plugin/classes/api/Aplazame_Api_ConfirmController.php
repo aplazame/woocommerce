@@ -51,12 +51,6 @@ final class Aplazame_Api_ConfirmController {
 			return self::ko( 'Aplazame is not the current payment method' );
 		}
 
-		if ( $this->isFraud( $payload, $order ) ) {
-			$order->update_status( 'cancelled', sprintf( __( 'Cancelled', 'aplazame' ) ) );
-
-			return self::ko( 'Fraud detected' );
-		}
-
 		switch ( $payload['status'] ) {
 			case 'pending':
 				switch ( $payload['status_reason'] ) {
@@ -83,10 +77,5 @@ final class Aplazame_Api_ConfirmController {
 		}
 
 		return self::ok();
-	}
-
-	private function isFraud( array $payload, WC_Order $order ) {
-		return ( $payload['total_amount'] !== Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() )->jsonSerialize() ||
-				$payload['currency']['code'] !== WC_Aplazame::_m_or_m( $order, 'get_currency', 'get_order_currency' ) );
 	}
 }
