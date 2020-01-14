@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.0.3](https://github.com/aplazame/woocommerce/tree/v2.0.3) (2020-01-14)
+
+* [FIX] Deprecated checks.
+
 #### [v2.0.2](https://github.com/aplazame/woocommerce/tree/v2.0.2) (2019-12-23)
 
 * [ADD] Update history endpoint.
