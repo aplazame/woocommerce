@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.0.4](https://github.com/aplazame/woocommerce/tree/v2.0.4) (2020-02-03)
+
+* [FIX] Minor fixes.
+
 #### [v2.0.3](https://github.com/aplazame/woocommerce/tree/v2.0.3) (2020-01-14)
 
 * [FIX] Deprecated checks.

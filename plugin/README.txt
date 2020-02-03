@@ -4,7 +4,7 @@ Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,f
 Requires at least: 4.0.1
 Tested up to: 5.3.2
 Requires PHP: 5.3.0
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
@@ -76,6 +76,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v2.0.4](https://github.com/aplazame/woocommerce/tree/v2.0.4) (2020-02-03)
+
+* [FIX] Minor fixes.
 
 #### [v2.0.3](https://github.com/aplazame/woocommerce/tree/v2.0.3) (2020-01-14)
 
