@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.1.0](https://github.com/aplazame/woocommerce/tree/v2.1.0) (2020-02-18)
+
+* [ADD] Legal notice option to widget setup.
+
 #### [v2.0.4](https://github.com/aplazame/woocommerce/tree/v2.0.4) (2020-02-03)
 
 * [FIX] Minor fixes.
