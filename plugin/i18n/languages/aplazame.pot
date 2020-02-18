@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v2.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-02-03 14:18+0000\n"
+"POT-Creation-Date: 2020-02-13 10:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Product widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:264
+#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:270
 msgid "Place to show"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Widget place on product page"
 msgstr ""
 
-#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:267
+#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:273
 msgid "~ Not show ~"
 msgstr ""
 
@@ -120,75 +120,91 @@ msgstr ""
 msgid "After summary"
 msgstr ""
 
-#: classes/lib/Helpers.php:237
-msgid "Product quantity CSS selector"
+#: classes/lib/Helpers.php:237 classes/lib/Helpers.php:281
+msgid "Legal notice"
 msgstr ""
 
 #: classes/lib/Helpers.php:238
-msgid "CSS selector pointing to product quantity"
+msgid "Show legal notice in product widget"
+msgstr ""
+
+#: classes/lib/Helpers.php:239 classes/lib/Helpers.php:283
+msgid "Show legal notice"
 msgstr ""
 
 #: classes/lib/Helpers.php:243
-msgid "Product price CSS selector"
+msgid "Product quantity CSS selector"
 msgstr ""
 
 #: classes/lib/Helpers.php:244
-msgid "CSS selector pointing to product price"
+msgid "CSS selector pointing to product quantity"
 msgstr ""
 
 #: classes/lib/Helpers.php:249
-msgid "Variable product price CSS selector"
+msgid "Product price CSS selector"
 msgstr ""
 
 #: classes/lib/Helpers.php:250
+msgid "CSS selector pointing to product price"
+msgstr ""
+
+#: classes/lib/Helpers.php:255
+msgid "Variable product price CSS selector"
+msgstr ""
+
+#: classes/lib/Helpers.php:256
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/lib/Helpers.php:258
+#: classes/lib/Helpers.php:264
 msgid "Cart widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:265
+#: classes/lib/Helpers.php:271
 msgid "Widget place on cart page"
 msgstr ""
 
-#: classes/lib/Helpers.php:268
+#: classes/lib/Helpers.php:274
 msgid "Before cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:269
+#: classes/lib/Helpers.php:275
 msgid "After cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:275
+#: classes/lib/Helpers.php:282
+msgid "Show legal notice in cart widget"
+msgstr ""
+
+#: classes/lib/Helpers.php:287
 msgid "\"Flexible financing\" Button"
 msgstr ""
 
-#: classes/lib/Helpers.php:276
+#: classes/lib/Helpers.php:288
 msgid "Aplazame \"Flexible financing\" Button CSS Selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:284
+#: classes/lib/Helpers.php:296
 msgid "\"Pay in 15 days\" Button"
 msgstr ""
 
-#: classes/lib/Helpers.php:285
+#: classes/lib/Helpers.php:297
 msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:293
+#: classes/lib/Helpers.php:305
 msgid "\"Flexible financing\" Button Image"
 msgstr ""
 
-#: classes/lib/Helpers.php:294
+#: classes/lib/Helpers.php:306
 msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
 msgstr ""
 
-#: classes/lib/Helpers.php:299
+#: classes/lib/Helpers.php:311
 msgid "\"Pay in 15 days\" Button Image"
 msgstr ""
 
-#: classes/lib/Helpers.php:300
+#: classes/lib/Helpers.php:312
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr ""
 

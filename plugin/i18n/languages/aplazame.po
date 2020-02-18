@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-01-14 15:12+0000\n"
+"POT-Creation-Date: 2020-02-12 14:00+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,7 @@ msgstr "Clave API privada de Aplazame"
 msgid "Product widget"
 msgstr "Widget del producto"
 
-#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:264
+#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:270
 msgid "Place to show"
 msgstr "Lugar a mostrar"
 
@@ -97,7 +97,7 @@ msgstr "Lugar a mostrar"
 msgid "Widget place on product page"
 msgstr "Lugar del widget en la página del producto"
 
-#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:267
+#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:273
 msgid "~ Not show ~"
 msgstr "~ No mostrar ~"
 
@@ -113,75 +113,91 @@ msgstr "Después del botón de añadir al carrito"
 msgid "After summary"
 msgstr "Después del resumen"
 
-#: classes/lib/Helpers.php:237
+#: classes/lib/Helpers.php:237 classes/lib/Helpers.php:281
+msgid "Legal notice"
+msgstr "Texto legal"
+
+#: classes/lib/Helpers.php:238
+msgid "Show legal notice in product widget"
+msgstr "Mostrar texto legal en el widget del producto"
+
+#: classes/lib/Helpers.php:239 classes/lib/Helpers.php:283
+msgid "Show legal notice"
+msgstr "Mostrar texto legal"
+
+#: classes/lib/Helpers.php:243
 msgid "Product quantity CSS selector"
 msgstr "Selector CSS del número de unidades del producto"
 
-#: classes/lib/Helpers.php:238
+#: classes/lib/Helpers.php:244
 msgid "CSS selector pointing to product quantity"
 msgstr "Selector CSS para obtener la cantidad de producto"
 
-#: classes/lib/Helpers.php:243
+#: classes/lib/Helpers.php:249
 msgid "Product price CSS selector"
 msgstr "Selector CSS del precio del producto"
 
-#: classes/lib/Helpers.php:244
+#: classes/lib/Helpers.php:250
 msgid "CSS selector pointing to product price"
 msgstr "Selector CSS para obtener el precio del producto"
 
-#: classes/lib/Helpers.php:249
+#: classes/lib/Helpers.php:255
 msgid "Variable product price CSS selector"
 msgstr "Selector CSS del precio variable del producto"
 
-#: classes/lib/Helpers.php:250
+#: classes/lib/Helpers.php:256
 msgid "CSS selector pointing to variable product price"
 msgstr "Selector CSS para obtener el precio variable del producto"
 
-#: classes/lib/Helpers.php:258
+#: classes/lib/Helpers.php:264
 msgid "Cart widget"
 msgstr "Widget del carrito"
 
-#: classes/lib/Helpers.php:265
+#: classes/lib/Helpers.php:271
 msgid "Widget place on cart page"
 msgstr "Lugar del widget en la página del carrito"
 
-#: classes/lib/Helpers.php:268
+#: classes/lib/Helpers.php:274
 msgid "Before cart totals"
 msgstr "Antes del total"
 
-#: classes/lib/Helpers.php:269
+#: classes/lib/Helpers.php:275
 msgid "After cart totals"
 msgstr "Después del total"
 
-#: classes/lib/Helpers.php:275
+#: classes/lib/Helpers.php:282
+msgid "Show legal notice in cart widget"
+msgstr "Mostrar texto legal en el widget del carrito"
+
+#: classes/lib/Helpers.php:287
 msgid "\"Flexible financing\" Button"
 msgstr "Botón 'Pago a plazos'"
 
-#: classes/lib/Helpers.php:276
+#: classes/lib/Helpers.php:288
 msgid "Aplazame \"Flexible financing\" Button CSS Selector"
 msgstr "Selector CSS del botón 'Pago a plazos' de Aplazame"
 
-#: classes/lib/Helpers.php:284
+#: classes/lib/Helpers.php:296
 msgid "\"Pay in 15 days\" Button"
 msgstr "Botón 'Pago en 15 días'"
 
-#: classes/lib/Helpers.php:285
+#: classes/lib/Helpers.php:297
 msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
 msgstr "Selector CSS del botón 'Pago en 15 días' de Aplazame"
 
-#: classes/lib/Helpers.php:293
+#: classes/lib/Helpers.php:305
 msgid "\"Flexible financing\" Button Image"
 msgstr "Imagen del botón 'Pago a plazos'"
 
-#: classes/lib/Helpers.php:294
+#: classes/lib/Helpers.php:306
 msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
 msgstr "Imagen del botón 'Pago a plazos' de Aplazame que quieres mostrar"
 
-#: classes/lib/Helpers.php:299
+#: classes/lib/Helpers.php:311
 msgid "\"Pay in 15 days\" Button Image"
 msgstr "Imagen del botón 'Pago en 15 días'"
 
-#: classes/lib/Helpers.php:300
+#: classes/lib/Helpers.php:312
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr "Imagen del botón 'Pago en 15 días' de Aplazame que quieres mostrar"
 

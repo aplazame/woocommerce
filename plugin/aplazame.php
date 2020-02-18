@@ -344,6 +344,8 @@ class WC_Aplazame_Install {
 		'pay_later_enabled'               => 'no',
 		'button_pay_later'                => '#payment ul li:has(input#payment_method_aplazame_pay_later)',
 		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/pay-later-227x46.png',
+		'product_legal_advice'            => 'yes',
+		'cart_legal_advice'               => 'yes',
 	);
 
 	public static function upgrade() {
@@ -375,6 +377,12 @@ class WC_Aplazame_Install {
 			}
 			if ( ! isset( $aplazame->settings['button_image_pay_later'] ) ) {
 				$aplazame->settings['button_image_pay_later'] = self::$defaultSettings['button_image_pay_later'];
+			}
+			if ( ! isset( $aplazame->settings['product_legal_advice'] ) ) {
+				$aplazame->settings['product_legal_advice'] = 'no';
+			}
+			if ( ! isset( $aplazame->settings['cart_legal_advice'] ) ) {
+				$aplazame->settings['cart_legal_advice'] = 'no';
 			}
 			self::save_settings( $aplazame->settings );
 

@@ -232,6 +232,12 @@ class Aplazame_Helpers {
 				),
 				'default'     => 'woocommerce_single_product_summary',
 			),
+			'product_legal_advice'            => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Legal notice', 'aplazame' ),
+				'description' => __( 'Show legal notice in product widget', 'aplazame' ),
+				'label'       => __( 'Show legal notice', 'aplazame' ),
+			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
 				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
@@ -269,6 +275,12 @@ class Aplazame_Helpers {
 					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
 				),
 				'default'     => 'woocommerce_after_cart_totals',
+			),
+			'cart_legal_advice'               => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Legal notice', 'aplazame' ),
+				'description' => __( 'Show legal notice in cart widget', 'aplazame' ),
+				'label'       => __( 'Show legal notice', 'aplazame' ),
 			),
 			'button'                          => array(
 				'type'              => 'text',
