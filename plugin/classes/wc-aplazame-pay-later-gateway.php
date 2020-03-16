@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	public function __construct() {
-		$this->id                 = WC_Aplazame::METHOD_ID . '_pay_later';
+		$this->id                 = WC_Aplazame::METHOD_ID . '_' . WC_Aplazame::PAY_LATER;
 		$this->method_title       = WC_Aplazame::METHOD_TITLE . __( ' - Pay in 15 days', 'aplazame' );
 		$this->method_description = __( 'Pay in 15 days with Aplazame', 'aplazame' );
 		$this->has_fields         = true;
@@ -39,6 +39,7 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 		add_action( 'admin_notices', array( $this, 'checks' ) );
 
 		add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'checkout' ) );
+		add_action( 'woocommerce_settings_saved', array( $this, 'refresh_settings' ) );
 	}
 
 	public function get_option_key() {
@@ -59,7 +60,7 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function payment_fields() {
-		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php', array( 'type' => 'pay_later' ) );
+		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php', array( 'type' => WC_Aplazame::PAY_LATER ) );
 	}
 
 	public function process_payment( $order_id ) {
@@ -67,7 +68,7 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function checkout( $order_id ) {
-		Aplazame_Helpers::aplazame_checkout( $order_id, 'pay_later' );
+		Aplazame_Helpers::aplazame_checkout( $order_id, WC_Aplazame::PAY_LATER );
 	}
 
 	public function process_refund( $order_id, $amount = null, $reason = '' ) {
@@ -78,13 +79,22 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 		Aplazame_Helpers::gateway_checks( $this );
 	}
 
+	public function refresh_settings() {
+		try {
+			Aplazame_Helpers::refresh_if_api_changes( $this->settings['sandbox'], $this->settings['private_api_key'], WC_Aplazame::PAY_LATER );
+		} catch ( Exception $e ) {
+			throw $e;
+		}
+	}
+
 	public function init_form_fields() {
 		$this->form_fields  = array(
 			'instalments_enabled' => array(
-				'type'    => 'checkbox',
-				'title'   => __( 'Enable/Disable', 'aplazame' ),
-				'label'   => __( 'Enable Aplazame "Flexible financing"', 'aplazame' ),
-				'default' => 'yes',
+				'type'              => 'checkbox',
+				'title'             => __( 'Enable/Disable', 'aplazame' ),
+				'label'             => __( 'Enable Aplazame "Flexible financing"', 'aplazame' ),
+				'default'           => 'yes',
+				'custom_attributes' => Aplazame_Helpers::show_fields( WC_Aplazame::INSTALMENTS ) ? '' : array( 'disabled' => '' ),
 			),
 			'enabled'             => array(
 				'type'    => 'checkbox',

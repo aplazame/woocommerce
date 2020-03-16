@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-02-18 15:28+0000\n"
+"POT-Creation-Date: 2020-03-16 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -25,19 +25,19 @@ msgstr ""
 msgid "Pay in 15 days with Aplazame"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:85
-#: classes/wc-aplazame-pay-later-gateway.php:91
-#: classes/wc-aplazame-gateway.php:85 classes/wc-aplazame-gateway.php:91
+#: classes/wc-aplazame-pay-later-gateway.php:94
+#: classes/wc-aplazame-pay-later-gateway.php:101
+#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
 msgid "Enable/Disable"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:86
-#: classes/wc-aplazame-gateway.php:86
+#: classes/wc-aplazame-pay-later-gateway.php:95
+#: classes/wc-aplazame-gateway.php:95
 msgid "Enable Aplazame \"Flexible financing\""
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:92
-#: classes/wc-aplazame-gateway.php:92
+#: classes/wc-aplazame-pay-later-gateway.php:102
+#: classes/wc-aplazame-gateway.php:101
 msgid "Enable Aplazame \"Pay in 15 days\""
 msgstr ""
 
@@ -72,139 +72,143 @@ msgid ""
 "and take your keys."
 msgstr ""
 
-#: classes/lib/Helpers.php:206
+#: classes/lib/Helpers.php:251
 msgid "Test mode (Sandbox)"
 msgstr ""
 
-#: classes/lib/Helpers.php:207
+#: classes/lib/Helpers.php:252
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/lib/Helpers.php:208
+#: classes/lib/Helpers.php:253
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/lib/Helpers.php:212
+#: classes/lib/Helpers.php:257
 msgid "Private API Key"
 msgstr ""
 
-#: classes/lib/Helpers.php:213
+#: classes/lib/Helpers.php:258
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/lib/Helpers.php:219
+#: classes/lib/Helpers.php:268
 msgid "Product widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:225 classes/lib/Helpers.php:270
+#: classes/lib/Helpers.php:274 classes/lib/Helpers.php:319
 msgid "Place to show"
 msgstr ""
 
-#: classes/lib/Helpers.php:226
+#: classes/lib/Helpers.php:275
 msgid "Widget place on product page"
 msgstr ""
 
-#: classes/lib/Helpers.php:228 classes/lib/Helpers.php:273
+#: classes/lib/Helpers.php:277 classes/lib/Helpers.php:322
 msgid "~ Not show ~"
 msgstr ""
 
-#: classes/lib/Helpers.php:229
+#: classes/lib/Helpers.php:278
 msgid "Before add to cart button"
 msgstr ""
 
-#: classes/lib/Helpers.php:230
+#: classes/lib/Helpers.php:279
 msgid "After add to cart button"
 msgstr ""
 
-#: classes/lib/Helpers.php:231
+#: classes/lib/Helpers.php:280
 msgid "After summary"
 msgstr ""
 
-#: classes/lib/Helpers.php:237 classes/lib/Helpers.php:281
+#: classes/lib/Helpers.php:286 classes/lib/Helpers.php:330
 msgid "Legal notice"
 msgstr ""
 
-#: classes/lib/Helpers.php:238
+#: classes/lib/Helpers.php:287
 msgid "Show legal notice in product widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:239 classes/lib/Helpers.php:283
+#: classes/lib/Helpers.php:288 classes/lib/Helpers.php:332
 msgid "Show legal notice"
 msgstr ""
 
-#: classes/lib/Helpers.php:243
+#: classes/lib/Helpers.php:292
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:244
+#: classes/lib/Helpers.php:293
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/lib/Helpers.php:249
+#: classes/lib/Helpers.php:298
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:250
+#: classes/lib/Helpers.php:299
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/lib/Helpers.php:255
+#: classes/lib/Helpers.php:304
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:256
+#: classes/lib/Helpers.php:305
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/lib/Helpers.php:264
+#: classes/lib/Helpers.php:313
 msgid "Cart widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:271
+#: classes/lib/Helpers.php:320
 msgid "Widget place on cart page"
 msgstr ""
 
-#: classes/lib/Helpers.php:274
+#: classes/lib/Helpers.php:323
 msgid "Before cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:275
+#: classes/lib/Helpers.php:324
 msgid "After cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:282
+#: classes/lib/Helpers.php:331
 msgid "Show legal notice in cart widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:287
+#: classes/lib/Helpers.php:335
+msgid "Buttons"
+msgstr ""
+
+#: classes/lib/Helpers.php:341
 msgid "\"Flexible financing\" Button"
 msgstr ""
 
-#: classes/lib/Helpers.php:288
+#: classes/lib/Helpers.php:342
 msgid "Aplazame \"Flexible financing\" Button CSS Selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:296
-msgid "\"Pay in 15 days\" Button"
-msgstr ""
-
-#: classes/lib/Helpers.php:297
-msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
-msgstr ""
-
-#: classes/lib/Helpers.php:305
+#: classes/lib/Helpers.php:350
 msgid "\"Flexible financing\" Button Image"
 msgstr ""
 
-#: classes/lib/Helpers.php:306
+#: classes/lib/Helpers.php:351
 msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
 msgstr ""
 
-#: classes/lib/Helpers.php:311
+#: classes/lib/Helpers.php:361
+msgid "\"Pay in 15 days\" Button"
+msgstr ""
+
+#: classes/lib/Helpers.php:362
+msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
+msgstr ""
+
+#: classes/lib/Helpers.php:370
 msgid "\"Pay in 15 days\" Button Image"
 msgstr ""
 
-#: classes/lib/Helpers.php:312
+#: classes/lib/Helpers.php:371
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr ""
 
@@ -216,10 +220,10 @@ msgstr ""
 msgid "The campaign applies to all products from your catalogue"
 msgstr ""
 
-#: aplazame.php:166
+#: aplazame.php:169
 msgid "Aplazame Campaigns"
 msgstr ""
 
-#: aplazame.php:215
+#: aplazame.php:226
 msgid "Settings"
 msgstr ""

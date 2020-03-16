@@ -195,19 +195,64 @@ class Aplazame_Helpers {
 		}
 	}
 
+	public static function refresh_if_api_changes( $sandbox, $private_api_key, $origin ) {
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
+
+		if ( $aplazame->private_api_key != $private_api_key ) {
+			try {
+				$response = $aplazame->configure_aplazame_profile( $sandbox, $private_api_key );
+			} catch ( Exception $e ) {
+				// Workaround https://github.com/woocommerce/woocommerce/issues/11952
+				WC_Admin_Settings::add_error( $e->getMessage() );
+
+				throw $e;
+			}
+
+			$products = array();
+			foreach ( $response['products'] as $product ) {
+				$products[] = $product['type'];
+			}
+
+			if ( $origin == $aplazame::INSTALMENTS && ! in_array( $origin, $products ) ) {
+				header( 'Refresh:0; url=' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame_' . $aplazame::PAY_LATER ) );
+			} else {
+				header( 'Refresh:0;' );
+			}
+		}
+	}
+
+	/**
+	 * @param $product_type
+	 *
+	 * @return bool
+	 */
+	public static function show_fields( $product_type ) {
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
+
+		return $aplazame->is_aplazame_product_available( $product_type );
+	}
+
 	/**
 	 *
 	 * @return array
 	 */
 	public static function form_fields() {
-		return array(
-			'sandbox'                         => array(
+		$form_fields = array(
+			'sandbox'         => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Test mode (Sandbox)' ),
 				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
-			'private_api_key'                 => array(
+			'private_api_key' => array(
 				'type'              => 'text',
 				'title'             => __( 'Private API Key', 'aplazame' ),
 				'description'       => __( 'Aplazame API Private Key', 'aplazame' ),
@@ -215,103 +260,120 @@ class Aplazame_Helpers {
 					'required' => '',
 				),
 			),
-			'product_widget_section'          => array(
-				'title'       => __( 'Product widget', 'woocommerce' ),
-				'type'        => 'title',
-				'description' => '',
-			),
-			'product_widget_action'           => array(
-				'type'        => 'select',
-				'title'       => __( 'Place to show', 'aplazame' ),
-				'description' => __( 'Widget place on product page', 'aplazame' ),
-				'options'     => array(
-					'disabled'                             => __( '~ Not show ~', 'aplazame' ),
-					'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
-					'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
-					'woocommerce_single_product_summary'   => __( 'After summary', 'aplazame' ),
-				),
-				'default'     => 'woocommerce_single_product_summary',
-			),
-			'product_legal_advice'            => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Legal notice', 'aplazame' ),
-				'description' => __( 'Show legal notice in product widget', 'aplazame' ),
-				'label'       => __( 'Show legal notice', 'aplazame' ),
-			),
-			'quantity_selector'               => array(
-				'type'        => 'text',
-				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
-				'description' => __( 'CSS selector pointing to product quantity', 'aplazame' ),
-				'placeholder' => '#main form.cart input[name="quantity"]',
-			),
-			'price_product_selector'          => array(
-				'type'        => 'text',
-				'title'       => __( 'Product price CSS selector', 'aplazame' ),
-				'description' => __( 'CSS selector pointing to product price', 'aplazame' ),
-				'placeholder' => '#main .price .amount',
-			),
-			'price_variable_product_selector' => array(
-				'type'              => 'text',
-				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
-				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
-				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'cart_widget_section'             => array(
-				'title'       => __( 'Cart widget', 'woocommerce' ),
-				'type'        => 'title',
-				'description' => '',
-			),
-			'cart_widget_action'              => array(
-				'type'        => 'select',
-				'title'       => __( 'Place to show', 'aplazame' ),
-				'description' => __( 'Widget place on cart page', 'aplazame' ),
-				'options'     => array(
-					'disabled'                       => __( '~ Not show ~', 'aplazame' ),
-					'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
-					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
-				),
-				'default'     => 'woocommerce_after_cart_totals',
-			),
-			'cart_legal_advice'               => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Legal notice', 'aplazame' ),
-				'description' => __( 'Show legal notice in cart widget', 'aplazame' ),
-				'label'       => __( 'Show legal notice', 'aplazame' ),
-			),
-			'button'                          => array(
-				'type'              => 'text',
-				'title'             => __( '"Flexible financing" Button', 'aplazame' ),
-				'description'       => __( 'Aplazame "Flexible financing" Button CSS Selector', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'button_pay_later'                => array(
-				'type'              => 'text',
-				'title'             => __( '"Pay in 15 days" Button', 'aplazame' ),
-				'description'       => __( 'Aplazame "Pay in 15 days" Button CSS Selector', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_pay_later'],
-				'custom_attributes' => array(
-					'required' => '',
-				),
-			),
-			'button_image'                    => array(
-				'type'        => 'text',
-				'title'       => __( '"Flexible financing" Button Image', 'aplazame' ),
-				'description' => __( 'Aplazame "Flexible financing" Button Image that you want to show', 'aplazame' ),
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
-			),
-			'button_image_pay_later'          => array(
-				'type'        => 'text',
-				'title'       => __( '"Pay in 15 days" Button Image', 'aplazame' ),
-				'description' => __( 'Aplazame "Pay in 15 days" Button Image that you want to show', 'aplazame' ),
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image_pay_later'],
-			),
 		);
+
+		if ( self::show_fields( WC_Aplazame::INSTALMENTS ) ) {
+			$form_fields += array(
+				'product_widget_section'          => array(
+					'title'       => __( 'Product widget', 'woocommerce' ),
+					'type'        => 'title',
+					'description' => '',
+				),
+				'product_widget_action'           => array(
+					'type'        => 'select',
+					'title'       => __( 'Place to show', 'aplazame' ),
+					'description' => __( 'Widget place on product page', 'aplazame' ),
+					'options'     => array(
+						'disabled' => __( '~ Not show ~', 'aplazame' ),
+						'woocommerce_before_add_to_cart_button' => __( 'Before add to cart button', 'aplazame' ),
+						'woocommerce_after_add_to_cart_button' => __( 'After add to cart button', 'aplazame' ),
+						'woocommerce_single_product_summary' => __( 'After summary', 'aplazame' ),
+					),
+					'default'     => 'woocommerce_single_product_summary',
+				),
+				'product_legal_advice'            => array(
+					'type'        => 'checkbox',
+					'title'       => __( 'Legal notice', 'aplazame' ),
+					'description' => __( 'Show legal notice in product widget', 'aplazame' ),
+					'label'       => __( 'Show legal notice', 'aplazame' ),
+				),
+				'quantity_selector'               => array(
+					'type'        => 'text',
+					'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
+					'description' => __( 'CSS selector pointing to product quantity', 'aplazame' ),
+					'placeholder' => '#main form.cart input[name="quantity"]',
+				),
+				'price_product_selector'          => array(
+					'type'        => 'text',
+					'title'       => __( 'Product price CSS selector', 'aplazame' ),
+					'description' => __( 'CSS selector pointing to product price', 'aplazame' ),
+					'placeholder' => '#main .price .amount',
+				),
+				'price_variable_product_selector' => array(
+					'type'              => 'text',
+					'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
+					'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
+					'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+					'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+					'custom_attributes' => array(
+						'required' => '',
+					),
+				),
+				'cart_widget_section'             => array(
+					'title'       => __( 'Cart widget', 'woocommerce' ),
+					'type'        => 'title',
+					'description' => '',
+				),
+				'cart_widget_action'              => array(
+					'type'        => 'select',
+					'title'       => __( 'Place to show', 'aplazame' ),
+					'description' => __( 'Widget place on cart page', 'aplazame' ),
+					'options'     => array(
+						'disabled'                       => __( '~ Not show ~', 'aplazame' ),
+						'woocommerce_before_cart_totals' => __( 'Before cart totals', 'aplazame' ),
+						'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
+					),
+					'default'     => 'woocommerce_after_cart_totals',
+				),
+				'cart_legal_advice'               => array(
+					'type'        => 'checkbox',
+					'title'       => __( 'Legal notice', 'aplazame' ),
+					'description' => __( 'Show legal notice in cart widget', 'aplazame' ),
+					'label'       => __( 'Show legal notice', 'aplazame' ),
+				),
+				'button_section'                  => array(
+					'title'       => __( 'Buttons', 'aplazame' ),
+					'type'        => 'title',
+					'description' => '',
+				),
+				'button'                          => array(
+					'type'              => 'text',
+					'title'             => __( '"Flexible financing" Button', 'aplazame' ),
+					'description'       => __( 'Aplazame "Flexible financing" Button CSS Selector', 'aplazame' ),
+					'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
+					'custom_attributes' => array(
+						'required' => '',
+					),
+				),
+				'button_image'                    => array(
+					'type'        => 'text',
+					'title'       => __( '"Flexible financing" Button Image', 'aplazame' ),
+					'description' => __( 'Aplazame "Flexible financing" Button Image that you want to show', 'aplazame' ),
+					'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
+				),
+			);
+		}
+
+		if ( self::show_fields( WC_Aplazame::PAY_LATER ) ) {
+			$form_fields += array(
+				'button_pay_later'       => array(
+					'type'              => 'text',
+					'title'             => __( '"Pay in 15 days" Button', 'aplazame' ),
+					'description'       => __( 'Aplazame "Pay in 15 days" Button CSS Selector', 'aplazame' ),
+					'placeholder'       => WC_Aplazame_Install::$defaultSettings['button_pay_later'],
+					'custom_attributes' => array(
+						'required' => '',
+					),
+				),
+				'button_image_pay_later' => array(
+					'type'        => 'text',
+					'title'       => __( '"Pay in 15 days" Button Image', 'aplazame' ),
+					'description' => __( 'Aplazame "Pay in 15 days" Button Image that you want to show', 'aplazame' ),
+					'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image_pay_later'],
+				),
+			);
+		}
+
+		return $form_fields;
 	}
 }

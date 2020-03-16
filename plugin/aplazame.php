@@ -29,6 +29,10 @@ class WC_Aplazame {
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
+	// Product types
+	const INSTALMENTS = 'instalments';
+	const PAY_LATER   = 'pay_later';
+
 	public static function _m_or_a( $obj, $method, $attribute ) {
 		if ( method_exists( $obj, $method ) ) {
 			return $obj->$method();
@@ -67,8 +71,7 @@ class WC_Aplazame {
 			$private_key
 		);
 
-		$response = $client->get( '/me' );
-		return $response;
+		return $client->get( '/me' );
 	}
 
 	/**
@@ -141,7 +144,7 @@ class WC_Aplazame {
 				),
 				100
 			);
-		};
+		}
 
 		if ( $this->is_cart_widget_enabled() ) {
 			add_action(
@@ -152,7 +155,7 @@ class WC_Aplazame {
 				),
 				100
 			);
-		};
+		}
 
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'aplazame_campaigns_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_campaigns' ) );
@@ -207,12 +210,20 @@ class WC_Aplazame {
 	/**
 	 * Add relevant links to plugins page
 	 *
-	 * @param  array $links
+	 * @param array $links
+	 *
 	 * @return array
+	 * @throws Exception
 	 */
 	public function plugin_action_links( $links ) {
+		$extra_param = '';
+
+		if ( self::is_aplazame_product_available( self::PAY_LATER ) ) {
+			$extra_param = '_' . self::PAY_LATER;
+		}
+
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' . $extra_param ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -243,17 +254,24 @@ class WC_Aplazame {
 	 * @param array $methods
 	 *
 	 * @return array|void
+	 * @throws Exception
 	 */
 	public function add_gateway( $methods ) {
 		if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
 			return;
 		}
 
-		include_once 'classes/wc-aplazame-gateway.php';
-		include_once 'classes/wc-aplazame-pay-later-gateway.php';
+		if ( self::is_aplazame_product_available( self::PAY_LATER ) ) {
+			include_once 'classes/wc-aplazame-pay-later-gateway.php';
+			$methods[] = 'WC_Aplazame_Pay_Later_Gateway';
 
+			if ( ! self::is_aplazame_product_available( self::INSTALMENTS ) ) {
+				return $methods;
+			}
+		}
+
+		include_once 'classes/wc-aplazame-gateway.php';
 		$methods[] = 'WC_Aplazame_Gateway';
-		$methods[] = 'WC_Aplazame_Pay_Later_Gateway';
 
 		return $methods;
 	}
@@ -308,7 +326,32 @@ class WC_Aplazame {
 	 */
 	protected static function is_aplazame_pay_later_order( $order_id ) {
 		$order = wc_get_order( $order_id );
-		return $order->get_payment_method() === self::METHOD_ID . '_pay_later';
+		return $order->get_payment_method() === self::METHOD_ID . '_' . self::PAY_LATER;
+	}
+
+	/**
+	 * @param $product_type
+	 *
+	 * @return bool
+	 */
+	public function is_aplazame_product_available( $product_type ) {
+		if ( ! $this->private_api_key ) {
+			return false;
+		}
+
+		$client = $this->get_client()->apiClient;
+		try {
+			$response = $client->get( '/me' );
+		} catch ( Exception $e ) {
+			return false;
+		}
+
+		$products = array();
+		foreach ( $response['products'] as $product ) {
+			$products[] = $product['type'];
+		}
+
+		return in_array( $product_type, $products );
 	}
 
 	public function api_router() {
