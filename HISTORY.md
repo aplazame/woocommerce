@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.2.0](https://github.com/aplazame/woocommerce/tree/v2.2.0) (2020-06-04)
+
+* [ADD] Option to change title and description.
+
 #### [v2.1.1](https://github.com/aplazame/woocommerce/tree/v2.1.1) (2020-03-16)
 
 * [ADD] Hide params if product not available.
