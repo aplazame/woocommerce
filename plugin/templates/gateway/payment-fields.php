@@ -21,13 +21,11 @@ global $woocommerce;
 
 switch ( $type ) {
 	case $aplazame::INSTALMENTS:
-		$text   = 'Financia tu compra en segundos y sin documentación con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
-				Puedes dividir el pago en cuotas mensuales y obtener una respuesta instantánea a tu solicitud. Sin comisiones ocultas.';
+		$text   = $aplazame->settings['description_instalments'];
 		$button = $aplazame->settings['button'];
 		break;
 	case $aplazame::PAY_LATER:
-		$text   = 'Prueba primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
- 				Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y paga 15 días después de recibir tu compra sólo lo que te quedes.';
+		$text   = $aplazame->settings['description_pay_later'];
 		$button = $aplazame->settings['button_pay_later'];
 		break;
 }

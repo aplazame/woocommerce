@@ -245,6 +245,9 @@ class Aplazame_Helpers {
 	 * @return array
 	 */
 	public static function form_fields() {
+		$is_instalments_available = self::show_fields( WC_Aplazame::INSTALMENTS );
+		$is_pay_later_available   = self::show_fields( WC_Aplazame::PAY_LATER );
+
 		$form_fields = array(
 			'sandbox'         => array(
 				'type'        => 'checkbox',
@@ -262,7 +265,59 @@ class Aplazame_Helpers {
 			),
 		);
 
-		if ( self::show_fields( WC_Aplazame::INSTALMENTS ) ) {
+		if ( $is_instalments_available ) {
+			$form_fields += array(
+				'instalments_section'     => array(
+					'title'       => __( 'Flexible financing', 'aplazame' ),
+					'type'        => 'title',
+					'description' => '',
+				),
+				'title_instalments'       => array(
+					'type'        => 'text',
+					'title'       => __( 'Title', 'aplazame' ),
+					'description' => __( 'Payment method title', 'aplazame' ),
+					'placeholder' => WC_Aplazame::METHOD_TITLE . __( ' - Flexible financing', 'aplazame' ),
+				),
+				'description_instalments' => array(
+					'type'              => 'textarea',
+					'title'             => __( 'Description', 'aplazame' ),
+					'description'       => __( 'Payment method description', 'aplazame' ),
+					'default'           => WC_Aplazame_Install::$defaultSettings['description_instalments'],
+					'placeholder'       => WC_Aplazame_Install::$defaultSettings['description_instalments'],
+					'custom_attributes' => array(
+						'required' => '',
+					),
+				),
+			);
+		}
+
+		if ( $is_pay_later_available ) {
+			$form_fields += array(
+				'pay_later_section'     => array(
+					'title'       => __( 'Pay in 15 days', 'aplazame' ),
+					'type'        => 'title',
+					'description' => '',
+				),
+				'title_pay_later'       => array(
+					'type'        => 'text',
+					'title'       => __( 'Title', 'aplazame' ),
+					'description' => __( 'Payment method title', 'aplazame' ),
+					'placeholder' => WC_Aplazame::METHOD_TITLE . __( ' - Pay in 15 days', 'aplazame' ),
+				),
+				'description_pay_later' => array(
+					'type'              => 'textarea',
+					'title'             => __( 'Description', 'aplazame' ),
+					'description'       => __( 'Payment method description', 'aplazame' ),
+					'default'           => WC_Aplazame_Install::$defaultSettings['description_pay_later'],
+					'placeholder'       => WC_Aplazame_Install::$defaultSettings['description_pay_later'],
+					'custom_attributes' => array(
+						'required' => '',
+					),
+				),
+			);
+		}
+
+		if ( $is_instalments_available ) {
 			$form_fields += array(
 				'product_widget_section'          => array(
 					'title'       => __( 'Product widget', 'woocommerce' ),
@@ -354,7 +409,7 @@ class Aplazame_Helpers {
 			);
 		}
 
-		if ( self::show_fields( WC_Aplazame::PAY_LATER ) ) {
+		if ( $is_pay_later_available ) {
 			$form_fields += array(
 				'button_pay_later'       => array(
 					'type'              => 'text',

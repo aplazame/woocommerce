@@ -15,7 +15,7 @@ class WC_Aplazame_Pay_Later_Gateway extends WC_Payment_Gateway {
 		$this->init_form_fields();
 		$this->init_settings();
 
-		$this->title   = $this->method_title;
+		$this->title   = $this->settings['title_pay_later'] ? $this->settings['title_pay_later'] : $this->method_title;
 		$this->enabled = $this->settings['enabled'];
 
 		$this->supports = array(

@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 2.3
- * WC tested up to: 3.8.1
+ * WC tested up to: 4.2.0
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -389,6 +389,12 @@ class WC_Aplazame_Install {
 		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/pay-later-227x46.png',
 		'product_legal_advice'            => 'yes',
 		'cart_legal_advice'               => 'yes',
+		'title_instalments'               => '',
+		'title_pay_later'                 => '',
+		'description_instalments'         => 'Financia tu compra en segundos con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
+Puedes dividir el pago en cuotas mensuales y obtener una respuesta instantánea a tu solicitud. Sin comisiones ocultas.',
+		'description_pay_later'           => 'Prueba primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
+Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y paga 15 días después de recibir tu compra sólo lo que te quedes.',
 	);
 
 	public static function upgrade() {
@@ -426,6 +432,18 @@ class WC_Aplazame_Install {
 			}
 			if ( ! isset( $aplazame->settings['cart_legal_advice'] ) ) {
 				$aplazame->settings['cart_legal_advice'] = 'no';
+			}
+			if ( ! isset( $aplazame->settings['title_instalments'] ) ) {
+				$aplazame->settings['title_instalments'] = self::$defaultSettings['title_instalments'];
+			}
+			if ( ! isset( $aplazame->settings['title_pay_later'] ) ) {
+				$aplazame->settings['title_pay_later'] = self::$defaultSettings['title_pay_later'];
+			}
+			if ( ! isset( $aplazame->settings['description_instalments'] ) ) {
+				$aplazame->settings['description_instalments'] = self::$defaultSettings['description_instalments'];
+			}
+			if ( ! isset( $aplazame->settings['description_pay_later'] ) ) {
+				$aplazame->settings['description_pay_later'] = self::$defaultSettings['description_pay_later'];
 			}
 			self::save_settings( $aplazame->settings );
 
