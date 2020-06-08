@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.2.1](https://github.com/aplazame/woocommerce/tree/v2.2.1) (2020-06-08)
+
+* [FIX] Retro-compatibility issue.
+
 #### [v2.2.0](https://github.com/aplazame/woocommerce/tree/v2.2.0) (2020-06-04)
 
 * [ADD] Option to change title and description.
