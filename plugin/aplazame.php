@@ -315,7 +315,7 @@ class WC_Aplazame {
 	 */
 	protected static function is_aplazame_order( $order_id ) {
 		$order = wc_get_order( $order_id );
-		return $order->get_payment_method() === self::METHOD_ID;
+		return self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) === self::METHOD_ID;
 	}
 
 	/**
@@ -326,7 +326,7 @@ class WC_Aplazame {
 	 */
 	protected static function is_aplazame_pay_later_order( $order_id ) {
 		$order = wc_get_order( $order_id );
-		return $order->get_payment_method() === self::METHOD_ID . '_' . self::PAY_LATER;
+		return self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) === self::METHOD_ID . '_' . self::PAY_LATER;
 	}
 
 	/**

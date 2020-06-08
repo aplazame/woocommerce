@@ -40,7 +40,7 @@ class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 			'billing'  => Aplazame_Aplazame_BusinessModel_Address::createFromOrder( $order, 'billing' ),
 			'meta'     => Aplazame_Aplazame_BusinessModel_Meta::create(),
 			'payment'  => array(
-				'method' => $order->get_payment_method(),
+				'method' => WC_Aplazame::_m_or_a( $order, 'get_payment_method', 'payment_method' ),
 				'status' => $payment_status,
 			),
 			'status'   => $status,
