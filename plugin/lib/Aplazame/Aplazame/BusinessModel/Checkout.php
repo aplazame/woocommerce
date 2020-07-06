@@ -9,8 +9,8 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 		$apiRouter = WC()->api_request_url( 'aplazame' );
 
 		$merchant                       = new stdClass();
-		$merchant->cancel_url           = html_entity_decode( $order->get_cancel_order_url() );
-		$merchant->checkout_url         = html_entity_decode( $checkout_url );
+		$merchant->ko_url               = html_entity_decode( $order->get_cancel_order_url() );
+		$merchant->dismiss_url          = html_entity_decode( $checkout_url );
 		$merchant->success_url          = html_entity_decode( $order->get_checkout_order_received_url() );
 		$merchant->pending_url          = $merchant->success_url;
 		$merchant->notification_url     = add_query_arg( array( 'path' => '/confirm/' ), $apiRouter );
