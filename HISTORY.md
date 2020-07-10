@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.2.2](https://github.com/aplazame/woocommerce/tree/v2.2.2) (2020-07-10)
+
+* [FIX] Retro-compatibility issue at confirmation and other minor fixes.
+
 #### [v2.2.1](https://github.com/aplazame/woocommerce/tree/v2.2.1) (2020-06-08)
 
 * [FIX] Retro-compatibility issue.
