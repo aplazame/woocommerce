@@ -59,6 +59,10 @@ final class Aplazame_Api_ConfirmController {
 				switch ( $payload['status_reason'] ) {
 					case 'confirmation_required':
 						if ( method_exists( $order, 'payment_complete' ) ) {
+							if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+								$order->payment_complete();
+								break;
+							}
 							if ( ! $order->payment_complete() ) {
 								return self::ko( "'payment_complete' function failed" );
 							}
