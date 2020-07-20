@@ -1,46 +1,26 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-07-10 08:50+0000\n"
+"POT-Creation-Date: 2020-07-20 08:39+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: classes/wc-aplazame-pay-later-gateway.php:10 classes/lib/Helpers.php:305
-msgid " - Pay in 15 days"
-msgstr " - Pago en 15 días"
+#: aplazame.php:169
+msgid "Aplazame Campaigns"
+msgstr "Campañas Aplazame"
 
-#: classes/wc-aplazame-pay-later-gateway.php:11
-msgid "Pay in 15 days with Aplazame"
-msgstr "Paga en 15 días con Aplazame"
+#: aplazame.php:226
+msgid "Settings"
+msgstr "Ajustes"
 
-#: classes/wc-aplazame-pay-later-gateway.php:94
-#: classes/wc-aplazame-pay-later-gateway.php:101
-#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
-msgid "Enable/Disable"
-msgstr "Activar/Desactivar"
+#: classes/api/Aplazame_Api_ConfirmController.php:70
+msgid "Confirmed"
+msgstr "Confirmada"
 
-#: classes/wc-aplazame-pay-later-gateway.php:95
-#: classes/wc-aplazame-gateway.php:95
-msgid "Enable Aplazame \"Flexible financing\""
-msgstr "Activar 'Pago a plazos' con Aplazame"
-
-#: classes/wc-aplazame-pay-later-gateway.php:102
-#: classes/wc-aplazame-gateway.php:101
-msgid "Enable Aplazame \"Pay in 15 days\""
-msgstr "Activar 'Pago en 15 días' con Aplazame"
-
-#: classes/wc-aplazame-gateway.php:10 classes/lib/Helpers.php:279
-msgid " - Flexible financing"
-msgstr " - Pago a plazos"
-
-#: classes/wc-aplazame-gateway.php:11
-msgid "Flexible financing with Aplazame"
-msgstr "Paga a plazos con Aplazame"
-
+#: classes/api/Aplazame_Api_ConfirmController.php:79
 #: classes/lib/Helpers.php:106
-#: classes/api/Aplazame_Api_ConfirmController.php:75
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr "El pedido ha sido cancelado: %s"
@@ -97,6 +77,10 @@ msgstr "Título"
 msgid "Payment method title"
 msgstr "Título del método de pago"
 
+#: classes/lib/Helpers.php:279 classes/wc-aplazame-gateway.php:10
+msgid " - Flexible financing"
+msgstr " - Pago a plazos"
+
 #: classes/lib/Helpers.php:283 classes/lib/Helpers.php:309
 msgid "Description"
 msgstr "Descripción"
@@ -108,6 +92,10 @@ msgstr "Descripción del método de pago"
 #: classes/lib/Helpers.php:297
 msgid "Pay in 15 days"
 msgstr "Pago en 15 días"
+
+#: classes/lib/Helpers.php:305 classes/wc-aplazame-pay-later-gateway.php:10
+msgid " - Pay in 15 days"
+msgstr " - Pago en 15 días"
 
 #: classes/lib/Helpers.php:323
 msgid "Product widget"
@@ -229,18 +217,30 @@ msgstr "Imagen del botón 'Pago en 15 días'"
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr "Imagen del botón 'Pago en 15 días' de Aplazame que quieres mostrar"
 
-#: classes/api/Aplazame_Api_ConfirmController.php:66
-msgid "Confirmed"
-msgstr "Confirmada"
+#: classes/wc-aplazame-gateway.php:11
+msgid "Flexible financing with Aplazame"
+msgstr "Paga a plazos con Aplazame"
+
+#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
+#: classes/wc-aplazame-pay-later-gateway.php:94
+#: classes/wc-aplazame-pay-later-gateway.php:101
+msgid "Enable/Disable"
+msgstr "Activar/Desactivar"
+
+#: classes/wc-aplazame-gateway.php:95
+#: classes/wc-aplazame-pay-later-gateway.php:95
+msgid "Enable Aplazame \"Flexible financing\""
+msgstr "Activar 'Pago a plazos' con Aplazame"
+
+#: classes/wc-aplazame-gateway.php:101
+#: classes/wc-aplazame-pay-later-gateway.php:102
+msgid "Enable Aplazame \"Pay in 15 days\""
+msgstr "Activar 'Pago en 15 días' con Aplazame"
+
+#: classes/wc-aplazame-pay-later-gateway.php:11
+msgid "Pay in 15 days with Aplazame"
+msgstr "Paga en 15 días con Aplazame"
 
 #: templates/product/campaigns.php:82
 msgid "The campaign applies to all products from your catalogue"
 msgstr "La campaña aplica a todo el catálogo de productos."
-
-#: aplazame.php:169
-msgid "Aplazame Campaigns"
-msgstr "Campañas Aplazame"
-
-#: aplazame.php:226
-msgid "Settings"
-msgstr "Ajustes"

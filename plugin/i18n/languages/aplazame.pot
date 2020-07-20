@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aplazame v2.2.2\n"
+"Project-Id-Version: Aplazame v2.2.3\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-07-10 08:50+0000\n"
+"POT-Creation-Date: 2020-07-20 08:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,40 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: classes/wc-aplazame-pay-later-gateway.php:10 classes/lib/Helpers.php:305
-msgid " - Pay in 15 days"
+#: aplazame.php:169
+msgid "Aplazame Campaigns"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:11
-msgid "Pay in 15 days with Aplazame"
+#: aplazame.php:226
+msgid "Settings"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:94
-#: classes/wc-aplazame-pay-later-gateway.php:101
-#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
-msgid "Enable/Disable"
+#: classes/api/Aplazame_Api_ConfirmController.php:70
+msgid "Confirmed"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:95
-#: classes/wc-aplazame-gateway.php:95
-msgid "Enable Aplazame \"Flexible financing\""
-msgstr ""
-
-#: classes/wc-aplazame-pay-later-gateway.php:102
-#: classes/wc-aplazame-gateway.php:101
-msgid "Enable Aplazame \"Pay in 15 days\""
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:10 classes/lib/Helpers.php:279
-msgid " - Flexible financing"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:11
-msgid "Flexible financing with Aplazame"
-msgstr ""
-
+#: classes/api/Aplazame_Api_ConfirmController.php:79
 #: classes/lib/Helpers.php:106
-#: classes/api/Aplazame_Api_ConfirmController.php:75
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr ""
@@ -104,6 +84,10 @@ msgstr ""
 msgid "Payment method title"
 msgstr ""
 
+#: classes/lib/Helpers.php:279 classes/wc-aplazame-gateway.php:10
+msgid " - Flexible financing"
+msgstr ""
+
 #: classes/lib/Helpers.php:283 classes/lib/Helpers.php:309
 msgid "Description"
 msgstr ""
@@ -114,6 +98,10 @@ msgstr ""
 
 #: classes/lib/Helpers.php:297
 msgid "Pay in 15 days"
+msgstr ""
+
+#: classes/lib/Helpers.php:305 classes/wc-aplazame-pay-later-gateway.php:10
+msgid " - Pay in 15 days"
 msgstr ""
 
 #: classes/lib/Helpers.php:323
@@ -236,18 +224,30 @@ msgstr ""
 msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
 msgstr ""
 
-#: classes/api/Aplazame_Api_ConfirmController.php:66
-msgid "Confirmed"
+#: classes/wc-aplazame-gateway.php:11
+msgid "Flexible financing with Aplazame"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
+#: classes/wc-aplazame-pay-later-gateway.php:94
+#: classes/wc-aplazame-pay-later-gateway.php:101
+msgid "Enable/Disable"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:95
+#: classes/wc-aplazame-pay-later-gateway.php:95
+msgid "Enable Aplazame \"Flexible financing\""
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:101
+#: classes/wc-aplazame-pay-later-gateway.php:102
+msgid "Enable Aplazame \"Pay in 15 days\""
+msgstr ""
+
+#: classes/wc-aplazame-pay-later-gateway.php:11
+msgid "Pay in 15 days with Aplazame"
 msgstr ""
 
 #: templates/product/campaigns.php:82
 msgid "The campaign applies to all products from your catalogue"
-msgstr ""
-
-#: aplazame.php:169
-msgid "Aplazame Campaigns"
-msgstr ""
-
-#: aplazame.php:226
-msgid "Settings"
 msgstr ""
