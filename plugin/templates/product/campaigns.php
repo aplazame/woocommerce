@@ -30,6 +30,12 @@ switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
 
 	var articles = <?php echo json_encode( $articles ); ?>;
 
+	var dateObj = new Date();
+	var currentDate = dateObj.toISOString();
+	var byEndDate = function (campaign) {
+		return (campaign.end_date > currentDate);
+	};
+
 	function associateArticlesToCampaign(articles, campaignId) {
 		apiRequest("POST", "/me/campaigns/" + campaignId + "/articles", articles, function () {
 		});
@@ -112,6 +118,7 @@ switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
 	function apiRequest(method, path, data, callback) {
 		jQuery.ajax({
 			type: "POST",
+			async: false,
 			url: ajaxurl,
 			data: {
 				action: "aplazame-proxy",
@@ -123,23 +130,30 @@ switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
 		});
 	}
 
-	apiRequest("GET", "/me/campaigns", null, function (payload) {
-		var campaigns = payload.results;
-		var dateObj = new Date();
-		var currentDate = dateObj.toISOString();
-		var byEndDate = function (campaign) {
-			return (campaign.end_date > currentDate);
-		};
+	function getCampaigns(page = 1) {
+		apiRequest("GET", "/me/campaigns?page=" + page, null, function (payload) {
+			var campaigns = payload.results;
 
-		campaigns = campaigns.filter(byEndDate);
+			displayCampaigns(campaigns.filter(byEndDate));
 
-		apiRequest("GET", "/me/campaigns?articles-mid=" + articles[0].id, null, function (payload) {
+			if (payload.cursor.after != null) {
+				getCampaigns(payload.cursor.after);
+			}
+		});
+	}
+
+	function getCampaignsFromArticle(page = 1) {
+		apiRequest("GET", "/me/campaigns?articles-mid=" + articles[0].id + "&page=" + page, null, function(payload) {
 			var selectedCampaigns = payload.results;
 
-			selectedCampaigns = selectedCampaigns.filter(byEndDate);
+			selectCampaigns(selectedCampaigns.filter(byEndDate));
 
-			displayCampaigns(campaigns);
-			selectCampaigns(selectedCampaigns);
+			if (payload.cursor.after != null) {
+				getCampaignsFromArticle(payload.cursor.after);
+			}
 		});
-	});
+	}
+
+	getCampaigns();
+	getCampaignsFromArticle();
 </script>
