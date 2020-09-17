@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v2.2.4](https://github.com/aplazame/woocommerce/tree/v2.2.4) (2020-09-17)
+
+* [FIX] Campaigns pagination.
+
 #### [v2.2.3](https://github.com/aplazame/woocommerce/tree/v2.2.3) (2020-07-20)
 
 * [FIX] Order confirmation at WC < 3.0.
