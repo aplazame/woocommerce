@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v3.0.0](https://github.com/aplazame/woocommerce/tree/v3.0.0) (2021-01-12)
+
+* [ADD] Blended checkout.
+* [FIX] Minor improvements.
+
 #### [v2.2.4](https://github.com/aplazame/woocommerce/tree/v2.2.4) (2020-09-17)
 
 * [FIX] Campaigns pagination.
