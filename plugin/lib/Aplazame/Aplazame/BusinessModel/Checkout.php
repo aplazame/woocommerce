@@ -5,7 +5,7 @@
  */
 class Aplazame_Aplazame_BusinessModel_Checkout {
 
-	public static function createFromOrder( WC_Order $order, $checkout_url, $type ) {
+	public static function createFromOrder( WC_Order $order, $checkout_url ) {
 		$apiRouter = WC()->api_request_url( 'aplazame' );
 
 		$merchant                       = new stdClass();
@@ -27,8 +27,7 @@ class Aplazame_Aplazame_BusinessModel_Checkout {
 			$checkout->shipping = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
 		}
 
-		$checkout->meta    = Aplazame_Aplazame_BusinessModel_Meta::create();
-		$checkout->product = array( 'type' => $type );
+		$checkout->meta = Aplazame_Aplazame_BusinessModel_Meta::create();
 
 		return $checkout;
 	}

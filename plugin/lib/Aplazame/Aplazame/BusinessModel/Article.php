@@ -17,7 +17,7 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$product  = new WC_Product( $values['product_id'] );
 		$quantity = (int) $values['qty'];
 		$price    = $values['line_subtotal'] / $values['qty'];
-		$tax_rate = 100 * ( $values['line_tax'] / $values['line_total'] );
+		$tax_rate = $values['line_tax'] ? 100 * ( $values['line_tax'] / $values['line_total'] ) : 0;
 
 		return self::createArticle( $product, $quantity, $price, $tax_rate );
 	}
@@ -26,7 +26,7 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$product  = new WC_Product( $item_product->get_product_id() );
 		$quantity = (int) $item_product->get_quantity();
 		$price    = $item_product->get_subtotal() / $item_product->get_quantity();
-		$tax_rate = 100 * ( $item_product->get_total_tax() / $item_product->get_total() );
+		$tax_rate = $item_product->get_total_tax() ? 100 * ( $item_product->get_total_tax() / $item_product->get_total() ) : 0;
 
 		return self::createArticle( $product, $quantity, $price, $tax_rate );
 	}

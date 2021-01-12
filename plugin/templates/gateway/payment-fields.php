@@ -18,17 +18,6 @@ if ( ! $aplazame->enabled ) {
  * @var WooCommerce $woocommerce
  */
 global $woocommerce;
-
-switch ( $type ) {
-	case $aplazame::INSTALMENTS:
-		$text   = $aplazame->settings['description_instalments'];
-		$button = $aplazame->settings['button'];
-		break;
-	case $aplazame::PAY_LATER:
-		$text   = $aplazame->settings['description_pay_later'];
-		$button = $aplazame->settings['button_pay_later'];
-		break;
-}
 ?>
 
 <script>
@@ -37,10 +26,9 @@ switch ( $type ) {
 		<?php
 		echo json_encode(
 			array(
-				'selector' => $button,
+				'selector' => $aplazame->settings['button'],
 				'amount'   => Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize(),
 				'currency' => get_woocommerce_currency(),
-				'product'  => array( 'type' => $type ),
 			)
 		)
 		?>
@@ -48,4 +36,4 @@ switch ( $type ) {
 	})
 </script>
 
-<p><?php echo $text; ?></p>
+<p><?php echo $aplazame->settings['description']; ?></p>

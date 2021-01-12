@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 2.3
- * WC tested up to: 4.2.0
+ * WC tested up to: 4.8.0
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -28,10 +28,6 @@ class WC_Aplazame {
 	const VERSION      = '2.2.4';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
-
-	// Product types
-	const INSTALMENTS = 'instalments';
-	const PAY_LATER   = 'pay_later';
 
 	public static function _m_or_a( $obj, $method, $attribute ) {
 		if ( method_exists( $obj, $method ) ) {
@@ -121,7 +117,7 @@ class WC_Aplazame {
 		} else {
 			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
 		}
-		$this->enabled         = $this->settings['instalments_enabled'] === 'yes' || $this->settings['pay_later_enabled'] === 'yes';
+		$this->enabled         = $this->settings['enabled'] === 'yes';
 		$this->sandbox         = $this->settings['sandbox'] === 'yes';
 		$this->apiBaseUri      = $apiBaseUri;
 		$this->private_api_key = $this->settings['private_api_key'];
@@ -178,25 +174,29 @@ class WC_Aplazame {
 	}
 
 	public function capture_order( $order_id ) {
-		if ( $this->is_aplazame_pay_later_order( $order_id ) ) {
-			/**
-			 *
-			 * @var WC_Aplazame $aplazame
-			 */
-			global $aplazame;
 
-			$client = $aplazame->get_client()->apiClient;
+		$order = wc_get_order( $order_id );
+		if ( self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) != self::METHOD_ID ) {
+			return false;
+		}
 
-			$order  = wc_get_order( $order_id );
-			$amount = Aplazame_Sdk_Serializer_Decimal::fromFloat( $order->get_total() - $order->get_total_refunded() )->jsonSerialize();
+		/**
+		 *
+		 * @var WC_Aplazame $aplazame
+		 */
+		global $aplazame;
 
+		$client = $aplazame->get_client()->apiClient;
+
+		try {
+			$payload = $client->get( '/orders/' . $order_id . '/captures' );
+		} catch ( Exception $e ) {
+			return $e;
+		}
+
+		if ( $payload['remaining_capture_amount'] != 0 ) {
 			try {
-				$response = $client->post(
-					'/orders/' . $order_id . '/captures',
-					array(
-						'amount' => $amount,
-					)
-				);
+				$response = $client->post( '/orders/' . $order_id . '/captures', array( 'amount' => $payload['remaining_capture_amount'] ) );
 			} catch ( Exception $e ) {
 				return $e;
 			}
@@ -216,14 +216,8 @@ class WC_Aplazame {
 	 * @throws Exception
 	 */
 	public function plugin_action_links( $links ) {
-		$extra_param = '';
-
-		if ( self::is_aplazame_product_available( self::PAY_LATER ) ) {
-			$extra_param = '_' . self::PAY_LATER;
-		}
-
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' . $extra_param ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -261,15 +255,6 @@ class WC_Aplazame {
 			return;
 		}
 
-		if ( self::is_aplazame_product_available( self::PAY_LATER ) ) {
-			include_once 'classes/wc-aplazame-pay-later-gateway.php';
-			$methods[] = 'WC_Aplazame_Pay_Later_Gateway';
-
-			if ( ! self::is_aplazame_product_available( self::INSTALMENTS ) ) {
-				return $methods;
-			}
-		}
-
 		include_once 'classes/wc-aplazame-gateway.php';
 		$methods[] = 'WC_Aplazame_Gateway';
 
@@ -283,7 +268,7 @@ class WC_Aplazame {
 
 	// Widgets
 	public function is_product_widget_enabled() {
-		return $this->settings['instalments_enabled'] === 'yes' && $this->settings['product_widget_action'] != 'disabled';
+		return $this->enabled && $this->settings['product_widget_action'] != 'disabled';
 	}
 
 	public function product_widget() {
@@ -295,7 +280,7 @@ class WC_Aplazame {
 	}
 
 	public function is_cart_widget_enabled() {
-		return $this->settings['instalments_enabled'] === 'yes' && $this->settings['cart_widget_action'] != 'disabled';
+		return $this->enabled && $this->settings['cart_widget_action'] != 'disabled';
 	}
 
 	public function cart_widget() {
@@ -306,54 +291,7 @@ class WC_Aplazame {
 		Aplazame_Helpers::render_to_template( 'widgets/cart.php' );
 	}
 
-	// Static
-	/**
-	 *
-	 * @param int $order_id
-	 *
-	 * @return bool
-	 */
-	protected static function is_aplazame_order( $order_id ) {
-		$order = wc_get_order( $order_id );
-		return self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) === self::METHOD_ID;
-	}
-
-	/**
-	 *
-	 * @param int $order_id
-	 *
-	 * @return bool
-	 */
-	protected static function is_aplazame_pay_later_order( $order_id ) {
-		$order = wc_get_order( $order_id );
-		return self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) === self::METHOD_ID . '_' . self::PAY_LATER;
-	}
-
-	/**
-	 * @param $product_type
-	 *
-	 * @return bool
-	 */
-	public function is_aplazame_product_available( $product_type ) {
-		if ( ! $this->private_api_key ) {
-			return false;
-		}
-
-		$client = $this->get_client()->apiClient;
-		try {
-			$response = $client->get( '/me' );
-		} catch ( Exception $e ) {
-			return false;
-		}
-
-		$products = array();
-		foreach ( $response['products'] as $product ) {
-			$products[] = $product['type'];
-		}
-
-		return in_array( $product_type, $products );
-	}
-
+	// API
 	public function api_router() {
 		$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
 		$queryArguments = $_GET;
@@ -380,21 +318,13 @@ class WC_Aplazame_Install {
 		'price_variable_product_selector' => '#main [itemtype="http://schema.org/Product"] .single_variation_wrap .amount',
 		'public_api_key'                  => '',
 		'private_api_key'                 => '',
-		'button_image'                    => 'https://aplazame.com/static/img/buttons/white-148x46.png',
+		'button_image'                    => 'https://cdn.aplazame.com/static/img/buttons/aplazame-blended-button-227px.png',
 		'product_widget_action'           => 'woocommerce_single_product_summary',
 		'cart_widget_action'              => 'woocommerce_after_cart_totals',
-		'instalments_enabled'             => null,
-		'pay_later_enabled'               => 'no',
-		'button_pay_later'                => '#payment ul li:has(input#payment_method_aplazame_pay_later)',
-		'button_image_pay_later'          => 'https://aplazame.com/static/img/buttons/pay-later-227x46.png',
 		'product_legal_advice'            => 'yes',
 		'cart_legal_advice'               => 'yes',
-		'title_instalments'               => '',
-		'title_pay_later'                 => '',
-		'description_instalments'         => 'Financia tu compra en segundos con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
-Puedes dividir el pago en cuotas mensuales y obtener una respuesta instantánea a tu solicitud. Sin comisiones ocultas.',
-		'description_pay_later'           => 'Prueba primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.
-Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y paga 15 días después de recibir tu compra sólo lo que te quedes.',
+		'title'                           => '',
+		'description'                     => 'Compra primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.',
 	);
 
 	public static function upgrade() {
@@ -406,7 +336,7 @@ Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y pag
 			 * @var WC_Aplazame $aplazame
 			 */
 			global $aplazame;
-			if ( ! isset( $aplazame->settings['button_image'] ) ) {
+			if ( ! isset( $aplazame->settings['button_image'] ) || $aplazame->settings['button_image'] == 'https://aplazame.com/static/img/buttons/white-148x46.png' ) {
 				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
 			}
 			if ( isset( $aplazame->settings['product_widget_enabled'] ) && $aplazame->settings['product_widget_enabled'] == 'no' ) {
@@ -415,35 +345,20 @@ Compra sin que el dinero salga de tu cuenta. Llévate todo lo que te guste y pag
 			if ( isset( $aplazame->settings['cart_widget_enabled'] ) && $aplazame->settings['cart_widget_enabled'] == 'no' ) {
 				$aplazame->settings['cart_widget_action'] = 'disabled';
 			}
-			if ( ! isset( $aplazame->settings['instalments_enabled'] ) ) {
-				$aplazame->settings['instalments_enabled'] = $aplazame->settings['enabled'];
-			}
-			if ( ! isset( $aplazame->settings['pay_later_enabled'] ) ) {
-				$aplazame->settings['pay_later_enabled'] = self::$defaultSettings['pay_later_enabled'];
-			}
-			if ( ! isset( $aplazame->settings['button_pay_later'] ) ) {
-				$aplazame->settings['button_pay_later'] = self::$defaultSettings['button_pay_later'];
-			}
-			if ( ! isset( $aplazame->settings['button_image_pay_later'] ) ) {
-				$aplazame->settings['button_image_pay_later'] = self::$defaultSettings['button_image_pay_later'];
-			}
 			if ( ! isset( $aplazame->settings['product_legal_advice'] ) ) {
 				$aplazame->settings['product_legal_advice'] = 'no';
 			}
 			if ( ! isset( $aplazame->settings['cart_legal_advice'] ) ) {
 				$aplazame->settings['cart_legal_advice'] = 'no';
 			}
-			if ( ! isset( $aplazame->settings['title_instalments'] ) ) {
-				$aplazame->settings['title_instalments'] = self::$defaultSettings['title_instalments'];
+			if ( isset( $aplazame->settings['title_instalments'] ) ) {
+				$aplazame->settings['title'] = $aplazame->settings['title_instalments'];
 			}
-			if ( ! isset( $aplazame->settings['title_pay_later'] ) ) {
-				$aplazame->settings['title_pay_later'] = self::$defaultSettings['title_pay_later'];
+			if ( ! isset( $aplazame->settings['title'] ) ) {
+				$aplazame->settings['title'] = self::$defaultSettings['title'];
 			}
-			if ( ! isset( $aplazame->settings['description_instalments'] ) ) {
-				$aplazame->settings['description_instalments'] = self::$defaultSettings['description_instalments'];
-			}
-			if ( ! isset( $aplazame->settings['description_pay_later'] ) ) {
-				$aplazame->settings['description_pay_later'] = self::$defaultSettings['description_pay_later'];
+			if ( ! isset( $aplazame->settings['description'] ) ) {
+				$aplazame->settings['description'] = self::$defaultSettings['description'];
 			}
 			self::save_settings( $aplazame->settings );
 

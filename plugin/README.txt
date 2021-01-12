@@ -2,7 +2,7 @@
 Contributors: aplazame
 Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 5.4.2
+Tested up to: 5.6.0
 Requires PHP: 5.3.0
 Stable tag: 2.2.4
 License: BSD-3-Clause

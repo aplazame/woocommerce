@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v2.2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2020-09-17 15:05+0000\n"
+"POT-Creation-Date: 2020-12-16 10:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -17,237 +17,197 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aplazame.php:169
+#: aplazame.php:165
 msgid "Aplazame Campaigns"
 msgstr ""
 
-#: aplazame.php:226
+#: aplazame.php:214
 msgid "Settings"
 msgstr ""
 
-#: templates/product/campaigns.php:88
-msgid "The campaign applies to all products from your catalogue"
-msgstr ""
-
-#: classes/api/Aplazame_Api_ConfirmController.php:70
+#: classes/api/Aplazame_Api_ConfirmController.php:67
 msgid "Confirmed"
 msgstr ""
 
-#: classes/api/Aplazame_Api_ConfirmController.php:79
-#: classes/lib/Helpers.php:106
+#: classes/api/Aplazame_Api_ConfirmController.php:76
+#: classes/wc-aplazame-gateway.php:116
 #, php-format
 msgid "Order has been cancelled: %s"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:10 classes/lib/Helpers.php:305
-msgid " - Pay in 15 days"
+#: classes/wc-aplazame-gateway.php:11
+msgid "Pay with Aplazame"
 msgstr ""
 
-#: classes/wc-aplazame-pay-later-gateway.php:11
-msgid "Pay in 15 days with Aplazame"
-msgstr ""
-
-#: classes/wc-aplazame-pay-later-gateway.php:94
-#: classes/wc-aplazame-pay-later-gateway.php:101
-#: classes/wc-aplazame-gateway.php:94 classes/wc-aplazame-gateway.php:100
-msgid "Enable/Disable"
-msgstr ""
-
-#: classes/wc-aplazame-pay-later-gateway.php:95
-#: classes/wc-aplazame-gateway.php:95
-msgid "Enable Aplazame \"Flexible financing\""
-msgstr ""
-
-#: classes/wc-aplazame-pay-later-gateway.php:102
-#: classes/wc-aplazame-gateway.php:101
-msgid "Enable Aplazame \"Pay in 15 days\""
-msgstr ""
-
-#: classes/lib/Helpers.php:151
+#: classes/wc-aplazame-gateway.php:153
 #, php-format
 msgid "%1$s Error: \"%2$s\""
 msgstr ""
 
-#: classes/lib/Helpers.php:161
+#: classes/wc-aplazame-gateway.php:163
 #, php-format
 msgid "%1$s has successfully returned %2$d %3$s of the order #%4$s."
 msgstr ""
 
-#: classes/lib/Helpers.php:189
+#: classes/wc-aplazame-gateway.php:187
 #, php-format
 msgid ""
 "Aplazame gateway requires the API keys, please <a href=\"%s\">sign up</a> "
 "and take your keys."
 msgstr ""
 
-#: classes/lib/Helpers.php:254
+#: classes/wc-aplazame-gateway.php:200
+msgid "Enable/Disable"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:201
+msgid "Enable Aplazame Payment"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:206
 msgid "Test mode (Sandbox)"
 msgstr ""
 
-#: classes/lib/Helpers.php:255
+#: classes/wc-aplazame-gateway.php:207
 msgid "Determines if the module is on Sandbox mode"
 msgstr ""
 
-#: classes/lib/Helpers.php:256
+#: classes/wc-aplazame-gateway.php:208
 msgid "Turn on Sandbox"
 msgstr ""
 
-#: classes/lib/Helpers.php:260
+#: classes/wc-aplazame-gateway.php:212
 msgid "Private API Key"
 msgstr ""
 
-#: classes/lib/Helpers.php:261
+#: classes/wc-aplazame-gateway.php:213
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/lib/Helpers.php:271
+#: classes/wc-aplazame-gateway.php:219
 msgid "Flexible financing"
 msgstr ""
 
-#: classes/lib/Helpers.php:277 classes/lib/Helpers.php:303
+#: classes/wc-aplazame-gateway.php:225
 msgid "Title"
 msgstr ""
 
-#: classes/lib/Helpers.php:278 classes/lib/Helpers.php:304
+#: classes/wc-aplazame-gateway.php:226
 msgid "Payment method title"
 msgstr ""
 
-#: classes/lib/Helpers.php:279 classes/wc-aplazame-gateway.php:10
-msgid " - Flexible financing"
-msgstr ""
-
-#: classes/lib/Helpers.php:283 classes/lib/Helpers.php:309
+#: classes/wc-aplazame-gateway.php:231
 msgid "Description"
 msgstr ""
 
-#: classes/lib/Helpers.php:284 classes/lib/Helpers.php:310
+#: classes/wc-aplazame-gateway.php:232
 msgid "Payment method description"
 msgstr ""
 
-#: classes/lib/Helpers.php:297
-msgid "Pay in 15 days"
-msgstr ""
-
-#: classes/lib/Helpers.php:323
+#: classes/wc-aplazame-gateway.php:240
 msgid "Product widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:329 classes/lib/Helpers.php:374
+#: classes/wc-aplazame-gateway.php:246 classes/wc-aplazame-gateway.php:291
 msgid "Place to show"
 msgstr ""
 
-#: classes/lib/Helpers.php:330
+#: classes/wc-aplazame-gateway.php:247
 msgid "Widget place on product page"
 msgstr ""
 
-#: classes/lib/Helpers.php:332 classes/lib/Helpers.php:377
+#: classes/wc-aplazame-gateway.php:249 classes/wc-aplazame-gateway.php:294
 msgid "~ Not show ~"
 msgstr ""
 
-#: classes/lib/Helpers.php:333
+#: classes/wc-aplazame-gateway.php:250
 msgid "Before add to cart button"
 msgstr ""
 
-#: classes/lib/Helpers.php:334
+#: classes/wc-aplazame-gateway.php:251
 msgid "After add to cart button"
 msgstr ""
 
-#: classes/lib/Helpers.php:335
+#: classes/wc-aplazame-gateway.php:252
 msgid "After summary"
 msgstr ""
 
-#: classes/lib/Helpers.php:341 classes/lib/Helpers.php:385
+#: classes/wc-aplazame-gateway.php:258 classes/wc-aplazame-gateway.php:302
 msgid "Legal notice"
 msgstr ""
 
-#: classes/lib/Helpers.php:342
+#: classes/wc-aplazame-gateway.php:259
 msgid "Show legal notice in product widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:343 classes/lib/Helpers.php:387
+#: classes/wc-aplazame-gateway.php:260 classes/wc-aplazame-gateway.php:304
 msgid "Show legal notice"
 msgstr ""
 
-#: classes/lib/Helpers.php:347
+#: classes/wc-aplazame-gateway.php:264
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:348
+#: classes/wc-aplazame-gateway.php:265
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/lib/Helpers.php:353
+#: classes/wc-aplazame-gateway.php:270
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:354
+#: classes/wc-aplazame-gateway.php:271
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/lib/Helpers.php:359
+#: classes/wc-aplazame-gateway.php:276
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:360
+#: classes/wc-aplazame-gateway.php:277
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/lib/Helpers.php:368
+#: classes/wc-aplazame-gateway.php:285
 msgid "Cart widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:375
+#: classes/wc-aplazame-gateway.php:292
 msgid "Widget place on cart page"
 msgstr ""
 
-#: classes/lib/Helpers.php:378
+#: classes/wc-aplazame-gateway.php:295
 msgid "Before cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:379
+#: classes/wc-aplazame-gateway.php:296
 msgid "After cart totals"
 msgstr ""
 
-#: classes/lib/Helpers.php:386
+#: classes/wc-aplazame-gateway.php:303
 msgid "Show legal notice in cart widget"
 msgstr ""
 
-#: classes/lib/Helpers.php:390
-msgid "Buttons"
+#: classes/wc-aplazame-gateway.php:307
+msgid "Button"
 msgstr ""
 
-#: classes/lib/Helpers.php:396
-msgid "\"Flexible financing\" Button"
+#: classes/wc-aplazame-gateway.php:313
+msgid "Button Selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:397
-msgid "Aplazame \"Flexible financing\" Button CSS Selector"
+#: classes/wc-aplazame-gateway.php:314
+msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/lib/Helpers.php:405
-msgid "\"Flexible financing\" Button Image"
+#: classes/wc-aplazame-gateway.php:322
+msgid "Button Image"
 msgstr ""
 
-#: classes/lib/Helpers.php:406
-msgid "Aplazame \"Flexible financing\" Button Image that you want to show"
+#: classes/wc-aplazame-gateway.php:323
+msgid "Aplazame Button Image that you want to show"
 msgstr ""
 
-#: classes/lib/Helpers.php:416
-msgid "\"Pay in 15 days\" Button"
-msgstr ""
-
-#: classes/lib/Helpers.php:417
-msgid "Aplazame \"Pay in 15 days\" Button CSS Selector"
-msgstr ""
-
-#: classes/lib/Helpers.php:425
-msgid "\"Pay in 15 days\" Button Image"
-msgstr ""
-
-#: classes/lib/Helpers.php:426
-msgid "Aplazame \"Pay in 15 days\" Button Image that you want to show"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:11
-msgid "Flexible financing with Aplazame"
+#: templates/product/campaigns.php:88
+msgid "The campaign applies to all products from your catalogue"
 msgstr ""
