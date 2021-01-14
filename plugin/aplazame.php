@@ -325,6 +325,8 @@ class WC_Aplazame_Install {
 		'cart_legal_advice'               => 'yes',
 		'title'                           => '',
 		'description'                     => 'Compra primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.',
+		'product_default_instalments'     => '',
+		'cart_default_instalments'        => '',
 	);
 
 	public static function upgrade() {

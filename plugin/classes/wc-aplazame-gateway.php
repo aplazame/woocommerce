@@ -253,6 +253,13 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => 'woocommerce_single_product_summary',
 			),
+			'product_default_instalments'     => array(
+				'type'        => 'text',
+				'css'         => 'width:200px;',
+				'title'       => __( 'Default instalments', 'aplazame' ),
+				'description' => __( 'Number of default instalments in product widget', 'aplazame' ),
+				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
+			),
 			'product_legal_advice'            => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Legal notice', 'aplazame' ),
@@ -296,6 +303,13 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'woocommerce_after_cart_totals'  => __( 'After cart totals', 'aplazame' ),
 				),
 				'default'     => 'woocommerce_after_cart_totals',
+			),
+			'cart_default_instalments'        => array(
+				'type'        => 'text',
+				'css'         => 'width:200px;',
+				'title'       => __( 'Default instalments', 'aplazame' ),
+				'description' => __( 'Number of default instalments in cart widget', 'aplazame' ),
+				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
 			),
 			'cart_legal_advice'               => array(
 				'type'        => 'checkbox',

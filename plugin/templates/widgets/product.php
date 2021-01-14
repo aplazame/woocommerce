@@ -45,5 +45,8 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	<?php endif; ?>
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	data-article-id="<?php echo esc_attr( $product->get_id() ); ?>"
+	<?php if ( ! empty( $aplazame->settings['product_default_instalments'] ) ) : ?>
+		data-option-default-instalments="<?php echo esc_attr( $aplazame->settings['product_default_instalments'] ); ?>"
+	<?php endif; ?>
 	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['product_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>">
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v3.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2021-01-12 14:55+0000\n"
+"POT-Creation-Date: 2021-01-14 09:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:246 classes/wc-aplazame-gateway.php:291
+#: classes/wc-aplazame-gateway.php:246 classes/wc-aplazame-gateway.php:298
 msgid "Place to show"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Widget place on product page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:249 classes/wc-aplazame-gateway.php:294
+#: classes/wc-aplazame-gateway.php:249 classes/wc-aplazame-gateway.php:301
 msgid "~ Not show ~"
 msgstr ""
 
@@ -132,79 +132,95 @@ msgstr ""
 msgid "After summary"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:258 classes/wc-aplazame-gateway.php:302
+#: classes/wc-aplazame-gateway.php:259 classes/wc-aplazame-gateway.php:310
+msgid "Default instalments"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:260
+msgid "Number of default instalments in product widget"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:261 classes/wc-aplazame-gateway.php:312
+msgid "Optional (only numbers)"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:265 classes/wc-aplazame-gateway.php:316
 msgid "Legal notice"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:259
+#: classes/wc-aplazame-gateway.php:266
 msgid "Show legal notice in product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:260 classes/wc-aplazame-gateway.php:304
+#: classes/wc-aplazame-gateway.php:267 classes/wc-aplazame-gateway.php:318
 msgid "Show legal notice"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:264
+#: classes/wc-aplazame-gateway.php:271
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:265
+#: classes/wc-aplazame-gateway.php:272
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:270
+#: classes/wc-aplazame-gateway.php:277
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:271
+#: classes/wc-aplazame-gateway.php:278
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:276
+#: classes/wc-aplazame-gateway.php:283
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:277
+#: classes/wc-aplazame-gateway.php:284
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:285
+#: classes/wc-aplazame-gateway.php:292
 msgid "Cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:292
+#: classes/wc-aplazame-gateway.php:299
 msgid "Widget place on cart page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:295
+#: classes/wc-aplazame-gateway.php:302
 msgid "Before cart totals"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:296
+#: classes/wc-aplazame-gateway.php:303
 msgid "After cart totals"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:303
+#: classes/wc-aplazame-gateway.php:311
+msgid "Number of default instalments in cart widget"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:317
 msgid "Show legal notice in cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:307
+#: classes/wc-aplazame-gateway.php:321
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:313
+#: classes/wc-aplazame-gateway.php:327
 msgid "Button Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:314
+#: classes/wc-aplazame-gateway.php:328
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:322
+#: classes/wc-aplazame-gateway.php:336
 msgid "Button Image"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:323
+#: classes/wc-aplazame-gateway.php:337
 msgid "Aplazame Button Image that you want to show"
 msgstr ""
 
