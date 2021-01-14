@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v3.1.0](https://github.com/aplazame/woocommerce/tree/v3.1.0) (2021-01-14)
+
+* [ADD] Instalments selector for widgets.
+* [CHANGE] Marketplace assets.
+
 #### [v3.0.0](https://github.com/aplazame/woocommerce/tree/v3.0.0) (2021-01-12)
 
 * [ADD] Blended checkout.
