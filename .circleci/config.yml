@@ -51,13 +51,19 @@ jobs:
 
       - run:
           name: Sync assets
-          command: rsync -r -p assets/* svn/assets
+          command: |
+            rsync -r -p --delete assets/ svn/assets
+            svn add --force svn/assets
 
       - run:
           name: Sync trunk
           command: |
-            rsync -r -p plugin/* svn/trunk
+            rsync -r -p --delete plugin/ svn/trunk
             svn add --force svn/trunk
+
+      - run:
+          name: Delete unused files
+          command: svn status svn | grep '^!' | awk '{print $2}' | xargs svn delete
 
       - run:
           name: Tag release
