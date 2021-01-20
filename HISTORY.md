@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.1.1](https://github.com/aplazame/woocommerce/tree/v3.1.1) (2021-01-20)
+
+* Release for update assets on WP plugin page.
+
 #### [v3.1.0](https://github.com/aplazame/woocommerce/tree/v3.1.0) (2021-01-14)
 
 * [ADD] Instalments selector for widgets.
