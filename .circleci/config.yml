@@ -63,7 +63,7 @@ jobs:
 
       - run:
           name: Delete unused files
-          command: svn status svn | grep '^!' | awk '{print $2}' | xargs svn delete
+          command: for i in  $(svn status svn | grep \! | awk '{print $2}'); do svn delete $i; done
 
       - run:
           name: Tag release
