@@ -12,6 +12,7 @@ class Aplazame_Aplazame_Http_WpClient implements Aplazame_Sdk_Http_ClientInterfa
 			'headers' => $rawHeaders,
 			'method'  => $request->getMethod(),
 			'body'    => $request->getBody(),
+			'timeout' => 30,
 		);
 
 		$wpResponse = wp_remote_request( $request->getUri(), $args );
