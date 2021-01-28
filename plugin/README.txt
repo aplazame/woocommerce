@@ -4,7 +4,7 @@ Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,f
 Requires at least: 4.0.1
 Tested up to: 5.6.0
 Requires PHP: 5.3.0
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
@@ -76,6 +76,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v3.1.2](https://github.com/aplazame/woocommerce/tree/v3.1.2) (2021-01-28)
+
+* [FIX] WooCommerce requests timeout forced at 30 seconds (instead of 5 seconds, by default).
 
 #### [v3.1.1](https://github.com/aplazame/woocommerce/tree/v3.1.1) (2021-01-20)
 
