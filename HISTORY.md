@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.2.0](https://github.com/aplazame/woocommerce/tree/v3.2.0) (2021-02-24)
+
+* [ADD] New widget (v4).
+
 #### [v3.1.3](https://github.com/aplazame/woocommerce/tree/v3.1.3) (2021-01-28)
 
 * CircleCI and SVN tweeks for WP plugin page.
