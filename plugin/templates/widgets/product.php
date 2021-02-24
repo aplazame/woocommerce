@@ -33,8 +33,15 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 ?>
 
 <div
-	data-aplazame-widget-instalments=""
-	data-view="product"
+	<?php if ( $aplazame->settings['widget_legacy'] === 'yes' ) : ?>
+		data-aplazame-widget-instalments=""
+		data-view="product"
+	<?php else : ?>
+		data-aplazame-widget-instalments="v4"
+		data-type="product"
+		data-option-primary-color="<?php echo esc_attr( $aplazame->settings['product_widget_primary_color'] ); ?>"
+		data-option-layout="<?php echo esc_attr( $aplazame->settings['product_widget_layout'] ); ?>"
+	<?php endif; ?>
 	<?php if ( empty( $price_selector ) ) : ?>
 		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->jsonSerialize() ); ?>"
 	<?php else : ?>

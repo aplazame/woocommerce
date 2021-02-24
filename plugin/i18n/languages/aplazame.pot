@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v3.1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2021-01-28 11:48+0000\n"
+"POT-Creation-Date: 2021-02-10 11:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -84,143 +84,175 @@ msgstr ""
 msgid "Aplazame API Private Key"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:219
-msgid "Flexible financing"
+#: classes/wc-aplazame-gateway.php:221
+msgid "Use widget legacy instead new widget"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:222
+msgid "Turn on widget legacy"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:225
-msgid "Title"
-msgstr ""
-
-#: classes/wc-aplazame-gateway.php:226
-msgid "Payment method title"
+msgid "Payment method title and description"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:231
-msgid "Description"
+msgid "Title"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:232
+msgid "Payment method title"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:237
+msgid "Description"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:238
 msgid "Payment method description"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:240
+#: classes/wc-aplazame-gateway.php:246
 msgid "Product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:246 classes/wc-aplazame-gateway.php:298
+#: classes/wc-aplazame-gateway.php:252 classes/wc-aplazame-gateway.php:323
 msgid "Place to show"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:247
+#: classes/wc-aplazame-gateway.php:253
 msgid "Widget place on product page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:249 classes/wc-aplazame-gateway.php:301
+#: classes/wc-aplazame-gateway.php:255 classes/wc-aplazame-gateway.php:326
 msgid "~ Not show ~"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:250
+#: classes/wc-aplazame-gateway.php:256
 msgid "Before add to cart button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:251
+#: classes/wc-aplazame-gateway.php:257
 msgid "After add to cart button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:252
+#: classes/wc-aplazame-gateway.php:258
 msgid "After summary"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:259 classes/wc-aplazame-gateway.php:310
+#: classes/wc-aplazame-gateway.php:265 classes/wc-aplazame-gateway.php:335
 msgid "Default instalments"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:260
+#: classes/wc-aplazame-gateway.php:266
 msgid "Number of default instalments in product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:261 classes/wc-aplazame-gateway.php:312
+#: classes/wc-aplazame-gateway.php:267 classes/wc-aplazame-gateway.php:337
 msgid "Optional (only numbers)"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:265 classes/wc-aplazame-gateway.php:316
+#: classes/wc-aplazame-gateway.php:271 classes/wc-aplazame-gateway.php:341
 msgid "Legal notice"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:266
+#: classes/wc-aplazame-gateway.php:272
 msgid "Show legal notice in product widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:267 classes/wc-aplazame-gateway.php:318
+#: classes/wc-aplazame-gateway.php:273 classes/wc-aplazame-gateway.php:343
 msgid "Show legal notice"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:271
+#: classes/wc-aplazame-gateway.php:279 classes/wc-aplazame-gateway.php:349
+msgid "Primary color"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:280
+msgid "Primary color hexadecimal code for product widget (only new widget)"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:286 classes/wc-aplazame-gateway.php:356
+msgid "Layout"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:287
+msgid "Layout of product widget (only new widget)"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:296
 msgid "Product quantity CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:272
+#: classes/wc-aplazame-gateway.php:297
 msgid "CSS selector pointing to product quantity"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:277
+#: classes/wc-aplazame-gateway.php:302
 msgid "Product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:278
+#: classes/wc-aplazame-gateway.php:303
 msgid "CSS selector pointing to product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:283
+#: classes/wc-aplazame-gateway.php:308
 msgid "Variable product price CSS selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:284
+#: classes/wc-aplazame-gateway.php:309
 msgid "CSS selector pointing to variable product price"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:292
+#: classes/wc-aplazame-gateway.php:317
 msgid "Cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:299
+#: classes/wc-aplazame-gateway.php:324
 msgid "Widget place on cart page"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:302
+#: classes/wc-aplazame-gateway.php:327
 msgid "Before cart totals"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:303
+#: classes/wc-aplazame-gateway.php:328
 msgid "After cart totals"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:311
+#: classes/wc-aplazame-gateway.php:336
 msgid "Number of default instalments in cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:317
+#: classes/wc-aplazame-gateway.php:342
 msgid "Show legal notice in cart widget"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:321
+#: classes/wc-aplazame-gateway.php:350
+msgid "Primary color hexadecimal code for cart widget (only new widget)"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:357
+msgid "Layout of cart widget (only new widget)"
+msgstr ""
+
+#: classes/wc-aplazame-gateway.php:365
 msgid "Button"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:327
+#: classes/wc-aplazame-gateway.php:371
 msgid "Button Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:328
+#: classes/wc-aplazame-gateway.php:372
 msgid "Aplazame Button CSS Selector"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:336
+#: classes/wc-aplazame-gateway.php:380
 msgid "Button Image"
 msgstr ""
 
-#: classes/wc-aplazame-gateway.php:337
+#: classes/wc-aplazame-gateway.php:381
 msgid "Aplazame Button Image that you want to show"
 msgstr ""
 

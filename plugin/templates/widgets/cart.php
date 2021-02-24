@@ -13,8 +13,15 @@ global $aplazame;
 ?>
 
 <div
-	data-aplazame-widget-instalments=""
-	data-view="cart"
+	<?php if ( $aplazame->settings['widget_legacy'] === 'yes' ) : ?>
+		data-aplazame-widget-instalments=""
+		data-view="cart"
+	<?php else : ?>
+		data-aplazame-widget-instalments="v4"
+		data-type="cart"
+		data-option-primary-color="<?php echo esc_attr( $aplazame->settings['cart_widget_primary_color'] ); ?>"
+		data-option-layout="<?php echo esc_attr( $aplazame->settings['cart_widget_layout'] ); ?>"
+	<?php endif; ?>
 	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	<?php if ( ! empty( $aplazame->settings['cart_default_instalments'] ) ) : ?>

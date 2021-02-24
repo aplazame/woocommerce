@@ -203,7 +203,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			),
 			'sandbox'                         => array(
 				'type'        => 'checkbox',
-				'title'       => __( 'Test mode (Sandbox)' ),
+				'title'       => __( 'Test mode (Sandbox)', 'aplazame' ),
 				'description' => __( 'Determines if the module is on Sandbox mode', 'aplazame' ),
 				'label'       => __( 'Turn on Sandbox', 'aplazame' ),
 			),
@@ -215,8 +215,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
-			'instalments_section'             => array(
-				'title'       => __( 'Flexible financing', 'aplazame' ),
+			'widget_legacy'                   => array(
+				'type'        => 'checkbox',
+				'title'       => 'Widget legacy',
+				'description' => __( 'Use widget legacy instead new widget', 'aplazame' ),
+				'label'       => __( 'Turn on widget legacy', 'aplazame' ),
+			),
+			'payment_section'                 => array(
+				'title'       => __( 'Payment method title and description', 'aplazame' ),
 				'type'        => 'title',
 				'description' => '',
 			),
@@ -265,6 +271,25 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Legal notice', 'aplazame' ),
 				'description' => __( 'Show legal notice in product widget', 'aplazame' ),
 				'label'       => __( 'Show legal notice', 'aplazame' ),
+			),
+			'product_widget_primary_color'    => array(
+				'type'        => 'text',
+				'css'         => 'width:100px;',
+				'class'       => 'colorpick',
+				'title'       => __( 'Primary color', 'aplazame' ),
+				'description' => __( 'Primary color hexadecimal code for product widget (only new widget)', 'aplazame' ),
+				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
+			),
+			'product_widget_layout'           => array(
+				'type'        => 'select',
+				'title'       => __( 'Layout', 'aplazame' ),
+				'description' => __( 'Layout of product widget (only new widget)', 'aplazame' ),
+				'options'     => array(
+					'horizontal' => 'Horizontal',
+					'vertical'   => 'Vertical',
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_layout'],
 			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
@@ -316,6 +341,25 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Legal notice', 'aplazame' ),
 				'description' => __( 'Show legal notice in cart widget', 'aplazame' ),
 				'label'       => __( 'Show legal notice', 'aplazame' ),
+			),
+			'cart_widget_primary_color'       => array(
+				'type'        => 'text',
+				'css'         => 'width:100px;',
+				'class'       => 'colorpick',
+				'title'       => __( 'Primary color', 'aplazame' ),
+				'description' => __( 'Primary color hexadecimal code for cart widget (only new widget)', 'aplazame' ),
+				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
+			),
+			'cart_widget_layout'              => array(
+				'type'        => 'select',
+				'title'       => __( 'Layout', 'aplazame' ),
+				'description' => __( 'Layout of cart widget (only new widget)', 'aplazame' ),
+				'options'     => array(
+					'horizontal' => 'Horizontal',
+					'vertical'   => 'Vertical',
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_layout'],
 			),
 			'button_section'                  => array(
 				'title'       => __( 'Button', 'aplazame' ),

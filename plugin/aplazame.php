@@ -327,6 +327,11 @@ class WC_Aplazame_Install {
 		'description'                     => 'Compra primero y paga después con <a href="https://aplazame.com" target="_blank">Aplazame</a>.',
 		'product_default_instalments'     => '',
 		'cart_default_instalments'        => '',
+		'product_widget_primary_color'    => '#334bff',
+		'cart_widget_primary_color'       => '#334bff',
+		'product_widget_layout'           => 'horizontal',
+		'cart_widget_layout'              => 'horizontal',
+		'widget_legacy'                   => 'no',
 	);
 
 	public static function upgrade() {
@@ -356,11 +361,8 @@ class WC_Aplazame_Install {
 			if ( isset( $aplazame->settings['title_instalments'] ) ) {
 				$aplazame->settings['title'] = $aplazame->settings['title_instalments'];
 			}
-			if ( ! isset( $aplazame->settings['title'] ) ) {
-				$aplazame->settings['title'] = self::$defaultSettings['title'];
-			}
-			if ( ! isset( $aplazame->settings['description'] ) ) {
-				$aplazame->settings['description'] = self::$defaultSettings['description'];
+			if ( ! isset( $aplazame->settings['widget_legacy'] ) ) {
+				$aplazame->settings['widget_legacy'] = 'yes';
 			}
 			self::save_settings( $aplazame->settings );
 
