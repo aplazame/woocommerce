@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2021-02-10 11:50+0000\n"
+"POT-Creation-Date: 2021-04-06 15:42+0000\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +109,7 @@ msgstr "Descripción del método de pago"
 msgid "Product widget"
 msgstr "Widget del producto"
 
-#: classes/wc-aplazame-gateway.php:252 classes/wc-aplazame-gateway.php:323
+#: classes/wc-aplazame-gateway.php:252 classes/wc-aplazame-gateway.php:329
 msgid "Place to show"
 msgstr "Lugar a mostrar"
 
@@ -117,7 +117,7 @@ msgstr "Lugar a mostrar"
 msgid "Widget place on product page"
 msgstr "Lugar del widget en la página del producto"
 
-#: classes/wc-aplazame-gateway.php:255 classes/wc-aplazame-gateway.php:326
+#: classes/wc-aplazame-gateway.php:255 classes/wc-aplazame-gateway.php:332
 msgid "~ Not show ~"
 msgstr "~ No mostrar ~"
 
@@ -133,7 +133,7 @@ msgstr "Después del botón de añadir al carrito"
 msgid "After summary"
 msgstr "Después del resumen"
 
-#: classes/wc-aplazame-gateway.php:265 classes/wc-aplazame-gateway.php:335
+#: classes/wc-aplazame-gateway.php:265 classes/wc-aplazame-gateway.php:341
 msgid "Default instalments"
 msgstr "Cuotas por defecto"
 
@@ -141,11 +141,11 @@ msgstr "Cuotas por defecto"
 msgid "Number of default instalments in product widget"
 msgstr "Número de cuotas por defecto en el widget del producto"
 
-#: classes/wc-aplazame-gateway.php:267 classes/wc-aplazame-gateway.php:337
+#: classes/wc-aplazame-gateway.php:267 classes/wc-aplazame-gateway.php:343
 msgid "Optional (only numbers)"
 msgstr "Opcional (solo números)"
 
-#: classes/wc-aplazame-gateway.php:271 classes/wc-aplazame-gateway.php:341
+#: classes/wc-aplazame-gateway.php:271 classes/wc-aplazame-gateway.php:347
 msgid "Legal notice"
 msgstr "Texto legal"
 
@@ -153,103 +153,115 @@ msgstr "Texto legal"
 msgid "Show legal notice in product widget"
 msgstr "Mostrar texto legal en el widget del producto"
 
-#: classes/wc-aplazame-gateway.php:273 classes/wc-aplazame-gateway.php:343
+#: classes/wc-aplazame-gateway.php:273 classes/wc-aplazame-gateway.php:349
 msgid "Show legal notice"
 msgstr "Mostrar texto legal"
 
-#: classes/wc-aplazame-gateway.php:279 classes/wc-aplazame-gateway.php:349
+#: classes/wc-aplazame-gateway.php:277
+msgid "Border"
+msgstr "Marco"
+
+#: classes/wc-aplazame-gateway.php:278
+msgid "Show border in product widget (only new widget)"
+msgstr "Mostrar marco en el widget del producto (sólo nuevo widget)"
+
+#: classes/wc-aplazame-gateway.php:279
+msgid "Show border"
+msgstr "Mostrar marco"
+
+#: classes/wc-aplazame-gateway.php:285 classes/wc-aplazame-gateway.php:355
 msgid "Primary color"
 msgstr "Color principal"
 
-#: classes/wc-aplazame-gateway.php:280
+#: classes/wc-aplazame-gateway.php:286
 msgid "Primary color hexadecimal code for product widget (only new widget)"
 msgstr ""
 "Código hexadecimal del color principal para el widget del producto (sólo "
 "nuevo widget)"
 
-#: classes/wc-aplazame-gateway.php:286 classes/wc-aplazame-gateway.php:356
+#: classes/wc-aplazame-gateway.php:292 classes/wc-aplazame-gateway.php:362
 msgid "Layout"
 msgstr "Disposición"
 
-#: classes/wc-aplazame-gateway.php:287
+#: classes/wc-aplazame-gateway.php:293
 msgid "Layout of product widget (only new widget)"
 msgstr "Disposición del widget del producto (sólo nuevo widget)"
 
-#: classes/wc-aplazame-gateway.php:296
+#: classes/wc-aplazame-gateway.php:302
 msgid "Product quantity CSS selector"
 msgstr "Selector CSS del número de unidades del producto"
 
-#: classes/wc-aplazame-gateway.php:297
+#: classes/wc-aplazame-gateway.php:303
 msgid "CSS selector pointing to product quantity"
 msgstr "Selector CSS para obtener la cantidad de producto"
 
-#: classes/wc-aplazame-gateway.php:302
+#: classes/wc-aplazame-gateway.php:308
 msgid "Product price CSS selector"
 msgstr "Selector CSS del precio del producto"
 
-#: classes/wc-aplazame-gateway.php:303
+#: classes/wc-aplazame-gateway.php:309
 msgid "CSS selector pointing to product price"
 msgstr "Selector CSS para obtener el precio del producto"
 
-#: classes/wc-aplazame-gateway.php:308
+#: classes/wc-aplazame-gateway.php:314
 msgid "Variable product price CSS selector"
 msgstr "Selector CSS del precio variable del producto"
 
-#: classes/wc-aplazame-gateway.php:309
+#: classes/wc-aplazame-gateway.php:315
 msgid "CSS selector pointing to variable product price"
 msgstr "Selector CSS para obtener el precio variable del producto"
 
-#: classes/wc-aplazame-gateway.php:317
+#: classes/wc-aplazame-gateway.php:323
 msgid "Cart widget"
 msgstr "Widget del carrito"
 
-#: classes/wc-aplazame-gateway.php:324
+#: classes/wc-aplazame-gateway.php:330
 msgid "Widget place on cart page"
 msgstr "Lugar del widget en la página del carrito"
 
-#: classes/wc-aplazame-gateway.php:327
+#: classes/wc-aplazame-gateway.php:333
 msgid "Before cart totals"
 msgstr "Antes del total"
 
-#: classes/wc-aplazame-gateway.php:328
+#: classes/wc-aplazame-gateway.php:334
 msgid "After cart totals"
 msgstr "Después del total"
 
-#: classes/wc-aplazame-gateway.php:336
+#: classes/wc-aplazame-gateway.php:342
 msgid "Number of default instalments in cart widget"
 msgstr "Número de cuotas por defecto en el widget del carrito"
 
-#: classes/wc-aplazame-gateway.php:342
+#: classes/wc-aplazame-gateway.php:348
 msgid "Show legal notice in cart widget"
 msgstr "Mostrar texto legal en el widget del carrito"
 
-#: classes/wc-aplazame-gateway.php:350
+#: classes/wc-aplazame-gateway.php:356
 msgid "Primary color hexadecimal code for cart widget (only new widget)"
 msgstr ""
 "Código hexadecimal del color principal para el widget del carrito (sólo "
 "nuevo widget)"
 
-#: classes/wc-aplazame-gateway.php:357
+#: classes/wc-aplazame-gateway.php:363
 msgid "Layout of cart widget (only new widget)"
 msgstr "Disposición del widget del carrito (sólo nuevo widget)"
 
-#: classes/wc-aplazame-gateway.php:365
+#: classes/wc-aplazame-gateway.php:371
 msgid "Button"
 msgstr "Botón"
 
-#: classes/wc-aplazame-gateway.php:371
+#: classes/wc-aplazame-gateway.php:377
 msgid "Button Selector"
 msgstr "Selector del botón"
 
-#: classes/wc-aplazame-gateway.php:372
+#: classes/wc-aplazame-gateway.php:378
 msgid "Aplazame Button CSS Selector"
 msgstr "Selector CSS del botón de pago con Aplazame"
 
-#: classes/wc-aplazame-gateway.php:380
+#: classes/wc-aplazame-gateway.php:386
 msgid "Button Image"
 msgstr "Imagen del botón"
 
-#: classes/wc-aplazame-gateway.php:381
+#: classes/wc-aplazame-gateway.php:387
 msgid "Aplazame Button Image that you want to show"
 msgstr "Imagen del botón de pago con Aplazame que quieres mostrar"
 

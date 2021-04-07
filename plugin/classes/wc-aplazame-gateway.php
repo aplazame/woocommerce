@@ -272,6 +272,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Show legal notice in product widget', 'aplazame' ),
 				'label'       => __( 'Show legal notice', 'aplazame' ),
 			),
+			'product_widget_border'           => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Border', 'aplazame' ),
+				'description' => __( 'Show border in product widget (only new widget)', 'aplazame' ),
+				'label'       => __( 'Show border', 'aplazame' ),
+			),
 			'product_widget_primary_color'    => array(
 				'type'        => 'text',
 				'css'         => 'width:100px;',
