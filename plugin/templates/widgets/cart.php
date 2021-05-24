@@ -21,6 +21,7 @@ global $aplazame;
 		data-type="cart"
 		data-option-primary-color="<?php echo esc_attr( $aplazame->settings['cart_widget_primary_color'] ); ?>"
 		data-option-layout="<?php echo esc_attr( $aplazame->settings['cart_widget_layout'] ); ?>"
+		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
 	<?php endif; ?>
 	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"

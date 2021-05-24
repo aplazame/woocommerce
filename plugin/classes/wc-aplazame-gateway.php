@@ -297,6 +297,17 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_layout'],
 			),
+			'product_widget_align'            => array(
+				'type'        => 'select',
+				'title'       => __( 'Alignment', 'aplazame' ),
+				'description' => __( 'Product widget alignment (only new widget)', 'aplazame' ),
+				'options'     => array(
+					'left'   => __( 'Left', 'aplazame' ),
+					'center' => __( 'Center', 'aplazame' ),
+					'right'  => __( 'Right', 'aplazame' ),
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_align'],
+			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
 				'title'       => __( 'Product quantity CSS selector', 'aplazame' ),
@@ -366,6 +377,17 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'vertical'   => 'Vertical',
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_layout'],
+			),
+			'cart_widget_align'               => array(
+				'type'        => 'select',
+				'title'       => __( 'Alignment', 'aplazame' ),
+				'description' => __( 'Cart widget alignment (only new widget)', 'aplazame' ),
+				'options'     => array(
+					'left'   => __( 'Left', 'aplazame' ),
+					'center' => __( 'Center', 'aplazame' ),
+					'right'  => __( 'Right', 'aplazame' ),
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_align'],
 			),
 			'button_section'                  => array(
 				'title'       => __( 'Button', 'aplazame' ),

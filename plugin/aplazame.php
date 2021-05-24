@@ -333,6 +333,8 @@ class WC_Aplazame_Install {
 		'cart_widget_layout'              => 'horizontal',
 		'widget_legacy'                   => 'no',
 		'product_widget_border'           => 'yes',
+		'product_widget_align'            => 'center',
+		'cart_widget_align'               => 'center',
 	);
 
 	public static function upgrade() {
