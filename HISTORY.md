@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.4.1](https://github.com/aplazame/woocommerce/tree/v3.4.1) (2021-06-08)
+
+* [FIX] Retrocompatibility issue at article model.
+
 #### [v3.4.0](https://github.com/aplazame/woocommerce/tree/v3.4.0) (2021-05-24)
 
 * [ADD] Alignment options for widget v4.
