@@ -1,4 +1,4 @@
-[ ![Image](https://aplazame.com/static/img/banners/banner-728-white-woo.png "Aplazame") ](https://aplazame.com "Aplazame")
+[ ![Image](https://aplazame.com/landing-assets/images/banners/banner-1517-white.png "Aplazame") ](https://aplazame.com "Aplazame")
 
 ### Install
 
