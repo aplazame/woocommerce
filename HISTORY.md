@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.5.0](https://github.com/aplazame/woocommerce/tree/v3.5.0) (2021-09-13)
+
+* [ADD] Pay in 4 widget.
+
 #### [v3.4.1](https://github.com/aplazame/woocommerce/tree/v3.4.1) (2021-06-08)
 
 * [FIX] Retrocompatibility issue at article model.
