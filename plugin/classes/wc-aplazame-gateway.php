@@ -272,6 +272,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Show legal notice in product widget', 'aplazame' ),
 				'label'       => __( 'Show legal notice', 'aplazame' ),
 			),
+			'product_pay_in_4'                => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Pay in 4', 'aplazame' ),
+				'description' => __( 'Enable product widget pay in 4 (if available)', 'aplazame' ),
+				'label'       => __( 'Enable pay in 4', 'aplazame' ),
+			),
 			'product_widget_border'           => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Border', 'aplazame' ),
@@ -358,6 +364,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Legal notice', 'aplazame' ),
 				'description' => __( 'Show legal notice in cart widget', 'aplazame' ),
 				'label'       => __( 'Show legal notice', 'aplazame' ),
+			),
+			'cart_pay_in_4'                   => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Pay in 4', 'aplazame' ),
+				'description' => __( 'Enable cart widget pay in 4 (if available)', 'aplazame' ),
+				'label'       => __( 'Enable pay in 4', 'aplazame' ),
 			),
 			'cart_widget_primary_color'       => array(
 				'type'        => 'text',

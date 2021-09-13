@@ -335,6 +335,8 @@ class WC_Aplazame_Install {
 		'product_widget_border'           => 'yes',
 		'product_widget_align'            => 'center',
 		'cart_widget_align'               => 'center',
+		'product_pay_in_4'                => 'no',
+		'cart_pay_in_4'                   => 'no',
 	);
 
 	public static function upgrade() {

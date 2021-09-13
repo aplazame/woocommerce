@@ -57,5 +57,8 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	<?php if ( ! empty( $aplazame->settings['product_default_instalments'] ) ) : ?>
 		data-option-default-instalments="<?php echo esc_attr( $aplazame->settings['product_default_instalments'] ); ?>"
 	<?php endif; ?>
-	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['product_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>">
-</div>
+	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['product_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>"
+	<?php if ( $aplazame->settings['product_pay_in_4'] === 'yes' ) : ?>
+		data-pay-in-4=""
+	<?php endif; ?>
+></div>

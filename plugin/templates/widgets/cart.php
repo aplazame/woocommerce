@@ -28,5 +28,8 @@ global $aplazame;
 	<?php if ( ! empty( $aplazame->settings['cart_default_instalments'] ) ) : ?>
 		data-option-default-instalments="<?php echo esc_attr( $aplazame->settings['cart_default_instalments'] ); ?>"
 	<?php endif; ?>
-	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['cart_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>">
-</div>
+	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['cart_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>"
+	<?php if ( $aplazame->settings['cart_pay_in_4'] === 'yes' ) : ?>
+		data-pay-in-4=""
+	<?php endif; ?>
+></div>
