@@ -215,6 +215,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
+			'widget_out_of_limits'            => array(
+				'type'        => 'select',
+				'title'       => __( 'Widget if Aplazame is not available', 'aplazame' ),
+				'description' => __( 'Show/hide alternative widget if Aplazame is not available', 'aplazame' ),
+				'options'     => array(
+					'show' => __( 'Show', 'aplazame' ),
+					'hide' => __( 'Hide', 'aplazame' ),
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['widget_out_of_limits'],
+			),
 			'widget_legacy'                   => array(
 				'type'        => 'checkbox',
 				'title'       => 'Widget legacy',
