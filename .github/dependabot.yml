@@ -16,7 +16,7 @@ updates:
   labels:
     - dependabot
   reviewers:
-    - "aplazame/squad_plugins/reviewers"
+    - "aplazame/squad_plugins-reviewers"
 
 - package-ecosystem: docker
   directory: "/"
@@ -34,4 +34,4 @@ updates:
   labels:
     - dependabot
   reviewers:
-    - "aplazame/squad_plugins/reviewers"
+    - "aplazame/squad_plugins-reviewers"
