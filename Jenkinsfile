@@ -137,7 +137,7 @@ pipeline {
         container('php') {
           sh """
            echo "Deploy to S3"
-           #aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/prestashop/
+           #aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
           """
         }
       }
@@ -163,30 +163,32 @@ pipeline {
       }
     }
     stage("Create Release") {
-      when {
-        beforeAgent true
-        allOf {
-          expression { deployToPro }
-          branch 'master'
-        }
-      }
+      //when {
+      //  beforeAgent true
+      //  allOf {
+      //    expression { deployToPro }
+      //    branch 'master'
+      //  }
+      //}
       steps {
         container('php') {
           sh """
             echo "***************Create Release***************"
-            #gh release create v$BUILD_NUMBER --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
+            export APP_VERSION="\$(cat Makefile | grep version | cut -d '=' -f2)"
+            echo \$APP_VERSION
+            #gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
           """
         }
       }
     }
     stage("Deploy to Wordpress") {
-      when {
-        beforeAgent true
-        allOf {
-          expression { deployToPro }
-          branch 'master'
-        }
-      }
+      //when {
+      //  beforeAgent true
+      //  allOf {
+      //    expression { deployToPro }
+      //    branch 'master'
+      //  }
+      //}
       steps {
         container('php') {
           sh """
@@ -209,6 +211,7 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
+            echo echo \$APP_VERSION
             #svn cp svn/trunk svn/tags/$BUILD_TAG:1
           """
           //sh """
