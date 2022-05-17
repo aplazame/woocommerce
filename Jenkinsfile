@@ -149,7 +149,7 @@ pipeline {
       steps {
         script {
           try {
-            timeout(time: 10, unit: "MINUTES") {
+            timeout(time: 1, unit: "MINUTES") {
               slackSend failOnError: true, color: '#8000FF', channel: '#backend-pipelines', message: "You need :hand: intervention in ${currentBuild.fullDisplayName} (<${env.BUILD_URL}console|Open here>)", username: "Jenkins CI"
               deployToPro = input(id: 'deployToPro', message: 'Deploy to Wordpress and Creatate Tag?',
                 parameters: [
@@ -212,16 +212,16 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
-            echo \$APP_VERSION
-            echo "Fichero**********"
             export APP_VERSION="\$(cat APP_VERSION.tmp)"
             echo \$APP_VERSION
-            #svn cp svn/trunk svn/tags/$BUILD_TAG:1
+            #svn cp svn/trunk svn/tags/\$APP_VERSION:1
           """
-          //sh """
-          //  echo "****************Commit to Wordpress******************************"
-          //  #svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version ${$BUILD_TAG:1}"
-          //"""
+          sh """
+            echo "****************Commit to Wordpress******************************"
+            echo \$APP_VERSION
+            sleep 1h
+            #svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version \$APP_VERSION"
+          """
         }
       }
     }
