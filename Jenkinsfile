@@ -174,7 +174,7 @@ pipeline {
         container('php') {
           sh """
             echo "***************Create Release***************"
-            export APP_VERSION="\$(cat Makefile | grep version | cut -d '=' -f2)"
+            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
             echo \$APP_VERSION
             #gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
           """
