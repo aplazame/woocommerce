@@ -143,9 +143,9 @@ pipeline {
       }
     }
     stage('Deploy to Wordpress and Create Release') {
-      when {  
-        branch 'master'
-      }
+      //when {  
+      //  branch 'master'
+      //}
       steps {
         script {
           try {
@@ -163,32 +163,33 @@ pipeline {
       }
     }
     stage("Create Release") {
-      //when {
-      //  beforeAgent true
-      //  allOf {
-      //    expression { deployToPro }
+      when {
+        beforeAgent true
+        allOf {
+          expression { deployToPro }
       //    branch 'master'
-      //  }
-      //}
+        }
+      }
       steps {
         container('php') {
           sh """
             echo "***************Create Release***************"
             export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
             echo \$APP_VERSION
+            echo "\$APP_VERSION" > APP_VERSION.tmp
             #gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
           """
         }
       }
     }
     stage("Deploy to Wordpress") {
-      //when {
-      //  beforeAgent true
-      //  allOf {
-      //    expression { deployToPro }
+      when {
+        beforeAgent true
+        allOf {
+          expression { deployToPro }
       //    branch 'master'
-      //  }
-      //}
+        }
+      }
       steps {
         container('php') {
           sh """
@@ -211,7 +212,10 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
-            echo echo \$APP_VERSION
+            echo \$APP_VERSION
+            echo "Fichero**********"
+            export APP_VERSION="\$(cat APP_VERSION.tmp)"
+            echo \$APP_VERSION
             #svn cp svn/trunk svn/tags/$BUILD_TAG:1
           """
           //sh """
