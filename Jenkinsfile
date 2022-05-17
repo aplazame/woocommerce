@@ -149,7 +149,7 @@ pipeline {
       steps {
         script {
           try {
-            timeout(time: 1, unit: "MINUTES") {
+            timeout(time: 10, unit: "MINUTES") {
               slackSend failOnError: true, color: '#8000FF', channel: '#backend-pipelines', message: "You need :hand: intervention in ${currentBuild.fullDisplayName} (<${env.BUILD_URL}console|Open here>)", username: "Jenkins CI"
               deployToPro = input(id: 'deployToPro', message: 'Deploy to Wordpress and Creatate Tag?',
                 parameters: [
