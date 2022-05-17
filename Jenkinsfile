@@ -220,8 +220,13 @@ pipeline {
             echo "****************Commit to Wordpress******************************"
             echo \$APP_VERSION
             sleep 1h
-            #svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version \$APP_VERSION"
           """
+          //sh """
+          //  echo "****************Commit to Wordpress******************************"
+          //  echo \$APP_VERSION
+          //  sleep 1h
+          //  #svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version \$APP_VERSION"
+          //"""
         }
       }
     }
