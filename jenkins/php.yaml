@@ -2,8 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
 spec:
-  serviceAccountName: aplazame-appdeployer
-  serviceAccount: aplazame-appdeployer
+  serviceAccount: aplazame-frontdeployer
   securityContext:
     fsGroup: 1000
   containers:
