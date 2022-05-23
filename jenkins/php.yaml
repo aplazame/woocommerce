@@ -8,7 +8,7 @@ spec:
     fsGroup: 1000
   containers:
   - name: php
-    image: 666356151544.dkr.ecr.eu-central-1.amazonaws.com/thirdparty/php:7.3.9_v7
+    image: 666356151544.dkr.ecr.eu-central-1.amazonaws.com/tools/php:7.3.9
     imagePullPolicy: Always
     command:
     - cat
