@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.6.1](https://github.com/aplazame/woocommerce/tree/v3.6.1) (2022-06-20)
+
+* [ADD] Show/hide alternative widget option.
+
 #### [v3.6.0](https://github.com/aplazame/woocommerce/tree/v3.6.0) (2021-12-22)
 
 * [ADD] Show/hide alternative widget option.
