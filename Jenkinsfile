@@ -29,6 +29,8 @@ pipeline {
       }
       environment {
         SONAR_TEST = credentials('SONAR_TEST')
+        WORDPRESS_USERNAME = credentials('WORDPRESS_USERNAME')
+        WORDPRESS_PASSWORD = credentials('WORDPRESS_PASSWORD')
         CODE_SOURCE_DEFAULT = "plugin"
       }
       steps {
@@ -50,7 +52,14 @@ pipeline {
           CACHE_KEY = 'v1-dependencies-' + HASH
 
           container('php') {
-            loadCache(CACHE_KEY)
+            sh """
+              load-config
+              export AWS_PROFILE=AplazameSharedServices
+              set -e
+              aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/${CACHE_KEY} cache.tar.gz || exit 0
+              [ -f cache.tar.gz ] && tar -xf cache.tar.gz
+            """
+            //loadCache(CACHE_KEY)
           }
         }
       }
@@ -77,7 +86,15 @@ pipeline {
       }
       steps {  
         container('php') {
-          saveCache(CACHE_KEY,["${foldersCache}"])
+        sh """
+            load-config
+            export AWS_PROFILE=AplazameSharedServices
+            set -e
+            MATCHES=\$(aws s3 ls s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/${CACHE_KEY} | wc -l)
+            [ "\$MATCHES" = "0" ] && [ ! -f cache.tar.gz ] && tar -czf cache.tar.gz vendor/ && aws s3 cp --quiet cache.tar.gz s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/${CACHE_KEY}
+            exit 0
+        """
+          //saveCache(CACHE_KEY,["${foldersCache}"])
         }
       }
     }
@@ -136,8 +153,10 @@ pipeline {
         }
         container('php') {
           sh """
-           echo "Deploy to S3"
-           #aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/prestashop/
+            echo "Deploy to S3"
+            load-config
+            export AWS_PROFILE=Aplazame
+            aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
           """
         }
       }
@@ -174,7 +193,10 @@ pipeline {
         container('php') {
           sh """
             echo "***************Create Release***************"
-            #gh release create v$BUILD_NUMBER --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
+            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
+            echo \$APP_VERSION
+            echo "\$APP_VERSION" > APP_VERSION.tmp
+            gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
           """
         }
       }
@@ -209,12 +231,16 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
-            #svn cp svn/trunk svn/tags/$BUILD_TAG:1
+            export APP_VERSION="\$(cat APP_VERSION.tmp)"
+            echo \$APP_VERSION
+            svn cp svn/trunk svn/tags/\$APP_VERSION:1
           """
-          //sh """
-          //  echo "****************Commit to Wordpress******************************"
-          //  #svn ci --no-auth-cache --username $WP_USERNAME --password $WP_PASSWORD svn -m "tagging version ${$BUILD_TAG:1}"
-          //"""
+          sh """
+            echo "****************Commit to Wordpress******************************"
+            export APP_VERSION="\$(cat APP_VERSION.tmp)"
+            echo \$APP_VERSION
+            svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version \$APP_VERSION"
+          """
         }
       }
     }
