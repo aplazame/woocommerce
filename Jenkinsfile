@@ -139,7 +139,7 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
-            export APP_VERSION="\$(cat APP_VERSION.tmp)"
+            export APP_VERSION=v3.6.2
             echo \$APP_VERSION
             svn cp svn/trunk svn/tags/\$APP_VERSION
           """
