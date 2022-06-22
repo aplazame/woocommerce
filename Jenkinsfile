@@ -147,7 +147,7 @@ pipeline {
           """
           sh """
             echo "****************Commit to Wordpress******************************"
-            export APP_VERSION="\$(cat APP_VERSION.tmp)"
+            export APP_VERSION=v3.6.2
             echo \$APP_VERSION
             svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version \$APP_VERSION"
           """
