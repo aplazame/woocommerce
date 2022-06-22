@@ -140,77 +140,8 @@ pipeline {
         }
       }
     }
-    stage("Deploy to S3") {
-      when {
-        branch 'master'
-      }
-      steps {  
-        scmSkip()
-
-        timeout(time: 15, unit: "MINUTES") {
-          script {
-            slackSend failOnError: true, color: '#8000FF', channel: '#backend-pipelines', message: "You need :hand: intervention in ${currentBuild.fullDisplayName} (<${env.BUILD_URL}console|Open here>)", username: "Jenkins CI"
-            input id: 'ReleaseApproval', message: 'Deploy to S3?', ok: 'Yes'
-          }
-        }
-        container('php') {
-          sh """
-            echo "Deploy to S3"
-            load-config
-            export AWS_PROFILE=Aplazame
-            aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
-          """
-        }
-      }
-    }
-    stage('Deploy to Wordpress and Create Release') {
-      when {  
-        branch 'master'
-      }
-      steps {
-        script {
-          try {
-            timeout(time: 10, unit: "MINUTES") {
-              slackSend failOnError: true, color: '#8000FF', channel: '#backend-pipelines', message: "You need :hand: intervention in ${currentBuild.fullDisplayName} (<${env.BUILD_URL}console|Open here>)", username: "Jenkins CI"
-              deployToPro = input(id: 'deployToPro', message: 'Deploy to Wordpress and Creatate Tag?',
-                parameters: [
-                  booleanParam(name: 'deploy', description: 'Deploy to Wordpress and Creatate Tag?', defaultValue: false)
-              ])
-            }
-          } catch (err) {
-            currentBuild.result = "SUCCESS"
-          }
-        }
-      }
-    }
-    stage("Create Release") {
-      when {
-        beforeAgent true
-        allOf {
-          expression { deployToPro }
-          branch 'master'
-        }
-      }
-      steps {
-        container('php') {
-          sh """
-            echo "***************Create Release***************"
-            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
-            echo \$APP_VERSION
-            echo "\$APP_VERSION" > APP_VERSION.tmp
-            gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
-          """
-        }
-      }
-    }
     stage("Deploy to Wordpress") {
-      when {
-        beforeAgent true
-        allOf {
-          expression { deployToPro }
-          branch 'master'
-        }
-      }
+
       steps {
         container('php') {
           sh """
@@ -235,7 +166,7 @@ pipeline {
             echo "****************Tag Release******************************"
             export APP_VERSION="\$(cat APP_VERSION.tmp)"
             echo \$APP_VERSION
-            svn cp svn/trunk svn/tags/\$APP_VERSION:1
+            svn cp svn/trunk svn/tags/\$APP_VERSION
           """
           sh """
             echo "****************Commit to Wordpress******************************"
