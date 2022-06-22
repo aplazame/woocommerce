@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.6.2](https://github.com/aplazame/woocommerce/tree/v3.6.2) (2022-06-20)
+
+* Release for wordpress.org.
+
 #### [v3.6.1](https://github.com/aplazame/woocommerce/tree/v3.6.1) (2022-06-20)
 
 * [ADD] Show/hide alternative widget option.

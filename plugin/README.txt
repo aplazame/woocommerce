@@ -4,7 +4,7 @@ Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,f
 Requires at least: 4.0.1
 Tested up to: 6.0.0
 Requires PHP: 5.3.0
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
