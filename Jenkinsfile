@@ -195,7 +195,7 @@ pipeline {
         container('php') {
           sh """
             echo "***************Create Release***************"
-            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
+            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
             echo \$APP_VERSION
             echo "\$APP_VERSION" > APP_VERSION.tmp
             gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
@@ -235,7 +235,7 @@ pipeline {
             echo "****************Tag Release******************************"
             export APP_VERSION="\$(cat APP_VERSION.tmp)"
             echo \$APP_VERSION
-            svn cp svn/trunk svn/tags/\$APP_VERSION:1
+            svn cp svn/trunk svn/tags/\$APP_VERSION
           """
           sh """
             echo "****************Commit to Wordpress******************************"
