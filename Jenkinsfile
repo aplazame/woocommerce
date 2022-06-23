@@ -11,14 +11,36 @@ pipeline {
     FOLDER = "dist"
     foldersCache = '"vendor/"'
     GITHUB_TOKEN = credentials('gh-releases-token')
-    WORDPRESS_USERNAME = credentials('WORDPRESS_USERNAME')
-    WORDPRESS_PASSWORD = credentials('WORDPRESS_PASSWORD')
   }
   options {
     disableConcurrentBuilds()
     ansiColor('xterm')
   }
   stages {
+    stage('Test Sonarqube') {
+      when {
+        not {
+          tag "*"
+        }
+      }
+      agent {
+        kubernetes {
+          yamlFile "/jenkins/jenkins-sonar.yaml"
+        }
+      }
+      environment {
+        SONAR_TEST = credentials('SONAR_TEST')
+        WORDPRESS_USERNAME = credentials('WORDPRESS_USERNAME')
+        WORDPRESS_PASSWORD = credentials('WORDPRESS_PASSWORD')
+        CODE_SOURCE_DEFAULT = "plugin"
+      }
+      steps {
+        scmSkip()
+        container('sonar') {
+        sonarScan(SONAR_TEST,CODE_SOURCE_DEFAULT)
+        }
+      }
+    }
     stage("Get cache") {
       when {
         not {
@@ -58,11 +80,7 @@ pipeline {
       }
     }
     stage("Upload Cache") {
-      when {
-        not {
-          tag "*"
-        }
-      }
+
       steps {  
         container('php') {
         sh """
@@ -78,11 +96,7 @@ pipeline {
       }
     }
     stage("Check Syntax") {
-      when {
-        not {
-          tag "*"
-        }
-      }
+
       steps {  
         container('php') {
           sh """
@@ -92,11 +106,7 @@ pipeline {
       }
     }
     stage("CS Style") {
-      when {
-        not {
-          tag "*"
-        }
-      }
+
       steps {  
         container('php') {
           sh """
@@ -106,13 +116,26 @@ pipeline {
       }
     }
     stage("Create bundle") {
-      when {
-        branch 'master'
-      }
+
       steps {  
         container('php') {
           sh """
             make zip
+          """
+        }
+      }
+    }
+
+    stage("Create Release") {
+
+      steps {
+        container('php') {
+          sh """
+            echo "***************Create Release***************"
+            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2)"
+            echo \$APP_VERSION
+            echo "\$APP_VERSION" > APP_VERSION.tmp
+            
           """
         }
       }
@@ -141,15 +164,14 @@ pipeline {
           """
           sh """
             echo "****************Tag Release******************************"
-            export APP_VERSION=v3.6.2
+            export APP_VERSION="\$(cat APP_VERSION.tmp)"
             echo \$APP_VERSION
             svn cp svn/trunk svn/tags/\$APP_VERSION
           """
           sh """
             echo "****************Commit to Wordpress******************************"
-            export APP_VERSION=v3.6.2
+            export APP_VERSION="\$(cat APP_VERSION.tmp)"
             echo \$APP_VERSION
-            svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version \$APP_VERSION"
           """
         }
       }
