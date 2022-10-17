@@ -38,6 +38,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 	/**
 	 *
 	 * @param bool   $useSandbox
+	 * @param int    $apiVersion The API version of the request.
 	 * @param string $accessToken The Access Token of the request (Public API key or Private API key)
 	 * @param string $method The HTTP method of the request.
 	 * @param string $uri The URI of the request.
@@ -45,6 +46,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 	 */
 	public function __construct(
 		$useSandbox,
+		$apiVersion,
 		$accessToken,
 		$method,
 		$uri,
@@ -53,7 +55,7 @@ class Aplazame_Sdk_Api_ApiRequest extends Aplazame_Sdk_Http_Request {
 		global $wp_version;
 
 		$headers = array(
-			'Accept'          => array( self::createAcceptHeader( $useSandbox, 1, self::FORMAT_JSON ) ),
+			'Accept'          => array( self::createAcceptHeader( $useSandbox, $apiVersion, self::FORMAT_JSON ) ),
 			'Authorization'   => array( self::createAuthorizationHeader( $accessToken ) ),
 			'User-Agent'      => array(
 				'Sdk/' . self::SDK_VERSION,

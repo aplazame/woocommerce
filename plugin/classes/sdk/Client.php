@@ -79,7 +79,7 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
 	public function create_checkout( $payload ) {
-		return $this->request( 'POST', '/checkout', $payload );
+		return $this->request( 'POST', '/checkout', $payload, 3 );
 	}
 
 	/**
@@ -104,6 +104,7 @@ class Aplazame_Client {
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.
 	 * @param array|null $data The data of the request.
+	 * @param int        $apiVersion The API version of the request.
 	 *
 	 * @return array The data of the response.
 	 *
@@ -112,9 +113,9 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
-	public function request( $method, $path, $data = null ) {
+	public function request( $method, $path, $data = null, $apiVersion = 1 ) {
 		try {
-			return $this->apiClient->request( $method, $path, $data );
+			return $this->apiClient->request( $method, $path, $data, $apiVersion );
 		} catch ( Aplazame_Sdk_Api_ApiClientException $e ) {
 			$details = json_encode( $e->getError() );
 
