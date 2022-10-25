@@ -211,6 +211,10 @@ pipeline {
           branch 'master'
         }
       }
+      environment {
+        WORDPRESS_USERNAME = credentials('WORDPRESS_USERNAME')
+        WORDPRESS_PASSWORD = credentials('WORDPRESS_PASSWORD')
+      }
       steps {
         container('php') {
           sh """
