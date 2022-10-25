@@ -11,6 +11,7 @@ pipeline {
     FOLDER = "dist"
     foldersCache = '"vendor/"'
     GITHUB_TOKEN = credentials('gh-releases-token')
+    TAG_VERSION = "v3.6.3"
   }
   options {
     disableConcurrentBuilds()
@@ -130,7 +131,7 @@ pipeline {
     }
     stage("Create bundle") {
       when {
-        branch 'master'
+        branch 'deploy-no-release'
       }
       steps {  
         container('php') {
@@ -165,7 +166,7 @@ pipeline {
     }
     stage('Deploy to Wordpress and Create Release') {
       when {  
-        branch 'master'
+        branch 'deploy-no-release'
       }
       steps {
         script {
@@ -188,17 +189,18 @@ pipeline {
         beforeAgent true
         allOf {
           expression { deployToPro }
-          branch 'master'
+          branch 'deploy-no-release'
         }
       }
       steps {
         container('php') {
           sh """
             echo "***************Create Release***************"
-            export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
+            #export APP_VERSION="\$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
+            export APP_VERSION=${TAG_VERSION}
             echo \$APP_VERSION
             echo "\$APP_VERSION" > APP_VERSION.tmp
-            gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
+            #gh release create \$APP_VERSION --notes "Release created by Jenkins.<br />Build: $BUILD_TAG;$BUILD_URL&gt;"
           """
         }
       }
@@ -208,7 +210,7 @@ pipeline {
         beforeAgent true
         allOf {
           expression { deployToPro }
-          branch 'master'
+          branch 'deploy-no-release'
         }
       }
       environment {
