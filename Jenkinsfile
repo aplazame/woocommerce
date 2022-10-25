@@ -10,7 +10,6 @@ pipeline {
   environment {
     FOLDER = "dist"
     foldersCache = '"vendor/"'
-    GITHUB_TOKEN = credentials('gh-releases-token')
   }
   options {
     disableConcurrentBuilds()
