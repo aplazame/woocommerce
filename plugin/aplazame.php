@@ -342,7 +342,6 @@ class WC_Aplazame_Install {
 
 	public static function upgrade() {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
-			self::set_aplazame_profile();
 			self::remove_redirect_page();
 			/**
 			 *
@@ -406,31 +405,6 @@ class WC_Aplazame_Install {
 
 	private static function remove_aplazame_version() {
 		delete_option( self::VERSION_KEY );
-	}
-
-	private static function set_aplazame_profile() {
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
-		global $aplazame;
-
-		if ( ! $aplazame->private_api_key ) {
-			return;
-		}
-
-		$client = $aplazame->get_client()->apiClient;
-		try {
-			$client->patch(
-				'/me',
-				array(
-					'confirmation_url' => '',
-				)
-			);
-		} catch ( Exception $e ) {
-			$aplazame->private_api_key             = null;
-			$aplazame->settings['private_api_key'] = null;
-		}
 	}
 
 	private static function remove_redirect_page() {

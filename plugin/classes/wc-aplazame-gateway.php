@@ -435,17 +435,18 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	protected function validate_private_api_key_field( $key, $value ) {
-		try {
-			$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
-		} catch ( Exception $e ) {
-			// Workaround https://github.com/woocommerce/woocommerce/issues/11952
-			WC_Admin_Settings::add_error( $e->getMessage() );
+		if( $value != $this->settings['private_api_key'] ){
+			try {
+				$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
+			} catch ( Exception $e ) {
+				// Workaround https://github.com/woocommerce/woocommerce/issues/11952
+				WC_Admin_Settings::add_error( $e->getMessage() );
 
-			throw $e;
+				throw $e;
+			}
+
+			$this->settings['public_api_key'] = $response['public_api_key'];
 		}
-
-		$this->settings['public_api_key'] = $response['public_api_key'];
-
 		return $value;
 	}
 }
