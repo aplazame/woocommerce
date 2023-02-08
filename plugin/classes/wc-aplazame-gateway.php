@@ -276,6 +276,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Number of default instalments in product widget', 'aplazame' ),
 				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
 			),
+			'product_downpayment_info'        => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Downpayment info', 'aplazame' ),
+				'description' => __( 'Show downpayment info in product widget', 'aplazame' ),
+				'label'       => __( 'Show downpayment info', 'aplazame' ),
+			),
 			'product_legal_advice'            => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Legal notice', 'aplazame' ),
@@ -369,6 +375,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Number of default instalments in cart widget', 'aplazame' ),
 				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
 			),
+			'cart_downpayment_info'           => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Downpayment info', 'aplazame' ),
+				'description' => __( 'Show downpayment info in cart widget', 'aplazame' ),
+				'label'       => __( 'Show downpayment info', 'aplazame' ),
+			),
 			'cart_legal_advice'               => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Legal notice', 'aplazame' ),
@@ -435,7 +447,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	protected function validate_private_api_key_field( $key, $value ) {
-		if( $value != $this->settings['private_api_key'] ){
+		if ( $value != $this->settings['private_api_key'] ) {
 			try {
 				$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
 			} catch ( Exception $e ) {
