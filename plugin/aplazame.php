@@ -338,8 +338,8 @@ class WC_Aplazame_Install {
 		'product_pay_in_4'                => 'no',
 		'cart_pay_in_4'                   => 'no',
 		'widget_out_of_limits'            => 'show',
-		'product_downpayment_info'        => 'no',
-		'cart_downpayment_info'           => 'no',
+		'product_downpayment_info'        => 'yes',
+		'cart_downpayment_info'           => 'yes',
 	);
 
 	public static function upgrade() {
