@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v3.7.0](https://github.com/aplazame/woocommerce/tree/v3.7.0) (2023-02-13)
+
+* [ADD] Downpayment info option for widgets.
+* [FIX] Minor error at update and various tweaks.
+
 #### [v3.6.3](https://github.com/aplazame/woocommerce/tree/v3.6.3) (2022-10-25)
 
 * [CHANGE] Checkout header.
