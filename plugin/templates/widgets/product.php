@@ -58,6 +58,7 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 		data-option-default-instalments="<?php echo esc_attr( $aplazame->settings['product_default_instalments'] ); ?>"
 	<?php endif; ?>
 	data-option-legal-advice="<?php echo esc_attr( $aplazame->settings['product_legal_advice'] === 'yes' ? 'true' : 'false' ); ?>"
+	data-option-downpayment-info="<?php echo esc_attr( $aplazame->settings['product_downpayment_info'] === 'yes' ? 'true' : 'false' ); ?>"
 	data-option-out-of-limits="<?php echo esc_attr( $aplazame->settings['widget_out_of_limits'] ); ?>"
 	<?php if ( $aplazame->settings['product_pay_in_4'] === 'yes' ) : ?>
 		data-pay-in-4=""

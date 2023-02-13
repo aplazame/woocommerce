@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 3.6.3
+ * Version: 3.7.0
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 2.3
- * WC tested up to: 7.0.0
+ * WC tested up to: 7.3.0
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '3.6.2';
+	const VERSION      = '3.7.0';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -338,11 +338,12 @@ class WC_Aplazame_Install {
 		'product_pay_in_4'                => 'no',
 		'cart_pay_in_4'                   => 'no',
 		'widget_out_of_limits'            => 'show',
+		'product_downpayment_info'        => 'yes',
+		'cart_downpayment_info'           => 'yes',
 	);
 
 	public static function upgrade() {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
-			self::set_aplazame_profile();
 			self::remove_redirect_page();
 			/**
 			 *
@@ -406,31 +407,6 @@ class WC_Aplazame_Install {
 
 	private static function remove_aplazame_version() {
 		delete_option( self::VERSION_KEY );
-	}
-
-	private static function set_aplazame_profile() {
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
-		global $aplazame;
-
-		if ( ! $aplazame->private_api_key ) {
-			return;
-		}
-
-		$client = $aplazame->get_client()->apiClient;
-		try {
-			$client->patch(
-				'/me',
-				array(
-					'confirmation_url' => '',
-				)
-			);
-		} catch ( Exception $e ) {
-			$aplazame->private_api_key             = null;
-			$aplazame->settings['private_api_key'] = null;
-		}
 	}
 
 	private static function remove_redirect_page() {
