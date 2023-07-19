@@ -300,6 +300,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Show border in product widget (only new widget)', 'aplazame' ),
 				'label'       => __( 'Show border', 'aplazame' ),
 			),
+			'product_widget_max_desired'      => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Enter maximum instalment', 'aplazame' ),
+				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only new widget)', 'aplazame' ),
+				'label'       => __( 'Allow the user to manually enter the maximum instalment', 'aplazame' ),
+			),
 			'product_widget_primary_color'    => array(
 				'type'        => 'text',
 				'css'         => 'width:100px;',
@@ -392,6 +398,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Pay in 4', 'aplazame' ),
 				'description' => __( 'Enable cart widget pay in 4 (if available)', 'aplazame' ),
 				'label'       => __( 'Enable pay in 4', 'aplazame' ),
+			),
+			'cart_widget_max_desired'         => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Enter maximum instalment', 'aplazame' ),
+				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only new widget)', 'aplazame' ),
+				'label'       => __( 'Allow the user to manually enter the maximum instalment', 'aplazame' ),
 			),
 			'cart_widget_primary_color'       => array(
 				'type'        => 'text',
