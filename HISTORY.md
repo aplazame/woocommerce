@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.8.0](https://github.com/aplazame/woocommerce/tree/v3.8.0) (2023-07-20)
+
+* [ADD] Maximum instalment desired option for widgets.
+
 #### [v3.7.0](https://github.com/aplazame/woocommerce/tree/v3.7.0) (2023-02-13)
 
 * [ADD] Downpayment info option for widgets.
