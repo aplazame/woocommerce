@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.8.1](https://github.com/aplazame/woocommerce/tree/v3.8.1) (2023-07-26)
+
+* Release for wordpress.org.
+
 #### [v3.8.0](https://github.com/aplazame/woocommerce/tree/v3.8.0) (2023-07-20)
 
 * [ADD] Maximum instalment desired option for widgets.
