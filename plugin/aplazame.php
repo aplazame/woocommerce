@@ -67,7 +67,7 @@ class WC_Aplazame {
 			$private_key
 		);
 
-		return $client->get( '/me' );
+		return $client->get( '/merchants/api-keys' );
 	}
 
 	/**
