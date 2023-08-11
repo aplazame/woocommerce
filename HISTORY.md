@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.8.3](https://github.com/aplazame/woocommerce/tree/v3.8.3) (2023-08-11)
+
+* API improvements.
+
 #### [v3.8.2](https://github.com/aplazame/woocommerce/tree/v3.8.2) (2023-07-26)
 
 * Another re-release for wordpress.org.
