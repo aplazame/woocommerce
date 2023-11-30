@@ -53,8 +53,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 	public function is_available() {
 		if ( ( $this->enabled === 'no' ) ||
-			 ( ! $this->settings['public_api_key'] ) ||
-			 ( ! $this->settings['private_api_key'] )
+			( ! $this->settings['public_api_key'] ) ||
+			( ! $this->settings['private_api_key'] )
 		) {
 			return false;
 		}
@@ -101,7 +101,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		$client = $aplazame->get_client();
 		try {
-			$aplazame_payload = $client->create_checkout( $payload, $aplazame->settings['v4'] );
+			$aplazame_payload = $client->create_checkout( $payload, $aplazame->settings['checkout_v4'] );
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
 			$message = $e->getMessage();
 			$aOrder  = $client->fetch( $payload->order->id );
@@ -193,8 +193,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		}
 	}
 
+	// Settings form
 	public function init_form_fields() {
 		$this->form_fields = array(
+
+			// Base settings
 			'enabled'                         => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
@@ -252,6 +255,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
+
+			// Product widget settings
 			'product_widget_section'          => array(
 				'title'       => __( 'Product widget', 'woocommerce' ),
 				'type'        => 'title',
@@ -358,6 +363,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'required' => '',
 				),
 			),
+
+			// Cart widget settings
 			'cart_widget_section'             => array(
 				'title'       => __( 'Cart widget', 'woocommerce' ),
 				'type'        => 'title',
@@ -435,6 +442,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_align'],
 			),
+
+			// Button settings
 			'button_section'                  => array(
 				'title'       => __( 'Button', 'aplazame' ),
 				'type'        => 'title',
@@ -455,12 +464,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
 				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
 			),
+
+			// Developer settings
 			'dev_section'                     => array(
 				'title'       => __( 'Developer Settings (WARNING: DO NOT TOUCH IF NOT NECESSARY)', 'aplazame' ),
 				'type'        => 'title',
 				'description' => '',
 			),
-			'v4'                              => array(
+			'checkout_v4'                     => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Checkout v4', 'aplazame' ),
 				'description' => __( 'Use v4 checkout API', 'aplazame' ),
