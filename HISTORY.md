@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v3.8.4](https://github.com/aplazame/woocommerce/tree/v3.8.4) (2023-12-05)
+
+* [ADD] Developer options for checkout v4 API tests.
+
 #### [v3.8.3](https://github.com/aplazame/woocommerce/tree/v3.8.3) (2023-08-11)
 
 * API improvements.
