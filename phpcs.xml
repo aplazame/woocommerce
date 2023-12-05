@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <ruleset name="Aplazame">
     <file>plugin</file>
-
-    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs"/>
-
 	<rule ref="WordPress"/>
 </ruleset>

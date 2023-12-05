@@ -1,6 +1,6 @@
 <?php
 
-$baseDir = dirname( __FILE__ );
+$baseDir = __DIR__;
 
 require $baseDir . '/Http/ClientInterface.php';
 require $baseDir . '/Http/RequestInterface.php';

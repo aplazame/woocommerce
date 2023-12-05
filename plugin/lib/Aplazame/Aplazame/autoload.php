@@ -1,6 +1,6 @@
 <?php
 
-$baseDir = dirname( __FILE__ );
+$baseDir = __DIR__;
 
 require $baseDir . '/Api/BusinessModel/Article.php';
 require $baseDir . '/Api/BusinessModel/HistoricalOrder.php';

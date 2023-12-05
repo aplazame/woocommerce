@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 3.8.3
+ * Version: 3.8.4
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -25,9 +25,14 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '3.8.3';
+	const VERSION      = '3.8.4';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
+
+	/**
+	 * @var mixed
+	 */
+	private $private_api_key;
 
 	public static function _m_or_a( $obj, $method, $attribute ) {
 		if ( method_exists( $obj, $method ) ) {
@@ -342,6 +347,7 @@ class WC_Aplazame_Install {
 		'cart_downpayment_info'           => 'yes',
 		'product_widget_max_desired'      => 'no',
 		'cart_widget_max_desired'         => 'no',
+		'checkout_v4'                     => 'no',
 	);
 
 	public static function upgrade() {
