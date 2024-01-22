@@ -163,6 +163,16 @@ class WC_Aplazame {
 		add_action( 'woocommerce_order_status_completed', array( $this, 'capture_order' ) );
 
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
+
+		// Declare HPOS compatibility
+		add_action(
+			'before_woocommerce_init',
+			function () {
+				if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+				}
+			}
+		);
 	}
 
 	public function aplazame_campaigns_tab( $tabs ) {
