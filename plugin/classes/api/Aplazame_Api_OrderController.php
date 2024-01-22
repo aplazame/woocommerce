@@ -13,24 +13,14 @@ final class Aplazame_Api_OrderController {
 
 		/**
 		 *
-		 * @var WP_Post[] $wcOrders
+		 * @var WC_Order_Query[] $wcOrders
 		 */
 		$billing_email = WC_Aplazame::_m_or_a( $order, 'get_billing_email', 'billing_email' );
-		if ( function_exists( 'wc_get_orders' ) ) {
-			$wcOrders = wc_get_orders(
-				array(
-					'billing_email' => $billing_email,
-				)
-			);
-		} else {
-			$wcOrders = get_posts(
-				array(
-					'meta_key'   => '_billing_email',
-					'meta_value' => $billing_email,
-					'post_type'  => 'shop_order',
-				)
-			);
-		}
+		$wcOrders      = wc_get_orders(
+			array(
+				'billing_email' => $billing_email,
+			)
+		);
 
 		$historyOrders = array();
 

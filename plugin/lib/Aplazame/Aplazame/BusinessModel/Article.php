@@ -43,12 +43,13 @@ class Aplazame_Aplazame_BusinessModel_Article {
 		$aArticle->price    = Aplazame_Sdk_Serializer_Decimal::fromFloat( $price );
 		$aArticle->tax_rate = Aplazame_Sdk_Serializer_Decimal::fromFloat( $tax_rate );
 
-		$description = WC_Aplazame::_m_or_m( $product, 'get_post', 'get_post_data' )->post_content;
-		if ( ! empty( $description ) ) {
-			$aArticle->description = $description;
+		if ( ! empty( $product->get_description() ) ) {
+			$aArticle->description = $product->get_description();
+		} elseif ( ! empty( $product->get_short_description() ) ) {
+			$aArticle->description = $product->get_short_description();
 		}
 
-		$imageUrl = wp_get_attachment_url( get_post_thumbnail_id( $product->get_id() ) );
+		$imageUrl = wp_get_attachment_image_url( $product->get_image_id(), 'full' );
 		if ( ! empty( $imageUrl ) ) {
 			$aArticle->image_url = $imageUrl;
 		}

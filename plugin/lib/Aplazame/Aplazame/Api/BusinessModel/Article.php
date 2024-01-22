@@ -10,12 +10,13 @@ class Aplazame_Aplazame_Api_BusinessModel_Article {
 			'url'  => $product->get_permalink(),
 		);
 
-		$description = WC_Aplazame::_m_or_m( $product, 'get_post', 'get_post_data' )->post_content;
-		if ( ! empty( $description ) ) {
-			$article['description'] = $description;
+		if ( ! empty( $product->get_description() ) ) {
+			$article['description'] = $product->get_description();
+		} elseif ( ! empty( $product->get_short_description() ) ) {
+			$article['description'] = $product->get_short_description();
 		}
 
-		$imageUrl = wp_get_attachment_url( get_post_thumbnail_id( $product_id ) );
+		$imageUrl = wp_get_attachment_image_url( $product->get_image_id(), 'full' );
 		if ( ! empty( $imageUrl ) ) {
 			$article['image_url'] = $imageUrl;
 		}

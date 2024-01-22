@@ -106,11 +106,6 @@ class Aplazame_Api_Router {
 		}
 
 		switch ( $path ) {
-			case '/article/':
-				include_once 'Aplazame_Api_ArticleController.php';
-				$controller = new Aplazame_Api_ArticleController();
-
-				return $controller->articles( $queryArguments );
 			case '/confirm/':
 				include_once 'Aplazame_Api_ConfirmController.php';
 				$controller = new Aplazame_Api_ConfirmController( $this->sandbox );
