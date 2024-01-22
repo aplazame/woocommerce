@@ -39,7 +39,7 @@ At this moment our service only use Euros.
 
 = Requirements =
 
-*WooCommerce 2.3 or higher*
+*WooCommerce 3.0.0 or higher*
 
 = Quick install =
 
