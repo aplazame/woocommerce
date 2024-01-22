@@ -10,8 +10,8 @@
  * Text Domain: aplazame
  * Domain Path: /i18n/languages/
  *
- * WC requires at least: 2.3
- * WC tested up to: 7.9.0
+ * WC requires at least: 3.0.0
+ * WC tested up to: 8.5.1
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
