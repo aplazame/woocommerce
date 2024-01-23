@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 3.8.4
+ * Version: 3.9.0
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -10,8 +10,8 @@
  * Text Domain: aplazame
  * Domain Path: /i18n/languages/
  *
- * WC requires at least: 2.3
- * WC tested up to: 7.9.0
+ * WC requires at least: 3.0.0
+ * WC tested up to: 8.5.1
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '3.8.4';
+	const VERSION      = '3.9.0';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -163,6 +163,16 @@ class WC_Aplazame {
 		add_action( 'woocommerce_order_status_completed', array( $this, 'capture_order' ) );
 
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
+
+		// Declare HPOS compatibility
+		add_action(
+			'before_woocommerce_init',
+			function () {
+				if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+				}
+			}
+		);
 	}
 
 	public function aplazame_campaigns_tab( $tabs ) {

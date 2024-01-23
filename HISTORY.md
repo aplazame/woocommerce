@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v3.9.0](https://github.com/aplazame/woocommerce/tree/v3.9.0) (2024-01-23)
+
+* [ADD] HPOS compatibility.
+* [FIX] Code deprecations, now requires WC 3.0.0+.
+
 #### [v3.8.4](https://github.com/aplazame/woocommerce/tree/v3.8.4) (2023-12-05)
 
 * [ADD] Developer options for checkout v4 API tests.
