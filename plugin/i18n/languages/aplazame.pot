@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Aplazame v3.8.4\n"
+"Project-Id-Version: Aplazame v3.9.0\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2023-12-05 13:38+0100\n"
+"POT-Creation-Date: 2024-01-23 10:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -366,10 +366,10 @@ msgstr ""
 msgid "The campaign applies to all products from your catalogue"
 msgstr ""
 
-#: aplazame.php:170
+#: aplazame.php:180
 msgid "Aplazame Campaigns"
 msgstr ""
 
-#: aplazame.php:225
+#: aplazame.php:235
 msgid "Settings"
 msgstr ""
