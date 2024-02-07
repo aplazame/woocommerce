@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 8.5.1
+ * WC tested up to: 8.5.2
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -357,7 +357,6 @@ class WC_Aplazame_Install {
 		'cart_downpayment_info'           => 'yes',
 		'product_widget_max_desired'      => 'no',
 		'cart_widget_max_desired'         => 'no',
-		'checkout_v4'                     => 'no',
 	);
 
 	public static function upgrade() {
