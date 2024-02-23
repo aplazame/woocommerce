@@ -77,6 +77,11 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 == Changelog ==
 
+#### [v4.0.0](https://github.com/aplazame/woocommerce/tree/v4.0.0) (2024-02-26)
+
+* [ADD] Checkout v4 as primary version.
+* [DEL] Developer options for previous checkout versions.
+
 #### [v3.9.0](https://github.com/aplazame/woocommerce/tree/v3.9.0) (2024-01-23)
 
 * [ADD] HPOS compatibility.
