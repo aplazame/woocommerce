@@ -101,7 +101,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		$client = $aplazame->get_client();
 		try {
-			$aplazame_payload = $client->create_checkout( $payload );
+			try {
+				$aplazame_payload = $client->create_checkout( $payload, 4 );
+			} catch ( Exception $e ) {
+				$aplazame_payload = $client->create_checkout( $payload, 3 );
+			}
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
 			$message = $e->getMessage();
 			$aOrder  = $client->fetch( $payload->order->id );

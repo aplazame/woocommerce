@@ -78,8 +78,8 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
 	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
 	 */
-	public function create_checkout( $payload ) {
-		return $this->request( 'POST', '/checkout', $payload, 4 );
+	public function create_checkout( $payload, $apiVersion ) {
+		return $this->request( 'POST', '/checkout', $payload, $apiVersion );
 	}
 
 	/**
