@@ -101,7 +101,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 
 		$client = $aplazame->get_client();
 		try {
-			$aplazame_payload = $client->create_checkout( $payload, $aplazame->settings['checkout_v4'] );
+			try {
+				$aplazame_payload = $client->create_checkout( $payload, 4 );
+			} catch ( Exception $e ) {
+				$aplazame_payload = $client->create_checkout( $payload, 3 );
+			}
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
 			$message = $e->getMessage();
 			$aOrder  = $client->fetch( $payload->order->id );
@@ -463,19 +467,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Button Image', 'aplazame' ),
 				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
 				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
-			),
-
-			// Developer settings
-			'dev_section'                     => array(
-				'title'       => __( 'Developer Settings (WARNING: DO NOT TOUCH IF NOT NECESSARY)', 'aplazame' ),
-				'type'        => 'title',
-				'description' => '',
-			),
-			'checkout_v4'                     => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Checkout v4', 'aplazame' ),
-				'description' => __( 'Use v4 checkout API', 'aplazame' ),
-				'label'       => __( 'Turn on v4 checkout API', 'aplazame' ),
 			),
 		);
 	}
