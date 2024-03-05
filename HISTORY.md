@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v4.0.1](https://github.com/aplazame/woocommerce/tree/v4.0.1) (2024-03-05)
+
+* Order confirmation process improved.
+
 #### [v4.0.0](https://github.com/aplazame/woocommerce/tree/v4.0.0) (2024-02-26)
 
 * [ADD] Checkout v4 as primary version.
