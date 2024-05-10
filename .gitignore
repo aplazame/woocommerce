@@ -1,5 +1,7 @@
+/node_modules/
 /svn/
 /vendor/
 aplazame.latest.zip
 composer.lock
 docker-compose.override.yml
+package-lock.json

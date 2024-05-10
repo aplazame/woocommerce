@@ -23,7 +23,7 @@ final class WC_Aplazame_Gateway_Blocks_Support extends AbstractPaymentMethodType
 	public function get_payment_method_script_handles() {
 		wp_register_script(
 			'wc-aplazame-blocks-integration',
-			plugin_dir_url( __FILE__ ) . '../js/payment-block.js',
+			plugin_dir_url( __FILE__ ) . '../resources/payment-block.js',
 			array(
 				'wc-blocks-registry',
 				'wc-settings',
