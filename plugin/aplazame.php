@@ -164,11 +164,22 @@ class WC_Aplazame {
 
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
 
+		// Cart and Checkout Blocks
+		add_action( 'woocommerce_blocks_loaded', array( $this, 'add_gateway_block') );
+		add_action(
+			'before_woocommerce_init',
+			function() {
+				if ( class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil') ) {
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+				}
+			}
+		);
+
 		// Declare HPOS compatibility
 		add_action(
 			'before_woocommerce_init',
 			function () {
-				if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+				if ( class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil') ) {
 					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 				}
 			}
@@ -274,6 +285,20 @@ class WC_Aplazame {
 		$methods[] = 'WC_Aplazame_Gateway';
 
 		return $methods;
+	}
+
+	public function add_gateway_block() {
+		if( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+			return;
+		}
+
+		include_once 'classes/wc-aplazame-gateway-block.php';
+		add_action(
+			'woocommerce_blocks_payment_method_type_registration',
+			function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
+				$payment_method_registry->register( new WC_Aplazame_Gateway_Blocks_Support );
+			}
+		);
 	}
 
 	public function aplazameJs() {
