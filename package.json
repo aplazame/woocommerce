@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@wordpress/scripts": "^27.9.0"
+  },
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=resources --output-path=plugin/resources",
+    "start": "wp-scripts start --webpack-src-dir=resources --output-path=plugin/resources"
+  }
+}

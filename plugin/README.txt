@@ -2,9 +2,9 @@
 Contributors: aplazame
 Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 6.4.3
+Tested up to: 6.5.3
 Requires PHP: 5.3.0
-Stable tag: 4.0.1
+Stable tag: 4.0.2
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 

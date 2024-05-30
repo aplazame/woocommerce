@@ -1,7 +1,7 @@
 plugin_path ?= plugin
 i18n_path ?= i18n/languages
 i18n_name ?= aplazame-es_ES
-version ?= v4.0.1
+version ?= v4.0.2
 errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
 
 clean:
