@@ -21,16 +21,19 @@ final class WC_Aplazame_Gateway_Blocks_Support extends AbstractPaymentMethodType
 	}
 
 	public function get_payment_method_script_handles() {
+		$asset_path   = plugin_dir_path( __FILE__ ) . '../resources/payment-block.asset.php';
+		$version      = null;
+		$dependencies = array();
+		if( file_exists( $asset_path ) ) {
+			$asset        = require $asset_path;
+			$version      = isset( $asset[ 'version' ] ) ? $asset[ 'version' ] : $version;
+			$dependencies = isset( $asset[ 'dependencies' ] ) ? $asset[ 'dependencies' ] : $dependencies;
+		}
 		wp_register_script(
 			'wc-aplazame-blocks-integration',
 			plugin_dir_url( __FILE__ ) . '../resources/payment-block.js',
-			array(
-				'wc-blocks-registry',
-				'wc-settings',
-				'wp-element',
-				'wp-html-entities',
-			),
-			null,
+			$dependencies,
+			$version,
 			true
 		);
 		return [ 'wc-aplazame-blocks-integration' ];
