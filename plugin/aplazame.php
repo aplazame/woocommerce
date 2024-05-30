@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 4.0.1
+ * Version: 4.0.2
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 8.6.1
+ * WC tested up to: 8.9.1
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '4.0.1';
+	const VERSION      = '4.0.2';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -165,11 +165,11 @@ class WC_Aplazame {
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
 
 		// Cart and Checkout Blocks
-		add_action( 'woocommerce_blocks_loaded', array( $this, 'add_gateway_block') );
+		add_action( 'woocommerce_blocks_loaded', array( $this, 'add_gateway_block' ) );
 		add_action(
 			'before_woocommerce_init',
-			function() {
-				if ( class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil') ) {
+			function () {
+				if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
 				}
 			}
@@ -179,7 +179,7 @@ class WC_Aplazame {
 		add_action(
 			'before_woocommerce_init',
 			function () {
-				if ( class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil') ) {
+				if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 				}
 			}
@@ -288,15 +288,15 @@ class WC_Aplazame {
 	}
 
 	public function add_gateway_block() {
-		if( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+		if ( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
 			return;
 		}
 
 		include_once 'classes/wc-aplazame-gateway-block.php';
 		add_action(
 			'woocommerce_blocks_payment_method_type_registration',
-			function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
-				$payment_method_registry->register( new WC_Aplazame_Gateway_Blocks_Support );
+			function ( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
+				$payment_method_registry->register( new WC_Aplazame_Gateway_Blocks_Support() );
 			}
 		);
 	}

@@ -11,8 +11,8 @@ final class WC_Aplazame_Gateway_Blocks_Support extends AbstractPaymentMethodType
 	protected $name = WC_Aplazame::METHOD_ID;
 
 	public function initialize() {
-		$this->settings = get_option( "woocommerce_{$this->name}_settings", [] );
-		$gateways = WC()->payment_gateways->payment_gateways();
+		$this->settings = get_option( "woocommerce_{$this->name}_settings", array() );
+		$gateways       = WC()->payment_gateways->payment_gateways();
 		$this->gateway  = $gateways[ $this->name ];
 	}
 
@@ -24,10 +24,10 @@ final class WC_Aplazame_Gateway_Blocks_Support extends AbstractPaymentMethodType
 		$asset_path   = plugin_dir_path( __FILE__ ) . '../resources/payment-block.asset.php';
 		$version      = null;
 		$dependencies = array();
-		if( file_exists( $asset_path ) ) {
+		if ( file_exists( $asset_path ) ) {
 			$asset        = require $asset_path;
-			$version      = isset( $asset[ 'version' ] ) ? $asset[ 'version' ] : $version;
-			$dependencies = isset( $asset[ 'dependencies' ] ) ? $asset[ 'dependencies' ] : $dependencies;
+			$version      = isset( $asset['version'] ) ? $asset['version'] : $version;
+			$dependencies = isset( $asset['dependencies'] ) ? $asset['dependencies'] : $dependencies;
 		}
 		wp_register_script(
 			'wc-aplazame-blocks-integration',
@@ -36,13 +36,13 @@ final class WC_Aplazame_Gateway_Blocks_Support extends AbstractPaymentMethodType
 			$version,
 			true
 		);
-		return [ 'wc-aplazame-blocks-integration' ];
+		return array( 'wc-aplazame-blocks-integration' );
 	}
 
 	public function get_payment_method_data() {
-		return [
-			'title'     => $this->gateway->title,
-			'description'     => $this->gateway->settings['description'],
-		];
+		return array(
+			'title'       => $this->gateway->title,
+			'description' => $this->gateway->settings['description'],
+		);
 	}
 }

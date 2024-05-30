@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v4.0.2](https://github.com/aplazame/woocommerce/tree/v4.0.2) (2024-05-30)
+
+* Beta support for Checkout Block.
+
 #### [v4.0.1](https://github.com/aplazame/woocommerce/tree/v4.0.1) (2024-03-05)
 
 * Order confirmation process improved.
