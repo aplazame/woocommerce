@@ -13,15 +13,22 @@ global $aplazame;
 ?>
 
 <div
-	<?php if ( $aplazame->settings['widget_legacy'] === 'yes' ) : ?>
+	<?php if ( $aplazame->settings['cart_widget_ver'] === 'v3' ) : ?>
 		data-aplazame-widget-instalments=""
 		data-view="cart"
-	<?php else : ?>
+	<?php elseif ( $aplazame->settings['cart_widget_ver'] === 'v4' ) : ?>
 		data-aplazame-widget-instalments="v4"
 		data-type="cart"
 		data-option-max-amount-desired="<?php echo esc_attr( $aplazame->settings['cart_widget_max_desired'] === 'yes' ? 'true' : 'false' ); ?>"
 		data-option-primary-color="<?php echo esc_attr( $aplazame->settings['cart_widget_primary_color'] ); ?>"
 		data-option-layout="<?php echo esc_attr( $aplazame->settings['cart_widget_layout'] ); ?>"
+		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
+	<?php else : ?>
+		data-aplazame-widget-instalments="v5"
+		data-type="cart"
+		data-option-slider="<?php echo esc_attr( $aplazame->settings['cart_slider'] === 'yes' ? 'true' : 'false' ); ?>"
+		data-option-small-size="<?php echo esc_attr( $aplazame->settings['cart_small_size'] === 'yes' ? 'true' : 'false' ); ?>"
+		data-option-primary-color="<?php echo esc_attr( $aplazame->settings['cart_widget_primary_color'] ); ?>"
 		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
 	<?php endif; ?>
 	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"
