@@ -313,7 +313,7 @@ msgstr "Widget del carrito"
 
 #: classes/wc-aplazame-gateway.php:397
 msgid "Select your desired version for cart widget"
-msgstr ""
+msgstr "Elige la versión deseada para el widget del carrito"
 
 #: classes/wc-aplazame-gateway.php:408
 msgid "Widget place on cart page"
@@ -333,11 +333,11 @@ msgstr "Número de cuotas por defecto en el widget del carrito"
 
 #: classes/wc-aplazame-gateway.php:426
 msgid "Show slider in cart widget (only v5)"
-msgstr ""
+msgstr "Muestra la barra deslizante para el widget del carrito (sólo v5)"
 
 #: classes/wc-aplazame-gateway.php:432
 msgid "Reduce size of cart widget (only v5)"
-msgstr ""
+msgstr "Reduce el tamaño para el widget del carrito (sólo v5)"
 
 #: classes/wc-aplazame-gateway.php:438
 msgid "Show downpayment info in cart widget"
