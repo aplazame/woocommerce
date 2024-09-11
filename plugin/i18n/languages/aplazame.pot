@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aplazame v4.0.2\n"
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2024-09-09 14:21+0200\n"
+"POT-Creation-Date: 2024-09-11 13:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: https://github.com/aplazame/woocommerce\n"
@@ -287,7 +287,7 @@ msgid "Primary color"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:361
-msgid "Primary color hexadecimal code for product widget (only v4/v5)"
+msgid "Primary color hexadecimal code for product widget (only v4)"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:367
@@ -367,7 +367,7 @@ msgid "Cart widget alignment (only v4/v5)"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:485
-msgid "Primary color hexadecimal code for cart widget (only v4/v5)"
+msgid "Primary color hexadecimal code for cart widget (only v4)"
 msgstr ""
 
 #: classes/wc-aplazame-gateway.php:492

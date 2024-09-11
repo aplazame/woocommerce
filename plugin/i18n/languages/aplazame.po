@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/aplazame/woocommerce\n"
-"POT-Creation-Date: 2024-09-05 14:08+0200\n"
+"POT-Creation-Date: 2024-09-11 13:55+0200\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,7 +241,9 @@ msgstr "Introducir cuota máxima"
 msgid ""
 "Allow the user to manually enter the maximum instalment they want to pay "
 "(only v4)"
-msgstr "Permitir al usuario introducir manualmente la cuota máxima que desea pagar (sólo v4)"
+msgstr ""
+"Permitir al usuario introducir manualmente la cuota máxima que desea pagar "
+"(sólo v4)"
 
 #: classes/wc-aplazame-gateway.php:333 classes/wc-aplazame-gateway.php:457
 msgid "Allow the user to manually enter the maximum instalment"
@@ -280,8 +282,8 @@ msgid "Primary color"
 msgstr "Color principal"
 
 #: classes/wc-aplazame-gateway.php:361
-msgid "Primary color hexadecimal code for product widget (only v4/v5)"
-msgstr "Código hexadecimal del color principal para el widget del producto (sólo v4/v5)"
+msgid "Primary color hexadecimal code for product widget (only v4)"
+msgstr "Código hexadecimal del color principal para el widget del producto (sólo v4)"
 
 #: classes/wc-aplazame-gateway.php:367
 msgid "Product quantity CSS selector"
@@ -360,8 +362,8 @@ msgid "Cart widget alignment (only v4/v5)"
 msgstr "Alineación del widget del carrito (sólo v4/v5)"
 
 #: classes/wc-aplazame-gateway.php:485
-msgid "Primary color hexadecimal code for cart widget (only v4/v5)"
-msgstr "Código hexadecimal del color principal para el widget del carrito (sólo v4/v5)"
+msgid "Primary color hexadecimal code for cart widget (only v4)"
+msgstr "Código hexadecimal del color principal para el widget del carrito (sólo v4)"
 
 #: classes/wc-aplazame-gateway.php:492
 msgid "Button"
