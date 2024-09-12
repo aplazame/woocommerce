@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v4.1.0](https://github.com/aplazame/woocommerce/tree/v4.1.0) (2024-09-12)
+
+* [ADD] Widget v5.
+
 #### [v4.0.2](https://github.com/aplazame/woocommerce/tree/v4.0.2) (2024-05-30)
 
 * Beta support for Checkout Block.

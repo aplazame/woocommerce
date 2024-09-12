@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 4.0.2
+ * Version: 4.1.0
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  *
  * WC requires at least: 3.0.0
- * WC tested up to: 8.9.1
+ * WC tested up to: 9.2.3
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '4.0.2';
+	const VERSION      = '4.1.0';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -371,7 +371,6 @@ class WC_Aplazame_Install {
 		'cart_widget_primary_color'       => '#334bff',
 		'product_widget_layout'           => 'horizontal',
 		'cart_widget_layout'              => 'horizontal',
-		'widget_legacy'                   => 'no',
 		'product_widget_border'           => 'yes',
 		'product_widget_align'            => 'center',
 		'cart_widget_align'               => 'center',
@@ -382,6 +381,12 @@ class WC_Aplazame_Install {
 		'cart_downpayment_info'           => 'yes',
 		'product_widget_max_desired'      => 'no',
 		'cart_widget_max_desired'         => 'no',
+		'product_widget_ver'              => 'v5',
+		'cart_widget_ver'                 => 'v5',
+		'product_slider'                  => 'yes',
+		'cart_slider'                     => 'yes',
+		'product_small_size'              => 'no',
+		'cart_small_size'                 => 'no',
 	);
 
 	public static function upgrade() {
@@ -409,9 +414,6 @@ class WC_Aplazame_Install {
 			}
 			if ( isset( $aplazame->settings['title_instalments'] ) ) {
 				$aplazame->settings['title'] = $aplazame->settings['title_instalments'];
-			}
-			if ( ! isset( $aplazame->settings['widget_legacy'] ) ) {
-				$aplazame->settings['widget_legacy'] = 'yes';
 			}
 			self::save_settings( $aplazame->settings );
 
