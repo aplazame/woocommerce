@@ -232,12 +232,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['widget_out_of_limits'],
 			),
-			'widget_legacy'                   => array(
-				'type'        => 'checkbox',
-				'title'       => 'Widget legacy',
-				'description' => __( 'Use widget legacy instead new widget', 'aplazame' ),
-				'label'       => __( 'Turn on widget legacy', 'aplazame' ),
-			),
 			'payment_section'                 => array(
 				'title'       => __( 'Payment method title and description', 'aplazame' ),
 				'type'        => 'title',
@@ -266,6 +260,17 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'        => 'title',
 				'description' => '',
 			),
+			'product_widget_ver'              => array(
+				'type'        => 'select',
+				'title'       => __( 'Widget version', 'aplazame' ),
+				'description' => __( 'Select your desired version for product widget', 'aplazame' ),
+				'options'     => array(
+					'v3' => __( 'v3', 'aplazame' ),
+					'v4' => __( 'v4', 'aplazame' ),
+					'v5' => __( 'v5', 'aplazame' ),
+				),
+				'default'     => 'v5',
+			),
 			'product_widget_action'           => array(
 				'type'        => 'select',
 				'title'       => __( 'Place to show', 'aplazame' ),
@@ -284,6 +289,18 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Default instalments', 'aplazame' ),
 				'description' => __( 'Number of default instalments in product widget', 'aplazame' ),
 				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
+			),
+			'product_slider'                  => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Slider', 'aplazame' ),
+				'description' => __( 'Show slider in product widget (only v5)', 'aplazame' ),
+				'label'       => __( 'Show slider info', 'aplazame' ),
+			),
+			'product_small_size'              => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Small size', 'aplazame' ),
+				'description' => __( 'Reduce size of product widget (only v5)', 'aplazame' ),
+				'label'       => __( 'Reduce size', 'aplazame' ),
 			),
 			'product_downpayment_info'        => array(
 				'type'        => 'checkbox',
@@ -306,28 +323,19 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			'product_widget_border'           => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Border', 'aplazame' ),
-				'description' => __( 'Show border in product widget (only new widget)', 'aplazame' ),
+				'description' => __( 'Show border in product widget (only v4)', 'aplazame' ),
 				'label'       => __( 'Show border', 'aplazame' ),
 			),
 			'product_widget_max_desired'      => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Enter maximum instalment', 'aplazame' ),
-				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only new widget)', 'aplazame' ),
+				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only v4)', 'aplazame' ),
 				'label'       => __( 'Allow the user to manually enter the maximum instalment', 'aplazame' ),
-			),
-			'product_widget_primary_color'    => array(
-				'type'        => 'text',
-				'css'         => 'width:100px;',
-				'class'       => 'colorpick',
-				'title'       => __( 'Primary color', 'aplazame' ),
-				'description' => __( 'Primary color hexadecimal code for product widget (only new widget)', 'aplazame' ),
-				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
 			),
 			'product_widget_layout'           => array(
 				'type'        => 'select',
 				'title'       => __( 'Layout', 'aplazame' ),
-				'description' => __( 'Layout of product widget (only new widget)', 'aplazame' ),
+				'description' => __( 'Layout of product widget (only v4)', 'aplazame' ),
 				'options'     => array(
 					'horizontal' => 'Horizontal',
 					'vertical'   => 'Vertical',
@@ -337,13 +345,22 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			'product_widget_align'            => array(
 				'type'        => 'select',
 				'title'       => __( 'Alignment', 'aplazame' ),
-				'description' => __( 'Product widget alignment (only new widget)', 'aplazame' ),
+				'description' => __( 'Product widget alignment (only v4/v5)', 'aplazame' ),
 				'options'     => array(
 					'left'   => __( 'Left', 'aplazame' ),
 					'center' => __( 'Center', 'aplazame' ),
 					'right'  => __( 'Right', 'aplazame' ),
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_align'],
+			),
+			'product_widget_primary_color'    => array(
+				'type'        => 'text',
+				'css'         => 'width:100px;',
+				'class'       => 'colorpick',
+				'title'       => __( 'Primary color', 'aplazame' ),
+				'description' => __( 'Primary color hexadecimal code for product widget (only v4)', 'aplazame' ),
+				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
 			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
@@ -374,6 +391,17 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'        => 'title',
 				'description' => '',
 			),
+			'cart_widget_ver'                 => array(
+				'type'        => 'select',
+				'title'       => __( 'Widget version', 'aplazame' ),
+				'description' => __( 'Select your desired version for cart widget', 'aplazame' ),
+				'options'     => array(
+					'v3' => __( 'v3', 'aplazame' ),
+					'v4' => __( 'v4', 'aplazame' ),
+					'v5' => __( 'v5', 'aplazame' ),
+				),
+				'default'     => 'v5',
+			),
 			'cart_widget_action'              => array(
 				'type'        => 'select',
 				'title'       => __( 'Place to show', 'aplazame' ),
@@ -391,6 +419,18 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Default instalments', 'aplazame' ),
 				'description' => __( 'Number of default instalments in cart widget', 'aplazame' ),
 				'placeholder' => __( 'Optional (only numbers)', 'aplazame' ),
+			),
+			'cart_slider'                     => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Slider', 'aplazame' ),
+				'description' => __( 'Show slider in cart widget (only v5)', 'aplazame' ),
+				'label'       => __( 'Show slider info', 'aplazame' ),
+			),
+			'cart_small_size'                 => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Small size', 'aplazame' ),
+				'description' => __( 'Reduce size of cart widget (only v5)', 'aplazame' ),
+				'label'       => __( 'Reduce size', 'aplazame' ),
 			),
 			'cart_downpayment_info'           => array(
 				'type'        => 'checkbox',
@@ -413,22 +453,13 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			'cart_widget_max_desired'         => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Enter maximum instalment', 'aplazame' ),
-				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only new widget)', 'aplazame' ),
+				'description' => __( 'Allow the user to manually enter the maximum instalment they want to pay (only v4)', 'aplazame' ),
 				'label'       => __( 'Allow the user to manually enter the maximum instalment', 'aplazame' ),
-			),
-			'cart_widget_primary_color'       => array(
-				'type'        => 'text',
-				'css'         => 'width:100px;',
-				'class'       => 'colorpick',
-				'title'       => __( 'Primary color', 'aplazame' ),
-				'description' => __( 'Primary color hexadecimal code for cart widget (only new widget)', 'aplazame' ),
-				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
 			),
 			'cart_widget_layout'              => array(
 				'type'        => 'select',
 				'title'       => __( 'Layout', 'aplazame' ),
-				'description' => __( 'Layout of cart widget (only new widget)', 'aplazame' ),
+				'description' => __( 'Layout of cart widget (only v4)', 'aplazame' ),
 				'options'     => array(
 					'horizontal' => 'Horizontal',
 					'vertical'   => 'Vertical',
@@ -438,13 +469,22 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			'cart_widget_align'               => array(
 				'type'        => 'select',
 				'title'       => __( 'Alignment', 'aplazame' ),
-				'description' => __( 'Cart widget alignment (only new widget)', 'aplazame' ),
+				'description' => __( 'Cart widget alignment (only v4/v5)', 'aplazame' ),
 				'options'     => array(
 					'left'   => __( 'Left', 'aplazame' ),
 					'center' => __( 'Center', 'aplazame' ),
 					'right'  => __( 'Right', 'aplazame' ),
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_align'],
+			),
+			'cart_widget_primary_color'       => array(
+				'type'        => 'text',
+				'css'         => 'width:100px;',
+				'class'       => 'colorpick',
+				'title'       => __( 'Primary color', 'aplazame' ),
+				'description' => __( 'Primary color hexadecimal code for cart widget (only v4)', 'aplazame' ),
+				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
 			),
 
 			// Button settings

@@ -33,10 +33,10 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 ?>
 
 <div
-	<?php if ( $aplazame->settings['widget_legacy'] === 'yes' ) : ?>
+	<?php if ( $aplazame->settings['product_widget_ver'] === 'v3' ) : ?>
 		data-aplazame-widget-instalments=""
 		data-view="product"
-	<?php else : ?>
+	<?php elseif ( $aplazame->settings['product_widget_ver'] === 'v4' ) : ?>
 		data-aplazame-widget-instalments="v4"
 		data-type="product"
 		data-option-max-amount-desired="<?php echo esc_attr( $aplazame->settings['product_widget_max_desired'] === 'yes' ? 'true' : 'false' ); ?>"
@@ -44,6 +44,12 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 		data-option-layout="<?php echo esc_attr( $aplazame->settings['product_widget_layout'] ); ?>"
 		data-option-align="<?php echo esc_attr( $aplazame->settings['product_widget_align'] ); ?>"
 		data-option-border-product="<?php echo esc_attr( $aplazame->settings['product_widget_border'] === 'yes' ? 'true' : 'false' ); ?>"
+	<?php else : ?>
+		data-aplazame-widget-instalments="v5"
+		data-type="product"
+		data-option-slider="<?php echo esc_attr( $aplazame->settings['product_slider'] === 'yes' ? 'true' : 'false' ); ?>"
+		data-option-small-size="<?php echo esc_attr( $aplazame->settings['product_small_size'] === 'yes' ? 'true' : 'false' ); ?>"
+		data-option-align="<?php echo esc_attr( $aplazame->settings['product_widget_align'] ); ?>"
 	<?php endif; ?>
 	<?php if ( empty( $price_selector ) ) : ?>
 		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->jsonSerialize() ); ?>"
