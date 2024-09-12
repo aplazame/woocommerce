@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v4.1.1](https://github.com/aplazame/woocommerce/tree/v4.1.1) (2024-09-12)
+
+* Minor release for marketplace.
+
 #### [v4.1.0](https://github.com/aplazame/woocommerce/tree/v4.1.0) (2024-09-12)
 
 * [ADD] Widget v5.
