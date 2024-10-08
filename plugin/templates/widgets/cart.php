@@ -41,4 +41,6 @@ global $aplazame;
 	<?php if ( $aplazame->settings['cart_pay_in_4'] === 'yes' ) : ?>
 		data-pay-in-4=""
 	<?php endif; ?>
-></div>
+>
+	<div data-aplazame-loading></div>
+</div>

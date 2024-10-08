@@ -70,4 +70,6 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	<?php if ( $aplazame->settings['product_pay_in_4'] === 'yes' ) : ?>
 		data-pay-in-4=""
 	<?php endif; ?>
-></div>
+>
+	<div data-aplazame-loading></div>
+</div>
