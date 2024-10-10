@@ -27,7 +27,6 @@ global $aplazame;
 		data-aplazame-widget-instalments="v5"
 		data-type="cart"
 		data-option-slider="<?php echo esc_attr( $aplazame->settings['cart_slider'] === 'yes' ? 'true' : 'false' ); ?>"
-		data-option-small-size="<?php echo esc_attr( $aplazame->settings['cart_small_size'] === 'yes' ? 'true' : 'false' ); ?>"
 		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
 	<?php endif; ?>
 	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"

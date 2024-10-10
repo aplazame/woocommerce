@@ -296,12 +296,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Show slider in product widget (only v5)', 'aplazame' ),
 				'label'       => __( 'Show slider info', 'aplazame' ),
 			),
-			'product_small_size'              => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Small size', 'aplazame' ),
-				'description' => __( 'Reduce size of product widget (only v5)', 'aplazame' ),
-				'label'       => __( 'Reduce size', 'aplazame' ),
-			),
 			'product_downpayment_info'        => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Downpayment info', 'aplazame' ),
@@ -425,12 +419,6 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Slider', 'aplazame' ),
 				'description' => __( 'Show slider in cart widget (only v5)', 'aplazame' ),
 				'label'       => __( 'Show slider info', 'aplazame' ),
-			),
-			'cart_small_size'                 => array(
-				'type'        => 'checkbox',
-				'title'       => __( 'Small size', 'aplazame' ),
-				'description' => __( 'Reduce size of cart widget (only v5)', 'aplazame' ),
-				'label'       => __( 'Reduce size', 'aplazame' ),
 			),
 			'cart_downpayment_info'           => array(
 				'type'        => 'checkbox',

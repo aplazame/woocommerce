@@ -48,7 +48,6 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 		data-aplazame-widget-instalments="v5"
 		data-type="product"
 		data-option-slider="<?php echo esc_attr( $aplazame->settings['product_slider'] === 'yes' ? 'true' : 'false' ); ?>"
-		data-option-small-size="<?php echo esc_attr( $aplazame->settings['product_small_size'] === 'yes' ? 'true' : 'false' ); ?>"
 		data-option-align="<?php echo esc_attr( $aplazame->settings['product_widget_align'] ); ?>"
 	<?php endif; ?>
 	<?php if ( empty( $price_selector ) ) : ?>
