@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v4.1.2](https://github.com/aplazame/woocommerce/tree/v4.1.2) (2024-10-14)
+
+* [ADD] Widget loading animation.
+* [DEL] Deprecated options.
+
 #### [v4.1.1](https://github.com/aplazame/woocommerce/tree/v4.1.1) (2024-09-12)
 
 * Minor release for marketplace.
