@@ -385,6 +385,7 @@ class WC_Aplazame_Install {
 		'cart_widget_ver'                 => 'v5',
 		'product_slider'                  => 'yes',
 		'cart_slider'                     => 'yes',
+		'widget_country'                  => 'es',
 	);
 
 	public static function upgrade() {
