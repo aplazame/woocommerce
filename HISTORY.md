@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [v4.2.0](https://github.com/aplazame/woocommerce/tree/v4.2.0) (2025-09-29)
+
+* [ADD] PT widget.
+
 #### [v4.1.3](https://github.com/aplazame/woocommerce/tree/v4.1.3) (2025-01-21)
 
 * Update license and tested versions.
