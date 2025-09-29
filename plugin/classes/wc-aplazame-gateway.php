@@ -232,7 +232,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['widget_out_of_limits'],
 			),
-			'widget_country'            => array(
+			'widget_country'                  => array(
 				'type'        => 'select',
 				'title'       => __( 'Widget country', 'aplazame' ),
 				'description' => __( 'Select widget country', 'aplazame' ),
