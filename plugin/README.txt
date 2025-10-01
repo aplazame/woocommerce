@@ -2,9 +2,9 @@
 Contributors: aplazame
 Tags: aplazame,woocommerce,ecommerce,payment,checkout,credit,aplazar,financiar,financiera,financiación,pago aplazado,método de pago
 Requires at least: 4.0.1
-Tested up to: 6.7.1
+Tested up to: 6.8.2
 Requires PHP: 5.3.0
-Stable tag: 4.1.3
+Stable tag: 4.2.0
 License: BSD-3-Clause
 License URI: https://github.com/aplazame/woocommerce/blob/master/LICENSE
 
@@ -76,6 +76,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 
 
 == Changelog ==
+
+#### [v4.2.0](https://github.com/aplazame/woocommerce/tree/v4.2.0) (2025-09-29)
+
+* [ADD] PT widget.
 
 #### [v4.1.3](https://github.com/aplazame/woocommerce/tree/v4.1.3) (2025-01-21)
 
