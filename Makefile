@@ -1,8 +1,8 @@
 plugin_path ?= plugin
 i18n_path ?= i18n/languages
 i18n_name ?= aplazame-es_ES
-version ?= v4.1.3
-errors = $(shell find . -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
+version ?= v4.2.0
+errors = $(shell find plugin/. -type f -name "*.php" -exec php -l "{}" \;| grep "Errors parsing ";)
 
 clean:
 	@rm -f aplazame.latest.zip

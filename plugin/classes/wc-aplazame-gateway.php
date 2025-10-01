@@ -232,6 +232,16 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['widget_out_of_limits'],
 			),
+			'widget_country'                  => array(
+				'type'        => 'select',
+				'title'       => __( 'Widget country', 'aplazame' ),
+				'description' => __( 'Select widget country', 'aplazame' ),
+				'options'     => array(
+					'es' => __( 'ES (Spain)', 'aplazame' ),
+					'pt' => __( 'PT (Portugal)', 'aplazame' ),
+				),
+				'default'     => WC_Aplazame_Install::$defaultSettings['widget_country'],
+			),
 			'payment_section'                 => array(
 				'title'       => __( 'Payment method title and description', 'aplazame' ),
 				'type'        => 'title',

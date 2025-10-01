@@ -58,6 +58,7 @@ if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	<?php if ( ! empty( $aplazame->settings['quantity_selector'] ) ) : ?>
 		data-qty="<?php echo esc_attr( $aplazame->settings['quantity_selector'] ); ?>"
 	<?php endif; ?>
+	data-country="<?php echo esc_attr( $aplazame->settings['widget_country'] ); ?>"
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	data-article-id="<?php echo esc_attr( $product->get_id() ); ?>"
 	<?php if ( ! empty( $aplazame->settings['product_default_instalments'] ) ) : ?>
