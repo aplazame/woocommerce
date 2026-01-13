@@ -108,3 +108,5 @@ jobs:
          export APP_VERSION="$(cat APP_VERSION.tmp)"
          echo $APP_VERSION
          svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
+
+#prueba
