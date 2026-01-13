@@ -97,14 +97,14 @@ jobs:
          svn add --force svn/trunk
           
          echo "****************Delete unused files******************************"
-         for i in \$(svn status svn | grep \\! | awk '{print \$2}'); do svn delete \$i; done
+         for i in $(svn status svn | grep ! | awk '{print $2}'); do svn delete $i; done
           
          echo "****************Tag Release******************************"
-         export APP_VERSION="\$(cat APP_VERSION.tmp)"
-         echo \$APP_VERSION
-         svn cp svn/trunk svn/tags/\$APP_VERSION
+         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         echo $APP_VERSION
+         svn cp svn/trunk svn/tags/$APP_VERSION
           
          echo "****************Commit to Wordpress******************************"
-         export APP_VERSION="\$(cat APP_VERSION.tmp)"
-         echo \$APP_VERSION
-         svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version \$APP_VERSION"
+         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         echo $APP_VERSION
+         svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
