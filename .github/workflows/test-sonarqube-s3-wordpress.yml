@@ -63,7 +63,7 @@ jobs:
         env:
           s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
-         export AWS_PROFILE=AplazameSharedServices
+         #export AWS_PROFILE=AplazameSharedServices
          set -e
          aws s3 cp --quiet ${s3Path} cache.tar.gz || exit 0
          [ -f cache.tar.gz ] && tar -xf cache.tar.gz
@@ -77,7 +77,7 @@ jobs:
           foldersStr: '.'
           s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
-         export AWS_PROFILE=AplazameSharedServices
+         #export AWS_PROFILE=AplazameSharedServices
          set -e
          MATCHES=$(aws s3 ls ${s3Path} | wc -l)
          [ "$MATCHES" = "0" ] && [ ! -f cache.tar.gz ] && tar -czf cache.tar.gz ${foldersStr} && aws s3 cp --quiet cache.tar.gz ${s3Path}
@@ -98,7 +98,7 @@ jobs:
         env:
             branch: master
         run: |
-         export AWS_PROFILE=AplazameSharedServices
+         #export AWS_PROFILE=AplazameSharedServices
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
 
