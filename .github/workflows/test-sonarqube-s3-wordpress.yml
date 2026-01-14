@@ -17,7 +17,7 @@ jobs:
     name: Test SonarQube Scan
     uses: ./.github/workflows/test-reusable-sonarqube.yml
     secrets: 
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.WZ_SONAR_TOKEN }}
 
   test-composer:
     name: Test Composer Install
@@ -133,4 +133,3 @@ jobs:
          export APP_VERSION="$(cat APP_VERSION.tmp)"
          echo $APP_VERSION
          svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
-         
