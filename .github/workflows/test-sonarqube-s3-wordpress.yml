@@ -61,7 +61,7 @@ jobs:
     
       - name: Get cache
         env:
-          s3Path: aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
+          s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
          export AWS_PROFILE=AplazameSharedServices
          set -e
@@ -75,7 +75,7 @@ jobs:
       - name: Cache Composer dependencies
         env:
           foldersStr: '.'
-          s3Path: aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
+          s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
          export AWS_PROFILE=AplazameSharedServices
          set -e
@@ -89,14 +89,13 @@ jobs:
       - name: Make Styleci happy
         run: make style
       
-      - name: Create Bundle
-        env:
-          branch: master
-        run: make zip
+     # - name: Create Bundle
+     #   env:
+     #     branch: master
+     #   run: make zip
 
       - name: Deply to S3
         env:
-            s3Path: aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
             branch: master
         run: |
          export AWS_PROFILE=AplazameSharedServices
