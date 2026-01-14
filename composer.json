@@ -22,10 +22,6 @@
     "require": {
         "php": ">=5.2"
     },
-    
-    //"require-dev": {
-    //    "wp-coding-standards/wpcs": "dev-main"
-    //},
 
     "config": {
         "allow-plugins": {
