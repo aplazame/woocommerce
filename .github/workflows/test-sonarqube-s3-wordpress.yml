@@ -8,6 +8,8 @@ on:
 env:
   FOLDER: "dist"
   foldersCache: "vendor/"
+  AWS_REGION: 'eu-central-1'
+  AWS_ACCOUNT: '666356151544'
 
 jobs:
 
@@ -19,8 +21,9 @@ jobs:
 
   test-composer:
     name: Test Composer Install
-    runs-on: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/pro' ||
-                  github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'pro')
+    needs: test-sonarqube
+    runs-on: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master' ||
+                  github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'master')
                   && vars.AWS_RG_NAME_PRO || vars.AWS_RG_NAME_NONPRO }}
     steps:
       - name: Checkout code
@@ -31,15 +34,35 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '5.3'
+          php-version: '5.6'
           extensions: mbstring, intl, xml, curl, zip, json
-          tools: composer:v1
+          tools: composer:v2
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get install unzip curl -y
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+          aws --version 
+      
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708  #v5.1.1
+        with:
+          role-to-assume: ${{ env.ROLE_OIDC }}
+          role-session-name: ${{ github.run_id }}
+          aws-region: ${{ vars.WZ_OIDC_AWS_REGION }}
+  
+      - name: Login to Amazon ECR
+        id: ecrlogin
+        uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076 #V2
+        with:
+          registries: ${{ env.AWS_ACCOUNT }}
     
       - name: Get cache
         env:
           s3Path: aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
-         load-config
          export AWS_PROFILE=AplazameSharedServices
          set -e
          aws s3 cp --quiet ${s3Path} cache.tar.gz || exit 0
@@ -54,7 +77,6 @@ jobs:
           foldersStr: '.'
           s3Path: aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
         run: |
-         load-config
          export AWS_PROFILE=AplazameSharedServices
          set -e
          MATCHES=$(aws s3 ls ${s3Path} | wc -l)
@@ -68,13 +90,15 @@ jobs:
         run: make style
       
       - name: Create Bundle
+        env:
+          branch: master
         run: make zip
 
       - name: Deply to S3
         env:
             s3Path: aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
+            branch: master
         run: |
-         load-config
          export AWS_PROFILE=AplazameSharedServices
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/
@@ -84,6 +108,7 @@ jobs:
             WP_URL: ${{ vars.WORDPRESS_URL }}
             WP_ADMIN_USER: ${{ secrets.WORDPRESS_ADMIN_USER }}
             WP_ADMIN_PASSWORD: ${{ secrets.WORDPRESS_ADMIN_PASSWORD }}
+            branch: master
         run: |
          echo "***************Clone wordpress repository***************"
          svn co https://plugins.svn.wordpress.org/aplazame svn
@@ -108,5 +133,4 @@ jobs:
          export APP_VERSION="$(cat APP_VERSION.tmp)"
          echo $APP_VERSION
          svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
-
-#prueba
+         
