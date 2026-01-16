@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 global $aplazame;
 
+$country = $aplazame->settings['widget_country'] === 'auto' ? substr( get_bloginfo( 'language' ), 0, 2 ) : $aplazame->settings['widget_country'];
 ?>
 
 <div
@@ -30,7 +31,7 @@ global $aplazame;
 		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
 	<?php endif; ?>
 	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"
-	data-country="<?php echo esc_attr( $aplazame->settings['widget_country'] ); ?>"
+	data-country="<?php echo esc_attr( $country ); ?>"
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	<?php if ( ! empty( $aplazame->settings['cart_default_instalments'] ) ) : ?>
 		data-option-default-instalments="<?php echo esc_attr( $aplazame->settings['cart_default_instalments'] ); ?>"
