@@ -56,6 +56,7 @@ pipeline {
               load-config
               export AWS_PROFILE=AplazameSharedServices
               set -e
+              aws s3 ls
               aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/${CACHE_KEY} cache.tar.gz || exit 0
               [ -f cache.tar.gz ] && tar -xf cache.tar.gz
             """
