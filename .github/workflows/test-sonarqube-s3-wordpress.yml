@@ -65,6 +65,7 @@ jobs:
         run: |
          #export AWS_PROFILE=AplazameSharedServices
          set -e
+         aws s3 ls
          aws s3 cp --quiet ${s3Path} cache.tar.gz || exit 0
          [ -f cache.tar.gz ] && tar -xf cache.tar.gz
          aws s3 cp --quiet aws s3 cp --quiet s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz cache.tar.gz
