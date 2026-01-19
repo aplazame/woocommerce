@@ -91,6 +91,10 @@ jobs:
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
+      - name: Save APP_VERSION
+        run: |
+         unzip -p aplazame.latest.zip APP_VERSION > APP_VERSION.tmp
+
       - name: Deploy to Wordpress site
         env:
             WP_URL: ${{ vars.WORDPRESS_URL }}
