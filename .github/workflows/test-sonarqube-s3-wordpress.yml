@@ -10,6 +10,7 @@ env:
   foldersCache: "vendor/"
   AWS_REGION: 'eu-central-1'
   AWS_ACCOUNT: '666356151544'
+  
 
 permissions:
   contents: read
@@ -99,9 +100,8 @@ jobs:
 
       - name: Deploy to Wordpress site
         env:
-            WP_URL: ${{ vars.WORDPRESS_URL }}
-            WP_ADMIN_USER: ${{ secrets.WORDPRESS_ADMIN_USER }}
-            WP_ADMIN_PASSWORD: ${{ secrets.WORDPRESS_ADMIN_PASSWORD }}
+            WORDPRESS_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
+            WORDPRESS_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
         run: |
          sudo apt-get install subversion rsync -y
          
