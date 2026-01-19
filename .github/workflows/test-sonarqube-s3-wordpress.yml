@@ -93,7 +93,9 @@ jobs:
 
       - name: Save APP_VERSION
         run: |
-         unzip -p aplazame.latest.zip APP_VERSION > APP_VERSION.tmp
+         export APP_VERSION="$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
+         echo $APP_VERSION
+         echo "$APP_VERSION" > APP_VERSION.tmp
 
       - name: Deploy to Wordpress site
         env:
