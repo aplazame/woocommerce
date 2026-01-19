@@ -1,0 +1,130 @@
+name: Test Sonarqube Composer S3 and wordpress
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+env:
+  FOLDER: "dist"
+  foldersCache: "vendor/"
+  AWS_REGION: 'eu-central-1'
+  AWS_ACCOUNT: '666356151544'
+  
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  test-sonarqube:
+    name: Test SonarQube Scan
+    uses: ./.github/workflows/test-reusable-sonarqube.yml
+    secrets: 
+      SONAR_TOKEN: ${{ secrets.WZ_SONAR_TOKEN }}
+
+  test-composer:
+    name: Test Composer Install
+    needs: test-sonarqube
+    runs-on: ${{ vars.AWS_RG_NAME_PRO }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 #v6.0.1
+        with:
+            fetch-depth: 0   
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '5.6'
+          extensions: mbstring, intl, xml, curl, zip, json
+          tools: composer:v2
+    
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get install unzip zip curl -y
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+          aws --version 
+      
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708  #v5.1.1
+        with:
+          role-to-assume: ${{ vars.AWS_OIDC_ROLE_TF_PRO }}
+          role-session-name: ${{ github.run_id }}
+          aws-region: ${{ vars.WZ_OIDC_AWS_REGION }}
+      
+      - name: Get cache
+        env:
+          s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
+        run: |
+         set -e
+         aws s3 cp --quiet ${s3Path} cache.tar.gz --profile AplazameSharedServices || exit 0
+         [ -f cache.tar.gz ] && tar -xf cache.tar.gz
+         aws s3 cp --quiet ${s3Path} cache.tar.gz --profile AplazameSharedServices
+
+      - name: Composer Install
+        run: composer install --prefer-dist
+
+      - name: Upload cache
+        env:
+          s3Path: s3://aplazameshared-jenkins-cache/Aplazame-Backend/woocommerce/v1-dependencies-${{ github.sha }}.tar.gz
+        run: |
+         set -e
+         MATCHES=$(aws s3 ls ${s3Path} --profile AplazameSharedServices| wc -l)
+         [ "$MATCHES" = "0" ] && [ ! -f cache.tar.gz ] && tar -czf cache.tar.gz ${foldersCache} && aws s3 cp --quiet cache.tar.gz ${s3Path} --profile AplazameSharedServices
+         exit 0
+
+      - name: Check syntax
+        run: make syntax.checker
+
+      - name: Make Styleci happy
+        run: make style
+      
+      - name: Create Bundle
+        run: |
+          sudo apt-get install zip -y
+          make zip
+
+      - name: Deploy to S3
+        run: |
+         set -e
+         aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
+
+      - name: Save APP_VERSION
+        run: |
+         export APP_VERSION="$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
+         echo $APP_VERSION
+         echo "$APP_VERSION" > APP_VERSION.tmp
+
+      - name: Deploy to Wordpress site
+        env:
+            WORDPRESS_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
+            WORDPRESS_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
+        run: |
+         sudo apt-get install subversion rsync -y
+         
+         echo "***************Clone wordpress repository***************"
+         svn co https://plugins.svn.wordpress.org/aplazame svn
+          
+         echo "****************Sync assets******************************"
+         rsync -r -p --delete assets/ svn/assets
+         svn add --force svn/assets
+          
+         echo "****************Sync trunk******************************"
+         rsync -r -p --delete plugin/ svn/trunk
+         svn add --force svn/trunk
+          
+         echo "****************Delete unused files******************************"
+         for i in $(svn status svn | grep ! | awk '{print $2}'); do svn delete $i; done
+          
+         echo "****************Tag Release******************************"
+         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         echo $APP_VERSION
+         svn cp svn/trunk svn/tags/$APP_VERSION
+          
+         echo "****************Commit to Wordpress******************************"
+         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         echo $APP_VERSION
+         svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
