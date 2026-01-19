@@ -97,6 +97,8 @@ jobs:
             WP_ADMIN_USER: ${{ secrets.WORDPRESS_ADMIN_USER }}
             WP_ADMIN_PASSWORD: ${{ secrets.WORDPRESS_ADMIN_PASSWORD }}
         run: |
+         sudo apt-get install subversion rsync -y
+         
          echo "***************Clone wordpress repository***************"
          svn co https://plugins.svn.wordpress.org/aplazame svn
           
