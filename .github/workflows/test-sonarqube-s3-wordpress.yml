@@ -100,7 +100,7 @@ jobs:
           echo "***************Create Release***************"
           APP_VERSION=$(grep "^version" Makefile | awk -F= '{print $2}' | xargs)
           echo "$APP_VERSION"
-          gh release create "$APP_VERSION" \ --notes "Release created by GitHub Actions"
+          gh release create "$APP_VERSION" --notes "Release created by GitHub Actions"
 
       - name: Deploy to Wordpress site
         env:
