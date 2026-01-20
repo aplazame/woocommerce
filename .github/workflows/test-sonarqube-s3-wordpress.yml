@@ -92,11 +92,17 @@ jobs:
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
-      - name: Save APP_VERSION
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
         run: |
-         export APP_VERSION="$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
-         echo $APP_VERSION
-         echo "$APP_VERSION" > APP_VERSION.tmp
+          sudo apt-get install gh -y
+          echo "***************Create Release***************"
+          APP_VERSION=$(grep version Makefile | cut -d '=' -f2)
+          echo "$APP_VERSION"
+          GH_TOKEN="$GITHUB_TOKEN" \ 
+          gh release create "$APP_VERSION" \ 
+          --notes "Release created by GitHub Actions"
 
       - name: Deploy to Wordpress site
         env:
