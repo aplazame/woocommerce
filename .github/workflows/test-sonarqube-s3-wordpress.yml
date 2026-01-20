@@ -94,15 +94,13 @@ jobs:
 
       - name: Create GitHub Release
         env:
-          GITHUB_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
+          GH_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
         run: |
           sudo apt-get install gh -y
           echo "***************Create Release***************"
           APP_VERSION=$(grep version Makefile | cut -d '=' -f2)
           echo "$APP_VERSION"
-          GH_TOKEN="$GITHUB_TOKEN" \ 
-          gh release create "$APP_VERSION" \ 
-          --notes "Release created by GitHub Actions"
+          gh release create "$APP_VERSION" \ --notes "Release created by GitHub Actions"
 
       - name: Deploy to Wordpress site
         env:
