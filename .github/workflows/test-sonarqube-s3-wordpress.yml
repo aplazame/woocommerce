@@ -96,7 +96,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: trstringer/manual-approval@v1
         with:
-          GH_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
+          secret: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
           minimum-approvals: 1
           approvers: 'AR40873_wzk'
           timeout-minutes: 10
