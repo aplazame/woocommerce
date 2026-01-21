@@ -96,8 +96,8 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.GITHUB_TOKEN }}
           minimum-approvals: 1
+          approval-users: 'AR40873_wzk'
           timeout-minutes: 10
           issue-title: "Manual Approval Required for Release (First change Makefile's App Version)"
           issue-body: "Please approve or deny the deploy."
