@@ -92,6 +92,17 @@ jobs:
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
+      - name: Await Manual Approval
+        if: ${{ github.event_name == 'push' }}
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.GITHUB_TOKEN }}
+          minimum-approvals: 1
+          timeout-minutes: 10
+          issue-title: "Manual Approval Required for Release (First change Makefile's App Version)"
+          issue-body: "Please approve or deny the deploy."
+
+        
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
