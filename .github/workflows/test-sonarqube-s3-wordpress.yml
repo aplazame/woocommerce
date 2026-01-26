@@ -26,7 +26,6 @@ jobs:
 
   test-composer:
     name: Test Composer Install
-    environment: pro
     needs: test-sonarqube
     runs-on: ${{ vars.AWS_RG_NAME_PRO }}
     steps:
