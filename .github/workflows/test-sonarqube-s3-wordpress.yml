@@ -92,9 +92,9 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
+          secret: ${{ github.TOKEN }}
           minimum-approvals: 1
-          approvers: 'AR40873_wzk'
+          approvers: 'alexhernandezord'
           timeout-minutes: 10
           issue-title: "Manual Approval Required for Release (First change Makefile's App Version)"
           issue-body: "Please approve or deny the deploy."
@@ -104,9 +104,20 @@ jobs:
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
+      - name: Await Manual Approval
+        if: ${{ github.event_name == 'push' }}
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          minimum-approvals: 1
+          approvers: 'alexhernandezord'
+          timeout-minutes: 10
+          issue-title: "Manual Approval Required for Github Release"
+          issue-body: "Please approve or deny the deploy."
+
       - name: Create GitHub Release
         env:
-          GH_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
+          GH_TOKEN: ${{ github.TOKEN }}
         run: |
           sudo apt-get install gh -y
           echo "***************Create Release***************"
