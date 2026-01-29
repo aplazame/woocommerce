@@ -84,12 +84,13 @@ jobs:
         run: make style
       
       - name: Create Bundle
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           sudo apt-get install zip -y
           make zip
       
       - name: Await Manual Approval
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
@@ -100,12 +101,13 @@ jobs:
           issue-body: "Please approve or deny the deploy."
 
       - name: Deploy to S3
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
       - name: Await Manual Approval
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
@@ -116,6 +118,7 @@ jobs:
           issue-body: "Please approve or deny the deploy."
 
       - name: Create GitHub Release
+        if: ${{ github.ref == 'refs/heads/master' }}
         env:
           GH_TOKEN: ${{ github.TOKEN }}
         run: |
@@ -126,6 +129,7 @@ jobs:
           gh release create "$APP_VERSION" --notes "Release created by GitHub Actions"
 
       - name: Deploy to Wordpress site
+        if: ${{ github.ref == 'refs/heads/master' }}
         env:
             WORDPRESS_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
             WORDPRESS_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
