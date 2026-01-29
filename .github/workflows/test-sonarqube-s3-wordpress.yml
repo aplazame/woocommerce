@@ -15,6 +15,7 @@ env:
 permissions:
   contents: read
   id-token: write
+  issues: write
 
 jobs:
   test-sonarqube:
@@ -83,22 +84,52 @@ jobs:
         run: make style
       
       - name: Create Bundle
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           sudo apt-get install zip -y
           make zip
+      
+      - name: Await Manual Approval
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          minimum-approvals: 1
+          approvers: 'alexhernandezord'
+          timeout-minutes: 10
+          issue-title: "Manual Approval Required for Release (First change Makefile's App Version)"
+          issue-body: "Please approve or deny the deploy."
 
       - name: Deploy to S3
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
          set -e
          aws s3 cp --acl public-read aplazame.latest.zip s3://aplazame/modules/woocommerce/ --profile Aplazame
 
-      - name: Save APP_VERSION
+      - name: Await Manual Approval
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          minimum-approvals: 1
+          approvers: 'alexhernandezord'
+          timeout-minutes: 10
+          issue-title: "Manual Approval Required for Github Release"
+          issue-body: "Please approve or deny the deploy."
+
+      - name: Create GitHub Release
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          GH_TOKEN: ${{ github.TOKEN }}
         run: |
-         export APP_VERSION="$(cat Makefile | grep 'version ?=' | cut -d '=' -f2 | cut -c2-)"
-         echo $APP_VERSION
-         echo "$APP_VERSION" > APP_VERSION.tmp
+          sudo apt-get install gh -y
+          echo "***************Create Release***************"
+          APP_VERSION=$(grep "^version" Makefile | awk -F= '{print $2}' | xargs)
+          echo "$APP_VERSION"
+          gh release create "$APP_VERSION" --notes "Release created by GitHub Actions"
 
       - name: Deploy to Wordpress site
+        if: ${{ github.ref == 'refs/heads/master' }}
         env:
             WORDPRESS_USERNAME: ${{ secrets.WORDPRESS_USERNAME }}
             WORDPRESS_PASSWORD: ${{ secrets.WORDPRESS_PASSWORD }}
