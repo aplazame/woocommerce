@@ -7,10 +7,7 @@ on:
       - '**'
 env:
   FOLDER: "dist"
-  foldersCache: "vendor/"
-  AWS_REGION: 'eu-central-1'
-  AWS_ACCOUNT: '666356151544'
-  
+  foldersCache: "vendor/"  
 
 permissions:
   contents: read
