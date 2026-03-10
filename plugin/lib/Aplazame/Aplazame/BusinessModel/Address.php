@@ -23,7 +23,7 @@ class Aplazame_Aplazame_BusinessModel_Address {
 			'address_addition' => 'address_2',
 		) as $key => $field ) {
 			$field          = $type . '_' . $field;
-			$aAddress->$key = WC_Aplazame::_m_or_a( $order, 'get_' . $field, $field );
+			$aAddress->$key = WC_Aplazame::method_or_attribute( $order, 'get_' . $field, $field );
 		}
 
 		return $aAddress;

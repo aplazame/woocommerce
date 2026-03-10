@@ -43,7 +43,7 @@ class Aplazame_Aplazame_BusinessModel_Customer {
 
 	public static function createGuessCustomerFromOrder( WC_Order $order ) {
 		$aCustomer         = new self();
-		$aCustomer->email  = WC_Aplazame::_m_or_a( $order, 'get_billing_email', 'billing_email' );
+		$aCustomer->email  = WC_Aplazame::method_or_attribute( $order, 'get_billing_email', 'billing_email' );
 		$aCustomer->type   = 'g';
 		$aCustomer->gender = 0;
 

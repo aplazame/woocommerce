@@ -4,7 +4,7 @@ global $post;
 $articles = array();
 $product  = wc_get_product( $post );
 
-switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
+switch ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' ) ) {
 	case 'variable':
 		$children_ids = $product->get_children();
 

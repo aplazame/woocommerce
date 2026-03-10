@@ -16,7 +16,7 @@ global $aplazame;
  */
 global $product;
 
-switch ( WC_Aplazame::_m_or_a( $product, 'get_type', 'product_type' ) ) {
+switch ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' ) ) {
 	case 'variable':
 		$price_selector = $aplazame->settings['price_variable_product_selector'];
 		break;

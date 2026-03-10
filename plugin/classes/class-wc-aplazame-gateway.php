@@ -1,17 +1,26 @@
 <?php
+/**
+ * Aplazame gateway
+ *
+ * @package WC_Aplazame/Classes
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Gateway class */
 class WC_Aplazame_Gateway extends WC_Payment_Gateway {
+	/**
+	 * Construct
+	 */
 	public function __construct() {
 		$this->id                 = WC_Aplazame::METHOD_ID;
 		$this->method_title       = WC_Aplazame::METHOD_TITLE;
 		$this->method_description = __( 'Pay with Aplazame', 'aplazame' );
 		$this->has_fields         = true;
 
-		// Settings
+		/* Settings */
 		$this->init_form_fields();
 		$this->init_settings();
 
@@ -41,7 +50,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'checkout' ) );
 	}
 
-	public function get_icon() {
+	/**
+	 * Get icon
+	 *
+	 * @return mixed|string|null
+	 */
+	public function get_icon(): mixed {
 		if ( ! empty( $this->settings['button_image'] ) ) {
 			$icon = '<img src="' . $this->settings['button_image'] . '" alt="' . esc_attr( $this->get_title() ) . '" />';
 		} else {
@@ -51,7 +65,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		return apply_filters( 'woocommerce_gateway_icon', $icon, $this->id );
 	}
 
-	public function is_available() {
+	/**
+	 * Is (not) available
+	 *
+	 * @return bool
+	 */
+	public function is_available(): bool {
 		if ( ( 'no' === $this->enabled ) ||
 			( ! $this->settings['public_api_key'] ) ||
 			( ! $this->settings['private_api_key'] )
@@ -62,11 +81,23 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		return true;
 	}
 
-	public function payment_fields() {
+	/**
+	 * Render payment fields
+	 *
+	 * @return void
+	 */
+	public function payment_fields(): void {
 		Aplazame_Helpers::render_to_template( 'gateway/payment-fields.php' );
 	}
 
-	public function process_payment( $order_id ) {
+	/**
+	 * Payment process
+	 *
+	 * @param mixed $order_id .
+	 *
+	 * @return array
+	 */
+	public function process_payment( $order_id ): array {
 		$order = new WC_Order( $order_id );
 
 		return array(
@@ -75,16 +106,21 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		);
 	}
 
-	public function checkout( $order_id ) {
+	/**
+	 * Checkout
+	 *
+	 * @param mixed $order_id .
+	 *
+	 * @return void
+	 * @throws Exception .
+	 */
+	public function checkout( mixed $order_id ): void {
 		/**
+		 * Global WooCommerce var
 		 *
 		 * @var WooCommerce $woocommerce
 		 */
 		global $woocommerce;
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
 		global $aplazame;
 
 		$cart  = $woocommerce->cart;
@@ -93,7 +129,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		if ( function_exists( 'wc_get_checkout_url' ) ) {
 			$checkout_url = wc_get_checkout_url();
 		} else {
-			/** @noinspection PhpDeprecationInspection */
+			/* @noinspection PhpDeprecationInspection */
 			$checkout_url = $cart->get_checkout_url();
 		}
 		$payload = Aplazame_Aplazame_BusinessModel_Checkout::createFromOrder( $order, $checkout_url );
@@ -108,22 +144,23 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			}
 		} catch ( Aplazame_Sdk_Api_AplazameExceptionInterface $e ) {
 			$message = $e->getMessage();
-			$aOrder  = $client->fetch( $payload->order->id );
-			if ( $aOrder ) {
-				wp_redirect( $payload->merchant->success_url );
+			$a_order = $client->fetch( $payload->order->id );
+			if ( $a_order ) {
+				wp_safe_redirect( $payload->merchant->success_url );
 				exit;
 			}
 
 			$order->update_status(
 				'cancelled',
 				sprintf(
+					/* translators: %s: order */
 					__( 'Order has been cancelled: %s', 'aplazame' ),
 					$message
 				)
 			);
 
 			wc_add_notice( 'Aplazame Error: ' . $message, 'error' );
-			wp_redirect( $checkout_url );
+			wp_safe_redirect( $checkout_url );
 			exit;
 		}
 
@@ -135,15 +172,20 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		);
 	}
 
-	public function process_refund( $order_id, $amount = null, $reason = '' ) {
+	/**
+	 * Refund process
+	 *
+	 * @param mixed  $order_id .
+	 * @param int    $amount .
+	 * @param string $reason .
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function process_refund( $order_id, $amount = null, $reason = '' ): WP_Error|bool {
 		if ( ! $amount ) {
 			return false;
 		}
 
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
 		global $aplazame;
 
 		$client = $aplazame->get_client();
@@ -154,6 +196,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			return new WP_Error(
 				'aplazame_refund_error',
 				sprintf(
+					/* translators: %1$s: refund %2$s: error detail */
 					__( '%1$s Error: "%2$s"', 'aplazame' ),
 					$this->method_title,
 					$e->getMessage()
@@ -164,6 +207,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		$aplazame->add_order_note(
 			$order_id,
 			sprintf(
+				/* translators: %1$s: refund %2$d: amount %3$s: coin %4$s: order */
 				__( '%1$s has successfully returned %2$d %3$s of the order #%4$s.', 'aplazame' ),
 				$this->method_title,
 				$amount,
@@ -175,7 +219,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		return true;
 	}
 
-	public function checks() {
+	/**
+	 * Checks
+	 *
+	 * @return void
+	 */
+	public function checks(): void {
 		if ( 'no' === $this->enabled ) {
 			return;
 		}
@@ -187,6 +236,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		if ( ! $this->settings['public_api_key'] || ! $this->settings['private_api_key'] ) {
 			$_render_to_notice(
 				sprintf(
+					/* translators: %s: order */
 					__(
 						'Aplazame gateway requires the API keys, please <a href="%s">sign up</a> and take your keys.',
 						'aplazame'
@@ -197,11 +247,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 		}
 	}
 
-	// Settings form
-	public function init_form_fields() {
+	/** Settings form */
+	public function init_form_fields(): void {
 		$this->form_fields = array(
 
-			// Base settings
+			/* Base settings */
 			'enabled'                         => array(
 				'type'    => 'checkbox',
 				'title'   => __( 'Enable/Disable', 'aplazame' ),
@@ -230,7 +280,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'show' => __( 'Show', 'aplazame' ),
 					'hide' => __( 'Hide', 'aplazame' ),
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['widget_out_of_limits'],
+				'default'     => WC_Aplazame_Install::$default_settings['widget_out_of_limits'],
 			),
 			'widget_country'                  => array(
 				'type'        => 'select',
@@ -241,7 +291,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'es'   => __( 'ES (Spain)', 'aplazame' ),
 					'pt'   => __( 'PT (Portugal)', 'aplazame' ),
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['widget_country'],
+				'default'     => WC_Aplazame_Install::$default_settings['widget_country'],
 			),
 			'payment_section'                 => array(
 				'title'       => __( 'Payment method title and description', 'aplazame' ),
@@ -258,14 +308,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'textarea',
 				'title'             => __( 'Description', 'aplazame' ),
 				'description'       => __( 'Payment method description', 'aplazame' ),
-				'default'           => WC_Aplazame_Install::$defaultSettings['description'],
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['description'],
+				'default'           => WC_Aplazame_Install::$default_settings['description'],
+				'placeholder'       => WC_Aplazame_Install::$default_settings['description'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
 			),
 
-			// Product widget settings
+			/* Product widget settings */
 			'product_widget_section'          => array(
 				'title'       => __( 'Product widget', 'woocommerce' ),
 				'type'        => 'title',
@@ -345,7 +395,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'horizontal' => 'Horizontal',
 					'vertical'   => 'Vertical',
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_layout'],
+				'default'     => WC_Aplazame_Install::$default_settings['product_widget_layout'],
 			),
 			'product_widget_align'            => array(
 				'type'        => 'select',
@@ -356,7 +406,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'center' => __( 'Center', 'aplazame' ),
 					'right'  => __( 'Right', 'aplazame' ),
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_align'],
+				'default'     => WC_Aplazame_Install::$default_settings['product_widget_align'],
 			),
 			'product_widget_primary_color'    => array(
 				'type'        => 'text',
@@ -364,8 +414,8 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'class'       => 'colorpick',
 				'title'       => __( 'Primary color', 'aplazame' ),
 				'description' => __( 'Primary color hexadecimal code for product widget (only v4)', 'aplazame' ),
-				'default'     => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['product_widget_primary_color'],
+				'default'     => WC_Aplazame_Install::$default_settings['product_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$default_settings['product_widget_primary_color'],
 			),
 			'quantity_selector'               => array(
 				'type'        => 'text',
@@ -383,14 +433,14 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'text',
 				'title'             => __( 'Variable product price CSS selector', 'aplazame' ),
 				'description'       => __( 'CSS selector pointing to variable product price', 'aplazame' ),
-				'default'           => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['price_variable_product_selector'],
+				'default'           => WC_Aplazame_Install::$default_settings['price_variable_product_selector'],
+				'placeholder'       => WC_Aplazame_Install::$default_settings['price_variable_product_selector'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
 			),
 
-			// Cart widget settings
+			/* Cart widget settings */
 			'cart_widget_section'             => array(
 				'title'       => __( 'Cart widget', 'woocommerce' ),
 				'type'        => 'title',
@@ -463,7 +513,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'horizontal' => 'Horizontal',
 					'vertical'   => 'Vertical',
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_layout'],
+				'default'     => WC_Aplazame_Install::$default_settings['cart_widget_layout'],
 			),
 			'cart_widget_align'               => array(
 				'type'        => 'select',
@@ -474,7 +524,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 					'center' => __( 'Center', 'aplazame' ),
 					'right'  => __( 'Right', 'aplazame' ),
 				),
-				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_align'],
+				'default'     => WC_Aplazame_Install::$default_settings['cart_widget_align'],
 			),
 			'cart_widget_primary_color'       => array(
 				'type'        => 'text',
@@ -482,11 +532,11 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'class'       => 'colorpick',
 				'title'       => __( 'Primary color', 'aplazame' ),
 				'description' => __( 'Primary color hexadecimal code for cart widget (only v4)', 'aplazame' ),
-				'default'     => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['cart_widget_primary_color'],
+				'default'     => WC_Aplazame_Install::$default_settings['cart_widget_primary_color'],
+				'placeholder' => WC_Aplazame_Install::$default_settings['cart_widget_primary_color'],
 			),
 
-			// Button settings
+			/* Button settings */
 			'button_section'                  => array(
 				'title'       => __( 'Button', 'aplazame' ),
 				'type'        => 'title',
@@ -496,7 +546,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'              => 'text',
 				'title'             => __( 'Button Selector', 'aplazame' ),
 				'description'       => __( 'Aplazame Button CSS Selector', 'aplazame' ),
-				'placeholder'       => WC_Aplazame_Install::$defaultSettings['button'],
+				'placeholder'       => WC_Aplazame_Install::$default_settings['button'],
 				'custom_attributes' => array(
 					'required' => '',
 				),
@@ -505,17 +555,26 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'type'        => 'text',
 				'title'       => __( 'Button Image', 'aplazame' ),
 				'description' => __( 'Aplazame Button Image that you want to show', 'aplazame' ),
-				'placeholder' => WC_Aplazame_Install::$defaultSettings['button_image'],
+				'placeholder' => WC_Aplazame_Install::$default_settings['button_image'],
 			),
 		);
 	}
 
-	protected function validate_private_api_key_field( $key, $value ) {
+	/**
+	 * Validate API key
+	 *
+	 * @param mixed $key .
+	 * @param mixed $value .
+	 *
+	 * @return mixed
+	 * @throws Exception .
+	 */
+	protected function validate_private_api_key_field( mixed $key, mixed $value ): mixed {
 		if ( $value !== $this->settings['private_api_key'] ) {
 			try {
 				$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
 			} catch ( Exception $e ) {
-				// Workaround https://github.com/woocommerce/woocommerce/issues/11952
+				/* Workaround https://github.com/woocommerce/woocommerce/issues/11952 */
 				WC_Admin_Settings::add_error( $e->getMessage() );
 
 				throw $e;

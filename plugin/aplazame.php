@@ -1,5 +1,5 @@
-<?php
-/*
+<?php //phpcs:ignore
+/**
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
  * Version: 4.2.0
@@ -15,6 +15,8 @@
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @package WC_Aplazame
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,17 +26,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
+/** Aplazame main class */
 class WC_Aplazame {
 	const VERSION      = '4.2.0';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
 	/**
+	 * Private API key
+	 *
 	 * @var mixed
 	 */
-	private $private_api_key;
+	private mixed $private_api_key;
 
-	public static function _m_or_a( $obj, $method, $attribute ) {
+	/**
+	 * Method or attribute function for retro-compatibility
+	 *
+	 * @param mixed  $obj Object to use.
+	 * @param string $method Method name.
+	 * @param string $attribute Attribute name.
+	 *
+	 * @return mixed
+	 */
+	public static function method_or_attribute( mixed $obj, string $method, string $attribute ): mixed {
 		if ( method_exists( $obj, $method ) ) {
 			return $obj->$method();
 		}
@@ -42,7 +56,16 @@ class WC_Aplazame {
 		return $obj->$attribute;
 	}
 
-	public static function _m_or_m( $obj, $method1, $method2 ) {
+	/**
+	 * Method availability function for retro-compatibility
+	 *
+	 * @param mixed  $obj Object to use.
+	 * @param string $method1 First method name.
+	 * @param string $method2 Second method name.
+	 *
+	 * @return mixed
+	 */
+	public static function method1_or_method2( mixed $obj, string $method1, string $method2 ): mixed {
 		if ( method_exists( $obj, $method1 ) ) {
 			return $obj->$method1();
 		}
@@ -51,23 +74,29 @@ class WC_Aplazame {
 	}
 
 	/**
+	 * Log function
 	 *
-	 * @param string $msg
+	 * @param string $msg Log message.
 	 */
-	public static function log( $msg ) {
+	public static function log( string $msg ): void {
 		$log = new WC_Logger();
 		$log->add( self::METHOD_ID, $msg );
 	}
 
-	public static function configure_aplazame_profile( $sandbox, $private_key ) {
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
+	/**
+	 * Configuration function
+	 *
+	 * @param mixed  $sandbox Sandbox mode.
+	 * @param string $private_key Private API key.
+	 *
+	 * @return array
+	 */
+	public static function configure_aplazame_profile( mixed $sandbox, string $private_key ): array {
+
 		global $aplazame;
 
 		$client = new Aplazame_Sdk_Api_Client(
-			$aplazame->apiBaseUri,
+			$aplazame->api_base_uri,
 			( $sandbox ? Aplazame_Sdk_Api_Client::ENVIRONMENT_SANDBOX : Aplazame_Sdk_Api_Client::ENVIRONMENT_PRODUCTION ),
 			$private_key
 		);
@@ -76,66 +105,73 @@ class WC_Aplazame {
 	}
 
 	/**
+	 * Settings var
 	 *
 	 * @var array
 	 */
-	public $settings;
+	public array $settings;
 	/**
+	 * Plugin enabled var
 	 *
 	 * @var null|bool Null when the plugin is not configured yet.
 	 */
-	public $enabled;
+	public ?bool $enabled;
 	/**
+	 * Sandbox mode
 	 *
-	 * @var bool
+	 * @var mixed
 	 */
-	public $sandbox;
+	public mixed $sandbox;
 
 	/**
+	 * API base URI var
 	 *
 	 * @var string
 	 */
-	public $apiBaseUri;
+	public string $api_base_uri;
 
 	/**
+	 * Construct
 	 *
-	 * @param string $apiBaseUri
+	 * @param string $api_base_uri API base URI var.
 	 */
-	public function __construct( $apiBaseUri ) {
+	public function __construct( string $api_base_uri ) {
 
-		// Dependencies
-		include_once 'classes/lib/Helpers.php';
+		/** Dependencies */
+		include_once 'classes/lib/class-aplazame-helpers.php';
 
 		register_uninstall_hook( __FILE__, 'WC_Aplazame_Install::uninstall' );
 
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
 		add_filter( 'woocommerce_payment_gateways', array( $this, 'add_gateway' ) );
 
-		// i18n
+		/** Languages (i18n) */
 		load_plugin_textdomain( 'aplazame', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
 
-		// Settings
+		/** Settings */
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::reset_settings' );
 		$this->settings = get_option( 'woocommerce_aplazame_settings' );
 		if ( ! $this->settings ) {
 			$this->settings = WC_Aplazame_Install::reset_settings();
 		} else {
-			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
+			$this->settings = array_merge( WC_Aplazame_Install::$default_settings, $this->settings );
 		}
 		$this->enabled         = 'yes' === $this->settings['enabled'];
 		$this->sandbox         = 'yes' === $this->settings['sandbox'];
-		$this->apiBaseUri      = $apiBaseUri;
+		$this->api_base_uri    = $api_base_uri;
 		$this->private_api_key = $this->settings['private_api_key'];
 
-		// Aplazame JS
-		add_action( 'wp_head', array( $this, 'aplazameJs' ), 999999 );
+		/** Aplazame JS */
+		add_action( 'wp_head', array( $this, 'aplazame_js' ), 999999 );
 
 		add_action( 'init', array( 'WC_Aplazame_Install', 'upgrade' ), 5 );
 		register_activation_hook( __FILE__, 'WC_Aplazame_Install::upgrade' );
 
-		// TODO: Redirect nav
-		// add_filter('wp_nav_menu_objects', '?');
-		// Widgets
+		/** TODO: Redirect nav
+		* add_filter('wp_nav_menu_objects', '?');
+		*/
+
+		/** Widgets */
 		if ( $this->is_product_widget_enabled() ) {
 			add_action(
 				$this->settings['product_widget_action'],
@@ -164,7 +200,7 @@ class WC_Aplazame {
 
 		add_action( 'woocommerce_api_aplazame', array( $this, 'api_router' ) );
 
-		// Cart and Checkout Blocks
+		/** Cart and Checkout Blocks */
 		add_action( 'woocommerce_blocks_loaded', array( $this, 'add_gateway_block' ) );
 		add_action(
 			'before_woocommerce_init',
@@ -175,7 +211,7 @@ class WC_Aplazame {
 			}
 		);
 
-		// Declare HPOS compatibility
+		/** Declare HPOS compatibility */
 		add_action(
 			'before_woocommerce_init',
 			function () {
@@ -186,7 +222,14 @@ class WC_Aplazame {
 		);
 	}
 
-	public function aplazame_campaigns_tab( $tabs ) {
+	/**
+	 * Campaigns tabs
+	 *
+	 * @param mixed $tabs .
+	 *
+	 * @return mixed
+	 */
+	public function aplazame_campaigns_tab( mixed $tabs ): mixed {
 		$tabs['aplazame_campaigns'] = array(
 			'label'  => __( 'Aplazame Campaigns', 'aplazame' ),
 			'target' => 'aplazame_campaigns_tab',
@@ -195,24 +238,32 @@ class WC_Aplazame {
 		return $tabs;
 	}
 
-	public function product_campaigns() {
+	/**
+	 * Campaigns render on products
+	 *
+	 * @return void
+	 */
+	public function product_campaigns(): void {
 		Aplazame_Helpers::render_to_template( 'product/campaigns.php' );
 	}
 
-	public function capture_order( $order_id ) {
+	/**
+	 * Order capture for pay later
+	 *
+	 * @param mixed $order_id .
+	 *
+	 * @return array|Exception|false
+	 */
+	public function capture_order( mixed $order_id ): false|Exception|array {
 
 		$order = wc_get_order( $order_id );
-		if ( self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) !== self::METHOD_ID ) {
+		if ( self::method_or_attribute( $order, 'get_payment_method', 'payment_method' ) !== self::METHOD_ID ) {
 			return false;
 		}
 
-		/**
-		 *
-		 * @var WC_Aplazame $aplazame
-		 */
 		global $aplazame;
 
-		$client = $aplazame->get_client()->apiClient;
+		$client = $aplazame->get_client()->api_client;
 
 		try {
 			$payload = $client->get( '/orders/' . $order_id . '/captures' );
@@ -236,12 +287,12 @@ class WC_Aplazame {
 	/**
 	 * Add relevant links to plugins page
 	 *
-	 * @param array $links
+	 * @param array $links .
 	 *
 	 * @return array
-	 * @throws Exception
+	 * @throws Exception .
 	 */
-	public function plugin_action_links( $links ) {
+	public function plugin_action_links( array $links ): array {
 		$plugin_links = array(
 			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=aplazame' ) . '">' . __( 'Settings', 'aplazame' ) . '</a>',
 		);
@@ -249,50 +300,59 @@ class WC_Aplazame {
 	}
 
 	/**
+	 * Client
 	 *
 	 * @return Aplazame_Client
 	 */
-	public function get_client() {
-		include_once 'classes/sdk/Client.php';
+	public function get_client(): Aplazame_Client {
+		include_once 'classes/sdk/class-aplazame-client.php';
 
-		return new Aplazame_Client( $this->apiBaseUri, $this->sandbox, $this->private_api_key );
+		return new Aplazame_Client( $this->api_base_uri, $this->sandbox, $this->private_api_key );
 	}
 
 	/**
+	 * Order note
 	 *
-	 * @param int|object|WC_Order $order_id .
-	 * @param string              $msg
+	 * @param mixed  $order_id .
+	 * @param string $msg .
 	 */
-	public function add_order_note( $order_id, $msg ) {
+	public function add_order_note( mixed $order_id, string $msg ): void {
 		$order = new WC_Order( $order_id );
 		$order->add_order_note( $msg );
 	}
 
-	// Hooks
+	/** Hooks */
+
 	/**
+	 * Gateway
 	 *
-	 * @param array $methods
+	 * @param array $methods .
 	 *
 	 * @return array|void
-	 * @throws Exception
+	 * @throws Exception .
 	 */
-	public function add_gateway( $methods ) {
+	public function add_gateway( array $methods ) {
 		if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
 			return;
 		}
 
-		include_once 'classes/wc-aplazame-gateway.php';
+		include_once 'classes/class-wc-aplazame-gateway.php';
 		$methods[] = 'WC_Aplazame_Gateway';
 
 		return $methods;
 	}
 
-	public function add_gateway_block() {
+	/**
+	 * Gateway block
+	 *
+	 * @return void
+	 */
+	public function add_gateway_block(): void {
 		if ( ! class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
 			return;
 		}
 
-		include_once 'classes/wc-aplazame-gateway-block.php';
+		include_once 'classes/class-wc-aplazame-gateway-blocks-support.php';
 		add_action(
 			'woocommerce_blocks_payment_method_type_registration',
 			function ( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
@@ -301,17 +361,33 @@ class WC_Aplazame {
 		);
 	}
 
-	public function aplazameJs() {
+	/**
+	 * Render aplazame.js
+	 *
+	 * @return void
+	 */
+	public function aplazame_js(): void {
 
 		Aplazame_Helpers::render_to_template( 'layout/header.php' );
 	}
 
-	// Widgets
-	public function is_product_widget_enabled() {
+	/** Widgets */
+
+	/**
+	 * Product widget on/off
+	 *
+	 * @return bool
+	 */
+	public function is_product_widget_enabled(): bool {
 		return $this->enabled && 'disabled' !== $this->settings['product_widget_action'];
 	}
 
-	public function product_widget() {
+	/**
+	 * Product widget render
+	 *
+	 * @return void
+	 */
+	public function product_widget(): void {
 		if ( ! $this->is_product_widget_enabled() ) {
 			return;
 		}
@@ -319,11 +395,21 @@ class WC_Aplazame {
 		Aplazame_Helpers::render_to_template( 'widgets/product.php' );
 	}
 
-	public function is_cart_widget_enabled() {
+	/**
+	 * Cart widget on/off
+	 *
+	 * @return bool
+	 */
+	public function is_cart_widget_enabled(): bool {
 		return $this->enabled && 'disabled' !== $this->settings['cart_widget_action'];
 	}
 
-	public function cart_widget() {
+	/**
+	 * Cart widget render
+	 *
+	 * @return void
+	 */
+	public function cart_widget(): void {
 		if ( ! $this->is_cart_widget_enabled() ) {
 			return;
 		}
@@ -331,25 +417,31 @@ class WC_Aplazame {
 		Aplazame_Helpers::render_to_template( 'widgets/cart.php' );
 	}
 
-	// API
-	public function api_router() {
-		$path           = isset( $_GET['path'] ) ? $_GET['path'] : '';
-		$queryArguments = $_GET;
-		$payload        = json_decode( file_get_contents( 'php://input' ), true );
+	/** API */
+	public function api_router(): void {
+		$path            = isset( $_GET['path'] ) ? wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['path'] ) ) ) : '';
+		$query_arguments = $_GET;
+		$payload         = json_decode( file_get_contents( 'php://input' ), true );
 
-		include_once 'classes/api/Aplazame_Api_Router.php';
+		include_once 'classes/api/class-aplazame-api-router.php';
 		$api = new Aplazame_Api_Router( $this->private_api_key, $this->sandbox );
 
-		$api->process( $path, $queryArguments, $payload ); // die
+		$api->process( $path, $query_arguments, $payload );
 	}
 }
 
-class WC_Aplazame_Install {
+/** Aplazame install class */
+class WC_Aplazame_Install { //phpcs:ignore
 	const SETTINGS_KEY = 'woocommerce_aplazame_settings';
 
 	const VERSION_KEY = 'aplazame_version';
 
-	public static $defaultSettings = array(
+	/**
+	 * Default settings
+	 *
+	 * @var array
+	 */
+	public static array $default_settings = array(
 		'enabled'                         => null,
 		'sandbox'                         => 'yes',
 		'button'                          => '#payment ul li:has(input#payment_method_aplazame)',
@@ -388,16 +480,17 @@ class WC_Aplazame_Install {
 		'widget_country'                  => 'auto',
 	);
 
-	public static function upgrade() {
+	/**
+	 * Upgrade settings when new version is installed
+	 *
+	 * @return void
+	 */
+	public static function upgrade(): void {
 		if ( version_compare( get_option( self::VERSION_KEY ), WC_Aplazame::VERSION, '<' ) ) {
 			self::remove_redirect_page();
-			/**
-			 *
-			 * @var WC_Aplazame $aplazame
-			 */
 			global $aplazame;
 			if ( ! isset( $aplazame->settings['button_image'] ) || 'https://aplazame.com/static/img/buttons/white-148x46.png' === $aplazame->settings['button_image'] ) {
-				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
+				$aplazame->settings['button_image'] = self::$default_settings['button_image'];
 			}
 			if ( isset( $aplazame->settings['product_widget_enabled'] ) && 'no' === $aplazame->settings['product_widget_enabled'] ) {
 				$aplazame->settings['product_widget_action'] = 'disabled';
@@ -420,44 +513,77 @@ class WC_Aplazame_Install {
 		}
 	}
 
-	public static function uninstall() {
+	/**
+	 * Uninstall
+	 *
+	 * @return void
+	 */
+	public static function uninstall(): void {
 		self::remove_settings();
 		self::remove_aplazame_version();
 	}
 
-	private static function save_settings( $settings ) {
+	/**
+	 * Update setting when save
+	 *
+	 * @param mixed $settings .
+	 *
+	 * @return void
+	 */
+	private static function save_settings( mixed $settings ): void {
 		update_option( self::SETTINGS_KEY, $settings );
 	}
 
 	/**
+	 * Default settings when reset
 	 *
 	 * @return array
 	 */
-	public static function reset_settings() {
-		add_option( self::SETTINGS_KEY, self::$defaultSettings );
+	public static function reset_settings(): array {
+		add_option( self::SETTINGS_KEY, self::$default_settings );
 
-		return self::$defaultSettings;
+		return self::$default_settings;
 	}
 
-	public static function remove_settings() {
+	/**
+	 * Delete settings
+	 *
+	 * @return void
+	 */
+	public static function remove_settings(): void {
 		delete_option( self::SETTINGS_KEY );
 	}
 
-	private static function update_aplazame_version() {
+	/**
+	 * Update version number
+	 *
+	 * @return void
+	 */
+	private static function update_aplazame_version(): void {
 		delete_option( self::VERSION_KEY );
 		add_option( self::VERSION_KEY, WC_Aplazame::VERSION );
 	}
 
-	private static function remove_aplazame_version() {
+	/**
+	 * Remove old version
+	 *
+	 * @return void
+	 */
+	private static function remove_aplazame_version(): void {
 		delete_option( self::VERSION_KEY );
 	}
 
-	private static function remove_redirect_page() {
-		include_once 'classes/lib/Redirect.php';
+	/**
+	 * Delete redirect
+	 *
+	 * @return void
+	 */
+	private static function remove_redirect_page(): void {
+		include_once 'classes/lib/class-aplazame-redirect.php';
 		$redirect = new Aplazame_Redirect();
-		$redirect->removeRedirectPage();
+		$redirect->remove_redirect_page();
 	}
 }
 
 $GLOBALS['aplazame'] = new WC_Aplazame( defined( 'APLAZAME_API_BASE_URI' ) ? APLAZAME_API_BASE_URI : 'https://api.aplazame.com' );
-require_once 'classes/wc-aplazame-proxy.php';
+require_once 'classes/class-wc-aplazame-proxy.php';
