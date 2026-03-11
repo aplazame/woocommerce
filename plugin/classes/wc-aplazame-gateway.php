@@ -52,7 +52,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function is_available() {
-		if ( ( $this->enabled === 'no' ) ||
+		if ( ( 'no' === $this->enabled ) ||
 			( ! $this->settings['public_api_key'] ) ||
 			( ! $this->settings['private_api_key'] )
 		) {
@@ -176,7 +176,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	public function checks() {
-		if ( $this->enabled === 'no' ) {
+		if ( 'no' === $this->enabled ) {
 			return;
 		}
 
@@ -237,8 +237,9 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Widget country', 'aplazame' ),
 				'description' => __( 'Select widget country', 'aplazame' ),
 				'options'     => array(
-					'es' => __( 'ES (Spain)', 'aplazame' ),
-					'pt' => __( 'PT (Portugal)', 'aplazame' ),
+					'auto' => __( 'Auto', 'aplazame' ),
+					'es'   => __( 'ES (Spain)', 'aplazame' ),
+					'pt'   => __( 'PT (Portugal)', 'aplazame' ),
 				),
 				'default'     => WC_Aplazame_Install::$defaultSettings['widget_country'],
 			),
@@ -510,7 +511,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 	}
 
 	protected function validate_private_api_key_field( $key, $value ) {
-		if ( $value != $this->settings['private_api_key'] ) {
+		if ( $value !== $this->settings['private_api_key'] ) {
 			try {
 				$response = WC_Aplazame::configure_aplazame_profile( $this->settings['sandbox'], $value );
 			} catch ( Exception $e ) {

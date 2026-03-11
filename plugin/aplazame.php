@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Aplazame
  * Plugin URI: https://github.com/aplazame/woocommerce
- * Version: 4.2.0
+ * Version: 4.2.1
  * Description: Aplazame offers a payment method to receive funding for the purchases.
  * Author: Aplazame
  * Author URI: https://aplazame.com
@@ -25,7 +25,7 @@ require_once 'lib/Aplazame/Sdk/autoload.php';
 require_once 'lib/Aplazame/Aplazame/autoload.php';
 
 class WC_Aplazame {
-	const VERSION      = '4.2.0';
+	const VERSION      = '4.2.1';
 	const METHOD_ID    = 'aplazame';
 	const METHOD_TITLE = 'Aplazame';
 
@@ -122,8 +122,8 @@ class WC_Aplazame {
 		} else {
 			$this->settings = array_merge( WC_Aplazame_Install::$defaultSettings, $this->settings );
 		}
-		$this->enabled         = $this->settings['enabled'] === 'yes';
-		$this->sandbox         = $this->settings['sandbox'] === 'yes';
+		$this->enabled         = 'yes' === $this->settings['enabled'];
+		$this->sandbox         = 'yes' === $this->settings['sandbox'];
 		$this->apiBaseUri      = $apiBaseUri;
 		$this->private_api_key = $this->settings['private_api_key'];
 
@@ -202,7 +202,7 @@ class WC_Aplazame {
 	public function capture_order( $order_id ) {
 
 		$order = wc_get_order( $order_id );
-		if ( self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) != self::METHOD_ID ) {
+		if ( self::_m_or_a( $order, 'get_payment_method', 'payment_method' ) !== self::METHOD_ID ) {
 			return false;
 		}
 
@@ -220,7 +220,7 @@ class WC_Aplazame {
 			return $e;
 		}
 
-		if ( $payload['remaining_capture_amount'] != 0 ) {
+		if ( 0 !== $payload['remaining_capture_amount'] ) {
 			try {
 				$response = $client->post( '/orders/' . $order_id . '/captures', array( 'amount' => $payload['remaining_capture_amount'] ) );
 			} catch ( Exception $e ) {
@@ -308,7 +308,7 @@ class WC_Aplazame {
 
 	// Widgets
 	public function is_product_widget_enabled() {
-		return $this->enabled && $this->settings['product_widget_action'] != 'disabled';
+		return $this->enabled && 'disabled' !== $this->settings['product_widget_action'];
 	}
 
 	public function product_widget() {
@@ -320,7 +320,7 @@ class WC_Aplazame {
 	}
 
 	public function is_cart_widget_enabled() {
-		return $this->enabled && $this->settings['cart_widget_action'] != 'disabled';
+		return $this->enabled && 'disabled' !== $this->settings['cart_widget_action'];
 	}
 
 	public function cart_widget() {
@@ -385,7 +385,7 @@ class WC_Aplazame_Install {
 		'cart_widget_ver'                 => 'v5',
 		'product_slider'                  => 'yes',
 		'cart_slider'                     => 'yes',
-		'widget_country'                  => 'es',
+		'widget_country'                  => 'auto',
 	);
 
 	public static function upgrade() {
@@ -396,13 +396,13 @@ class WC_Aplazame_Install {
 			 * @var WC_Aplazame $aplazame
 			 */
 			global $aplazame;
-			if ( ! isset( $aplazame->settings['button_image'] ) || $aplazame->settings['button_image'] == 'https://aplazame.com/static/img/buttons/white-148x46.png' ) {
+			if ( ! isset( $aplazame->settings['button_image'] ) || 'https://aplazame.com/static/img/buttons/white-148x46.png' === $aplazame->settings['button_image'] ) {
 				$aplazame->settings['button_image'] = self::$defaultSettings['button_image'];
 			}
-			if ( isset( $aplazame->settings['product_widget_enabled'] ) && $aplazame->settings['product_widget_enabled'] == 'no' ) {
+			if ( isset( $aplazame->settings['product_widget_enabled'] ) && 'no' === $aplazame->settings['product_widget_enabled'] ) {
 				$aplazame->settings['product_widget_action'] = 'disabled';
 			}
-			if ( isset( $aplazame->settings['cart_widget_enabled'] ) && $aplazame->settings['cart_widget_enabled'] == 'no' ) {
+			if ( isset( $aplazame->settings['cart_widget_enabled'] ) && 'no' === $aplazame->settings['cart_widget_enabled'] ) {
 				$aplazame->settings['cart_widget_action'] = 'disabled';
 			}
 			if ( ! isset( $aplazame->settings['product_legal_advice'] ) ) {
