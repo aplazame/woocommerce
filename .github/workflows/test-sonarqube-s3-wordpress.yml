@@ -119,7 +119,7 @@ jobs:
       - name: Create GitHub Release
         if: ${{ github.ref == 'refs/heads/master' }}
         env:
-          GH_TOKEN: ${{ github.TOKEN }}
+          GH_TOKEN: ${{ secrets.AP_GH_RELEASE_TOKEN_OLD }}
         run: |
           sudo apt-get install gh -y
           echo "***************Create Release***************"
