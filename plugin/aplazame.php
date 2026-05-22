@@ -419,7 +419,7 @@ class WC_Aplazame {
 
 	/** API */
 	public function api_router(): void {
-		$path            = isset( $_GET['path'] ) ? wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['path'] ) ) ) : '';
+		$path            = isset( $_GET['path'] ) ? sanitize_url( wp_unslash( $_GET['path'] ) ) : '';
 		$query_arguments = $_GET;
 		$payload         = json_decode( file_get_contents( 'php://input' ), true );
 

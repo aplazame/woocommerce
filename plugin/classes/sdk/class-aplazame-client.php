@@ -38,14 +38,14 @@ class Aplazame_Client {
 	 * @param int        $order_id .
 	 * @param string     $method .
 	 * @param string     $path .
-	 * @param array|null $data .
+	 * @param mixed|null $data .
 	 *
 	 * @return array
 	 *
 	 * @throws Aplazame_Sdk_Api_ApiClientException If an I/O error occurs.
 	 * @throws Aplazame_Sdk_Api_ApiServerException|Exception If request is invalid.
 	 */
-	protected function order_request( int $order_id, string $method, string $path, array $data = null ): array {
+	protected function order_request( int $order_id, string $method, string $path, mixed $data = null ): array {
 		return $this->request( $method, '/orders/' . $order_id . $path, $data );
 	}
 
@@ -109,7 +109,7 @@ class Aplazame_Client {
 	 *
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.
-	 * @param array|null $data The data of the request.
+	 * @param mixed|null $data The data of the request.
 	 * @param int        $api_version The API version of the request.
 	 *
 	 * @return array The data of the response.
@@ -118,7 +118,7 @@ class Aplazame_Client {
 	 * @throws Aplazame_Sdk_Api_ApiServerException If request is invalid.
 	 * @throws Exception .
 	 */
-	public function request( string $method, string $path, array $data = null, int $api_version = 1 ): array {
+	public function request( string $method, string $path, mixed $data = null, int $api_version = 1 ): array {
 		try {
 			return $this->api_client->request( $method, $path, $data, $api_version );
 		} catch ( Aplazame_Sdk_Api_ApiClientException $e ) {

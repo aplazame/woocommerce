@@ -187,10 +187,10 @@ class Aplazame_Api_Router {
 	/**
 	 * Auth from req
 	 *
-	 * @return false|mixed
+	 * @return string|bool
 	 */
-	private function get_authorization_from_request(): mixed {
-		$token = isset( $_GET['access_token'] ) ? wp_verify_nonce( sanitize_text_field( stripslashes_deep( $_GET['access_token'] ) ) ) : false;
+	private function get_authorization_from_request(): string|bool {
+		$token = isset( $_GET['access_token'] ) ? sanitize_key( stripslashes_deep( $_GET['access_token'] ) ) : false;
 		if ( $token ) {
 			return $token;
 		}
