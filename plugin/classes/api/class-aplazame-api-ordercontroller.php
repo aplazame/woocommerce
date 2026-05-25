@@ -14,6 +14,7 @@ final class Aplazame_Api_OrderController {
 	 * @param array $params .
 	 *
 	 * @return array
+	 * @throws DateMalformedStringException .
 	 */
 	public function history( array $params ): array {
 		if ( ! isset( $params['order_id'] ) ) {
@@ -41,7 +42,7 @@ final class Aplazame_Api_OrderController {
 
 		foreach ( $wc_orders as $wc_order ) {
 			$order_id         = WC_Aplazame::method_or_attribute( $wc_order, 'get_id', 'id' );
-			$history_orders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::createFromOrder( new WC_Order( $order_id ) );
+			$history_orders[] = Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder::create_from_order( new WC_Order( $order_id ) );
 		}
 
 		return Aplazame_Api_Router::success( Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $history_orders ) );

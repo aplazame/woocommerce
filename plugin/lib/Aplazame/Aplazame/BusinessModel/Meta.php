@@ -1,18 +1,20 @@
 <?php
 
-/**
- * Meta.
- */
+/** Model Meta class*/
 class Aplazame_Aplazame_BusinessModel_Meta {
-
-	public static function create() {
-		$aMeta          = new self();
-		$aMeta->module  = array(
+	/**
+	 * Create
+	 *
+	 * @return self
+	 */
+	public static function create(): Aplazame_Aplazame_BusinessModel_Meta {
+		$a_meta          = new self();
+		$a_meta->module  = array(
 			'name'    => 'aplazame:woocommerce',
 			'version' => WC_Aplazame::VERSION,
 		);
-		$aMeta->version = WC()->version;
+		$a_meta->version = WC()->version;
 
-		return $aMeta;
+		return $a_meta;
 	}
 }

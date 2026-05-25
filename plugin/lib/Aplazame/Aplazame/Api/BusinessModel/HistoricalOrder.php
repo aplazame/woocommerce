@@ -1,8 +1,16 @@
 <?php
 
+/** API Historical Class */
 class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
-
-	public static function createFromOrder( WC_Order $order ) {
+	/**
+	 * Create from order
+	 *
+	 * @param WC_Order $order .
+	 *
+	 * @return array
+	 * @throws DateMalformedStringException .
+	 */
+	public static function create_from_order( WC_Order $order ): array {
 		$status = $order->get_status();
 
 		if ( method_exists( $order, 'get_date_created' ) ) {
@@ -35,9 +43,9 @@ class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 		}
 
 		$serialized = array(
-			'customer' => Aplazame_Aplazame_BusinessModel_Customer::createFromOrder( $order ),
-			'order'    => Aplazame_Aplazame_BusinessModel_Order::crateFromOrder( $order, $order_date ),
-			'billing'  => Aplazame_Aplazame_BusinessModel_Address::createFromOrder( $order, 'billing' ),
+			'customer' => Aplazame_Aplazame_BusinessModel_Customer::create_from_order( $order ),
+			'order'    => Aplazame_Aplazame_BusinessModel_Order::crate_from_order( $order, $order_date ),
+			'billing'  => Aplazame_Aplazame_BusinessModel_Address::create_from_order( $order, 'billing' ),
 			'meta'     => Aplazame_Aplazame_BusinessModel_Meta::create(),
 			'payment'  => array(
 				'method' => WC_Aplazame::method_or_attribute( $order, 'get_payment_method', 'payment_method' ),
@@ -46,8 +54,8 @@ class Aplazame_Aplazame_Api_BusinessModel_HistoricalOrder {
 			'status'   => $status,
 		);
 
-		if ( Aplazame_Aplazame_BusinessModel_ShippingInfo::hasOrderShippingInfo( $order ) ) {
-			$serialized['shipping'] = Aplazame_Aplazame_BusinessModel_ShippingInfo::createFromOrder( $order );
+		if ( Aplazame_Aplazame_BusinessModel_ShippingInfo::has_order_shipping_info( $order ) ) {
+			$serialized['shipping'] = Aplazame_Aplazame_BusinessModel_ShippingInfo::create_from_order( $order );
 		}
 
 		return $serialized;

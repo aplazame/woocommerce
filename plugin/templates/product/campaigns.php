@@ -10,12 +10,12 @@ switch ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' 
 
 		foreach ( $children_ids as $child_id ) {
 			$child      = wc_get_product( $child_id );
-			$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( $child );
+			$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::create_from_product( $child );
 		}
 		break;
 
 	default:
-		$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::createFromProduct( $product );
+		$articles[] = Aplazame_Aplazame_Api_BusinessModel_Article::create_from_product( $product );
 }
 
 ?>
