@@ -1,13 +1,15 @@
 <?php
+/**
+ * Cart widget
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
 
 $country = 'auto' === $aplazame->settings['widget_country'] ? substr( get_bloginfo( 'language' ), 0, 2 ) : $aplazame->settings['widget_country'];

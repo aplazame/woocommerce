@@ -1,33 +1,37 @@
 <?php
+/**
+ * Product widget
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
 
 /**
+ * WC product
  *
  * @var WC_Product $product
  */
 global $product;
 
-switch ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' ) ) {
-	case 'variable':
-		$price_selector = $aplazame->settings['price_variable_product_selector'];
-		break;
-	default:
-		$price_selector = $aplazame->settings['price_product_selector'];
-}
+$price_selector = match ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' ) ) {
+	'variable' => $aplazame->settings['price_variable_product_selector'],
+	default => $aplazame->settings['price_product_selector'],
+};
 
 if ( function_exists( 'wc_get_price_including_tax' ) ) {
 	$price = wc_get_price_including_tax( $product );
 } else {
-	/** @noinspection PhpDeprecationInspection */
+	/**
+	 * Price w/ tax
+	 *
+	 * @noinspection PhpDeprecationInspection .
+	 */
 	$price = $product->get_price_including_tax();
 }
 

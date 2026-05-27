@@ -1,22 +1,24 @@
 <?php
+/**
+ * Header
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
 
 if ( ! $aplazame->enabled ) {
 	return;
 }
 
-$aplazameJsUri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://cdn.aplazame.com/aplazame.js';
+$aplazame_js_uri = defined( 'APLAZAME_JS_URI' ) ? APLAZAME_JS_URI : 'https://cdn.aplazame.com/aplazame.js';
 
-$aplazameJsParams = http_build_query(
+$aplazame_js_params = http_build_query(
 	array(
 		'public_key' => $aplazame->settings['public_api_key'],
 		'sandbox'    => $aplazame->sandbox ? 'true' : 'false',
@@ -26,6 +28,6 @@ $aplazameJsParams = http_build_query(
 
 <script
 	type="text/javascript"
-	src="<?php echo esc_attr( $aplazameJsUri ); ?>?<?php echo esc_attr( $aplazameJsParams ); ?>"
+	src="<?php echo esc_attr( $aplazame_js_uri ); ?>?<?php echo esc_attr( $aplazame_js_params ); ?>"
 	async defer
 ></script>

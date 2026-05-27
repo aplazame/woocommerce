@@ -1,4 +1,10 @@
 <?php
+/**
+ * Campaigns
+ *
+ * @package WC_Aplazame
+ */
+
 global $post;
 
 $articles = array();
@@ -28,7 +34,7 @@ switch ( WC_Aplazame::method_or_attribute( $product, 'get_type', 'product_type' 
 <script>
 	var campaignsContainer = document.getElementById("aplazame_campaigns_container");
 
-	var articles = <?php echo json_encode( $articles ); ?>;
+	var articles = <?php echo wp_json_encode( $articles ); ?>;
 
 	var dateObj = new Date();
 	var currentDate = dateObj.toISOString();

@@ -1,19 +1,23 @@
 <?php
+/**
+ * Payment fields
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
+
 if ( ! $aplazame->enabled ) {
 	return;
 }
 
 /**
+ * Global WC var
  *
  * @var WooCommerce $woocommerce
  */
@@ -24,7 +28,7 @@ global $woocommerce;
 	(window.aplazame = window.aplazame || []).push(function (aplazame) {
 		aplazame.button(
 		<?php
-		echo json_encode(
+		echo wp_json_encode(
 			array(
 				'selector' => $aplazame->settings['button'],
 				'amount'   => Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->json_serialize(),
@@ -36,4 +40,4 @@ global $woocommerce;
 	})
 </script>
 
-<p><?php echo $aplazame->settings['description']; ?></p>
+<p><?php echo esc_textarea( $aplazame->settings['description'] ); ?></p>
