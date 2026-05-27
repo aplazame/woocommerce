@@ -53,7 +53,7 @@ $country = 'auto' === $aplazame->settings['widget_country'] ? substr( get_blogin
 		data-option-align="<?php echo esc_attr( $aplazame->settings['product_widget_align'] ); ?>"
 	<?php endif; ?>
 	<?php if ( empty( $price_selector ) ) : ?>
-		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->jsonSerialize() ); ?>"
+		data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( $price )->json_serialize() ); ?>"
 	<?php else : ?>
 		data-price="<?php echo esc_attr( $price_selector ); ?>"
 	<?php endif; ?>

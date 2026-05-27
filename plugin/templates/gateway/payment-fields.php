@@ -27,7 +27,7 @@ global $woocommerce;
 		echo json_encode(
 			array(
 				'selector' => $aplazame->settings['button'],
-				'amount'   => Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->jsonSerialize(),
+				'amount'   => Aplazame_Sdk_Serializer_Decimal::fromFloat( $woocommerce->cart->total )->json_serialize(),
 				'currency' => get_woocommerce_currency(),
 			)
 		)

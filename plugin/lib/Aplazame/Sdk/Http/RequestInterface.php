@@ -7,7 +7,7 @@ interface Aplazame_Sdk_Http_RequestInterface {
 	 *
 	 * @return string Returns the request method. The return value must use uppercase letters.
 	 */
-	public function getMethod();
+	public function get_method(): string;
 
 	/**
 	 * Retrieves all message header values.
@@ -34,7 +34,7 @@ interface Aplazame_Sdk_Http_RequestInterface {
 	 *     key MUST be a header name, and each value MUST be an array of strings
 	 *     for that header.
 	 */
-	public function getHeaders();
+	public function get_headers(): array;
 
 	/**
 	 * Retrieves the URI instance.
@@ -43,12 +43,12 @@ interface Aplazame_Sdk_Http_RequestInterface {
 	 *
 	 * @return string Returns the URI of the request.
 	 */
-	public function getUri();
+	public function get_uri(): string;
 
 	/**
 	 * Gets the body of the message.
 	 *
 	 * @return string Returns the body of the request.
 	 */
-	public function getBody();
+	public function get_body(): string;
 }

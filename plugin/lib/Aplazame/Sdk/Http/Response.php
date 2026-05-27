@@ -1,11 +1,13 @@
 <?php
 
+/** SDK HTTP response */
 class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface {
 	/**
+	 * Phrases
 	 *
 	 * @var array Map of standard HTTP status code/reason phrases
 	 */
-	private static $phrases = array(
+	private static array $phrases = array(
 		100 => 'Continue',
 		101 => 'Switching Protocols',
 		102 => 'Processing',
@@ -67,48 +69,67 @@ class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface 
 	);
 
 	/**
+	 * Status code
 	 *
 	 * @var int
 	 */
-	private $statusCode;
+	private int $status_code;
 
 	/**
+	 * Reason phrase
 	 *
 	 * @var string
 	 */
-	private $reasonPhrase = '';
+	private mixed $reason_phrase = '';
 
 	/**
+	 * Body
 	 *
 	 * @var string
 	 */
-	private $body;
+	private string $body;
 
 	/**
+	 * Construct
 	 *
-	 * @param int    $statusCode
-	 * @param string $body
+	 * @param int    $status_code .
+	 * @param string $body .
 	 */
-	public function __construct( $statusCode, $body ) {
-		$this->statusCode = $statusCode;
-		$this->body       = $body;
+	public function __construct( int $status_code, string $body ) {
+		$this->status_code = $status_code;
+		$this->body        = $body;
 
-		if ( isset( self::$phrases[ $this->statusCode ] ) ) {
-			$this->reasonPhrase = self::$phrases[ $statusCode ];
+		if ( isset( self::$phrases[ $this->status_code ] ) ) {
+			$this->reason_phrase = self::$phrases[ $status_code ];
 		} else {
-			$this->reasonPhrase = '';
+			$this->reason_phrase = '';
 		}
 	}
 
-	public function getStatusCode() {
-		return $this->statusCode;
+	/**
+	 * Get status code
+	 *
+	 * @return int
+	 */
+	public function get_status_code(): int {
+		return $this->status_code;
 	}
 
-	public function getReasonPhrase() {
-		return $this->reasonPhrase;
+	/**
+	 * Get reason phrase
+	 *
+	 * @return string
+	 */
+	public function get_reason_phrase(): string {
+		return $this->reason_phrase;
 	}
 
-	public function getBody() {
+	/**
+	 * Get body
+	 *
+	 * @return string
+	 */
+	public function get_body(): string {
 		return $this->body;
 	}
 }

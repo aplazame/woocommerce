@@ -68,7 +68,7 @@ class Aplazame_Client {
 			'POST',
 			'/refund-extended',
 			array(
-				'amount' => $amount->jsonSerialize(),
+				'amount' => $amount->json_serialize(),
 			)
 		);
 	}

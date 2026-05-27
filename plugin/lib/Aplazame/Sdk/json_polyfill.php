@@ -1,11 +1,14 @@
 <?php
+/** A json_last_error_msg is available since PHP 5.5.0 */
 
-/*
- * json_last_error_msg is available since PHP 5.5.0
- */
 if ( ! function_exists( 'json_last_error_msg' ) ) {
-	function json_last_error_msg() {
-		static $ERRORS = array(
+	/**
+	 * Function json_last_error_msg
+	 *
+	 * @return string
+	 */
+	function json_last_error_msg(): string {
+		static $errors = array(
 			JSON_ERROR_NONE           => 'No error',
 			JSON_ERROR_DEPTH          => 'Maximum stack depth exceeded',
 			JSON_ERROR_STATE_MISMATCH => 'State mismatch (invalid or malformed JSON)',
@@ -16,6 +19,6 @@ if ( ! function_exists( 'json_last_error_msg' ) ) {
 
 		$error = json_last_error();
 
-		return isset( $ERRORS[ $error ] ) ? $ERRORS[ $error ] : 'Unknown error';
+		return $errors[ $error ] ?? 'Unknown error';
 	}
 }

@@ -133,7 +133,7 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 			$checkout_url = $cart->get_checkout_url();
 		}
 		$payload = Aplazame_Aplazame_BusinessModel_Checkout::create_from_order( $order, $checkout_url );
-		$payload = Aplazame_Sdk_Serializer_JsonSerializer::serializeValue( $payload );
+		$payload = Aplazame_Sdk_Serializer_JsonSerializer::serialize_value( $payload );
 
 		$client = $aplazame->get_client();
 		try {

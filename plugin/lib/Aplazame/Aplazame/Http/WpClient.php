@@ -16,17 +16,17 @@ class Aplazame_Aplazame_Http_WpClient implements Aplazame_Sdk_Http_ClientInterfa
 			function ( $value ) {
 				return implode( ', ', $value );
 			},
-			$request->getHeaders()
+			$request->get_headers()
 		);
 
 		$args = array(
 			'headers' => $raw_headers,
-			'method'  => $request->getMethod(),
-			'body'    => $request->getBody(),
+			'method'  => $request->get_method(),
+			'body'    => $request->get_body(),
 			'timeout' => 30,
 		);
 
-		$wp_response = wp_remote_request( $request->getUri(), $args );
+		$wp_response = wp_remote_request( $request->get_uri(), $args );
 		if ( is_wp_error( $wp_response ) ) {
 			throw new RuntimeException( $wp_response->get_error_message(), (int) $wp_response->get_error_code() );
 		}
