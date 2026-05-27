@@ -27,9 +27,9 @@ class Aplazame_Sdk_Http_Request implements Aplazame_Sdk_Http_RequestInterface {
 	/**
 	 * Body
 	 *
-	 * @var string
+	 * @var mixed
 	 */
-	private string $body;
+	private mixed $body;
 
 	/**
 	 * Construct
@@ -37,9 +37,9 @@ class Aplazame_Sdk_Http_Request implements Aplazame_Sdk_Http_RequestInterface {
 	 * @param string $method The HTTP method of the request.
 	 * @param string $uri The URI of the request.
 	 * @param array  $headers The headers of the request.
-	 * @param string $body The body of the message.
+	 * @param mixed  $body The body of the message.
 	 */
-	public function __construct( string $method, string $uri, array $headers = array(), string $body = '' ) {
+	public function __construct( string $method, string $uri, array $headers = array(), mixed $body = '' ) {
 		$this->method  = strtoupper( $method );
 		$this->uri     = $uri;
 		$this->headers = $headers;
@@ -76,9 +76,9 @@ class Aplazame_Sdk_Http_Request implements Aplazame_Sdk_Http_RequestInterface {
 	/**
 	 * Get body
 	 *
-	 * @return string
+	 * @return mixed
 	 */
-	public function get_body(): string {
+	public function get_body(): mixed {
 		return $this->body;
 	}
 }

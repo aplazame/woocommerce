@@ -48,7 +48,7 @@ interface Aplazame_Sdk_Http_RequestInterface {
 	/**
 	 * Gets the body of the message.
 	 *
-	 * @return string Returns the body of the request.
+	 * @return mixed Returns the body of the request.
 	 */
-	public function get_body(): string;
+	public function get_body(): mixed;
 }

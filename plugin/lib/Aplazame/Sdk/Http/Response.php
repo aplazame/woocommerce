@@ -85,17 +85,17 @@ class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface 
 	/**
 	 * Body
 	 *
-	 * @var string
+	 * @var mixed
 	 */
-	private string $body;
+	private mixed $body;
 
 	/**
 	 * Construct
 	 *
-	 * @param int    $status_code .
-	 * @param string $body .
+	 * @param int   $status_code .
+	 * @param mixed $body .
 	 */
-	public function __construct( int $status_code, string $body ) {
+	public function __construct( int $status_code, mixed $body ) {
 		$this->status_code = $status_code;
 		$this->body        = $body;
 
@@ -127,9 +127,9 @@ class Aplazame_Sdk_Http_Response implements Aplazame_Sdk_Http_ResponseInterface 
 	/**
 	 * Get body
 	 *
-	 * @return string
+	 * @return mixed
 	 */
-	public function get_body(): string {
+	public function get_body(): mixed {
 		return $this->body;
 	}
 }
