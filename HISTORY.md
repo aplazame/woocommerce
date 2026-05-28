@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [v5.0.0](https://github.com/aplazame/woocommerce/tree/v5.0.0) (2026-05-28)
+
+* Code refactor to PHP 8.
+* Tested WP 7 & WC 10.8.1 compatibility.
+
 #### [v4.2.0](https://github.com/aplazame/woocommerce/tree/v4.2.0) (2025-09-29)
 
 * [ADD] PT widget.
