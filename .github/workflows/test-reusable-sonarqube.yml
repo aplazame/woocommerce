@@ -1,0 +1,26 @@
+name: Test SonarQube Scan
+on:
+  workflow_call:
+    secrets:
+        SONAR_TOKEN:
+          description: "Token for SonarQube"
+          required: true
+
+
+jobs:
+  test-sonarqube:
+    name: Test SonarQube Scan
+    runs-on: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/pro' ||
+              github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'pro')
+              && vars.AWS_RG_NAME_PRO || vars.AWS_RG_NAME_NONPRO }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 #v6.0.1
+        with:
+            fetch-depth: 0
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 #v7.0.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          #SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
