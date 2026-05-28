@@ -82,6 +82,10 @@ Of course, simply select an *"Aplazame refund"* in the product detail.
 * Code refactor to PHP 8.
 * Tested WP 7 & WC 10.8.1 compatibility.
 
+#### [v4.2.1](https://github.com/aplazame/woocommerce/tree/v4.2.1) (2026-03-11)
+
+* [ADD] Auto ES/PT widget option.
+
 #### [v4.2.0](https://github.com/aplazame/woocommerce/tree/v4.2.0) (2025-09-29)
 
 * [ADD] PT widget.
