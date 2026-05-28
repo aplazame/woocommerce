@@ -8,26 +8,27 @@ class Aplazame_Sdk_Serializer_JsonSerializer {
 	/**
 	 * Important: This method does not return a JSON string, the return of this method must be encoded with `json_encode()`.
 	 *
-	 * @param mixed $value
+	 * @param mixed $value .
 	 *
 	 * @return mixed a value valid for to be used with native `json_encode()` function
+	 * @throws DomainException .
 	 */
-	public static function serializeValue( $value ) {
+	public static function serialize_value( mixed $value ): mixed {
 		if ( $value instanceof Aplazame_Sdk_Serializer_JsonSerializable || $value instanceof \JsonSerializable ) {
-			return $value->jsonSerialize();
+			return $value->json_serialize();
 		}
 
 		if ( is_object( $value ) ) {
-			foreach ( get_object_vars( $value ) as $nestedKey => $nestedValue ) {
-				$value->{$nestedKey} = self::serializeValue( $nestedValue );
+			foreach ( get_object_vars( $value ) as $nested_key => $nested_value ) {
+				$value->{$nested_key} = self::serialize_value( $nested_value );
 			}
 
 			return $value;
 		}
 
 		if ( is_array( $value ) ) {
-			foreach ( $value as &$nestedValue ) {
-				$nestedValue = self::serializeValue( $nestedValue );
+			foreach ( $value as &$nested_value ) {
+				$nested_value = self::serialize_value( $nested_value );
 			}
 
 			return $value;

@@ -1,17 +1,34 @@
 <?php
+/**
+ * Aplazame proxy
+ *
+ * @package WC_Aplazame/Classes
+ */
 
+/** Proxy class */
 class WC_Aplazame_Proxy {
 	/**
+	 * .
 	 *
 	 * @var Aplazame_Client
 	 */
-	private $client;
+	private Aplazame_Client $client;
 
+	/**
+	 * Construct
+	 *
+	 * @param Aplazame_Client $client .
+	 */
 	public function __construct( Aplazame_Client $client ) {
 		$this->client = $client;
 	}
 
-	public function action() {
+	/**
+	 * Action
+	 *
+	 * @return void
+	 */
+	public function action(): void {
 		if ( ! current_user_can( 'edit_products' ) ) {
 			die( - 1 );
 		}
@@ -35,7 +52,7 @@ class WC_Aplazame_Proxy {
 			$data = json_decode( stripslashes_deep( $_POST['data'] ), true );
 		}
 
-		$response = $this->client->apiClient->request( $method, $path, $data );
+		$response = $this->client->api_client->request( $method, $path, $data );
 
 		wp_send_json( $response );
 	}

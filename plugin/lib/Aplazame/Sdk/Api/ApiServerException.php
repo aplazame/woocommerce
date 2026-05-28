@@ -6,70 +6,81 @@
 class Aplazame_Sdk_Api_ApiServerException extends RuntimeException implements Aplazame_Sdk_Api_AplazameExceptionInterface {
 
 	/**
+	 * From Response
 	 *
-	 * @param Aplazame_Sdk_Http_ResponseInterface $response
+	 * @param Aplazame_Sdk_Http_ResponseInterface $response .
 	 *
 	 * @return Aplazame_Sdk_Api_ApiServerException
 	 */
-	public static function fromResponse( Aplazame_Sdk_Http_ResponseInterface $response ) {
-		$responseBody = (string) $response->getBody();
-		if ( empty( $responseBody ) ) {
-			return new self( $response->getStatusCode(), $response->getReasonPhrase() );
+	public static function fromResponse( Aplazame_Sdk_Http_ResponseInterface $response ): Aplazame_Sdk_Api_ApiServerException {
+		$response_body = $response->get_body();
+		if ( empty( $response_body ) ) {
+			return new self( $response->get_status_code(), $response->get_reason_phrase() );
 		}
 
-		$decodedBody = json_decode( $responseBody, true );
-		if ( ! isset( $decodedBody['error'] ) ) {
-			return new self( $response->getStatusCode(), $response->getReasonPhrase() );
+		$decoded_body = json_decode( $response_body, true );
+		if ( ! isset( $decoded_body['error'] ) ) {
+			return new self( $response->get_status_code(), $response->get_reason_phrase() );
 		}
 
-		$error = $decodedBody['error'];
+		$error = $decoded_body['error'];
 
-		return new self( $response->getStatusCode(), $error['message'], $error['type'], $error );
+		return new self( $response->get_status_code(), $error['message'], $error['type'], $error );
 	}
 
 	/**
+	 * Type
 	 *
 	 * @var string
 	 */
-	private $type;
+	private string $type;
 
 	/**
+	 * Error
 	 *
 	 * @var array
 	 */
-	private $error;
+	private array $error;
 
 	/**
+	 * Construct
 	 *
-	 * @param string $statusCode
-	 * @param string $message
-	 * @param string $type
-	 * @param array  $error
+	 * @param string $status_code .
+	 * @param string $message .
+	 * @param string $type .
+	 * @param array  $error .
 	 */
-	public function __construct( $statusCode, $message, $type = '', array $error = array() ) {
-		parent::__construct( $message, $statusCode );
+	public function __construct( string $status_code, $message, $type = '', array $error = array() ) {
+		parent::__construct( $message, $status_code );
 
 		$this->type  = $type;
 		$this->error = $error;
 	}
 
-	public function getStatusCode() {
+	/**
+	 * Get status code
+	 *
+	 * @return int|mixed
+	 */
+	public function getStatusCode(): mixed {
 		return $this->getCode();
 	}
 
 	/**
+	 * Get type
 	 *
 	 * @return string
 	 */
-	public function getType() {
+	public function getType(): string {
 		return $this->type;
 	}
 
 	/**
+	 * Get error
 	 *
 	 * @return array
 	 */
-	public function getError() {
+	public function getError(): array {
 		return $this->error;
 	}
 }
