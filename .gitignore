@@ -6,3 +6,4 @@ composer.lock
 docker-compose.override.yml
 package-lock.json
 /.idea/
+.DS_Store

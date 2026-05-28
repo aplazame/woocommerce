@@ -1,14 +1,17 @@
 <?php
+/**
+ * Checkout init
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
+
 if ( ! $aplazame->enabled ) {
 	return;
 }
@@ -16,6 +19,6 @@ if ( ! $aplazame->enabled ) {
 
 <script type="text/javascript">
 	(window.aplazame = window.aplazame || []).push(function (aplazame) {
-		aplazame.checkout("<?php echo $aid; ?>")
+		aplazame.checkout("<?php echo esc_attr( $aid ); ?>")
 	})
 </script>

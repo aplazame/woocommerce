@@ -13,7 +13,7 @@ interface Aplazame_Sdk_Http_ResponseInterface {
 	 *
 	 * @return int Status code.
 	 */
-	public function getStatusCode();
+	public function get_status_code(): int;
 
 	/**
 	 * Gets the response reason phrase associated with the status code.
@@ -29,12 +29,12 @@ interface Aplazame_Sdk_Http_ResponseInterface {
 	 *
 	 * @return string Reason phrase; must return an empty string if none present.
 	 */
-	public function getReasonPhrase();
+	public function get_reason_phrase(): string;
 
 	/**
 	 * Gets the body of the message.
 	 *
-	 * @return string
+	 * @return mixed
 	 */
-	public function getBody();
+	public function get_body(): mixed;
 }

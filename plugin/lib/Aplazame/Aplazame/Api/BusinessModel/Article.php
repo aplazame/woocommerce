@@ -1,8 +1,16 @@
 <?php
 
+/** API Model Article class */
 class Aplazame_Aplazame_Api_BusinessModel_Article {
-	public static function createFromProduct( WC_Product $product ) {
-		$product_id = WC_Aplazame::_m_or_a( $product, 'get_id', 'id' );
+	/**
+	 * Create from product
+	 *
+	 * @param WC_Product $product .
+	 *
+	 * @return array
+	 */
+	public static function create_from_product( WC_Product $product ): array {
+		$product_id = WC_Aplazame::method_or_attribute( $product, 'get_id', 'id' );
 
 		$article = array(
 			'id'   => $product_id,
@@ -16,9 +24,9 @@ class Aplazame_Aplazame_Api_BusinessModel_Article {
 			$article['description'] = $product->get_short_description();
 		}
 
-		$imageUrl = wp_get_attachment_image_url( $product->get_image_id(), 'full' );
-		if ( ! empty( $imageUrl ) ) {
-			$article['image_url'] = $imageUrl;
+		$image_url = wp_get_attachment_image_url( $product->get_image_id(), 'full' );
+		if ( ! empty( $image_url ) ) {
+			$article['image_url'] = $image_url;
 		}
 
 		return $article;

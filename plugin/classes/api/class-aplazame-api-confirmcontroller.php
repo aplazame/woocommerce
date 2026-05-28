@@ -1,8 +1,19 @@
 <?php
+/**
+ * Confirm controller for checkout validation
+ *
+ * @package WC_Aplazame/Classes/Api
+ */
 
+/** Confirm controller class */
 final class Aplazame_Api_ConfirmController {
 
-	private static function ok() {
+	/**
+	 * OK function
+	 *
+	 * @return array
+	 */
+	private static function ok(): array {
 		return Aplazame_Api_Router::success(
 			array(
 				'status' => 'ok',
@@ -10,7 +21,14 @@ final class Aplazame_Api_ConfirmController {
 		);
 	}
 
-	private static function ko( $reason ) {
+	/**
+	 * KO function
+	 *
+	 * @param string $reason KO reason.
+	 *
+	 * @return array
+	 */
+	private static function ko( string $reason ): array {
 		return Aplazame_Api_Router::success(
 			array(
 				'status' => 'ko',
@@ -20,16 +38,29 @@ final class Aplazame_Api_ConfirmController {
 	}
 
 	/**
+	 * Sandbox mode
 	 *
-	 * @var string
+	 * @var mixed
 	 */
-	private $sandbox;
+	private mixed $sandbox;
 
-	public function __construct( $sandbox ) {
+	/**
+	 * Construct
+	 *
+	 * @param mixed $sandbox .
+	 */
+	public function __construct( mixed $sandbox ) {
 		$this->sandbox = $sandbox;
 	}
 
-	public function confirm( $payload ) {
+	/**
+	 * Confirm process with payload
+	 *
+	 * @param mixed $payload .
+	 *
+	 * @return array
+	 */
+	public function confirm( mixed $payload ): array {
 		if ( ! $payload ) {
 			return Aplazame_Api_Router::client_error( 'Payload is malformed' );
 		}
@@ -47,14 +78,14 @@ final class Aplazame_Api_ConfirmController {
 			return Aplazame_Api_Router::not_found();
 		}
 
-		if ( WC_Aplazame::_m_or_a( $order, 'get_payment_method', 'payment_method' ) !== WC_Aplazame::METHOD_ID ) {
+		if ( WC_Aplazame::method_or_attribute( $order, 'get_payment_method', 'payment_method' ) !== WC_Aplazame::METHOD_ID ) {
 			return self::ko( 'Aplazame is not the current payment method' );
 		}
 
 		switch ( $payload['status'] ) {
 			case 'ok':
 				if ( method_exists( $order, 'payment_complete' ) ) {
-					if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+					if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0', '<' ) ) {
 						$order->payment_complete();
 						break;
 					}
@@ -69,6 +100,7 @@ final class Aplazame_Api_ConfirmController {
 				$order->update_status(
 					'cancelled',
 					sprintf(
+						/* translators: %s: order */
 						__( 'Order has been cancelled: %s', 'aplazame' ),
 						$payload['status_reason']
 					)

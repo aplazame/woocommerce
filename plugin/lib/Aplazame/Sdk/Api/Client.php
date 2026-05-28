@@ -4,52 +4,58 @@ if ( ! function_exists( 'json_last_error_msg' ) ) {
 	include __DIR__ . '/../json_polyfill.php';
 }
 
+/** SDK API client class */
 class Aplazame_Sdk_Api_Client {
 
 	const ENVIRONMENT_PRODUCTION = 'production';
 	const ENVIRONMENT_SANDBOX    = 'sandbox';
 
 	/**
+	 * API base URI
 	 *
 	 * @var string
 	 */
-	private $apiBaseUri;
+	private string $api_base_uri;
 
 	/**
+	 * Use sandbox
 	 *
 	 * @var bool
 	 */
-	private $useSandbox;
+	private bool $use_sandbox;
 
 	/**
+	 * Access token
 	 *
 	 * @var string
 	 */
-	private $accessToken;
+	private string $access_token;
 
 	/**
+	 * Client interface
 	 *
 	 * @var Aplazame_Sdk_Http_ClientInterface
 	 */
-	private $httpClient;
+	private Aplazame_Sdk_Http_ClientInterface $http_client;
 
 	/**
+	 * Construct
 	 *
-	 * @param string                                 $apiBaseUri The API base URI.
+	 * @param string                                 $api_base_uri The API base URI.
 	 * @param string                                 $environment Destination of the request.
-	 * @param string                                 $accessToken The Access Token of the request (Public API key or Private API key)
-	 * @param Aplazame_Sdk_Http_ClientInterface|null $httpClient
+	 * @param string                                 $access_token The Access Token of the request (Public API key or Private API key).
+	 * @param Aplazame_Sdk_Http_ClientInterface|null $http_client .
 	 */
 	public function __construct(
-		$apiBaseUri,
-		$environment,
-		$accessToken,
-		Aplazame_Sdk_Http_ClientInterface $httpClient = null
+		string $api_base_uri,
+		string $environment,
+		string $access_token,
+		Aplazame_Sdk_Http_ClientInterface $http_client = null
 	) {
-		$this->apiBaseUri  = $apiBaseUri;
-		$this->useSandbox  = ( $environment === self::ENVIRONMENT_SANDBOX ) ? true : false;
-		$this->accessToken = $accessToken;
-		$this->httpClient  = $httpClient ? $httpClient : new Aplazame_Sdk_Http_CurlClient();
+		$this->api_base_uri = $api_base_uri;
+		$this->use_sandbox  = ( self::ENVIRONMENT_SANDBOX === $environment ) ? true : false;
+		$this->access_token = $access_token;
+		$this->http_client  = $http_client ?? new Aplazame_Sdk_Http_CurlClient();
 	}
 
 	/**
@@ -59,12 +65,12 @@ class Aplazame_Sdk_Api_Client {
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If request is invalid.
 	 */
-	public function delete( $path ) {
+	public function delete( string $path ): array {
 		return $this->request( 'DELETE', $path );
 	}
 
@@ -76,12 +82,12 @@ class Aplazame_Sdk_Api_Client {
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If request is invalid.
 	 */
-	public function get( $path, array $query = array() ) {
+	public function get( string $path, array $query = array() ): array {
 		if ( ! empty( $query ) ) {
 			$query = http_build_query( $query );
 			$path .= '?' . $query;
@@ -94,16 +100,16 @@ class Aplazame_Sdk_Api_Client {
 	 * Performs a POST request.
 	 *
 	 * @param string $path The path of the request.
-	 * @param array  $data The data of the request.
+	 * @param mixed  $data The data of the request.
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If request is invalid.
 	 */
-	public function patch( $path, array $data ) {
+	public function patch( string $path, mixed $data ): array {
 		return $this->request( 'PATCH', $path, $data );
 	}
 
@@ -111,16 +117,16 @@ class Aplazame_Sdk_Api_Client {
 	 * Performs a POST request.
 	 *
 	 * @param string $path The path of the request.
-	 * @param array  $data The data of the request.
+	 * @param mixed  $data The data of the request.
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If request is invalid.
 	 */
-	public function post( $path, array $data ) {
+	public function post( string $path, mixed $data ): array {
 		return $this->request( 'POST', $path, $data );
 	}
 
@@ -128,75 +134,74 @@ class Aplazame_Sdk_Api_Client {
 	 * Performs a PUT request.
 	 *
 	 * @param string $path The path of the request.
-	 * @param array  $data The data of the request.
+	 * @param mixed  $data The data of the request.
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If request is invalid.
 	 */
-	public function put( $path, array $data ) {
+	public function put( string $path, mixed $data ): array {
 		return $this->request( 'PUT', $path, $data );
 	}
 
 	/**
+	 * Request function
 	 *
 	 * @param string     $method The HTTP method of the request.
 	 * @param string     $path The path of the request.
-	 * @param array|null $data The data of the request.
-	 * @param int        $apiVersion The API version of the request.
+	 * @param mixed|null $data The data of the request.
+	 * @param int        $api_version The API version of the request.
 	 *
 	 * @return array The data of the response.
 	 *
-	 * @throws Aplazame_Sdk_Api_ApiCommunicationException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
-	 * @throws Aplazame_Sdk_Api_ApiClientException if an I/O error occurs.
-	 * @throws Aplazame_Sdk_Api_ApiServerException if request is invalid.
+	 * @throws Aplazame_Sdk_Api_ApiCommunicationException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiClientException If an I/O error occurs.
+	 * @throws Aplazame_Sdk_Api_ApiServerException If request is invalid.
 	 */
-	public function request( $method, $path, $data = null, $apiVersion = 1 ) {
-		$uri = $this->apiBaseUri . '/' . ltrim( $path, '/' );
+	public function request( string $method, string $path, mixed $data = null, int $api_version = 1 ): array {
+		$uri = $this->api_base_uri . '/' . ltrim( $path, '/' );
 
-		$request = new Aplazame_Sdk_Api_ApiRequest( $this->useSandbox, $apiVersion, $this->accessToken, $method, $uri, $data );
+		$request = new Aplazame_Sdk_Api_ApiRequest( $this->use_sandbox, $api_version, $this->access_token, $method, $uri, $data );
 		try {
-			$response = $this->httpClient->send( $request );
+			$response = $this->http_client->send( $request );
 		} catch ( RuntimeException $e ) {
 			throw Aplazame_Sdk_Api_ApiCommunicationException::fromException( $e );
 		}
 
-		if ( $response->getStatusCode() >= 500 ) {
+		if ( $response->get_status_code() >= 500 ) {
 			throw Aplazame_Sdk_Api_ApiServerException::fromResponse( $response );
 		}
 
-		if ( $response->getStatusCode() >= 400 ) {
+		if ( $response->get_status_code() >= 400 ) {
 			throw Aplazame_Sdk_Api_ApiClientException::fromResponse( $response );
 		}
 
-		$payload = $this->decodeResponseBody( (string) $response->getBody() );
-
-		return $payload;
+		return $this->decode_response_body( $response->get_body() );
 	}
 
 	/**
+	 * Decode response body
 	 *
-	 * @param string $responseBody The HTTP response body.
+	 * @param string $response_body The HTTP response body.
 	 *
 	 * @return array Decoded payload.
 	 *
-	 * @throws Aplazame_Sdk_Api_DeserializeException if response cannot be deserialized.
+	 * @throws Aplazame_Sdk_Api_DeserializeException If response cannot be deserialized.
 	 */
-	protected function decodeResponseBody( $responseBody ) {
+	protected function decode_response_body( string $response_body ): array {
 		// Response body is empty for HTTP 204 and 304 status code.
-		if ( empty( $responseBody ) ) {
+		if ( empty( $response_body ) ) {
 			return array();
 		}
 
-		$responseBody = json_decode( $responseBody, true );
+		$response_body = json_decode( $response_body, true );
 		if ( json_last_error() !== JSON_ERROR_NONE ) {
 			throw new Aplazame_Sdk_Api_DeserializeException( 'Unable to deserialize JSON data: ' . json_last_error_msg(), json_last_error() );
 		}
 
-		return $responseBody;
+		return $response_body;
 	}
 }

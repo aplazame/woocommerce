@@ -1,13 +1,15 @@
 <?php
+/**
+ * Cart widget
+ *
+ * @package WC_Aplazame
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- *
- * @var WC_Aplazame $aplazame
- */
+/** Global aplazame var */
 global $aplazame;
 
 $country = 'auto' === $aplazame->settings['widget_country'] ? substr( get_bloginfo( 'language' ), 0, 2 ) : $aplazame->settings['widget_country'];
@@ -30,7 +32,7 @@ $country = 'auto' === $aplazame->settings['widget_country'] ? substr( get_blogin
 		data-option-slider="<?php echo esc_attr( 'yes' === $aplazame->settings['cart_slider'] ? 'true' : 'false' ); ?>"
 		data-option-align="<?php echo esc_attr( $aplazame->settings['cart_widget_align'] ); ?>"
 	<?php endif; ?>
-	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->jsonSerialize() ); ?>"
+	data-amount="<?php echo esc_attr( Aplazame_Sdk_Serializer_Decimal::fromFloat( WC()->cart->total )->json_serialize() ); ?>"
 	data-country="<?php echo esc_attr( $country ); ?>"
 	data-currency="<?php echo esc_attr( get_woocommerce_currency() ); ?>"
 	<?php if ( ! empty( $aplazame->settings['cart_default_instalments'] ) ) : ?>

@@ -1,5 +1,32 @@
 <?xml version="1.0"?>
 <ruleset name="Aplazame">
     <file>plugin</file>
+
+    <!-- Use WordPress coding standards -->
 	<rule ref="WordPress"/>
+
+    <!--  Remove WordPress.Files.FileName.InvalidClassFileName checks to allow for PSR-4 naming convention -->
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>plugin/lib/</exclude-pattern>
+    </rule>
+
+    <!-- Remove WordPress.Files.FileName.NotHyphenatedLowercase checks to allow for PSR-4 naming convention -->
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <exclude-pattern>plugin/lib/</exclude-pattern>
+    </rule>
+
+    <!-- Remove need for package tag in file block comments -->
+    <rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
+        <exclude-pattern>plugin/lib/</exclude-pattern>
+    </rule>
+
+    <!-- Remove need for file comment -->
+    <rule ref="Squiz.Commenting.FileComment.Missing">
+        <exclude-pattern>plugin/lib/</exclude-pattern>
+    </rule>
+
+    <!-- Allow the usage of shorthand arrays -->
+    <rule ref="Generic.Arrays.DisallowShortArraySyntax">
+        <exclude-pattern>plugin/lib/</exclude-pattern>
+    </rule>
 </ruleset>

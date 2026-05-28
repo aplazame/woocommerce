@@ -1,13 +1,13 @@
 <?php
 
-$baseDir = __DIR__;
+$base_dir = __DIR__;
 
-require $baseDir . '/Api/BusinessModel/Article.php';
-require $baseDir . '/Api/BusinessModel/HistoricalOrder.php';
-require $baseDir . '/BusinessModel/Address.php';
-require $baseDir . '/BusinessModel/Article.php';
-require $baseDir . '/BusinessModel/Checkout.php';
-require $baseDir . '/BusinessModel/Customer.php';
-require $baseDir . '/BusinessModel/Meta.php';
-require $baseDir . '/BusinessModel/Order.php';
-require $baseDir . '/BusinessModel/ShippingInfo.php';
+require $base_dir . '/Api/BusinessModel/Article.php';
+require $base_dir . '/Api/BusinessModel/HistoricalOrder.php';
+require $base_dir . '/BusinessModel/Address.php';
+require $base_dir . '/BusinessModel/Article.php';
+require $base_dir . '/BusinessModel/Checkout.php';
+require $base_dir . '/BusinessModel/Customer.php';
+require $base_dir . '/BusinessModel/Meta.php';
+require $base_dir . '/BusinessModel/Order.php';
+require $base_dir . '/BusinessModel/ShippingInfo.php';
