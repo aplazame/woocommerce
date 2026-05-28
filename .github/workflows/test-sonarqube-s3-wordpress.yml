@@ -150,11 +150,11 @@ jobs:
          for i in $(svn status svn | grep ! | awk '{print $2}'); do svn delete $i; done
           
          echo "****************Tag Release******************************"
-         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         APP_VERSION=$(grep "^version" Makefile | awk -F= '{print $2}' | xargs)
          echo $APP_VERSION
          svn cp svn/trunk svn/tags/$APP_VERSION
           
          echo "****************Commit to Wordpress******************************"
-         export APP_VERSION="$(cat APP_VERSION.tmp)"
+         APP_VERSION=$(grep "^version" Makefile | awk -F= '{print $2}' | xargs)
          echo $APP_VERSION
          svn ci --no-auth-cache --username ${WORDPRESS_USERNAME} --password ${WORDPRESS_PASSWORD} svn -m "tagging version $APP_VERSION"
