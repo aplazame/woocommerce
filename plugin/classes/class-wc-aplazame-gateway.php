@@ -363,6 +363,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'description' => __( 'Show downpayment info in product widget', 'aplazame' ),
 				'label'       => __( 'Show downpayment info', 'aplazame' ),
 			),
+			'product_show_open_fee'           => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Open fee info', 'aplazame' ),
+				'description' => __( 'Show open fee info in product widget', 'aplazame' ),
+				'label'       => __( 'Show open fee info', 'aplazame' ),
+			),
 			'product_legal_advice'            => array(
 				'type'        => 'checkbox',
 				'title'       => __( 'Legal notice', 'aplazame' ),
@@ -486,6 +492,12 @@ class WC_Aplazame_Gateway extends WC_Payment_Gateway {
 				'title'       => __( 'Downpayment info', 'aplazame' ),
 				'description' => __( 'Show downpayment info in cart widget', 'aplazame' ),
 				'label'       => __( 'Show downpayment info', 'aplazame' ),
+			),
+			'cart_show_open_fee'              => array(
+				'type'        => 'checkbox',
+				'title'       => __( 'Open fee info', 'aplazame' ),
+				'description' => __( 'Show open fee info in cart widget', 'aplazame' ),
+				'label'       => __( 'Show open fee info', 'aplazame' ),
 			),
 			'cart_legal_advice'               => array(
 				'type'        => 'checkbox',

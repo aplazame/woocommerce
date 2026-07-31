@@ -50,7 +50,7 @@ class Aplazame_Sdk_Api_Client {
 		string $api_base_uri,
 		string $environment,
 		string $access_token,
-		Aplazame_Sdk_Http_ClientInterface $http_client = null
+		?Aplazame_Sdk_Http_ClientInterface $http_client = null
 	) {
 		$this->api_base_uri = $api_base_uri;
 		$this->use_sandbox  = ( self::ENVIRONMENT_SANDBOX === $environment ) ? true : false;

@@ -72,6 +72,7 @@ $country = 'auto' === $aplazame->settings['widget_country'] ? substr( get_blogin
 	<?php endif; ?>
 	data-option-legal-advice="<?php echo esc_attr( 'yes' === $aplazame->settings['product_legal_advice'] ? 'true' : 'false' ); ?>"
 	data-option-downpayment-info="<?php echo esc_attr( 'yes' === $aplazame->settings['product_downpayment_info'] ? 'true' : 'false' ); ?>"
+	data-option-show-open-fee="<?php echo esc_attr( 'yes' === $aplazame->settings['product_show_open_fee'] ? 'true' : 'false' ); ?>"
 	data-option-out-of-limits="<?php echo esc_attr( $aplazame->settings['widget_out_of_limits'] ); ?>"
 	<?php if ( 'yes' === $aplazame->settings['product_pay_in_4'] ) : ?>
 		data-pay-in-4=""
