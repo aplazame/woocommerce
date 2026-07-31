@@ -471,6 +471,8 @@ class WC_Aplazame_Install { //phpcs:ignore
 		'widget_out_of_limits'            => 'show',
 		'product_downpayment_info'        => 'yes',
 		'cart_downpayment_info'           => 'yes',
+		'product_show_open_fee'           => 'yes',
+		'cart_show_open_fee'              => 'yes',
 		'product_widget_max_desired'      => 'no',
 		'cart_widget_max_desired'         => 'no',
 		'product_widget_ver'              => 'v5',
